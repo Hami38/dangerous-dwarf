@@ -1,0 +1,293 @@
+---
+/* src/components/PortfolioSection.astro */
+import Reveal from './Reveal.astro';
+
+const cases = [
+  {
+    id: 1,
+    overline: "Finanse / Strategia",
+    headline: "Pierwszy na rynku BLIK korporacyjny dla ING",
+    subtext: "1 mln transakcji w 1. tygodniu produktu. Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.",
+    metric: "UX Expert & Interaction Designer",
+    image: "/placeholder-1.jpg",
+    imageAlt: "Placeholder project visual",
+    reverse: false,
+    href: "#case-ing-blik",
+  },
+  {
+    id: 2,
+    overline: "Bezpieczeństwo / Computer Vision",
+    headline: "Systemy identyfikacji biometrycznej dla liderów rynku",
+    subtext: "Skalowanie technologii analizy chodu i cech ogólnych. Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
+    metric: "Lead Product Designer",
+    image: "/placeholder-2.jpg",
+    imageAlt: "Placeholder project visual",
+    reverse: true,
+    href: "#case-biometrics",
+  },
+  {
+    id: 3,
+    overline: "Bezpieczeństwo krytyczne / Deep Tech",
+    headline: "Wirtualny asystent dla maszynistów kolejowych",
+    subtext: "Redukcja incydentów kolejowych o 21%. Budowa systemu wspomagania decyzji w czasie rzeczywistym i minimalizacja obciążenia poznawczego.",
+    metric: "Lead Product Designer",
+    image: "/placeholder-3.jpg",
+    imageAlt: "Placeholder project visual",
+    reverse: false,
+    href: "#case-railway-ai",
+  },
+  {
+    id: 4,
+    overline: "MedTech / IoT / Product Design",
+    headline: "Tabbox: Inteligentny system wsparcia farmakoterapii",
+    subtext: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.",
+    metric: "Product Design & Research",
+    image: "/placeholder-4.jpg",
+    imageAlt: "Placeholder project visual",
+    reverse: true,
+    href: "#case-healthtech",
+  },
+];
+---
+
+<section class="portfolio-section relative bg-[#0c0a09] py-24 md:py-32 px-6 overflow-hidden">
+  <div class="max-w-4xl w-full mx-auto">
+    
+    <!-- Section Header -->
+    <div class="mb-20 md:mb-28 max-w-4xl">
+      <Reveal delay={0.1}>
+        <p class="section-overline text-[#BAF52A] text-xs Normalcase tracking-[0.2em] font-extrabold mb-4">Wybrane projekty</p>
+      </Reveal>
+      <Reveal delay={0.25}>
+        <h2 class="section-heading text-white text-4xl md:text-5xl font-bold leading-tight">
+          Od strategii <br class="hidden md:block" />po mierzalny wpływ
+        </h2>
+      </Reveal>
+    </div>
+
+    <!-- Case Cards -->
+    <div class="cases-grid flex flex-col gap-32 md:gap-40">
+      {cases.map((caseItem, index) => (
+        <article 
+          class={`case-card-wrapper ${caseItem.reverse ? 'reverse' : ''}`}
+          data-case-index={index}
+        >
+          <div class="case-card max-w-[1024px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            
+            <!-- Visual (60%) -->
+            <div class={`case-visual md:col-span-7 ${caseItem.reverse ? 'md:order-2' : ''}`}>
+              <a href={caseItem.href} class="visual-link block">
+                <div class="visual-frame relative aspect-[16/10] bg-stone-900/50 rounded-3xl overflow-hidden border border-white/5">
+                  <img 
+                    src={caseItem.image} 
+                    alt={caseItem.imageAlt}
+                    class="w-full h-full object-cover opacity-0"
+                    data-reveal-image
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Content (40%) -->
+            <div class={`case-content md:col-span-5 ${caseItem.reverse ? 'md:order-1 md:text-right' : ''}`}>
+              <div class="mb-3">
+                <Reveal delay={0.2 + index * 0.1} color="#BAF52A" tag="span">
+                  <p class="case-overline text-[#BAF52A] text-[12px] normalcase tracking-[0.25em] font-extrabold">
+                    {caseItem.overline}
+                  </p>
+                </Reveal>
+              </div>
+              
+              <div class="mb-4">
+                <Reveal delay={0.35 + index * 0.1} color="#ffffff" tag="span">
+                  <h3 class="case-headline text-white text-2xl md:text-3xl font-bold leading-tight">
+                    {caseItem.headline}
+                  </h3>
+                </Reveal>
+              </div>
+              
+              <div class="mb-6">
+                <Reveal delay={0.5 + index * 0.1} color="#a8a29e" tag="span">
+                  <p class="case-subtext text-stone-400 text-sm md:text-base font-medium leading-relaxed">
+                    {caseItem.subtext}
+                  </p>
+                </Reveal>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                <div class="case-metric inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 opacity-0 w-fit" data-fade-in style={`transition-delay: ${0.65 + index * 0.1}s`}>
+                  <span class="text-xs font-bold text-white/80 leading-none">{caseItem.metric}</span>
+                </div>
+
+                <a href={caseItem.href} class="case-cta group inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 opacity-0 w-fit" data-fade-in style={`transition-delay: ${0.8 + index * 0.1}s`}>
+                  <span>Zobacz case study</span>
+                  <div class="icon-wrapper relative w-4 h-4 overflow-hidden">
+                    <svg class="icon-arrow absolute inset-0 transition-transform duration-300 group-hover:-translate-y-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14m-7-7 7 7-7 7"/>
+                    </svg>
+                    <svg class="icon-eye absolute inset-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .section-overline { opacity: 0.9; }
+  
+  .section-heading {
+    background: linear-gradient(135deg, #ffffff 0%, #a8a29e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Z-Pattern Alignment */
+  .case-card-wrapper.reverse .case-content {
+    align-items: flex-end;
+  }
+
+  /* Reveal wrapper - inline-block dla dopasowania szerokości do treści */
+  .case-content :global(.reveal-wrapper) {
+    display: inline-block;
+    width: auto;
+  }
+
+  /* Visual Link */
+  .visual-link {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Visual Frame Animation Prep */
+  .visual-frame {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .case-card-wrapper.in-view .visual-frame {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .visual-link:hover .visual-frame {
+    transform: scale(1.02);
+    border-color: rgba(186, 245, 42, 0.2);
+  }
+
+  /* Image Reveal */
+  [data-reveal-image] {
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+  }
+
+  .case-card-wrapper.in-view [data-reveal-image] {
+    opacity: 1;
+  }
+
+  /* Fade-in elements (metric & CTA) */
+  [data-fade-in] {
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(10px);
+  }
+
+  .case-card-wrapper.in-view [data-fade-in] {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+
+  /* Metric badge - poprawione wyrównanie tekstu */
+  .case-metric {
+    height: auto;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .case-metric span {
+    line-height: 1;
+    padding: 1px 0;
+  }
+
+  /* CTA Button Enhanced Hover */
+  .case-cta {
+    position: relative;
+  }
+
+  .case-cta:hover {
+    color: #BAF52A;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .icon-arrow,
+  .icon-eye {
+    position: absolute;
+    inset: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .case-content { text-align: left !important; }
+    
+    /* Na mobile też w-fit i flex-col */
+    .case-content .case-metric,
+    .case-content .case-cta {
+      align-self: flex-start;
+    }
+  }
+
+  /* Dla reverse layout - wyrównanie do prawej */
+  .case-card-wrapper.reverse .case-content .case-metric,
+  .case-card-wrapper.reverse .case-content .case-cta {
+    align-self: flex-end;
+  }
+
+  @media (max-width: 768px) {
+    .case-card-wrapper.reverse .case-content .case-metric,
+    .case-card-wrapper.reverse .case-content .case-cta {
+      align-self: flex-start;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer dla scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -10% 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.case-card-wrapper').forEach(card => {
+    observer.observe(card);
+  });
+</script>

@@ -5,12 +5,13 @@ interface Props {
   variant?: 'primary' | 'secondary';
   href?: string;
   download?: boolean;
+  class?: string;
 }
 
-const { text, variant = 'primary', href = "#", download = false } = Astro.props;
+const { text, variant = 'primary', href = "#", download = false, class: className = '' } = Astro.props;
 ---
 
-<a href={href} class={`btn-pill ${variant}`} download={download ? "" : undefined}>
+<a href={href} class={`btn-pill ${variant} ${className}`.trim()} download={download ? "" : undefined}>
   <span class="btn-text">{text}</span>
   
   <div class="icon-outer">

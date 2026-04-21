@@ -118,19 +118,19 @@ const navItems = [
     link.addEventListener('click', closeMenu);
   });
 
-  // POPRAWKA: zamknij menu klawiszem Escape — ważne dla dostępności
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && menu?.classList.contains('active')) {
       closeMenu();
     }
   });
+
+  // Zamknij menu po kliknięciu w tło (poza nawigacją)
+  menu?.addEventListener('click', (e) => {
+    if (e.target === menu) closeMenu();
+  });
 </script>
 
 <style>
-  :root {
-    --brand-main: #BAF52A; 
-  }
-
   .nav-link-desktop {
     font-size: 14px;
     color: #e1e1e1;

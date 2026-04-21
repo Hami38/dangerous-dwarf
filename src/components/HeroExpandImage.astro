@@ -40,18 +40,20 @@ const stats = [
             <div class="max-w-4xl mx-auto px-6 w-full grid grid-cols-2 gap-8">
               {stats.map((stat) => (
                 <div class="de-stat-card">
-                  {/* Każdy element tekstowy w kaflu ma własny reveal-block */}
                   <div class="de-card-text">
                     <div class="de-card-label">
-                      <span class="reveal-block-el"></span>
+                      {/* Blok w kolorze labelki — zielony #BAF52A */}
+                      <span class="reveal-block-el reveal-block-label"></span>
                       <span class="de-label-text text-[#BAF52A] text-[10px] uppercase tracking-[0.2em] font-extrabold block">{stat.title}</span>
                     </div>
                     <div class="de-card-heading">
-                      <span class="reveal-block-el"></span>
+                      {/* Blok w kolorze headingu — biały */}
+                      <span class="reveal-block-el reveal-block-heading"></span>
                       <h3 class="de-heading-text text-white text-3xl font-bold tracking-tight">{stat.heading}</h3>
                     </div>
                     <div class="de-card-desc">
-                      <span class="reveal-block-el"></span>
+                      {/* Blok w kolorze opisu — stone-300 */}
+                      <span class="reveal-block-el reveal-block-desc"></span>
                       <p class="de-desc-text text-stone-300 text-sm leading-relaxed font-medium">{stat.description}</p>
                     </div>
                   </div>
@@ -112,11 +114,55 @@ const stats = [
     background: rgba(255,255,255,0.03);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     padding: 2.25rem; border-radius: 2rem;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: none;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    /* Kafel wjeżdża jako całość */
+    position: relative; isolation: isolate;
     opacity: 0; transform: translateY(28px);
     will-change: opacity, transform;
+  }
+
+  /* Statyczny border bazowy */
+  .de-stat-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255,255,255,0.08);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Świecący border — gradient przez --glow-angle, domyślnie niewidoczny */
+  .de-stat-card::before {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg) at center,
+      transparent 0%,
+      #BAF52A 15%,
+      #ffffff 30%,
+      #a8a29e 45%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+    /* Poświata — rozmyty duplikat bordera świeci na zewnątrz kafla */
+    filter: drop-shadow(0 0 6px #BAF52A) drop-shadow(0 0 18px rgba(186,245,42,0.5));
+  }
+
+  .de-stat-card.glow-active::before {
+    opacity: var(--glow-opacity, 0);
   }
 
   /* Każda linia tekstu — pozycja relative żeby reveal-block był over nią */
@@ -130,17 +176,16 @@ const stats = [
   }
   .de-card-desc { margin-bottom: 0; }
 
-  /* Blok zasłaniający — startuje scaleX:0, GSAP go animuje */
+  /* Bloki zasłaniające — każdy w kolorze swojego tekstu */
   .reveal-block-el {
-    position: absolute;
-    inset: 0;
-    background: #BAF52A;
+    position: absolute; inset: 0;
     transform: scaleX(0);
     transform-origin: left center;
-    z-index: 2;
-    display: block;
-    pointer-events: none;
+    z-index: 2; display: block; pointer-events: none;
   }
+  .reveal-block-label   { background: #BAF52A; }           /* zielony — kolor labela */
+  .reveal-block-heading { background: #ffffff; }           /* biały — kolor headingu */
+  .reveal-block-desc    { background: #a8a29e; }
 
   /* Teksty schowane przed animacją */
   .de-label-text,
@@ -303,6 +348,41 @@ const stats = [
 
       window.addEventListener('resize', () => { cacheSize(); render(); ScrollTrigger.refresh(); });
       ScrollTrigger.refresh();
+
+      // ── Border Glow na kaflach ────────────────────────────────────────────
+      const EDGE_SENS = 30;
+
+      const getProximity = (el: HTMLElement, x: number, y: number): number => {
+        const {width, height} = el.getBoundingClientRect();
+        const cx = width/2, cy = height/2;
+        const kx = x-cx !== 0 ? cx/Math.abs(x-cx) : Infinity;
+        const ky = y-cy !== 0 ? cy/Math.abs(y-cy) : Infinity;
+        return Math.min(Math.max(1/Math.min(kx,ky), 0), 1);
+      };
+
+      const getAngle = (el: HTMLElement, x: number, y: number): number => {
+        const {width, height} = el.getBoundingClientRect();
+        const dx = x-width/2, dy = y-height/2;
+        if (!dx && !dy) return 0;
+        let deg = Math.atan2(dy,dx)*180/Math.PI+90;
+        return deg < 0 ? deg+360 : deg;
+      };
+
+      document.querySelectorAll<HTMLElement>('.de-stat-card').forEach(card => {
+        card.addEventListener('pointermove', (e: PointerEvent) => {
+          const r = card.getBoundingClientRect();
+          const x = e.clientX-r.left, y = e.clientY-r.top;
+          const prox = getProximity(card, x, y);
+          const opacity = Math.max(0, (prox*100-EDGE_SENS)/(100-EDGE_SENS));
+          card.style.setProperty('--glow-angle', getAngle(card,x,y).toFixed(1)+'deg');
+          card.style.setProperty('--glow-opacity', opacity.toFixed(3));
+          card.classList.add('glow-active');
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--glow-opacity', '0');
+        });
+      });
+      // ─────────────────────────────────────────────────────────────────────
     };
   });
 </script>

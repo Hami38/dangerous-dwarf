@@ -38,15 +38,18 @@ const stats = [
             {stats.map((stat) => (
               <div class="me-stat-card">
                 <div class="me-card-label">
-                  <span class="reveal-block-el"></span>
+                  {/* Blok w kolorze labelki — zielony */}
+                  <span class="reveal-block-el reveal-block-label"></span>
                   <span class="me-label-text text-[#BAF52A] text-[10px] uppercase tracking-widest font-extrabold block">{stat.title}</span>
                 </div>
                 <div class="me-card-heading">
-                  <span class="reveal-block-el"></span>
+                  {/* Blok w kolorze headingu — biały */}
+                  <span class="reveal-block-el reveal-block-heading"></span>
                   <h3 class="me-heading-text text-white text-xl font-bold">{stat.heading}</h3>
                 </div>
                 <div class="me-card-desc">
-                  <span class="reveal-block-el"></span>
+                  {/* Blok w kolorze opisu — stone-300 */}
+                  <span class="reveal-block-el reveal-block-desc"></span>
                   <p class="me-desc-text text-stone-300 text-xs leading-relaxed font-medium">{stat.description}</p>
                 </div>
               </div>
@@ -115,14 +118,16 @@ const stats = [
   }
   .me-card-desc { margin-bottom: 0; }
 
-  /* Blok zasłaniający */
+  /* Bloki zasłaniające — każdy w kolorze swojego tekstu */
   .reveal-block-el {
     position: absolute; inset: 0;
-    background: #BAF52A;
     transform: scaleX(0);
     transform-origin: left center;
     z-index: 2; display: block; pointer-events: none;
   }
+  .reveal-block-label   { background: #BAF52A; }   /* zielony — kolor labela */
+  .reveal-block-heading { background: #ffffff; }   /* biały — kolor headingu */
+  .reveal-block-desc    { background: #a8a29e; }   /* stone-300 — kolor opisu */
 
   /* Teksty schowane przed animacją */
   .me-label-text,

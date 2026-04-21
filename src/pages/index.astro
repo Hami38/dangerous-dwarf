@@ -47,8 +47,9 @@ import HeroExpandMobile from '../components/HeroExpandMobile.astro';
       }, 150);
     } else if (preloader) {
       setTimeout(() => {
+        window.scrollTo(0, 0);
         preloader.classList.add("preloader-hidden");
-        document.body.style.overflow = "auto";
+        document.body.style.removeProperty('overflow');
 
         // POPRAWKA: emitujemy event — Layout.astro na niego czeka
         window.dispatchEvent(new CustomEvent('preloaderFinished'));

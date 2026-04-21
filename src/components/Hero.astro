@@ -1,0 +1,165 @@
+---
+/* src/components/Hero.astro */
+import Button from './Button.astro';
+import Reveal from './Reveal.astro';
+import { Image } from 'astro:assets';
+import ingLogo from '../assets/logos/ING_logo.svg';
+import ltgLogo from '../assets/logos/LTG-cargo-PL.png';
+import creotechLogo from '../assets/logos/logo_creotech.svg';
+import pgzLogo from '../assets/logos/Logotyp-PGZSW.svg';
+---
+
+<section class="hero-section relative min-h-fit flex flex-col items-center px-6 pt-16 md:pt-32 pb-12 overflow-hidden bg-transparent">
+  <div class="max-w-4xl w-full mx-auto flex flex-col items-start">
+
+    <!-- ① Tytuł — Block Reveal, odpala się po preloaderze -->
+    <Reveal trigger="onLoad" duration={0.7} color="#BAF52A" class="mb-6 w-full">
+      <h1 class="hero-title">
+        <span class="text-brand-main">Kamil Wardak</span> Design Strategist <br class="hidden md:block" /> & Lead UX Designer.
+      </h1>
+    </Reveal>
+
+    <!-- ② Opis — Block Reveal z opóźnieniem, biały blok -->
+    <Reveal trigger="onLoad" duration={0.65} color="#ffffff" delay={0.55} class="mb-14 w-full">
+      <p class="hero-description">
+        <span class="highlight">Od 12 lat</span> projektuję systemy o wysokim stopniu złożoności dla <span class="highlight">liderów sektora finansowego, medycznego i zbrojeniowego</span>. Obecnie w <span class="highlight">ING Banku Śląskim</span> definiuję przyszłość bankowości korporacyjnej oraz wdrażam innowacje oparte na <span class="highlight">GenAI</span>.
+      </p>
+    </Reveal>
+
+    <!-- ③ Status bar — wjeżdża z dołu po opisie -->
+    <div class="status-bar hero-fade-up" style="--delay: 1.35s">
+      <div class="status-item">
+        <svg class="status-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <p><strong>Lokalizacja:</strong> Warszawa, PL</p>
+      </div>
+    </div>
+
+    <!-- ④ Przyciski — wjeżdżają po status bar -->
+    <div class="hero-actions w-full flex flex-col md:flex-row gap-4 mb-16 hero-fade-up" style="--delay: 1.55s">
+      <Button text="Porozmawiajmy" variant="primary" href="mailto:kamil.wardak97@gmail.com" class="w-full md:w-auto">
+        <svg slot="icon-default" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <svg slot="icon-hover" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+      </Button>
+      <Button text="Pobierz CV" variant="secondary" href="/Kamil_Wardak_CV_2026.pdf" download={true} class="w-full md:w-auto">
+        <svg slot="icon-default" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        <span slot="icon-hover" class="file-size">3.26 MB</span>
+      </Button>
+    </div>
+
+    <!-- ⑤ Trust bar — label osobno, potem loga jedno po drugim -->
+    <div class="trust-bar w-full">
+      <p class="trust-label hero-fade-up" style="--delay: 1.75s">Zaufały mi wiodące marki:</p>
+      <div class="logos-grid">
+        <div class="logo-item hero-logo" style="--delay: 1.9s"><Image src={ingLogo} alt="ING Bank Śląski" class="brand-logo" /></div>
+        <div class="logo-item hero-logo" style="--delay: 2.0s"><Image src={ltgLogo} alt="LTG Cargo Polska" class="brand-logo" /></div>
+        <div class="logo-item hero-logo" style="--delay: 2.1s"><Image src={creotechLogo} alt="Creotech" class="brand-logo" /></div>
+        <div class="logo-item hero-logo" style="--delay: 2.2s"><Image src={pgzLogo} alt="PGZ Stocznia wojskowa" class="brand-logo no-filter" /></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root { --brand-main: #BAF52A; }
+
+  .hero-title {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+  }
+
+  .text-brand-main { color: var(--brand-main); }
+
+  .hero-description {
+    font-size: 1.15rem;
+    color: #a8a29e;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .highlight { color: #ffffff; font-weight: 500; }
+
+  .status-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .status-item { display: flex; align-items: center; gap: 0.75rem; }
+  .status-item p { font-size: 0.95rem; color: #a8a29e; margin: 0; }
+  .status-icon-svg { color: #ffffff; }
+
+  /* Przyciski */
+  .hero-actions :global(a),
+  .hero-actions :global(button) { width: 100%; justify-content: center; }
+  @media (min-width: 768px) {
+    .hero-actions :global(a),
+    .hero-actions :global(button) { width: auto; }
+  }
+
+  /* Trust bar */
+  .trust-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); margin-bottom: 2rem; }
+  .logos-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 3.5rem; }
+  .brand-logo { height: 64px; width: auto; max-width: 250px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.3; transition: all 0.4s ease; }
+  .brand-logo.no-filter { filter: none; }
+  .brand-logo:hover,
+  .brand-logo.no-filter:hover { opacity: 1; transform: translateY(-2px); }
+
+  /* Stan startowy dla GSAP — niewidoczne, przesunięte w dół */
+  .hero-fade-up { opacity: 0; transform: translateY(18px); }
+  .hero-logo    { opacity: 0; transform: translateY(12px); }
+
+  @media (max-width: 768px) {
+    .hero-title { font-size: 2.25rem; }
+    .status-bar { flex-direction: column; gap: 1rem; }
+    .brand-logo { height: 38px; max-width: 150px; }
+    .logos-grid { gap: 2rem; justify-content: center; }
+    .hero-actions { margin-bottom: 3rem; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  const animateHero = () => {
+    // fade-up: status bar, przyciski, trust label
+    document.querySelectorAll<HTMLElement>('.hero-fade-up').forEach((el) => {
+      const delay = parseFloat(el.style.getPropertyValue('--delay')) || 0;
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        delay,
+        ease: 'power3.out',
+      });
+    });
+
+    // loga — każde osobno z własnym opóźnieniem
+    document.querySelectorAll<HTMLElement>('.hero-logo').forEach((el) => {
+      const delay = parseFloat(el.style.getPropertyValue('--delay')) || 0;
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay,
+        ease: 'power3.out',
+      });
+    });
+  };
+
+  // Czekamy na koniec preloadera — tak samo jak Block Reveal
+  window.addEventListener('preloaderFinished', animateHero, { once: true });
+
+  // Fallback: jeśli preloader nie strzeli eventu
+  setTimeout(() => {
+    const alreadyDone = document.querySelector('.hero-fade-up[style*="opacity: 1"]');
+    if (!alreadyDone) animateHero();
+  }, 5500);
+</script>

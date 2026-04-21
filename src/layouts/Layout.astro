@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title?: string;
+}
+
+const { title = "Kamil Wardak | Portfolio" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- POPRAWKA: dodano initial-scale=1 — bez tego na iOS strona może się skalować nieprawidłowo -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<slot />
+		<!-- POPRAWKA: usunięto zbędny <main> — był podwójnie zagnieżdżony z index.astro.
+		     Slot bezpośrednio w body. Każda strona sama decyduje o swojej strukturze. -->
+
+		<script>
+			import { initBlockReveals } from '../utils/blockReveal';
+
+			const run = () => {
+				// Oznacz jako uruchomione — chroni przed podwójnym wywołaniem z fallbacku
+				document.body.dataset.revealsInit = 'true';
+				initBlockReveals();
+			};
+
+			// Główna ścieżka: czekamy na koniec preloadera
+			window.addEventListener('preloaderFinished', run, { once: true });
+
+			// Fallback: jeśli preloader nie odpali eventu w 5s (błąd JS, wolne łącze)
+			setTimeout(() => {
+				if (!document.body.dataset.revealsInit) run();
+			}, 5000);
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--brand-main: #BAF52A;
+		--bg-stone: #0c0a09;
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		min-height: 100%;
+		background-color: var(--bg-stone);
+		color: #ffffff;
+		font-family: 'Inter', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		overflow-x: hidden;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.action-reveal {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+</style>

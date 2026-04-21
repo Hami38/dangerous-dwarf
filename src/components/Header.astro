@@ -1,0 +1,226 @@
+---
+/* Header.astro */
+import { Image } from 'astro:assets';
+import myAvatar from '../assets/images/portfolio-avatar.jpg';
+import LinkedInButton from './LinkedInButton.astro';
+
+const navItems = [
+  { name: 'O mnie', href: '#' },
+  { name: 'Prace', href: '#' },
+  { name: 'Leadership', href: '#' },
+  { name: 'Kontakt', href: '#' },
+];
+---
+
+<div class="header-wrapper">
+  <header class="fixed top-0 left-0 right-0 z-[200] border-b border-white/10 bg-black/30 backdrop-blur-md h-20">
+    <div class="max-w-4xl mx-auto px-6 h-full flex items-center justify-between relative">
+      
+      <div class="z-[210]">
+        <a href="/" class="group flex items-center gap-3 py-1 shrink-0 w-fit no-underline">
+          <Image 
+            src={myAvatar} 
+            alt="Kamil Wardak" 
+            width={80} 
+            height={80} 
+            loading="eager"
+            class="size-10 rounded-full border border-white/20 object-cover shrink-0"
+          />
+          <div class="flex items-baseline gap-1.5 whitespace-nowrap text-white">
+            <span class="text-sm font-bold group-hover:text-[var(--brand-main)] transition-colors duration-300">Kamil Wardak</span>
+            <div class="relative h-5 overflow-hidden flex flex-col justify-start font-normal text-sm">
+              <div class="flex flex-col transition-transform duration-300 ease-in-out group-hover:-translate-y-1/2">
+                <span class="h-5 text-white/50 flex items-center">portfolio</span>
+                <span class="h-5 text-[var(--brand-main)] flex items-center font-bold">strona główna</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-6 z-[210]">
+        <nav class="hidden md:flex items-center gap-8">
+          {navItems.map(item => (
+            <a href={item.href} class="nav-link-desktop">
+              {item.name}
+            </a>
+          ))}
+        </nav>
+
+        <div class="hidden md:block w-[1px] h-6 bg-white/10"></div>
+
+        <div class="hidden md:block">
+          <LinkedInButton />
+        </div>
+        
+        <!-- POPRAWKA: przeniesiono logikę onclick do osobnego <script> poniżej,
+             aby uniknąć inline JS i poprawić czytelność kodu -->
+        <button 
+          id="menu-toggle" 
+          aria-label="Otwórz menu"
+          aria-expanded="false"
+          class="md:hidden flex flex-col justify-center items-center gap-[6px] w-12 h-12 -mr-3 focus:outline-none cursor-pointer group"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
+    <nav class="flex flex-col items-end gap-10 px-12 pt-10">
+      {navItems.map((item, index) => (
+        <a 
+          href={item.href} 
+          class="mobile-nav-item close-menu" 
+          style={`transition-delay: ${index * 100 + 200}ms`}
+        >
+          {item.name}
+        </a>
+      ))}
+      <div class="mobile-nav-item mt-6 scale-125 origin-right" style="transition-delay: 600ms;">
+        <LinkedInButton />
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- POPRAWKA: spacer z dokładną wysokością headera -->
+<div class="h-20" aria-hidden="true"></div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  const openMenu = () => {
+    toggle?.classList.add('active');
+    toggle?.setAttribute('aria-expanded', 'true');
+    menu?.classList.add('active');
+    menu?.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  };
+
+  const closeMenu = () => {
+    toggle?.classList.remove('active');
+    toggle?.setAttribute('aria-expanded', 'false');
+    menu?.classList.remove('active');
+    menu?.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  };
+
+  toggle?.addEventListener('click', () => {
+    toggle.classList.contains('active') ? closeMenu() : openMenu();
+  });
+
+  // Zamknij menu po kliknięciu w link nawigacyjny
+  document.querySelectorAll('.close-menu').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // POPRAWKA: zamknij menu klawiszem Escape — ważne dla dostępności
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+</script>
+
+<style>
+  :root {
+    --brand-main: #BAF52A; 
+  }
+
+  .nav-link-desktop {
+    font-size: 14px;
+    color: #e1e1e1;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    transition: color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .nav-link-desktop:hover {
+    color: #fff;
+  }
+
+  .nav-link-desktop:after {
+    content: "";
+    pointer-events: none;
+    bottom: -4px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--brand-main);
+    transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1), left 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .nav-link-desktop:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+
+  .nav-link-desktop:active {
+    color: var(--brand-main) !important;
+    transform: scale(0.95);
+  }
+
+  /* --- HAMBURGER --- */
+  .hamburger-line {
+    display: block !important;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  #menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(4px) rotate(45deg) !important;
+  }
+
+  #menu-toggle.active .hamburger-line:nth-child(2) {
+    transform: translateY(-4px) rotate(-45deg) !important;
+  }
+
+  /* --- MOBILE MENU --- */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-stone);
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+  }
+
+  .mobile-overlay.active {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .mobile-nav-item {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .mobile-overlay.active .mobile-nav-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  :global(body.menu-open) {
+    overflow: hidden !important;
+  }
+</style>

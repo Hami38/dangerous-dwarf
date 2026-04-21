@@ -1,0 +1,89 @@
+---
+/**
+ * Reveal.astro
+ * 
+ * Komponent-wrapper do Block Reveal Effect.
+ * Owijasz nim dowolny element HTML — animacja odpali się automatycznie.
+ * 
+ * PROPS:
+ *   delay?       — opóźnienie w sekundach          (domyślnie: 0)
+ *   color?       — kolor bloku zasłaniającego       (domyślnie: '#BAF52A')
+ *   duration?    — czas trwania jednego przejścia   (domyślnie: 0.6)
+ *   trigger?     — 'onScroll' | 'onLoad'            (domyślnie: 'onScroll')
+ *   scrollStart? — punkt startu ScrollTrigger       (domyślnie: 'top 88%')
+ *   tag?         — tag HTML wrappera                (domyślnie: 'div')
+ *   class?       — dodatkowe klasy CSS              (domyślnie: '')
+ * 
+ * PRZYKŁADY UŻYCIA:
+ * 
+ *   // Podstawowe — odpala się przy scrollowaniu
+ *   <Reveal>
+ *     <h2>Sekcja o mnie</h2>
+ *   </Reveal>
+ * 
+ *   // Hero heading — odpala się od razu po preloaderze
+ *   <Reveal trigger="onLoad" duration={0.8}>
+ *     <h1>Kamil Wardak</h1>
+ *   </Reveal>
+ * 
+ *   // Biały blok z opóźnieniem
+ *   <Reveal color="#ffffff" delay={0.2}>
+ *     <p>Opis projektu</p>
+ *   </Reveal>
+ * 
+ *   // Inline (np. dla span w środku zdania)
+ *   <Reveal tag="span" delay={0.1}>
+ *     <span>słowo kluczowe</span>
+ *   </Reveal>
+ * 
+ *   // Z dodatkowymi klasami Tailwind
+ *   <Reveal class="mb-8">
+ *     <h3>Tytuł sekcji</h3>
+ *   </Reveal>
+ */
+
+interface Props {
+  delay?       : number;
+  color?       : string;
+  duration?    : number;
+  trigger?     : 'onScroll' | 'onLoad';
+  scrollStart? : string;
+  tag?         : string;
+  class?       : string;
+}
+
+const {
+  delay       = 0,
+  color       = '#BAF52A',
+  duration    = 0.6,
+  trigger     = 'onScroll',
+  scrollStart = 'top 88%',
+  tag         = 'div',
+  class: className = '',
+} = Astro.props;
+
+const Tag = tag as any;
+---
+
+<Tag
+  class={`reveal-wrapper ${className}`}
+  data-reveal
+  data-reveal-delay={delay}
+  data-reveal-color={color}
+  data-reveal-duration={duration}
+  data-reveal-trigger={trigger}
+  data-reveal-start={scrollStart}
+>
+  <slot />
+</Tag>
+
+<style>
+  /*
+    Wrapper musi być relative i overflow:hidden —
+    ustawiane też przez JS w prepareElement(), ale CSS jako fallback
+  */
+  .reveal-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+</style>

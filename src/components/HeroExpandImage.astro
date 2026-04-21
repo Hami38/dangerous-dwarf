@@ -1,0 +1,308 @@
+---
+/* src/components/HeroExpandImage.astro */
+const staticPlaceholder = "/sequence/000001.jpg";
+
+const stats = [
+  {
+    title: "Skala i Doświadczenie",
+    heading: "12 lat w branży",
+    description: "Projektowanie produktów dla sektorów finansowego, medycznego i zbrojeniowego."
+  },
+  {
+    title: "Wynik i Satysfakcja (NPS)",
+    heading: "NPS 45,9 w ING",
+    description: "Osiągnięcie bardzo dobrego poziomu Customer Experience (CX) w wymagającym segmencie SME/MC."
+  },
+  {
+    title: "Realny Wpływ Biznesowy",
+    heading: "Mierzalne rezultaty",
+    description: "Redukcja incydentów o 21% w systemach kolejowych i wzrost zainteresowania produktami HealthTech o 43%."
+  },
+  {
+    title: "Innowacje i Strategia",
+    heading: "AI & Leadership",
+    description: "Wdrażanie asystentów GenAI oraz współtworzenie strategii w międzynarodowej gildii projektowej."
+  }
+];
+---
+
+<div class="desktop-expand hidden md:block">
+  <div class="de-trigger">
+    <div class="de-stage">
+      <div class="de-wrapper">
+        <div class="de-inner">
+          <div class="de-border"></div>
+
+          <img src={staticPlaceholder} alt="Kamil Wardak" class="de-static-img" />
+          <canvas id="de-canvas" class="de-canvas opacity-0"></canvas>
+
+          <div class="de-overlay opacity-0 pointer-events-none">
+            <div class="max-w-4xl mx-auto px-6 w-full grid grid-cols-2 gap-8">
+              {stats.map((stat) => (
+                <div class="de-stat-card">
+                  {/* Każdy element tekstowy w kaflu ma własny reveal-block */}
+                  <div class="de-card-text">
+                    <div class="de-card-label">
+                      <span class="reveal-block-el"></span>
+                      <span class="de-label-text text-[#BAF52A] text-[10px] uppercase tracking-[0.2em] font-extrabold block">{stat.title}</span>
+                    </div>
+                    <div class="de-card-heading">
+                      <span class="reveal-block-el"></span>
+                      <h3 class="de-heading-text text-white text-3xl font-bold tracking-tight">{stat.heading}</h3>
+                    </div>
+                    <div class="de-card-desc">
+                      <span class="reveal-block-el"></span>
+                      <p class="de-desc-text text-stone-300 text-sm leading-relaxed font-medium">{stat.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .de-trigger { position: relative; background: #0c0a09; }
+
+  .de-stage {
+    width: 100%; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: #0c0a09; overflow: hidden;
+  }
+
+  .de-wrapper {
+    max-width: 896px; width: 90%; aspect-ratio: 16 / 9;
+    position: relative; z-index: 10;
+    will-change: width, max-width, height;
+  }
+
+  .de-inner {
+    width: 100%; height: 100%;
+    border-radius: 32px; background: #000;
+    position: relative; overflow: hidden;
+    will-change: border-radius;
+  }
+
+  .de-border {
+    position: absolute; inset: 0;
+    border: 1px solid rgba(186,245,42,0.15);
+    z-index: 5; border-radius: 32px;
+    pointer-events: none; will-change: border-radius;
+  }
+
+  .de-static-img, .de-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center; display: block;
+  }
+
+  .de-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(12,10,9,0.3) 0%, rgba(12,10,9,0.9) 100%);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; z-index: 20;
+  }
+
+  .de-stat-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    padding: 2.25rem; border-radius: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    /* Kafel wjeżdża jako całość */
+    opacity: 0; transform: translateY(28px);
+    will-change: opacity, transform;
+  }
+
+  /* Każda linia tekstu — pozycja relative żeby reveal-block był over nią */
+  .de-card-label,
+  .de-card-heading,
+  .de-card-desc {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .de-card-desc { margin-bottom: 0; }
+
+  /* Blok zasłaniający — startuje scaleX:0, GSAP go animuje */
+  .reveal-block-el {
+    position: absolute;
+    inset: 0;
+    background: #BAF52A;
+    transform: scaleX(0);
+    transform-origin: left center;
+    z-index: 2;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* Teksty schowane przed animacją */
+  .de-label-text,
+  .de-heading-text,
+  .de-desc-text {
+    opacity: 0;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 768px)", () => {
+    const frameCount = 48;
+    const framePath = (i: number) => `/sequence/${i.toString().padStart(6, '0')}.jpg`;
+
+    const trigger   = document.querySelector('.de-trigger') as HTMLElement;
+    const stage     = document.querySelector('.de-stage') as HTMLElement;
+    const wrapper   = document.querySelector('.de-wrapper') as HTMLElement;
+    const inner     = document.querySelector('.de-inner') as HTMLElement;
+    const border    = document.querySelector('.de-border') as HTMLElement;
+    const canvas    = document.getElementById('de-canvas') as HTMLCanvasElement;
+    const staticImg = document.querySelector('.de-static-img') as HTMLImageElement;
+    const overlay   = document.querySelector('.de-overlay') as HTMLElement;
+    const statCards = document.querySelectorAll('.de-stat-card');
+
+    if (!trigger || !stage || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const seq = { frame: 1 };
+    const images: HTMLImageElement[] = [];
+    let cW = 0, cH = 0;
+
+    const cacheSize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      cW = Math.round(rect.width * dpr);
+      cH = Math.round(rect.height * dpr);
+      canvas.width = cW;
+      canvas.height = cH;
+    };
+
+    const render = () => {
+      const img = images[seq.frame - 1];
+      if (!img?.complete || !ctx || cW === 0) return;
+      const ir = img.naturalWidth / img.naturalHeight;
+      const cr = cW / cH;
+      let dW, dH, dX, dY;
+      if (ir > cr) { dH = cH; dW = cH * ir; dX = (cW - dW) / 2; dY = 0; }
+      else         { dW = cW; dH = cW / ir; dX = 0; dY = (cH - dH) / 2; }
+      ctx.clearRect(0, 0, cW, cH);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, dX, dY, dW, dH);
+    };
+
+    let loaded = 0;
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new Image();
+      img.src = framePath(i);
+      img.onload = img.onerror = () => { if (++loaded === frameCount) buildTimeline(); };
+      images.push(img);
+    }
+
+    /**
+     * Buduje sekwencję Block Reveal dla jednego kafla.
+     * Każda linia (label → heading → desc) jest odsłaniana blokiem osobno.
+     * Zwraca GSAP timeline gotowy do wstawienia do masterTL w odpowiednim miejscu.
+     */
+    const buildCardReveal = (card: Element): gsap.core.Timeline => {
+      const tl = gsap.timeline();
+      const rows = card.querySelectorAll<HTMLElement>('.de-card-label, .de-card-heading, .de-card-desc');
+
+      rows.forEach((row, i) => {
+        const block = row.querySelector<HTMLElement>('.reveal-block-el');
+        const text  = row.querySelector<HTMLElement>('.de-label-text, .de-heading-text, .de-desc-text');
+        if (!block || !text) return;
+
+        tl.to(block, {
+          scaleX: 1,
+          duration: 0.35,
+          ease: 'power2.inOut',
+          transformOrigin: 'left center',
+        }, i * 0.1)                         // linie startują z małym staggerem
+        .set(text, { opacity: 1 }, '>')
+        .to(block, {
+          scaleX: 0,
+          duration: 0.35,
+          ease: 'power2.inOut',
+          transformOrigin: 'right center',
+        });
+      });
+
+      return tl;
+    };
+
+    const buildTimeline = () => {
+      cacheSize();
+      render();
+
+      const masterTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: trigger,
+          pin: stage,
+          start: 'top top',
+          end: '+=300%',
+          scrub: 1,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      // Faza 1 — obrazek rośnie
+      masterTL
+        .to(wrapper, {
+          maxWidth: '100vw', width: '100vw',
+          aspectRatio: 'unset', height: '100vh',
+          duration: 2, ease: 'power2.inOut',
+        }, 0)
+        .to([inner, border], {
+          borderRadius: 0, duration: 2, ease: 'power2.inOut',
+        }, 0);
+
+      // Faza 2 — sekwencja klatek
+      masterTL
+        .set(canvas,    { opacity: 1 }, 0.8)
+        .set(staticImg, { opacity: 0 }, 0.8)
+        .to(seq, {
+          frame: frameCount, snap: 'frame',
+          duration: 3, ease: 'none', onUpdate: render,
+        }, 0.5);
+
+      // Faza 3 — overlay pojawia się
+      masterTL.to(overlay, {
+        opacity: 1, duration: 1, ease: 'power2.out',
+        onStart: () => { overlay.style.pointerEvents = 'auto'; },
+      }, '>-0.5');
+
+      // Faza 4 — kafle wjeżdżają jako całość (fade+up)
+      masterTL.to(statCards, {
+        opacity: 1, y: 0,
+        duration: 0.7, stagger: 0.15, ease: 'power3.out',
+      }, '>-0.3');
+
+      // Faza 5 — Block Reveal tekstu w każdym kaflu, jeden po drugim
+      statCards.forEach((card, i) => {
+        masterTL.add(buildCardReveal(card), `>-0.3`);
+      });
+
+      // Faza 6 — chwila zatrzymania zanim scroll puści
+      masterTL.to({}, { duration: 1.5 });
+
+      window.addEventListener('resize', () => { cacheSize(); render(); ScrollTrigger.refresh(); });
+      ScrollTrigger.refresh();
+    };
+  });
+</script>

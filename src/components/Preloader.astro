@@ -1,0 +1,22 @@
+---
+/* src/components/Preloader.astro */
+---
+<div id="preloader" style="position: fixed; inset: 0; background: #0c0a09; z-index: 9999; display: flex; align-items: center; justify-content: center;">
+  <div class="loader-content text-center">
+    <div id="loader-line" style="height: 2px; background: #BAF52A; width: 0%; margin-bottom: 10px;"></div>
+    <span style="color: white; font-weight: 800; letter-spacing: 0.3em;">KAMIL WARDAK</span>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+  window.addEventListener('load', () => {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        window.dispatchEvent(new Event('preloaderFinished'));
+      }
+    });
+    tl.to("#loader-line", { width: "100%", duration: 1, ease: "power2.inOut" })
+      .to("#preloader", { opacity: 0, duration: 0.5, pointerEvents: "none" });
+  });
+</script>

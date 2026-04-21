@@ -1,0 +1,121 @@
+---
+/* src/components/Button.astro */
+interface Props {
+  text: string;
+  variant?: 'primary' | 'secondary';
+  href?: string;
+  download?: boolean;
+}
+
+const { text, variant = 'primary', href = "#", download = false } = Astro.props;
+---
+
+<a href={href} class={`btn-pill ${variant}`} download={download ? "" : undefined}>
+  <span class="btn-text">{text}</span>
+  
+  <div class="icon-outer">
+    <div class="icon-inner">
+      <div class="slot-box">
+        <slot name="icon-default" />
+      </div>
+      <div class="slot-box">
+        <slot name="icon-hover" />
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    /* Gwarantuje, że wysokość przycisku jest stała niezależnie od zawartości ikon */
+    height: 48px; 
+  }
+
+  .primary {
+    background-color: white;
+    color: #000;
+    border: 1px solid white;
+  }
+
+  .primary:hover {
+    background-color: transparent;
+    color: var(--brand-main);
+  }
+
+  .secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .secondary:hover {
+    border-color: white;
+    color: var(--brand-main);
+  }
+
+  /* --- LOGIKA IKON --- */
+
+  .icon-outer {
+    position: relative;
+    height: 20px; /* Wysokość obszaru widzenia ikony */
+    overflow: hidden;
+    width: 18px; /* Domyślna szerokość ikony */
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* EFEKT ROZSZERZANIA: Tylko dla wariantu secondary */
+  .secondary:hover .icon-outer {
+    width: 52px; /* Szerokość dopasowana do "3.26 MB" */
+  }
+
+  .icon-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.4s cubic-bezier(0.6, 0.01, 0.05, 0.95);
+  }
+
+  /* Slot-box: Klucz do idealnego centrowania */
+  .slot-box {
+    height: 20px;
+    min-width: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn-pill:hover .icon-inner {
+    transform: translateY(-20px);
+  }
+
+  /* Stylistyka zawartości */
+  .icon-inner :global(svg) {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  /* Naprawa wyrównania tekstu CV */
+  .icon-inner :global(.file-size) {
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1; /* Resetuje wysokość linii, by flex mógł wycentrować tekst */
+    display: block;
+    margin-top: 1px; /* Subtelna korekta optyczna dla fontu Inter */
+    letter-spacing: 0.02em;
+  }
+</style>

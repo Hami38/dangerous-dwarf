@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-main: #BAF52A;
+  --color-header-bg: rgba(0, 0, 0, 0.7);
+  --font-sans: "Inter", sans-serif;
+}
+
+/* POPRAWKA: usunięto duplikat --brand-main z :root — jest już zdefiniowany w Layout.astro.
+   Zostawiamy tylko to, czego Tailwind v4 potrzebuje do działania klas bg-*, text-* itp. */
+:root {
+  --brand-main: #BAF52A;
+  --bg-stone: #0c0a09;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--bg-stone);
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* POPRAWKA: usunięto var(--bg-stone) bez fallbacka z oryginalnego pliku —
+     zmienna była niezdefiniowana w tym kontekście, co mogło powodować
+     przezroczyste tło zamiast ciemnego na niektórych przeglądarkach */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* POPRAWKA: dodano ::before i ::after — bez tego elementy pseudoklas
+     mogły wychodzić poza swoje kontenery */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

@@ -1,0 +1,210 @@
+---
+/* src/components/ApproachSection.astro */
+import Reveal from './Reveal.astro';
+
+const approaches = [
+  {
+    number: "01",
+    overline: "Zarządzanie & Przywództwo",
+    title: "W roli lidera",
+    description: "Wierzę w design jako sport zespołowy. Moja rola to usuwanie barier, facylitacja trudnych decyzji i budowanie kultury opartej na dowodach, nie opiniach.",
+    href: "#zarządzanie-przywództwo",
+  },
+  {
+    number: "02",
+    overline: "Fragmentacja & Big picture",
+    title: "Problemy, które rozwiązuję",
+    description: "Specjalizuję się w systemach o krytycznym znaczeniu. Tam, gdzie złożoność regulacyjna i technologiczna przytłacza, ja wprowadzam strukturę i prostotę.",
+    href: "#fragmentacja-big-picture",
+  },
+];
+---
+
+<section class="approach-section relative bg-[#0c0a09] py-24 md:py-32 px-6 overflow-hidden">
+
+  <!-- Subtelna linia górna -->
+  <div class="max-w-4xl mx-auto">
+    <div class="w-full h-px bg-white/5 mb-20 md:mb-28"></div>
+  </div>
+
+  <div class="max-w-4xl w-full mx-auto">
+
+    <!-- Section Header -->
+    <div class="mb-16 md:mb-20">
+      <Reveal delay={0.1} color="#BAF52A">
+        <p class="text-[#BAF52A] text-xs normalcase tracking-[0.2em] font-extrabold mb-4">Podejście</p>
+      </Reveal>
+      <Reveal delay={0.25} color="#ffffff">
+        <h2 class="approach-heading text-white text-4xl md:text-5xl font-bold leading-tight">
+          Jak pracuję
+        </h2>
+      </Reveal>
+    </div>
+
+    <!-- Two columns -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-px">
+
+      {approaches.map((item, index) => (
+        <div class={`approach-col relative group ${index === 0 ? 'md:pr-12 md:border-r md:border-white/5' : 'md:pl-12'} pb-16 md:pb-0`}>
+          
+          <!-- Duży numer w tle -->
+          <span class="approach-number select-none" aria-hidden="true">
+            {item.number}
+          </span>
+
+          <!-- Overline -->
+          <div class="mb-4 relative z-10">
+            <Reveal delay={0.15 + index * 0.15} color="#BAF52A" tag="span">
+              <p class="text-[#BAF52A] text-[11px] normalcase tracking-[0.25em] font-extrabold">
+                {item.overline}
+              </p>
+            </Reveal>
+          </div>
+
+          <!-- Title -->
+          <div class="mb-5 relative z-10">
+            <Reveal delay={0.3 + index * 0.15} color="#ffffff" tag="span">
+              <h3 class="approach-title text-white text-2xl md:text-3xl font-bold leading-tight">
+                {item.title}
+              </h3>
+            </Reveal>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-8 relative z-10">
+            <Reveal delay={0.45 + index * 0.15} color="#a8a29e" tag="span">
+              <p class="text-stone-400 text-sm md:text-base font-medium leading-relaxed">
+                {item.description}
+              </p>
+            </Reveal>
+          </div>
+
+          <!-- CTA — identyczny styl jak w PortfolioSection -->
+          <a
+            href={item.href}
+            class="approach-cta group/cta inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 opacity-0 relative z-10"
+            data-approach-fade
+            style={`transition-delay: ${0.6 + index * 0.15}s`}
+          >
+            <span>Czytaj więcej</span>
+            <div class="icon-wrapper relative w-4 h-4 overflow-hidden">
+              <svg
+                class="icon-arrow absolute inset-0 transition-transform duration-300 group-hover/cta:-translate-y-full"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              >
+                <path d="M5 12h14m-7-7 7 7-7 7"/>
+              </svg>
+              <svg
+                class="icon-eye absolute inset-0 translate-y-full transition-transform duration-300 group-hover/cta:translate-y-0"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              >
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      ))}
+
+    </div>
+
+    <!-- Dolna linia -->
+    <div class="w-full h-px bg-white/5 mt-20 md:mt-28"></div>
+
+  </div>
+</section>
+
+<style>
+  /* Duży numer tła */
+  .approach-number {
+    position: absolute;
+    top: -1.5rem;
+    left: -0.5rem;
+    font-size: clamp(7rem, 16vw, 11rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--brand-main);
+    opacity: 0.045;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+    z-index: 0;
+  }
+
+  .approach-heading {
+    background: linear-gradient(135deg, #ffffff 0%, #a8a29e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .approach-col {
+    position: relative;
+    padding-top: 2rem;
+  }
+
+  /* CTA identyczny styl jak w PortfolioSection */
+  .approach-cta:hover {
+    color: #BAF52A;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .icon-arrow,
+  .icon-eye {
+    position: absolute;
+    inset: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Fade-in state */
+  [data-approach-fade] {
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(10px);
+  }
+
+  .approach-col.in-view [data-approach-fade] {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+
+  /* Separator mobile */
+  @media (max-width: 767px) {
+    .approach-col:first-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 3rem;
+    }
+    .approach-col:last-child {
+      padding-top: 3rem;
+    }
+    .approach-number {
+      font-size: clamp(6rem, 22vw, 8rem);
+    }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.approach-col').forEach((col) => observer.observe(col));
+</script>

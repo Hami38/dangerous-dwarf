@@ -1,0 +1,1187 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Reveal from '../../components/Reveal.astro';
+import Footer from '../../components/Footer.astro';
+
+const project = {
+  overline: "Finanse / Strategia UX",
+  title: "BLIK dla Biznesu w ING",
+  subtitle: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.",
+  role: "UX Expert & Interaction Designer",
+  client: "ING Bank Śląski",
+  year: "2025",
+  scope: "Strategia UX · Badania · Stakeholder Management",
+};
+
+const challenges = [
+  {
+    number: "01",
+    title: "Ograniczenia infrastrukturalne",
+    description: "System pozwalał na jednostronny przepływ środków (wysyłka), co stało w sprzeczności z dwustronnym modelem mentalnym BLIKA (model 'wyślij i odbierz'). Projektowanie wokół tej asymetrii — nie przeciwko niej.",
+  },
+  {
+    number: "02",
+    title: "Hierarchia uprawnień",
+    description: "W przeciwieństwie do kont indywidualnych, proces musiał uwzględniać administratorów, schematy akceptacji i współdzieloną odpowiedzialność. Złożoność korporacyjna ukryta za prostym interfejsem.",
+  },
+  {
+    number: "03",
+    title: "Separacja kanałów",
+    description: "Ograniczenie funkcji do kanału mobilnego wymagało zaprojektowania precyzyjnych punktów edukacyjnych w kanale webowym. Użytkownik musiał wiedzieć, gdzie i dlaczego.",
+  },
+];
+
+const results = [
+  { value: "tysiące", label: "kont biznesowych aktywowanych w pierwszych dniach od wdrożenia" },
+  { value: "mln zł", label: "wolumenu transakcyjnego w krótkim czasie po starcie" },
+  { value: "NPS ↑", label: "utrzymanie wysokiego wskaźnika satysfakcji w wymagającym segmencie SME/MC" },
+  { value: "nagroda", label: "nominacja projektu do prestiżowych nagród sektora bankowego" },
+];
+
+const nextProjects = [
+  {
+    overline: "Bezpieczeństwo / Computer Vision",
+    title: "Systemy identyfikacji biometrycznej",
+    description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
+    href: "#case-biometrics",
+  },
+  {
+    overline: "Bezpieczeństwo krytyczne / Deep Tech",
+    title: "Wirtualny asystent dla maszynistów",
+    description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.",
+    href: "#case-railway-ai",
+  },
+  {
+    overline: "MedTech / IoT / Product Design",
+    title: "Tabbox: Inteligentny system farmakoterapii",
+    description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.",
+    href: "#case-healthtech",
+  },
+];
+---
+
+<Layout title={`${project.title} | Kamil Wardak`}>
+
+  <!-- ─── PRELOADER BYPASS ───────────────────────────────────────────────── -->
+  <script>
+    // Na stronach projektów nie ma preloadera — odpalamy event natychmiast
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('preloaderFinished'));
+      }, 100);
+    });
+  </script>
+
+  <div class="bg-[#0c0a09] min-h-screen">
+
+    <!-- ─── SPACER pod header ──────────────────────────────────────────────── -->
+    <div class="h-20"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-hero relative px-6 pt-0 pb-0 md:pt-16 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Breadcrumb -->
+        <div class="cs-breadcrumb mb-10 opacity-0" data-hero-fade style="--delay: 0s">
+          <a href="/" class="cs-back-link group inline-flex items-center gap-2 text-white/40 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
+            <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14m-7-7-7 7 7 7"/>
+            </svg>
+            <span>Wszystkie projekty</span>
+          </a>
+        </div>
+
+        <!-- Overline label -->
+        <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
+          <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.2em] font-bold uppercase">{project.overline}</p>
+          </Reveal>
+        </div>
+
+        <!-- Main title -->
+        <div class="mb-6">
+          <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight">
+              {project.title}
+            </h1>
+          </Reveal>
+        </div>
+
+        <!-- Subtitle -->
+        <div class="max-w-2xl mb-12">
+          <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed">
+              {project.subtitle}
+            </p>
+          </Reveal>
+        </div>
+
+        <!-- Meta strip -->
+        <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Rola</span>
+            <span class="cs-meta-value">{project.role}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Klient</span>
+            <span class="cs-meta-value">{project.client}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Rok</span>
+            <span class="cs-meta-value">{project.year}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Zakres</span>
+            <span class="cs-meta-value">{project.scope}</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── NOTA O POUFNOŚCI ─────────────────────────────────────────────── -->
+    <section class="px-6 pt-8 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="cs-confidentiality-note opacity-0" data-hero-fade style="--delay: 0.85s">
+          <svg class="cs-conf-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <p>
+            <strong>Nota o poufności:</strong> Ze względu na umowę NDA i wymagania poufności, wizualizacje i diagramy zostały zanonimizowane i uproszczone. Niniejsze case study koncentruje się na procesie decyzyjnym, strategii UX i wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── HERO IMAGE ─────────────────────────────────────────────────────── -->
+    <section class="cs-hero-image-section px-6 pt-12 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
+          <div class="cs-placeholder cs-placeholder--hero aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
+            <div class="cs-placeholder-inner">
+              <div class="cs-placeholder-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                  <path d="M21 15l-5-5L5 21"/>
+                </svg>
+              </div>
+              <p class="cs-placeholder-label">Kluczowy visual projektu</p>
+              <p class="cs-placeholder-note">Device mockup / Anonymized screen</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 1 — KONTEKST
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+          <!-- Left: Number + heading -->
+          <div class="md:col-span-5">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">01</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3">
+                Przeniesienie nawyku do świata procedur
+              </h2>
+            </Reveal>
+          </div>
+
+          <!-- Right: Body text -->
+          <div class="md:col-span-7">
+            <Reveal delay={0.35} color="#a8a29e">
+              <p class="cs-body-text mb-6">
+                BLIK stał się standardem rynkowym. Klienci biznesowi, przyzwyczajeni do wygody prywatnych przelewów P2P, oczekiwali analogicznej szybkości w zarządzaniu finansami firmowymi.
+              </p>
+            </Reveal>
+            <Reveal delay={0.5} color="#a8a29e">
+              <p class="cs-body-text">
+                Wyzwaniem było bezpieczne przeniesienie tego nawyku do środowiska o wysokim rygorze prawnym i operacyjnym — bez utraty intuicyjności, która BLIK zawdzięcza swój sukces w bankowości detalicznej.
+              </p>
+            </Reveal>
+          </div>
+
+        </div>
+
+        <!-- Context image placeholder -->
+        <div class="cs-img-wrapper mt-16 opacity-0" data-scroll-fade>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="cs-placeholder cs-placeholder--medium aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <div class="cs-placeholder-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                  </svg>
+                </div>
+                <p class="cs-placeholder-label">User Journey Map</p>
+                <p class="cs-placeholder-note">Retail → Business mental model</p>
+              </div>
+            </div>
+            <div class="cs-placeholder cs-placeholder--medium aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <div class="cs-placeholder-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+                  </svg>
+                </div>
+                <p class="cs-placeholder-label">Analiza kontekstu</p>
+                <p class="cs-placeholder-note">Competitive & Behavioral Research</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 2 — WYZWANIA
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Section header -->
+        <div class="mb-16 md:mb-20">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="cs-section-number">02</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-section-heading mt-3 max-w-xl">
+              Zarządzanie asymetrią systemową
+            </h2>
+          </Reveal>
+          <Reveal delay={0.4} color="#a8a29e">
+            <p class="cs-body-text max-w-2xl mt-4">
+              Jako projektant musiałem zarządzić trzema krytycznymi barierami, które mogły wpłynąć na negatywne postrzeganie produktu.
+            </p>
+          </Reveal>
+        </div>
+
+        <!-- Challenge cards -->
+        <div class="cs-challenges-grid">
+          {challenges.map((ch, i) => (
+            <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
+              <div class="cs-challenge-number">{ch.number}</div>
+              <div class="cs-challenge-content">
+                <h3 class="cs-challenge-title">{ch.title}</h3>
+                <p class="cs-challenge-desc">{ch.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Flow diagram placeholder -->
+        <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+          <div class="cs-placeholder cs-placeholder--flow aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
+            <div class="cs-placeholder-inner">
+              <div class="cs-placeholder-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="6" height="4" rx="1"/><rect x="9" y="4" width="6" height="4" rx="1"/>
+                  <rect x="9" y="14" width="6" height="4" rx="1"/><rect x="16" y="7" width="6" height="4" rx="1"/>
+                  <path d="M8 9h1m6 0h1M12 8v2m0 4V9m6 0H17"/><path d="M8 9H7"/>
+                </svg>
+              </div>
+              <p class="cs-placeholder-label">Anonymized Process Flow</p>
+              <p class="cs-placeholder-note">Activation & Authorization Paths — [User Verification] → [Permission Check] → [Transaction Summary]</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 3 — MOJA ROLA
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+          <!-- Left: Heading -->
+          <div class="md:col-span-5 md:sticky md:top-28">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">03</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3">
+                Strategia UX i&nbsp;„Design Ograniczeń"
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text mt-4">
+                Moim zadaniem było pełnienie roli mediatora między technologicznymi ograniczeniami a oczekiwaniami klienta.
+              </p>
+            </Reveal>
+          </div>
+
+          <!-- Right: Role items -->
+          <div class="md:col-span-7 flex flex-col gap-10">
+
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+              <div class="cs-role-tag">Mapowanie Flow</div>
+              <p class="cs-body-text mt-3">
+                Zaprojektowałem ścieżki aktywacji i autoryzacji, które integrowały się z istniejącymi systemami uprawnień korporacyjnych. Każdy krok przepływu był analizowany pod kątem błędów poznawczych wynikających z nawyków z bankowości detalicznej.
+              </p>
+              <!-- Placeholder for flow wireframe -->
+              <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+                <div class="cs-placeholder cs-placeholder--small aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
+                  <div class="cs-placeholder-inner">
+                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                      </svg>
+                    </div>
+                    <p class="cs-placeholder-label cs-placeholder-label--sm">Wireframe Style — Low-Fidelity</p>
+                    <p class="cs-placeholder-note">Activation Flow · [Step 1] → [Step 2] → [Step 3]</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+              <div class="cs-role-tag">UX Copywriting & Edukacja</div>
+              <p class="cs-body-text mt-3">
+                Opracowałem strategię transparentnej komunikacji. Zamiast ukrywać braki systemowe, projektowałem interakcje, które tłumaczyły aktualny zakres funkcji — budując zaufanie zamiast frustracji.
+              </p>
+            </div>
+
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+              <div class="cs-role-tag">Walidacja hipotez</div>
+              <p class="cs-body-text mt-3">
+                Prowadziłem testy użyteczności, identyfikując momenty, w których nawyki z bankowości detalicznej prowadziły do błędów poznawczych w kontekście biznesowym. Wyniki bezpośrednio kształtowały kolejne iteracje projektu.
+              </p>
+              <!-- Placeholder for research visual -->
+              <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.35s">
+                <div class="cs-placeholder cs-placeholder--small aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
+                  <div class="cs-placeholder-inner">
+                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                    </div>
+                    <p class="cs-placeholder-label cs-placeholder-label--sm">Usability Testing Insights</p>
+                    <p class="cs-placeholder-note">Anonymized research session summary</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Full-width device mockup -->
+        <div class="mt-20 opacity-0" data-scroll-fade>
+          <div class="cs-placeholder cs-placeholder--device aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
+            <div class="cs-placeholder-inner">
+              <div class="cs-placeholder-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <p class="cs-placeholder-label">Device Mockup</p>
+              <p class="cs-placeholder-note">iPhone frame · Anonymized UI screens · No real data or logos</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 4 — EFEKTY I WPŁYW BIZNESOWY
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--results px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Header -->
+        <div class="mb-16 md:mb-20">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="cs-section-number">04</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-section-heading mt-3">
+              Efekty i&nbsp;wpływ biznesowy
+            </h2>
+          </Reveal>
+          <Reveal delay={0.4} color="#a8a29e">
+            <p class="cs-body-text max-w-2xl mt-4">
+              Decyzja o wdrożeniu MVP przy silnym wsparciu UX okazała się sukcesem rynkowym. Projekt potwierdził, że dobrze zaprojektowane ograniczenia mogą być przewagą konkurencyjną.
+            </p>
+          </Reveal>
+        </div>
+
+        <!-- Results grid -->
+        <div class="cs-results-grid">
+          {results.map((r, i) => (
+            <div class="cs-result-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
+              <div class="cs-result-value">{r.value}</div>
+              <p class="cs-result-label">{r.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Quote / highlight -->
+        <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+          <div class="cs-quote-block">
+            <div class="cs-quote-line" aria-hidden="true"></div>
+            <blockquote class="cs-quote-text">
+              "Zamiast ukrywać braki systemowe, projektowałem interakcje, które tłumaczyły aktualny zakres funkcji — budując zaufanie zamiast frustracji."
+            </blockquote>
+            <p class="cs-quote-source">Kamil Wardak · UX Expert, projekt BLIK dla Biznesu</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GALLERY STRIP — placeholders for anonymized visuals
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-gallery-section px-6 pb-28 md:pb-36 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-12">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="text-[#BAF52A] text-xs tracking-[0.2em] font-bold uppercase">Materiały wizualne</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-gallery-heading mt-2">Dokumentacja procesu</h2>
+          </Reveal>
+        </div>
+
+        <!-- Row 1: 1 wide + 1 narrow -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mb-5 opacity-0" data-scroll-fade>
+          <div class="md:col-span-8">
+            <div class="cs-placeholder cs-placeholder--gallery aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <p class="cs-placeholder-label">Blurred & Abstraction</p>
+                <p class="cs-placeholder-note">Flowchart · [User Verification] → [Transaction Summary] → [Permission Check]</p>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-4">
+            <div class="cs-placeholder cs-placeholder--gallery aspect-[16/9] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <p class="cs-placeholder-label">Focused Detail</p>
+                <p class="cs-placeholder-note">Tooltip copy / CTA element</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: 3 equal -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade style="--fade-delay: 0.15s">
+          <div>
+            <div class="cs-placeholder cs-placeholder--gallery aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <p class="cs-placeholder-label">Wireframe</p>
+                <p class="cs-placeholder-note">Low-Fidelity · Activation Screen</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-placeholder cs-placeholder--gallery aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <p class="cs-placeholder-label">Wireframe</p>
+                <p class="cs-placeholder-note">Low-Fidelity · Permission Screen</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-placeholder cs-placeholder--gallery aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <div class="cs-placeholder-inner">
+                <p class="cs-placeholder-label">Wireframe</p>
+                <p class="cs-placeholder-note">Low-Fidelity · Summary Screen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         NEXT PROJECTS — nawigacja do kolejnych projektów
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-next-section px-6 pt-0 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-white/5 mb-16 opacity-0" data-scroll-fade></div>
+
+        <div class="mb-12">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="text-[#BAF52A] text-xs tracking-[0.2em] font-bold uppercase">Więcej projektów</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-gallery-heading mt-2">Inne realizacje</h2>
+          </Reveal>
+        </div>
+
+        <div class="cs-next-grid">
+          {nextProjects.map((np, i) => (
+            <a href={np.href} class="cs-next-card group opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
+              <!-- Image placeholder -->
+              <div class="cs-next-visual">
+                <div class="cs-next-img-placeholder">
+                  <div class="cs-placeholder-icon cs-placeholder-icon--sm">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                      <path d="M21 15l-5-5L5 21"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <!-- Text -->
+              <div class="cs-next-content">
+                <p class="cs-next-overline">{np.overline}</p>
+                <h3 class="cs-next-title">{np.title}</h3>
+                <p class="cs-next-desc">{np.description}</p>
+                <div class="cs-next-cta">
+                  <span>Zobacz case study</span>
+                  <div class="cs-next-cta-icon">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14m-7-7 7 7-7 7"/>
+                    </svg>
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
+    <Footer />
+
+  </div>
+</Layout>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STYLES
+═════════════════════════════════════════════════════════════════════════════ -->
+<style>
+
+  /* ─── Hero ──────────────────────────────────────────────────────────────── */
+
+  .cs-back-link {
+    letter-spacing: 0.01em;
+  }
+
+  .cs-back-link:hover {
+    color: #BAF52A;
+  }
+
+  /* ─── Nota o poufności ──────────────────────────────────────────────────── */
+
+  .cs-confidentiality-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transform: translateY(10px);
+  }
+
+  .cs-conf-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .cs-confidentiality-note p {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cs-confidentiality-note strong {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.01em;
+  }
+
+  .cs-overline {
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+  }
+
+  .cs-hero-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .cs-hero-subtitle {
+    line-height: 1.65;
+  }
+
+  /* Meta strip */
+  .cs-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transform: translateY(12px);
+  }
+
+  .cs-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 28px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .cs-meta-item:first-child { padding-left: 0; }
+
+  .cs-meta-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .cs-meta-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .cs-meta-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.07);
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .cs-meta-strip { gap: 16px; flex-direction: column; }
+    .cs-meta-divider { display: none; }
+    .cs-meta-item { padding: 0; min-width: auto; }
+  }
+
+  /* ─── Hero image ────────────────────────────────────────────────────────── */
+
+  .cs-hero-img-wrapper {
+    transform: translateY(16px);
+  }
+
+  /* ─── Section shared ────────────────────────────────────────────────────── */
+
+  .cs-section-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #BAF52A;
+    opacity: 0.9;
+  }
+
+  .cs-section-heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .cs-body-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a8a29e;
+    font-weight: 400;
+  }
+
+  /* ─── Placeholders ──────────────────────────────────────────────────────── */
+
+  .cs-placeholder {
+    position: relative;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .cs-placeholder:hover {
+    background: rgba(186, 245, 42, 0.03);
+    border-color: rgba(186, 245, 42, 0.12) !important;
+  }
+
+  .cs-placeholder-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .cs-placeholder-icon {
+    color: rgba(255,255,255,0.15);
+    margin-bottom: 4px;
+  }
+
+  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.12); }
+
+  .cs-placeholder-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .cs-placeholder-label--sm { font-size: 0.72rem; }
+
+  .cs-placeholder-note {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.15);
+    margin: 0;
+    max-width: 320px;
+    line-height: 1.5;
+  }
+
+  /* ─── Challenges ────────────────────────────────────────────────────────── */
+
+  .cs-section--dark {
+    background: linear-gradient(180deg, #0c0a09 0%, rgba(186,245,42,0.025) 50%, #0c0a09 100%);
+  }
+
+  .cs-challenges-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cs-challenges-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .cs-challenge-card {
+    padding: 32px 28px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: translateY(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  .cs-challenge-card:last-child { border-right: none; }
+
+  .cs-challenge-card:hover {
+    background: rgba(186,245,42,0.03);
+  }
+
+  .cs-challenge-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #BAF52A;
+    opacity: 0.7;
+  }
+
+  .cs-challenge-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .cs-challenge-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #a8a29e;
+    margin: 0;
+  }
+
+  /* ─── Role items ────────────────────────────────────────────────────────── */
+
+  .cs-role-item {
+    transform: translateY(12px);
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cs-role-item:first-child { padding-top: 0; border-top: none; }
+
+  .cs-role-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(186,245,42,0.08);
+    color: #BAF52A;
+    border: 1px solid rgba(186,245,42,0.15);
+  }
+
+  /* ─── Results ───────────────────────────────────────────────────────────── */
+
+  .cs-section--results {
+    background: #0c0a09;
+  }
+
+  .cs-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cs-results-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .cs-result-card {
+    padding: 32px 24px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: translateY(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .cs-result-card:last-child { border-right: none; }
+    .cs-result-card { border-bottom: none; }
+  }
+
+  .cs-result-card:hover { background: rgba(186,245,42,0.04); }
+
+  .cs-result-value {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .cs-result-label {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+  }
+
+  /* ─── Quote block ───────────────────────────────────────────────────────── */
+
+  .cs-quote-block {
+    padding: 36px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    background: rgba(186,245,42,0.03);
+    position: relative;
+  }
+
+  .cs-quote-line {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, #BAF52A, transparent);
+    border-radius: 9999px;
+  }
+
+  .cs-quote-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 16px 0;
+    font-style: italic;
+  }
+
+  .cs-quote-source {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.25);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* ─── Gallery ───────────────────────────────────────────────────────────── */
+
+  .cs-gallery-heading {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .cs-placeholder--gallery {
+    background: rgba(255,255,255,0.015);
+  }
+
+  .cs-placeholder--gallery .cs-placeholder-inner {
+    gap: 6px;
+  }
+
+  /* ─── Next projects ─────────────────────────────────────────────────────── */
+
+  .cs-next-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .cs-next-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .cs-next-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(12px);
+  }
+
+  .cs-next-card:hover {
+    border-color: rgba(186,245,42,0.2);
+    background: rgba(186,245,42,0.03);
+    transform: translateY(-4px) !important;
+  }
+
+  .cs-next-visual {
+    aspect-ratio: 16 / 9;
+    background: rgba(255,255,255,0.025);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.35s ease;
+  }
+
+  .cs-next-card:hover .cs-next-visual {
+    background: rgba(186,245,42,0.04);
+  }
+
+  .cs-next-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.1);
+  }
+
+  .cs-next-content {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .cs-next-overline {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .cs-next-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .cs-next-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.35);
+    margin: 0;
+    flex: 1;
+  }
+
+  .cs-next-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .cs-next-card:hover .cs-next-cta { color: #BAF52A; }
+
+  .cs-next-cta-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .cs-next-cta-icon .icon-arrow,
+  .cs-next-cta-icon .icon-eye {
+    position: absolute;
+    inset: 0;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.35s cubic-bezier(0.6, 0.01, 0.05, 0.95);
+  }
+
+  .cs-next-cta-icon .icon-eye { transform: translateY(100%); }
+
+  .cs-next-card:hover .cs-next-cta-icon .icon-arrow { transform: translateY(-100%); }
+  .cs-next-card:hover .cs-next-cta-icon .icon-eye   { transform: translateY(0); }
+
+  /* ─── Scroll fade shared ────────────────────────────────────────────────── */
+
+  [data-scroll-fade] {
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-scroll-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* ─── Hero fade ─────────────────────────────────────────────────────────── */
+
+  [data-hero-fade] {
+    transform: translateY(14px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-hero-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SCRIPTS
+═════════════════════════════════════════════════════════════════════════════ -->
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Hero fade-in elements ─────────────────────────────────────────────────
+  const heroFadeEls = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
+  heroFadeEls.forEach((el) => {
+    const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0');
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: 0.2 + delay,
+      ease: 'power3.out',
+    });
+  });
+
+  // ─── Scroll-triggered fade-in ──────────────────────────────────────────────
+  const scrollFadeEls = document.querySelectorAll<HTMLElement>('[data-scroll-fade]');
+
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = parseFloat(
+            getComputedStyle(el).getPropertyValue('--fade-delay') || '0'
+          );
+          setTimeout(() => {
+            el.classList.add('in-view');
+          }, delay * 1000);
+          scrollObserver.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -5% 0px' }
+  );
+
+  scrollFadeEls.forEach((el) => scrollObserver.observe(el));
+
+  // ─── Challenge & result cards individual stagger ───────────────────────────
+  const cardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const parent = entry.target;
+          const cards = parent.querySelectorAll<HTMLElement>('.cs-challenge-card, .cs-result-card, .cs-next-card');
+          cards.forEach((card, i) => {
+            gsap.to(card, {
+              opacity: 1,
+              y: 0,
+              duration: 0.65,
+              delay: 0.08 * i,
+              ease: 'power3.out',
+            });
+          });
+          cardObserver.unobserve(parent);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.cs-challenges-grid, .cs-results-grid, .cs-next-grid').forEach((grid) => {
+    cardObserver.observe(grid);
+  });
+</script>

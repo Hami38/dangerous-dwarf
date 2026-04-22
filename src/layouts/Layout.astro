@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Header from '../components/Header.astro';
+import PageTransition from '../components/PageTransition.astro';
 
 interface Props {
 	title?: string;
@@ -13,36 +14,48 @@ const { title = "Kamil Wardak | Portfolio" } = Astro.props;
 <html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
-		<!-- POPRAWKA: dodano initial-scale=1 — bez tego na iOS strona może się skalować nieprawidłowo -->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 		<title>{title}</title>
+		<!-- Ustawia stan przejścia PRZED pierwszym renderem — zero flashu -->
+		<script is:inline>
+			if (sessionStorage.getItem('ct')) {
+				document.documentElement.classList.add('curtain-ready');
+			}
+			if (sessionStorage.getItem('np')) {
+				document.documentElement.classList.add('no-preloader');
+			}
+		</script>
 	</head>
 	<body>
+		<PageTransition />
 		<Header />
 		<slot />
-		<!-- POPRAWKA: usunięto zbędny <main> — był podwójnie zagnieżdżony z index.astro.
-		     Slot bezpośrednio w body. Każda strona sama decyduje o swojej strukturze. -->
 
 		<script>
 			import { initBlockReveals } from '../utils/blockReveal';
 
 			const run = () => {
-				// Oznacz jako uruchomione — chroni przed podwójnym wywołaniem z fallbacku
+				if (document.body.dataset.revealsInit) return;
 				document.body.dataset.revealsInit = 'true';
 				initBlockReveals();
 			};
 
-			// Główna ścieżka: czekamy na koniec preloadera
+			// Ścieżka 1: strona główna — czekamy na koniec preloadera
 			window.addEventListener('preloaderFinished', run, { once: true });
 
-			// Fallback: jeśli preloader nie odpali eventu w 5s (błąd JS, wolne łącze)
-			setTimeout(() => {
-				if (!document.body.dataset.revealsInit) run();
-			}, 5000);
+			// Ścieżka 2: strony bez preloadera — czekamy na koniec zasłony
+			window.addEventListener('curtainDone', run, { once: true });
+
+			// Ścieżka 3: fallback dla bezpośredniego wejścia URL — tylko gdy brak preloadera
+			document.addEventListener('DOMContentLoaded', () => {
+				if (!document.getElementById('preloader')) {
+					setTimeout(() => run(), 150);
+				}
+			});
 		</script>
 	</body>
 </html>
@@ -79,5 +92,15 @@ const { title = "Kamil Wardak | Portfolio" } = Astro.props;
 	.action-reveal {
 		opacity: 0;
 		transform: translateY(20px);
+	}
+
+	/* Ukryj preloader przed pierwszym renderem gdy przyszliśmy z nawigacji */
+	html.no-preloader #preloader {
+		display: none !important;
+	}
+
+	/* Zasłona aktywna od razu — zanim JS zdąży się uruchomić */
+	html.curtain-ready #curtain {
+		transform: translateY(0%) !important;
 	}
 </style>

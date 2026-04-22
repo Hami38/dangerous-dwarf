@@ -34,36 +34,48 @@ import Footer from '../components/Footer.astro';
 
 
 <script>
-  const words = ["∙ Hello", "∙ Hallo", "∙ Hola", "∙ こんにちは", "∙ 你好", "∙ Witaj"];
-  let currentIndex = 0;
-
-  const textElement = document.getElementById("welcome-text");
   const preloader = document.getElementById("preloader");
 
-  function updateText() {
-    if (textElement && currentIndex < words.length) {
-      textElement.style.opacity = "0";
-      setTimeout(() => {
-        textElement.textContent = words[currentIndex];
-        textElement.style.opacity = "1";
-        currentIndex++;
-        setTimeout(updateText, 250);
-      }, 150);
-    } else if (preloader) {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        preloader.classList.add("preloader-hidden");
-        document.body.style.removeProperty('overflow');
-
-        // POPRAWKA: emitujemy event — Layout.astro na niego czeka
-        window.dispatchEvent(new CustomEvent('preloaderFinished'));
-
-      }, 500);
+  if (sessionStorage.getItem('np')) {
+    // Przyszliśmy przez nawigację — preloader pomijamy całkowicie.
+    // curtainDone (z PageTransition) odpali initBlockReveals i animateHero.
+    sessionStorage.removeItem('np');
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.style.display = 'none';       // twarde ukrycie niezależne od CSS
+      preloader.classList.add('preloader-hidden'); // belt-and-suspenders
     }
-  }
+    document.body.style.removeProperty('overflow');
+    // Usuwamy klasę dopiero po twardym ukryciu — bez ryzyka flashu
+    document.documentElement.classList.remove('no-preloader');
+  } else {
+    // Świeże wejście lub odświeżenie — pokazujemy pełny preloader
+    const words = ["∙ Hello", "∙ Hallo", "∙ Hola", "∙ こんにちは", "∙ 你好", "∙ Witaj"];
+    let currentIndex = 0;
+    const textElement = document.getElementById("welcome-text");
 
-  document.body.style.overflow = "hidden";
-  setTimeout(updateText, 400);
+    function updateText() {
+      if (textElement && currentIndex < words.length) {
+        textElement.style.opacity = "0";
+        setTimeout(() => {
+          textElement.textContent = words[currentIndex];
+          textElement.style.opacity = "1";
+          currentIndex++;
+          setTimeout(updateText, 250);
+        }, 150);
+      } else if (preloader) {
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          preloader.classList.add("preloader-hidden");
+          document.body.style.removeProperty('overflow');
+          window.dispatchEvent(new CustomEvent('preloaderFinished'));
+        }, 500);
+      }
+    }
+
+    document.body.style.overflow = "hidden";
+    setTimeout(updateText, 400);
+  }
 </script>
 
 

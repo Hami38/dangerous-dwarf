@@ -85,7 +85,7 @@ const nextProjects = [
 
         <!-- Breadcrumb -->
         <div class="cs-breadcrumb mb-10 opacity-0" data-hero-fade style="--delay: 0s">
-          <a href="/" class="cs-back-link group inline-flex items-center gap-2 text-white/40 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
+          <a href="/prace" class="cs-back-link group inline-flex items-center gap-2 text-white/40 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
             <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-7-7-7 7 7 7"/>
             </svg>
@@ -96,7 +96,7 @@ const nextProjects = [
         <!-- Overline label -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
           <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
-            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.2em] font-bold uppercase">{project.overline}</p>
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold">{project.overline}</p>
           </Reveal>
         </div>
 
@@ -163,17 +163,8 @@ const nextProjects = [
     <section class="cs-hero-image-section px-6 pt-12 pb-0">
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
-          <div class="cs-placeholder cs-placeholder--hero aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
-            <div class="cs-placeholder-inner">
-              <div class="cs-placeholder-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                  <path d="M21 15l-5-5L5 21"/>
-                </svg>
-              </div>
-              <p class="cs-placeholder-label">Kluczowy visual projektu</p>
-              <p class="cs-placeholder-note">Device mockup / Anonymized screen</p>
-            </div>
+          <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
+            <img src="/images/ing/KV_blik.webp" alt="BLIK dla Biznesu w ING — kluczowy visual projektu" class="w-full h-full object-cover cs-img" loading="eager" />
           </div>
         </div>
       </div>
@@ -208,7 +199,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
               <p class="cs-body-text">
-                Wyzwaniem było bezpieczne przeniesienie tego nawyku do środowiska o wysokim rygorze prawnym i operacyjnym — bez utraty intuicyjności, która BLIK zawdzięcza swój sukces w bankowości detalicznej.
+                Wyzwaniem było bezpieczne przeniesienie tego nawyku do środowiska o wysokim rygorze prawnym i operacyjnym — bez utraty intuicyjności, którą BLIK zawdzięcza swój sukces w bankowości detalicznej.
               </p>
             </Reveal>
           </div>
@@ -218,27 +209,11 @@ const nextProjects = [
         <!-- Context image placeholder -->
         <div class="cs-img-wrapper mt-16 opacity-0" data-scroll-fade>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div class="cs-placeholder cs-placeholder--medium aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <div class="cs-placeholder-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                  </svg>
-                </div>
-                <p class="cs-placeholder-label">User Journey Map</p>
-                <p class="cs-placeholder-note">Retail → Business mental model</p>
-              </div>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/UJM_blik.webp" alt="User Journey Map — model mentalny Retail → Business" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <div class="cs-placeholder cs-placeholder--medium aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <div class="cs-placeholder-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-                  </svg>
-                </div>
-                <p class="cs-placeholder-label">Analiza kontekstu</p>
-                <p class="cs-placeholder-note">Competitive & Behavioral Research</p>
-              </div>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/Context_research_blik.webp" alt="Analiza kontekstu — Competitive & Behavioral Research" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -284,18 +259,8 @@ const nextProjects = [
 
         <!-- Flow diagram placeholder -->
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-          <div class="cs-placeholder cs-placeholder--flow aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
-            <div class="cs-placeholder-inner">
-              <div class="cs-placeholder-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="7" width="6" height="4" rx="1"/><rect x="9" y="4" width="6" height="4" rx="1"/>
-                  <rect x="9" y="14" width="6" height="4" rx="1"/><rect x="16" y="7" width="6" height="4" rx="1"/>
-                  <path d="M8 9h1m6 0h1M12 8v2m0 4V9m6 0H17"/><path d="M8 9H7"/>
-                </svg>
-              </div>
-              <p class="cs-placeholder-label">Anonymized Process Flow</p>
-              <p class="cs-placeholder-note">Activation & Authorization Paths — [User Verification] → [Permission Check] → [Transaction Summary]</p>
-            </div>
+          <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
+            <img src="/images/ing/User_flow_blik.webp" alt="User Flow — ścieżki aktywacji i autoryzacji BLIK dla Biznesu" class="w-full h-full object-cover cs-img" loading="lazy" />
           </div>
         </div>
 
@@ -337,17 +302,8 @@ const nextProjects = [
               </p>
               <!-- Placeholder for flow wireframe -->
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-                <div class="cs-placeholder cs-placeholder--small aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                  <div class="cs-placeholder-inner">
-                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-                      </svg>
-                    </div>
-                    <p class="cs-placeholder-label cs-placeholder-label--sm">Wireframe Style — Low-Fidelity</p>
-                    <p class="cs-placeholder-note">Activation Flow · [Step 1] → [Step 2] → [Step 3]</p>
-                  </div>
+                <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
+                  <img src="/images/ing/LF_wireframe_blik.webp" alt="Low-Fidelity wireframes — flow aktywacji BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -366,17 +322,8 @@ const nextProjects = [
               </p>
               <!-- Placeholder for research visual -->
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.35s">
-                <div class="cs-placeholder cs-placeholder--small aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                  <div class="cs-placeholder-inner">
-                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                      </svg>
-                    </div>
-                    <p class="cs-placeholder-label cs-placeholder-label--sm">Usability Testing Insights</p>
-                    <p class="cs-placeholder-note">Anonymized research session summary</p>
-                  </div>
+                <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
+                  <img src="/images/ing/Key_insights_blik.webp" alt="Usability Testing — Key Insights z testów użyteczności" class="w-full h-full object-cover cs-img" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -386,16 +333,8 @@ const nextProjects = [
 
         <!-- Full-width device mockup -->
         <div class="mt-20 opacity-0" data-scroll-fade>
-          <div class="cs-placeholder cs-placeholder--device aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
-            <div class="cs-placeholder-inner">
-              <div class="cs-placeholder-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
-                </svg>
-              </div>
-              <p class="cs-placeholder-label">Device Mockup</p>
-              <p class="cs-placeholder-note">iPhone frame · Anonymized UI screens · No real data or logos</p>
-            </div>
+          <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
+            <img src="/images/ing/HF_blik.webp" alt="Wireframes ekranów — Przelew na telefon, Zmiana ustawień, Kod BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
           </div>
         </div>
 
@@ -457,7 +396,7 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.2em] font-bold uppercase">Materiały wizualne</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Materiały wizualne</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-gallery-heading mt-2">Dokumentacja procesu</h2>
@@ -467,19 +406,13 @@ const nextProjects = [
         <!-- Row 1: 1 wide + 1 narrow -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mb-5 opacity-0" data-scroll-fade>
           <div class="md:col-span-8">
-            <div class="cs-placeholder cs-placeholder--gallery aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <p class="cs-placeholder-label">Blurred & Abstraction</p>
-                <p class="cs-placeholder-note">Flowchart · [User Verification] → [Transaction Summary] → [Permission Check]</p>
-              </div>
+            <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/User_flow_blik.webp" alt="Process Flow — ścieżki aktywacji i autoryzacji" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
           </div>
           <div class="md:col-span-4">
-            <div class="cs-placeholder cs-placeholder--gallery aspect-[16/9] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <p class="cs-placeholder-label">Focused Detail</p>
-                <p class="cs-placeholder-note">Tooltip copy / CTA element</p>
-              </div>
+            <div class="aspect-[16/9] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/Context_research_blik.webp" alt="Context Analysis — badanie kontekstu i wzorców zachowań" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -487,27 +420,18 @@ const nextProjects = [
         <!-- Row 2: 3 equal -->
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade style="--fade-delay: 0.15s">
           <div>
-            <div class="cs-placeholder cs-placeholder--gallery aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <p class="cs-placeholder-label">Wireframe</p>
-                <p class="cs-placeholder-note">Low-Fidelity · Activation Screen</p>
-              </div>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/LF_wireframe_blik.webp" alt="Low-Fidelity — ekrany aktywacji BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
           </div>
           <div>
-            <div class="cs-placeholder cs-placeholder--gallery aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <p class="cs-placeholder-label">Wireframe</p>
-                <p class="cs-placeholder-note">Low-Fidelity · Permission Screen</p>
-              </div>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/UJM_blik.webp" alt="User Journey Map — ścieżka klienta biznesowego" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
           </div>
           <div>
-            <div class="cs-placeholder cs-placeholder--gallery aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <div class="cs-placeholder-inner">
-                <p class="cs-placeholder-label">Wireframe</p>
-                <p class="cs-placeholder-note">Low-Fidelity · Summary Screen</p>
-              </div>
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+              <img src="/images/ing/Key_insights_blik.webp" alt="Key Insights — wyniki testów użyteczności" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -526,7 +450,7 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.2em] font-bold uppercase">Więcej projektów</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Więcej projektów</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-gallery-heading mt-2">Inne realizacje</h2>
@@ -571,6 +495,19 @@ const nextProjects = [
 
       </div>
     </section>
+
+    <!-- ─── LIGHTBOX ────────────────────────────────────────────────────────── -->
+    <div id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd obrazu">
+      <div class="cs-lb-backdrop"></div>
+      <button class="cs-lb-close" aria-label="Zamknij podgląd">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="cs-lb-frame">
+        <img id="cs-lb-img" src="" alt="" class="cs-lb-image" />
+      </div>
+    </div>
 
     <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
     <Footer />
@@ -626,7 +563,7 @@ const nextProjects = [
   }
 
   .cs-overline {
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     font-size: 0.75rem;
   }
 
@@ -701,8 +638,7 @@ const nextProjects = [
   .cs-section-number {
     font-size: 0.7rem;
     font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    letter-spacing: 0.15em;
     color: #BAF52A;
     opacity: 0.9;
   }
@@ -811,7 +747,7 @@ const nextProjects = [
   .cs-challenge-number {
     font-size: 0.7rem;
     font-weight: 800;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     color: #BAF52A;
     opacity: 0.7;
   }
@@ -822,6 +758,12 @@ const nextProjects = [
     color: #ffffff;
     line-height: 1.3;
     margin: 0;
+  }
+
+  .cs-challenge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .cs-challenge-desc {
@@ -844,15 +786,139 @@ const nextProjects = [
   .cs-role-tag {
     display: inline-flex;
     align-items: center;
-    padding: 5px 14px;
+    min-height: 32px;
+    padding: 8px 16px;
     border-radius: 9999px;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    background: rgba(186,245,42,0.08);
-    color: #BAF52A;
-    border: 1px solid rgba(186,245,42,0.15);
+    line-height: 1;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ─── Image hover + zoom ────────────────────────────────────────────────── */
+
+  .cs-img-wrap {
+    position: relative;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='17' fill='none' stroke='%23BAF52A' stroke-width='1.5'/%3E%3Cline x1='22' y1='15' x2='22' y2='29' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='15' y1='22' x2='29' y2='22' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") 22 22, zoom-in;
+    transition: border-color 0.3s ease;
+  }
+
+  .cs-img-wrap:hover {
+    border-color: rgba(186, 245, 42, 0.2) !important;
+  }
+
+  .cs-img-wrap .cs-img {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cs-img-wrap:hover .cs-img {
+    transform: scale(1.035);
+  }
+
+  .cs-img-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(12, 10, 9, 0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(4px) scale(0.88);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  .cs-img-wrap:hover .cs-img-hint {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* ─── Lightbox ──────────────────────────────────────────────────────────── */
+
+  #cs-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #cs-lightbox.cs-lb-open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .cs-lb-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .cs-lb-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .cs-lb-close:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.25);
+  }
+
+  .cs-lb-frame {
+    position: relative;
+    z-index: 1;
+    max-width: min(92vw, 1440px);
+    max-height: 88vh;
+    transform: scale(0.94);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #cs-lightbox.cs-lb-open .cs-lb-frame {
+    transform: scale(1);
+  }
+
+  .cs-lb-image {
+    display: block;
+    max-width: 100%;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
   }
 
   /* ─── Results ───────────────────────────────────────────────────────────── */
@@ -1029,7 +1095,6 @@ const nextProjects = [
   .cs-next-overline {
     font-size: 0.65rem;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.15em;
     color: #BAF52A;
     margin: 0;
@@ -1183,5 +1248,50 @@ const nextProjects = [
 
   document.querySelectorAll('.cs-challenges-grid, .cs-results-grid, .cs-next-grid').forEach((grid) => {
     cardObserver.observe(grid);
+  });
+
+  // ─── Image zoom hints ──────────────────────────────────────────────────────
+  const zoomHintSVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>`;
+
+  document.querySelectorAll<HTMLElement>('.cs-img').forEach((img) => {
+    const wrapper = img.parentElement as HTMLElement;
+    wrapper.classList.add('cs-img-wrap');
+    const hint = document.createElement('div');
+    hint.className = 'cs-img-hint';
+    hint.innerHTML = zoomHintSVG;
+    hint.setAttribute('aria-hidden', 'true');
+    wrapper.appendChild(hint);
+  });
+
+  // ─── Lightbox ──────────────────────────────────────────────────────────────
+  const lightbox   = document.getElementById('cs-lightbox') as HTMLElement;
+  const lbImg      = document.getElementById('cs-lb-img') as HTMLImageElement;
+  const lbClose    = lightbox.querySelector<HTMLElement>('.cs-lb-close')!;
+  const lbBackdrop = lightbox.querySelector<HTMLElement>('.cs-lb-backdrop')!;
+
+  function openLightbox(src: string, alt: string) {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lightbox.classList.add('cs-lb-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('cs-lb-open');
+    document.body.style.removeProperty('overflow');
+    setTimeout(() => { lbImg.src = ''; }, 380);
+  }
+
+  document.querySelectorAll<HTMLElement>('.cs-img-wrap').forEach((wrap) => {
+    wrap.addEventListener('click', () => {
+      const img = wrap.querySelector<HTMLImageElement>('.cs-img');
+      if (img) openLightbox(img.src, img.alt);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbBackdrop.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('cs-lb-open')) closeLightbox();
   });
 </script>

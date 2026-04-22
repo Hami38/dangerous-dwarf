@@ -152,10 +152,13 @@ import pgzLogo from '../assets/logos/Logotyp-PGZSW.svg';
     });
   };
 
-  // Czekamy na koniec preloadera — tak samo jak Block Reveal
+  // Ścieżka 1: świeże wejście — czekamy na koniec preloadera
   window.addEventListener('preloaderFinished', animateHero, { once: true });
 
-  // Fallback: jeśli preloader nie strzeli eventu
+  // Ścieżka 2: przejście przez nawigację — zasłona zastępuje preloader
+  window.addEventListener('curtainDone', animateHero, { once: true });
+
+  // Fallback: gdyby żaden event nie strzelił
   setTimeout(() => {
     const alreadyDone = document.querySelector('.hero-fade-up[style*="opacity: 1"]');
     if (!alreadyDone) animateHero();

@@ -20,7 +20,7 @@ const approaches = [
 ];
 ---
 
-<section class="approach-section relative bg-[#0c0a09] py-24 md:py-32 px-6 overflow-hidden">
+<section class="approach-section relative bg-[#0c0a09] pt-24 pb-6 md:pt-32 md:pb-6 px-6 overflow-hidden">
 
   <!-- Subtelna linia górna -->
   <div class="max-w-4xl mx-auto">
@@ -45,7 +45,7 @@ const approaches = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-px">
 
       {approaches.map((item, index) => (
-        <div class={`approach-col relative group ${index === 0 ? 'md:pr-12 md:border-r md:border-white/5' : 'md:pl-12'} pb-16 md:pb-0`}>
+        <div class={`approach-col relative group ${index === 0 ? 'md:pr-12 md:border-r md:border-white/10' : 'md:pl-12'} pb-16 md:pb-0`}>
           
           <!-- Duży numer w tle -->
           <span class="approach-number select-none" aria-hidden="true">
@@ -111,9 +111,6 @@ const approaches = [
 
     </div>
 
-    <!-- Dolna linia -->
-    <div class="w-full h-px bg-white/5 mt-20 md:mt-28"></div>
-
   </div>
 </section>
 
@@ -178,6 +175,13 @@ const approaches = [
     transform: translateY(0);
   }
 
+  /* Separator desktop — cyfra 02 odsunięta od linii */
+  @media (min-width: 768px) {
+    .approach-col:last-child .approach-number {
+      left: 1.5rem;
+    }
+  }
+
   /* Separator mobile */
   @media (max-width: 767px) {
     .approach-col:first-child {
@@ -185,7 +189,10 @@ const approaches = [
       padding-bottom: 3rem;
     }
     .approach-col:last-child {
-      padding-top: 3rem;
+      padding-top: 4rem;
+    }
+    .approach-col:last-child .approach-number {
+      top: 1rem;
     }
     .approach-number {
       font-size: clamp(6rem, 22vw, 8rem);

@@ -4,46 +4,47 @@ import Reveal from '../../components/Reveal.astro';
 import Footer from '../../components/Footer.astro';
 
 const project = {
-  overline: "Finanse / Strategia UX",
-  title: "BLIK dla Biznesu w ING",
-  subtitle: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.",
-  role: "UX Expert & Interaction Designer",
-  client: "ING Bank Śląski",
-  year: "2025",
-  scope: "Strategia UX · Badania · Stakeholder Management",
+  overline: "Bezpieczeństwo / Computer Vision",
+  title: "System reidentyfikacji osób dla infrastruktury krytycznej",
+  subtitle: "Strategiczne zarządzanie złożonością w systemach AI: Od mapowania empatii operatora do 20% ROI w 6 miesiącach.",
+  role: "Lead Product Designer / Strategic Architect",
+  client: "New Security Systems",
+  year: "2023",
+  scope: "Product Design · AI/UX Strategy · Ethics & GDPR",
 };
 
 const challenges = [
   {
     number: "01",
-    title: "Ograniczenia infrastrukturalne",
-    description: "System pozwalał na jednostronny przepływ środków (wysyłka), co stało w sprzeczności z dwustronnym modelem mentalnym BLIKA (model 'wyślij i odbierz'). Projektowanie wokół tej asymetrii — nie przeciwko niej.",
+    title: "Prywatność i etyka",
+    description: "Jak zbudować zaufanie do technologii śledzenia biometrycznego? Wdrożenie w infrastrukturze krytycznej wymagało 100% zgodności z GDPR/CCPA i projektowania etyki jako przewagi — nie bariery.",
   },
   {
     number: "02",
-    title: "Hierarchia uprawnień",
-    description: "W przeciwieństwie do kont indywidualnych, proces musiał uwzględniać administratorów, schematy akceptacji i współdzieloną odpowiedzialność. Złożoność korporacyjna ukryta za prostym interfejsem.",
+    title: "Precyzja identyfikacji",
+    description: "Jak wyeliminować false positives w systemie obsługującym 500 tys. kamer? Błędy identyfikacji generują ryzyko prawne i operacyjne — projektowanie musiało wzmacniać, nie zastępować osąd człowieka.",
   },
   {
     number: "03",
-    title: "Separacja kanałów",
-    description: "Ograniczenie funkcji do kanału mobilnego wymagało zaprojektowania precyzyjnych punktów edukacyjnych w kanale webowym. Użytkownik musiał wiedzieć, gdzie i dlaczego.",
+    title: "Cognitive Load operatora",
+    description: "Jak obsłużyć setki strumieni wideo bez przeciążenia poznawczego? System musiał hierarchizować zdarzenia i dostarczać tylko te informacje, które wymagają interwencji — w odpowiednim czasie.",
   },
 ];
 
 const results = [
-  { value: "tysiące", label: "kont biznesowych aktywowanych w pierwszych dniach od wdrożenia" },
-  { value: "mln zł", label: "wolumenu transakcyjnego w krótkim czasie po starcie" },
-  { value: "NPS ↑", label: "utrzymanie wysokiego wskaźnika satysfakcji w wymagającym segmencie SME/MC" },
-  { value: "nagroda", label: "nominacja projektu do prestiżowych nagród sektora bankowego" },
+  { value: "20% ROI", label: "zwrotu z inwestycji w pierwszym półroczu po wdrożeniu" },
+  { value: "50+", label: "lokalizacji wdrożonych w zaledwie 60 dni od startu" },
+  { value: "97%", label: "operatorów zaufało nowej metodzie identyfikacji biometrycznej" },
+  { value: "32 sprinty", label: "180 dni iteracji z Design System bez długu projektowego" },
 ];
 
 const nextProjects = [
   {
-    overline: "Bezpieczeństwo / Computer Vision",
-    title: "System reidentyfikacji osób dla infrastruktury krytycznej",
-    description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
-    href: "/projekty/reid",
+    overline: "Finanse / Strategia UX",
+    title: "BLIK dla Biznesu w ING",
+    description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.",
+    href: "/projekty/blik-dla-biznesu",
+    image: "/images/ing/KV_blik.webp",
   },
   {
     overline: "Bezpieczeństwo krytyczne / Deep Tech",
@@ -64,7 +65,6 @@ const nextProjects = [
 
   <!-- ─── PRELOADER BYPASS ───────────────────────────────────────────────── -->
   <script>
-    // Na stronach projektów nie ma preloadera — odpalamy event natychmiast
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         window.dispatchEvent(new CustomEvent('preloaderFinished'));
@@ -153,7 +153,7 @@ const nextProjects = [
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <p>
-            <strong>Nota o poufności:</strong> Ze względu na umowę NDA i wymagania poufności, wizualizacje i diagramy zostały zanonimizowane i uproszczone. Niniejsze case study koncentruje się na procesie decyzyjnym, strategii UX i wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.
+            <strong>Nota o poufności:</strong> Ze względu na wrażliwy charakter danych biometrycznych, wizualizacje zostały zanonimizowane. Niniejsze case study koncentruje się na przywództwie projektowym, architekturze decyzji UX i mierzalnym wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.
           </p>
         </div>
       </div>
@@ -163,8 +163,19 @@ const nextProjects = [
     <section class="cs-hero-image-section px-6 pt-12 pb-0">
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
-          <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
-            <img src="/images/ing/KV_blik.webp" alt="BLIK dla Biznesu w ING — kluczowy visual projektu" class="w-full h-full object-cover cs-img" loading="eager" />
+          <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5 cs-placeholder cs-placeholder--hero">
+            <div class="cs-placeholder-inner">
+              <div class="cs-placeholder-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="3"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+                  <path d="M17 8a5 5 0 1 1-10 0"/>
+                  <circle cx="19" cy="6" r="2" fill="currentColor" opacity="0.4"/>
+                  <circle cx="5" cy="6" r="2" fill="currentColor" opacity="0.4"/>
+                </svg>
+              </div>
+              <p class="cs-placeholder-label">ReID Dashboard — Streamwall Interface</p>
+              <p class="cs-placeholder-note">Wizualizacja zanonimizowana ze względu na poufność projektu</p>
+            </div>
           </div>
         </div>
       </div>
@@ -185,7 +196,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
               <h2 class="cs-section-heading mt-3">
-                Przeniesienie nawyku do świata procedur
+                Komercjalizacja technologii głębokiego uczenia
               </h2>
             </Reveal>
           </div>
@@ -194,32 +205,39 @@ const nextProjects = [
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
               <p class="cs-body-text mb-6">
-                BLIK stał się standardem rynkowym. Klienci biznesowi, przyzwyczajeni do wygody prywatnych przelewów P2P, oczekiwali analogicznej szybkości w zarządzaniu finansami firmowymi.
+                Zadaniem było przekształcenie zaawansowanych algorytmów reidentyfikacji (Face, Gait, Cloth) w stabilny produkt klasy SaaS. Technologia istniała — brakowało warstwy, która uczyni ją używalną przez człowieka pod presją.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
               <p class="cs-body-text">
-                Wyzwaniem było bezpieczne przeniesienie tego nawyku do środowiska o wysokim rygorze prawnym i operacyjnym — bez utraty intuicyjności, którą BLIK zawdzięcza swój sukces w bankowości detalicznej.
+                Kluczowym wyzwaniem nie była sama technologia Deep Learning, lecz projektowanie interfejsu minimalizującego Cognitive Overload operatorów monitoringu — przy zachowaniu 100% zgodności z normami etycznymi i prawnymi (GDPR/CCPA).
               </p>
             </Reveal>
           </div>
 
         </div>
 
-        <!-- Context image placeholder -->
+        <!-- Context images -->
         <div class="cs-img-wrapper mt-16 opacity-0" data-scroll-fade>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/ing/UJM_blik.webp" alt="User Journey Map — model mentalny Retail → Business" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/reid/empathy_map_reid.webp" alt="Empathy Map — persona operatora Jack i krytyczne napięcia" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">User Journey Map — model mentalny Retail → Business</figcaption>
+              <figcaption class="cs-img-caption">Empathy Map — persona operatora "Jack" i krytyczne napięcia</figcaption>
             </figure>
             <figure class="m-0 p-0">
-              <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/ing/Context_research_blik.webp" alt="Analiza kontekstu — Competitive & Behavioral Research" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </div>
+                  <p class="cs-placeholder-label cs-placeholder-label--sm">Mapa ryzyka — Privacy · Accuracy · Cognitive Load</p>
+                </div>
               </div>
-              <figcaption class="cs-img-caption">Analiza kontekstu — Competitive & Behavioral Research</figcaption>
+              <figcaption class="cs-img-caption">Trójkąt ryzyka — balansowanie między prywatnością, precyzją i wydajnością</figcaption>
             </figure>
           </div>
         </div>
@@ -240,12 +258,12 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-section-heading mt-3 max-w-xl">
-              Zarządzanie asymetrią systemową
+              Design jako zarządzanie ryzykiem
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4">
-              Jako projektant musiałem zarządzić trzema krytycznymi barierami, które mogły wpłynąć na negatywne postrzeganie produktu.
+              Wdrożenie biometrii w infrastrukturze krytycznej wymagało wyważenia trzech sił. Każda z nich mogła samodzielnie zdyskredytować produkt na rynku.
             </p>
           </Reveal>
         </div>
@@ -266,10 +284,20 @@ const nextProjects = [
         <!-- Flow diagram placeholder -->
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
           <figure class="m-0 p-0">
-            <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
-              <img src="/images/ing/User_flow_blik.webp" alt="User Flow — ścieżki aktywacji i autoryzacji BLIK dla Biznesu" class="w-full h-full object-cover cs-img" loading="lazy" />
+            <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5 cs-placeholder">
+              <div class="cs-placeholder-inner">
+                <div class="cs-placeholder-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="4" height="4" rx="1"/><rect x="10" y="3" width="4" height="4" rx="1"/><rect x="17" y="3" width="4" height="4" rx="1"/>
+                    <rect x="3" y="10" width="4" height="4" rx="1"/><rect x="10" y="10" width="4" height="4" rx="1"/><rect x="17" y="10" width="4" height="4" rx="1"/>
+                    <rect x="3" y="17" width="4" height="4" rx="1"/><rect x="10" y="17" width="4" height="4" rx="1"/><rect x="17" y="17" width="4" height="4" rx="1"/>
+                  </svg>
+                </div>
+                <p class="cs-placeholder-label">User Flow — od detekcji Gait Analysis po akcję interwencyjną</p>
+                <p class="cs-placeholder-note">Pełny schemat ścieżek operatora — zanonimizowany</p>
+              </div>
             </div>
-            <figcaption class="cs-img-caption">User Flow — ścieżki aktywacji i autoryzacji BLIK dla Biznesu</figcaption>
+            <figcaption class="cs-img-caption">User Flow — ścieżki od detekcji (Gait Analysis) po akcję interwencyjną operatora</figcaption>
           </figure>
         </div>
 
@@ -291,12 +319,12 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
               <h2 class="cs-section-heading mt-3">
-                Strategia UX i&nbsp;„Design Ograniczeń"
+                Architektura produktu i&nbsp;podejście strategiczne
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
               <p class="cs-body-text mt-4">
-                Moim zadaniem było pełnienie roli mediatora między technologicznymi ograniczeniami a oczekiwaniami klienta.
+                180 dni iteracji w 32 sprintach. Zamiast budować system „dla wszystkich", skupiłem się na personie operatora i jego krytycznych napięciach.
               </p>
             </Reveal>
           </div>
@@ -305,54 +333,52 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag">Mapowanie Flow</div>
+              <div class="cs-role-tag">Empathy Mapping & Human-in-the-Loop</div>
               <p class="cs-body-text mt-3">
-                Zaprojektowałem ścieżki aktywacji i autoryzacji, które integrowały się z istniejącymi systemami uprawnień korporacyjnych. Każdy krok przepływu był analizowany pod kątem błędów poznawczych wynikających z nawyków z bankowości detalicznej.
+                Empathy Map ujawniła krytyczne napięcie: strach operatora przed odpowiedzialnością za błąd AI vs. potrzeba wydajności. Odpowiedzią był mechanizm Human-in-the-loop — AI sugeruje, człowiek zatwierdza. Decyzja ta zbudowała zaufanie użytkowników i ograniczyła ryzyko prawne.
               </p>
-              <!-- Placeholder for flow wireframe -->
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
                 <figure class="m-0 p-0">
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                    <img src="/images/ing/LF_wireframe_blik.webp" alt="Low-Fidelity wireframes — flow aktywacji BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
+                    <img src="/images/reid/empathy_map_reid.webp" alt="Empathy Map — persona operatora, decyzja o Human-in-the-loop" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Low-Fidelity wireframes — flow aktywacji BLIK</figcaption>
+                  <figcaption class="cs-img-caption">Empathy Map — persona operatora, decyzja o Human-in-the-loop</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag">UX Copywriting & Edukacja</div>
+              <div class="cs-role-tag">Architektura Streamwall</div>
               <p class="cs-body-text mt-3">
-                Opracowałem strategię transparentnej komunikacji. Zamiast ukrywać braki systemowe, projektowałem interakcje, które tłumaczyły aktualny zakres funkcji — budując zaufanie zamiast frustracji.
+                Zaprojektowałem centralny dashboard zarządzający wieloma strumieniami wideo z inteligentną hierarchią wizualną. Streamwall promuje najważniejsze zdarzenia operacyjne — operator widzi dokładnie to, co wymaga uwagi, w precyzyjnym momencie.
               </p>
+              <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
+                <figure class="m-0 p-0">
+                  <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
+                    <img src="/images/reid/streamwall_reid.webp" alt="Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
+                  </div>
+                  <figcaption class="cs-img-caption">Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer</figcaption>
+                </figure>
+              </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag">Walidacja hipotez</div>
+              <div class="cs-role-tag">Design System & Skalowanie</div>
               <p class="cs-body-text mt-3">
-                Prowadziłem testy użyteczności, identyfikując momenty, w których nawyki z bankowości detalicznej prowadziły do błędów poznawczych w kontekście biznesowym. Wyniki bezpośrednio kształtowały kolejne iteracje projektu.
+                Wdrożyłem Design System, który umożliwił szybkie skalowanie produktu na 50+ lokalizacji bez długu projektowego. Spójność komponentów pozwoliła zespołowi deweloperów na wdrożenie w 60 dni — znacznie poniżej zakładanego harmonogramu.
               </p>
-              <!-- Placeholder for research visual -->
-              <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.35s">
-                <figure class="m-0 p-0">
-                  <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                    <img src="/images/ing/Key_insights_blik.webp" alt="Usability Testing — Key Insights z testów użyteczności" class="w-full h-full object-cover cs-img" loading="lazy" />
-                  </div>
-                  <figcaption class="cs-img-caption">Usability Testing — kluczowe wnioski z testów użyteczności</figcaption>
-                </figure>
-              </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Full-width device mockup -->
+        <!-- Full-width mockup placeholder -->
         <div class="mt-20 opacity-0" data-scroll-fade>
           <figure class="m-0 p-0">
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
-              <img src="/images/ing/HF_blik.webp" alt="Wireframes ekranów — Przelew na telefon, Zmiana ustawień, Kod BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/reid/streamwall_reid.webp" alt="Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">High-Fidelity wireframes — Przelew na telefon, Zmiana ustawień, Kod BLIK</figcaption>
+            <figcaption class="cs-img-caption">Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer</figcaption>
           </figure>
         </div>
 
@@ -372,12 +398,12 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-section-heading mt-3">
-              Efekty i&nbsp;wpływ biznesowy
+              Wyniki mierzone danymi
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4">
-              Decyzja o wdrożeniu MVP przy silnym wsparciu UX okazała się sukcesem rynkowym. Projekt potwierdził, że dobrze zaprojektowane ograniczenia mogą być przewagą konkurencyjną.
+              Decyzje projektowe bezpośrednio przełożyły się na sukces komercyjny. W sektorze bezpieczeństwa, gdzie zaufanie do nowej technologii buduje się latami — wyniki w 6 miesięcy to wyjątek, nie reguła.
             </p>
           </Reveal>
         </div>
@@ -397,9 +423,9 @@ const nextProjects = [
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
             <blockquote class="cs-quote-text">
-              "Zamiast ukrywać braki systemowe, projektowałem interakcje, które tłumaczyły aktualny zakres funkcji — budując zaufanie zamiast frustracji."
+              "Zamiast budować system dla wszystkich, skupiłem się na personie operatora. Empathy Map ujawniła krytyczne napięcie — i właśnie z niego zrodziło się rozwiązanie, które zbudowało zaufanie użytkowników."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · UX Expert, projekt BLIK dla Biznesu</p>
+            <p class="cs-quote-source">Kamil Wardak · Lead Product Designer, projekt ReID</p>
           </div>
         </div>
 
@@ -407,7 +433,7 @@ const nextProjects = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         GALLERY STRIP — placeholders for anonymized visuals
+         GALLERY STRIP
     ════════════════════════════════════════════════════════════════════════ -->
     <section class="cs-gallery-section px-6 pb-28 md:pb-36 overflow-hidden">
       <div class="max-w-4xl mx-auto">
@@ -425,18 +451,32 @@ const nextProjects = [
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mb-5 opacity-0" data-scroll-fade>
           <div class="md:col-span-8">
             <figure class="m-0 p-0">
-              <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/ing/ux_writing_tweeks.webp" alt="Process Flow — ścieżki aktywacji i autoryzacji" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                  <p class="cs-placeholder-label cs-placeholder-label--sm">Streamwall — wielostrumieniowy dashboard operatora</p>
+                </div>
               </div>
-              <figcaption class="cs-img-caption">Ekslopracja klarownego języka w komunikatach - ux writing</figcaption>
+              <figcaption class="cs-img-caption">Streamwall — centralny punkt zarządzania strumieniami wideo z hierarchią wizualną</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
             <figure class="m-0 p-0">
-              <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/ing/usability_testing_blik.webp" alt="Context Analysis — badanie kontekstu i wzorców zachowań" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                  </div>
+                  <p class="cs-placeholder-label cs-placeholder-label--sm">Gait Analysis — atrybut reidentyfikacji</p>
+                </div>
               </div>
-              <figcaption class="cs-img-caption">Schemat badań użyteczności</figcaption>
+              <figcaption class="cs-img-caption">Gait Analysis — analiza chodu jako główny atrybut ReID</figcaption>
             </figure>
           </div>
         </div>
@@ -444,22 +484,43 @@ const nextProjects = [
         <!-- Row 2: 3 equal -->
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade style="--fade-delay: 0.15s">
           <figure class="m-0 p-0">
-            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/ing/budowa_procesu_blik.webp" alt="Low-Fidelity — ekrany aktywacji BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+              <div class="cs-placeholder-inner">
+                <div class="cs-placeholder-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <p class="cs-placeholder-label cs-placeholder-label--sm">Design System — komponenty</p>
+              </div>
             </div>
-            <figcaption class="cs-img-caption">Budowa procesu - podział odpowiedzialności systemów</figcaption>
+            <figcaption class="cs-img-caption">Design System — komponenty skalowalne na 50+ lokalizacji</figcaption>
           </figure>
           <figure class="m-0 p-0">
-            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/ing/mental_gap_blik.webp" alt="User Journey Map — ścieżka klienta biznesowego" class="w-full h-full object-cover cs-img" loading="lazy" />
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+              <div class="cs-placeholder-inner">
+                <div class="cs-placeholder-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="3"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+                  </svg>
+                </div>
+                <p class="cs-placeholder-label cs-placeholder-label--sm">Onboarding — aktywacja operatora</p>
+              </div>
             </div>
-            <figcaption class="cs-img-caption">Mental Gap — niezrozumienie przez użytkownika</figcaption>
+            <figcaption class="cs-img-caption">Onboarding — flow aktywacji konta operatora bezpieczeństwa</figcaption>
           </figure>
           <figure class="m-0 p-0">
-            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/ing/multi_channel_blik.webp" alt="Key Insights — wyniki testów użyteczności" class="w-full h-full object-cover cs-img" loading="lazy" />
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+              <div class="cs-placeholder-inner">
+                <div class="cs-placeholder-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  </svg>
+                </div>
+                <p class="cs-placeholder-label cs-placeholder-label--sm">Anomaly Detection — alerty systemu</p>
+              </div>
             </div>
-            <figcaption class="cs-img-caption">Multi-Channel — integracja kanałów komunikacji</figcaption>
+            <figcaption class="cs-img-caption">Anomaly Detection — zarządzanie alertami i diagnostyką kamer</figcaption>
           </figure>
         </div>
 
@@ -467,7 +528,7 @@ const nextProjects = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         NEXT PROJECTS — nawigacja do kolejnych projektów
+         NEXT PROJECTS
     ════════════════════════════════════════════════════════════════════════ -->
     <section class="cs-next-section px-6 pt-0 pb-28 md:pb-36">
       <div class="max-w-4xl mx-auto">
@@ -487,18 +548,20 @@ const nextProjects = [
         <div class="cs-next-grid">
           {nextProjects.map((np, i) => (
             <a href={np.href} class="cs-next-card group opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
-              <!-- Image placeholder -->
               <div class="cs-next-visual">
-                <div class="cs-next-img-placeholder">
-                  <div class="cs-placeholder-icon cs-placeholder-icon--sm">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                      <path d="M21 15l-5-5L5 21"/>
-                    </svg>
+                {np.image ? (
+                  <img src={np.image} alt={np.title} class="w-full h-full object-cover cs-next-img" loading="lazy" />
+                ) : (
+                  <div class="cs-next-img-placeholder">
+                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                        <path d="M21 15l-5-5L5 21"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
-              <!-- Text -->
               <div class="cs-next-content">
                 <p class="cs-next-overline">{np.overline}</p>
                 <h3 class="cs-next-title">{np.title}</h3>
@@ -693,9 +756,12 @@ const nextProjects = [
     transition: border-color 0.3s ease, background 0.3s ease;
   }
 
-  .cs-placeholder:hover {
-    background: rgba(186, 245, 42, 0.03);
-    border-color: rgba(186, 245, 42, 0.12) !important;
+  .cs-placeholder--hero {
+    background: linear-gradient(135deg, rgba(186,245,42,0.03) 0%, rgba(255,255,255,0.015) 100%);
+  }
+
+  .cs-placeholder--wide {
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(186,245,42,0.025) 100%);
   }
 
   .cs-placeholder-inner {
@@ -833,51 +899,6 @@ const nextProjects = [
     color: rgba(255, 255, 255, 0.25);
     margin: 9px 2px 0;
     letter-spacing: 0.02em;
-  }
-
-  /* ─── Image hover + zoom ────────────────────────────────────────────────── */
-
-  .cs-img-wrap {
-    position: relative;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='17' fill='none' stroke='%23BAF52A' stroke-width='1.5'/%3E%3Cline x1='22' y1='15' x2='22' y2='29' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='15' y1='22' x2='29' y2='22' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") 22 22, zoom-in;
-    transition: border-color 0.3s ease;
-  }
-
-  .cs-img-wrap:hover {
-    border-color: rgba(186, 245, 42, 0.2) !important;
-  }
-
-  .cs-img-wrap .cs-img {
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .cs-img-wrap:hover .cs-img {
-    transform: scale(1.035);
-  }
-
-  .cs-img-hint {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(12, 10, 9, 0.65);
-    border: 1px solid rgba(255,255,255,0.18);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.8);
-    backdrop-filter: blur(6px);
-    opacity: 0;
-    transform: translateY(4px) scale(0.88);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
-  }
-
-  .cs-img-wrap:hover .cs-img-hint {
-    opacity: 1;
-    transform: translateY(0) scale(1);
   }
 
   /* ─── Lightbox ──────────────────────────────────────────────────────────── */
@@ -1061,14 +1082,6 @@ const nextProjects = [
     color: #ffffff;
   }
 
-  .cs-placeholder--gallery {
-    background: rgba(255,255,255,0.015);
-  }
-
-  .cs-placeholder--gallery .cs-placeholder-inner {
-    gap: 6px;
-  }
-
   /* ─── Next projects ─────────────────────────────────────────────────────── */
 
   .cs-next-grid {
@@ -1119,6 +1132,14 @@ const nextProjects = [
     align-items: center;
     justify-content: center;
     color: rgba(255,255,255,0.1);
+  }
+
+  .cs-next-img {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cs-next-card:hover .cs-next-img {
+    transform: scale(1.04);
   }
 
   .cs-next-content {
@@ -1287,44 +1308,17 @@ const nextProjects = [
     cardObserver.observe(grid);
   });
 
-  // ─── Image zoom hints ──────────────────────────────────────────────────────
-  const zoomHintSVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>`;
-
-  document.querySelectorAll<HTMLElement>('.cs-img').forEach((img) => {
-    const wrapper = img.parentElement as HTMLElement;
-    wrapper.classList.add('cs-img-wrap');
-    const hint = document.createElement('div');
-    hint.className = 'cs-img-hint';
-    hint.innerHTML = zoomHintSVG;
-    hint.setAttribute('aria-hidden', 'true');
-    wrapper.appendChild(hint);
-  });
-
   // ─── Lightbox ──────────────────────────────────────────────────────────────
   const lightbox   = document.getElementById('cs-lightbox') as HTMLElement;
   const lbImg      = document.getElementById('cs-lb-img') as HTMLImageElement;
   const lbClose    = lightbox.querySelector<HTMLElement>('.cs-lb-close')!;
   const lbBackdrop = lightbox.querySelector<HTMLElement>('.cs-lb-backdrop')!;
 
-  function openLightbox(src: string, alt: string) {
-    lbImg.src = src;
-    lbImg.alt = alt;
-    lightbox.classList.add('cs-lb-open');
-    document.body.style.overflow = 'hidden';
-  }
-
   function closeLightbox() {
     lightbox.classList.remove('cs-lb-open');
     document.body.style.removeProperty('overflow');
     setTimeout(() => { lbImg.src = ''; }, 380);
   }
-
-  document.querySelectorAll<HTMLElement>('.cs-img-wrap').forEach((wrap) => {
-    wrap.addEventListener('click', () => {
-      const img = wrap.querySelector<HTMLImageElement>('.cs-img');
-      if (img) openLightbox(img.src, img.alt);
-    });
-  });
 
   lbClose.addEventListener('click', closeLightbox);
   lbBackdrop.addEventListener('click', closeLightbox);

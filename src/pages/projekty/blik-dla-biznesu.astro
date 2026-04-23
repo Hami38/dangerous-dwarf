@@ -44,6 +44,7 @@ const nextProjects = [
     title: "System reidentyfikacji osób dla infrastruktury krytycznej",
     description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
     href: "/projekty/reid",
+    image: "/images/reid/hero_reid.webp",
   },
   {
     overline: "Bezpieczeństwo krytyczne / Deep Tech",
@@ -487,16 +488,19 @@ const nextProjects = [
         <div class="cs-next-grid">
           {nextProjects.map((np, i) => (
             <a href={np.href} class="cs-next-card group opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
-              <!-- Image placeholder -->
               <div class="cs-next-visual">
-                <div class="cs-next-img-placeholder">
-                  <div class="cs-placeholder-icon cs-placeholder-icon--sm">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                      <path d="M21 15l-5-5L5 21"/>
-                    </svg>
+                {np.image ? (
+                  <img src={np.image} alt={np.title} class="w-full h-full object-cover cs-next-img" loading="lazy" />
+                ) : (
+                  <div class="cs-next-img-placeholder">
+                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                        <path d="M21 15l-5-5L5 21"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <!-- Text -->
               <div class="cs-next-content">

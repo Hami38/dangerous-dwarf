@@ -72,6 +72,23 @@
      ruchu od ostatniego który wjechał do pierwszego który wjechał).
      Paski NIE są tu resetowane — reset odbywa się w kolejnym cover().  */
   function reveal() {
+    // 1. Zablokuj pozycję inline-stylami PRZED zdjęciem klasy.
+    //    CSS html.curtain-ready .strip ma transition:none !important i
+    //    transform:translateY(0%) !important — bez tego kroku nadpisuje
+    //    każdy setTimeout poniżej, przez co wszystkie paski skaczą naraz
+    //    dopiero po usunięciu klasy.
+    strips.forEach(strip => {
+      strip.style.transition = 'none';
+      strip.style.transform  = 'translateY(0%)';
+    });
+
+    // 2. Zdejmij klasę — CSS !important już nie blokuje inline stylów
+    document.documentElement.classList.remove('curtain-ready');
+
+    // 3. Wymuś reflow żeby przeglądarka zatwierdziła zablokowaną pozycję
+    void document.body.offsetHeight;
+
+    // 4. Staggered slide-up (prawo → lewo)
     [...strips].reverse().forEach((strip, i) => {
       setTimeout(() => {
         strip.style.transition = `transform ${OUT_MS}ms ${EASE}`;
@@ -81,7 +98,6 @@
 
     const total = (strips.length - 1) * STAGGER + OUT_MS;
     setTimeout(() => {
-      document.documentElement.classList.remove('curtain-ready');
       document.documentElement.classList.remove('no-preloader');
       window.dispatchEvent(new CustomEvent('curtainDone'));
     }, total + 50);

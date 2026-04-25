@@ -10,217 +10,373 @@ const navItems = [
   { name: 'Podejście', href: '/podejscie' },
   { name: 'Kontakt', href: '/kontakt' },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <div class="header-wrapper">
-  <header class="fixed top-0 left-0 right-0 z-[200] border-b border-white/10 bg-black/30 backdrop-blur-md h-20">
+  <header class="fixed top-0 left-0 right-0 z-200 border-b border-white/10 bg-black/30 backdrop-blur-md h-20">
     <div class="max-w-4xl mx-auto px-6 h-full flex items-center justify-between relative">
-      
-      <div class="z-[210]">
+
+      <div class="z-210">
         <a href="/" class="group flex items-center gap-3 py-1 shrink-0 w-fit no-underline">
-          <Image 
-            src={myAvatar} 
-            alt="Kamil Wardak" 
-            width={80} 
-            height={80} 
+          <Image
+            src={myAvatar}
+            alt="Kamil Wardak"
+            width={80}
+            height={80}
             loading="eager"
             class="size-10 rounded-full border border-white/20 object-cover shrink-0"
           />
           <div class="flex items-baseline gap-1.5 whitespace-nowrap text-white">
-            <span class="text-sm font-bold group-hover:text-[var(--brand-main)] transition-colors duration-300">Kamil Wardak</span>
+            <span class="text-sm font-bold group-hover:text-(--brand-main) transition-colors duration-300">Kamil Wardak</span>
             <div class="relative h-5 overflow-hidden flex flex-col justify-start font-normal text-sm">
               <div class="flex flex-col transition-transform duration-300 ease-in-out group-hover:-translate-y-1/2">
                 <span class="h-5 text-white/50 flex items-center">portfolio</span>
-                <span class="h-5 text-[var(--brand-main)] flex items-center font-bold">strona główna</span>
+                <span class="h-5 text-(--brand-main) flex items-center font-bold">strona główna</span>
               </div>
             </div>
           </div>
         </a>
       </div>
 
-      <div class="flex items-center gap-6 z-[210]">
+      <div class="flex items-center gap-6 z-210">
         <nav class="hidden md:flex items-center gap-8">
           {navItems.map(item => (
-            <a href={item.href} class="nav-link-desktop">
+            <a
+              href={item.href}
+              class={`nav-link-desktop${(currentPath === item.href || currentPath.startsWith(item.href + '/')) ? ' nav-link-desktop--active' : ''}`}
+            >
               {item.name}
             </a>
           ))}
         </nav>
-
-        <div class="hidden md:block w-[1px] h-6 bg-white/10"></div>
-
+        <div class="hidden md:block w-px h-6 bg-white/10"></div>
         <div class="hidden md:block">
           <LinkedInButton />
         </div>
-        
-        <!-- POPRAWKA: przeniesiono logikę onclick do osobnego <script> poniżej,
-             aby uniknąć inline JS i poprawić czytelność kodu -->
-        <button 
-          id="menu-toggle" 
+
+        <button
+          id="menu-toggle"
           aria-label="Otwórz menu"
           aria-expanded="false"
-          class="md:hidden flex flex-col justify-center items-center gap-[6px] w-12 h-12 -mr-3 focus:outline-none cursor-pointer group"
+          class="md:hidden relative w-12 h-12 -mr-3 focus:outline-none cursor-pointer"
         >
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
+          <span class="hbar hbar-t"></span>
+          <span class="hbar hbar-b"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
-    <nav class="flex flex-col items-end gap-10 px-12 pt-10">
-      {navItems.map((item, index) => (
-        <a 
-          href={item.href} 
-          class="mobile-nav-item close-menu" 
-          style={`transition-delay: ${index * 100 + 200}ms`}
-        >
-          {item.name}
-        </a>
-      ))}
-      <div class="mobile-nav-item mt-6 scale-125 origin-right" style="transition-delay: 600ms;">
-        <LinkedInButton />
-      </div>
-    </nav>
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mob-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Nawigacja">
+
+    <!-- Panel 1: zielony (wjeżdża pierwszy) -->
+    <div class="mob-panel mob-panel--green" aria-hidden="true"></div>
+    <!-- Panel 2: ciemny (wjeżdża tuż za zielonym i go przykrywa) -->
+    <div class="mob-panel mob-panel--dark" aria-hidden="true"></div>
+
+    <!-- Treść menu -->
+    <div class="mob-content">
+      <nav class="mob-nav">
+        {navItems.map((item, i) => (
+          <a
+            href={item.href}
+            class={`mob-item close-menu${(currentPath === item.href || currentPath.startsWith(item.href + '/')) ? ' mob-item--active' : ''}`}
+          >
+            <span class="mob-num">0{i + 1}</span>
+            <span class="mob-name">{item.name}</span>
+          </a>
+        ))}
+      </nav>
+
+      <footer class="mob-footer">
+        <div class="mob-footer-line"></div>
+        <div class="mob-footer-row">
+          <span class="mob-footer-copy">© 2026 Kamil Wardak</span>
+          <LinkedInButton />
+        </div>
+      </footer>
+    </div>
   </div>
 </div>
 
-<!-- POPRAWKA: spacer z dokładną wysokością headera -->
 <div class="h-20" aria-hidden="true"></div>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  const EASE     = 'cubic-bezier(0.87, 0, 0.13, 1)';
+  const PANEL_MS = 300;   /* czas slajdu jednego panelu */
+  const OFFSET   = 80;    /* opóźnienie ciemnego za zielonym */
 
-  const openMenu = () => {
-    toggle?.classList.add('active');
-    toggle?.setAttribute('aria-expanded', 'true');
-    menu?.classList.add('active');
-    menu?.setAttribute('aria-hidden', 'false');
+  const toggle   = document.getElementById('menu-toggle') as HTMLButtonElement;
+  const overlay  = document.getElementById('mobile-menu') as HTMLElement;
+  const panelG   = overlay.querySelector<HTMLElement>('.mob-panel--green')!;
+  const panelD   = overlay.querySelector<HTMLElement>('.mob-panel--dark')!;
+  const navItems = Array.from(overlay.querySelectorAll<HTMLElement>('.mob-item'));
+  const footerEl = overlay.querySelector<HTMLElement>('.mob-footer');
+  const contentEls = [...navItems, ...(footerEl ? [footerEl] : [])];
+
+  let busy = false;
+
+  function panelReset() {
+    [panelG, panelD].forEach(p => {
+      p.style.transition = 'none';
+      p.style.transform  = 'translateX(100%)';
+    });
+  }
+
+  /* ── Otwarcie ── */
+  function openMenu() {
+    if (busy) return;
+    busy = true;
+
+    toggle.classList.add('is-active');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Zamknij menu');
+    overlay.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('is-open');
+    document.documentElement.classList.add('menu-open');
     document.body.classList.add('menu-open');
-  };
 
-  const closeMenu = () => {
-    toggle?.classList.remove('active');
-    toggle?.setAttribute('aria-expanded', 'false');
-    menu?.classList.remove('active');
-    menu?.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('menu-open');
-  };
+    panelReset();
+    contentEls.forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('is-vis');
+    });
 
-  toggle?.addEventListener('click', () => {
-    toggle.classList.contains('active') ? closeMenu() : openMenu();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      /* 1. Zielony wjeżdża pierwszy */
+      panelG.style.transition = `transform ${PANEL_MS}ms ${EASE}`;
+      panelG.style.transform  = 'translateX(0%)';
+
+      /* 2. Ciemny startuje dopiero gdy zielony w pełni zakryje ekran */
+      setTimeout(() => {
+        panelD.style.transition = `transform ${PANEL_MS}ms ${EASE}`;
+        panelD.style.transform  = 'translateX(0%)';
+      }, PANEL_MS);
+
+      /* 3. Elementy menu pojawiają się po osiedleniu ciemnego panelu */
+      setTimeout(() => {
+        contentEls.forEach((el, i) => {
+          el.style.transitionDelay = `${i * 70}ms`;
+          el.classList.add('is-vis');
+        });
+        busy = false;
+      }, PANEL_MS * 2 + 30);
+    }));
+  }
+
+  /* ── Zamknięcie ── */
+  function closeMenu() {
+    if (busy) return;
+    busy = true;
+
+    toggle.classList.remove('is-active');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Otwórz menu');
+
+    /* 1. Elementy menu gasną */
+    contentEls.forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('is-vis');
+    });
+
+    setTimeout(() => {
+      /* 2. Zielony panel chowamy natychmiast (bez animacji) */
+      panelG.style.transition = 'none';
+      panelG.style.transform  = 'translateX(100%)';
+
+      /* 3. Tylko ciemny wyjeżdża w prawo — odsłania stronę */
+      panelD.style.transition = `transform ${PANEL_MS}ms ${EASE}`;
+      panelD.style.transform  = 'translateX(100%)';
+
+      /* 4. Po wyjechaniu ciemnego — chowamy overlay */
+      setTimeout(() => {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
+        busy = false;
+      }, PANEL_MS + 50);
+    }, 150);
+  }
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.contains('is-active') ? closeMenu() : openMenu();
   });
 
-  // Zamknij menu po kliknięciu w link nawigacyjny
-  document.querySelectorAll('.close-menu').forEach(link => {
+  overlay.querySelectorAll('.close-menu').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu?.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-
-  // Zamknij menu po kliknięciu w tło (poza nawigacją)
-  menu?.addEventListener('click', (e) => {
-    if (e.target === menu) closeMenu();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeMenu();
   });
 </script>
 
 <style>
+  /* ── Desktop nawigacja ──────────────────────────────────── */
   .nav-link-desktop {
     font-size: 14px;
     color: #e1e1e1;
-    font-family: inherit;
     font-weight: 500;
-    cursor: pointer;
     position: relative;
     text-decoration: none;
     transition: color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-
-  .nav-link-desktop:hover {
-    color: #fff;
-  }
-
-  .nav-link-desktop:after {
-    content: "";
+  .nav-link-desktop:hover { color: #fff; }
+  .nav-link-desktop::after {
+    content: '';
     pointer-events: none;
+    position: absolute;
     bottom: -4px;
     left: 50%;
-    position: absolute;
-    width: 0%;
+    width: 0;
     height: 2px;
     background-color: var(--brand-main);
-    transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1), left 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition:
+      width 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
+      left  400ms cubic-bezier(0.25, 0.8, 0.25, 1);
   }
+  .nav-link-desktop:hover::after { width: 100%; left: 0; }
+  .nav-link-desktop:active { color: var(--brand-main) !important; transform: scale(0.95); }
+  .nav-link-desktop--active { color: #fff; }
+  .nav-link-desktop--active::after { width: 100%; left: 0; }
 
-  .nav-link-desktop:hover:after {
-    width: 100%;
-    left: 0%;
-  }
-
-  .nav-link-desktop:active {
-    color: var(--brand-main) !important;
-    transform: scale(0.95);
-  }
-
-  /* --- HAMBURGER --- */
-  .hamburger-line {
-    display: block !important;
-    width: 24px;
+  /* ── Hamburger ──────────────────────────────────────────── */
+  .hbar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1px;
+    margin-left: -11px;
+    width: 22px;
     height: 2px;
-    background-color: white;
-    transition: all 0.3s ease-in-out !important;
+    background: white;
+    border-radius: 1px;
+    transition: transform 0.4s cubic-bezier(0.87, 0, 0.13, 1);
   }
+  .hbar-t { transform: translateY(-5px); }
+  .hbar-b { transform: translateY(5px); }
+  #menu-toggle.is-active .hbar-t { transform: rotate(45deg); }
+  #menu-toggle.is-active .hbar-b { transform: rotate(-45deg); }
 
-  #menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: translateY(4px) rotate(45deg) !important;
-  }
-
-  #menu-toggle.active .hamburger-line:nth-child(2) {
-    transform: translateY(-4px) rotate(-45deg) !important;
-  }
-
-  /* --- MOBILE MENU --- */
-  .mobile-overlay {
+  /* ── Overlay ────────────────────────────────────────────── */
+  .mob-overlay {
     position: fixed;
     inset: 0;
-    background-color: var(--bg-stone);
     z-index: 150;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .mob-overlay.is-open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* ── Dwa pełnoekranowe panele animacji ── */
+  .mob-panel {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    transform: translateX(100%);
+  }
+  .mob-panel--green { background: var(--brand-main); z-index: 1; }
+  .mob-panel--dark  { background: var(--bg-stone);   z-index: 2; }
+
+  /* ── Treść menu ─────────────────────────────────────────── */
+  .mob-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    transform: translateX(100%);
-    visibility: hidden;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+    justify-content: space-between;
+    padding: 96px 40px 48px;
   }
 
-  .mobile-overlay.active {
-    transform: translateX(0);
-    visibility: visible;
+  /* ── Pozycje nawigacyjne ────────────────────────────────── */
+  .mob-nav {
+    display: flex;
+    flex-direction: column;
   }
 
-  .mobile-nav-item {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: white;
+  .mob-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     text-decoration: none;
     opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(28px);
+    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  
-  .mobile-overlay.active .mobile-nav-item {
+  .mob-item:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .mob-item.is-vis {
     opacity: 1;
     transform: translateX(0);
   }
 
-  :global(body.menu-open) {
-    overflow: hidden !important;
+  .mob-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--brand-main);
+    letter-spacing: 0.06em;
+    opacity: 0.65;
+    min-width: 20px;
+    align-self: flex-start;
+    padding-top: 6px;
+    transition: opacity 0.25s ease;
   }
+
+  .mob-name {
+    font-size: clamp(1.9rem, 9vw, 2.75rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    transition: color 0.25s ease;
+  }
+
+  .mob-item:hover .mob-name,
+  .mob-item--active .mob-name {
+    color: var(--brand-main);
+  }
+  .mob-item:hover .mob-num,
+  .mob-item--active .mob-num {
+    opacity: 1;
+  }
+
+  /* ── Stopka ─────────────────────────────────────────────── */
+  .mob-footer {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mob-footer.is-vis {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mob-footer-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: 20px;
+  }
+  .mob-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mob-footer-copy {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.04em;
+  }
+
+  :global(html.menu-open),
+  :global(body.menu-open) { overflow: hidden !important; }
 </style>

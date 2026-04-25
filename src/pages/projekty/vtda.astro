@@ -4,38 +4,38 @@ import Reveal from '../../components/Reveal.astro';
 import Footer from '../../components/Footer.astro';
 
 const project = {
-  overline: "Bezpieczeństwo / Computer Vision",
-  title: "System reidentyfikacji osób dla infrastruktury krytycznej",
-  subtitle: "Strategiczne zarządzanie złożonością w systemach AI: Od mapowania empatii operatora do 20% ROI w 6 miesiącach.",
-  role: "Lead Product Designer / Strategic Architect",
-  client: "New Security Systems",
-  year: "2023",
-  scope: "Product Design · AI/UX Strategy · Ethics & GDPR",
+  overline: "Bezpieczeństwo krytyczne / Deep Tech",
+  title: "VTDA — Wirtualny Asystent Maszynisty",
+  subtitle: "Architektura decyzji i logiki bezpieczeństwa w transporcie kolejowym. Redukcja ryzyka incydentów o 20% w 6-miesięcznym pilocie.",
+  role: "Lead Product Designer / UX Architect",
+  client: "Infracert",
+  year: "2022",
+  scope: "Product Design · Safety-Critical UX · Human Factors",
 };
 
 const challenges = [
   {
     number: "01",
-    title: "Prywatność i etyka",
-    description: "Jak zbudować zaufanie do technologii śledzenia biometrycznego? Wdrożenie w infrastrukturze krytycznej wymagało 100% zgodności z GDPR/CCPA i projektowania etyki jako przewagi — nie bariery.",
+    title: "Kryzys uwagi i reaktywność",
+    description: 'Maszyniści pracowali w modelu reaktywnym — odpowiadali na alerty zamiast przewidywać zdarzenia. Istniejące systemy wymuszały rolę procesora danych. Przy prędkościach kolejowych to krytyczny błąd architektoniczny.',
   },
   {
     number: "02",
-    title: "Precyzja identyfikacji",
-    description: "Jak wyeliminować false positives w systemie obsługującym 500 tys. kamer? Błędy identyfikacji generują ryzyko prawne i operacyjne — projektowanie musiało wzmacniać, nie zastępować osąd człowieka.",
+    title: "Paraliż decyzyjny — pułapka Szklanego Kokpitu",
+    description: 'Pierwsze prototypy wzorowane na systemach lotniczych — setki parametrów telemetrycznych na jednym ekranie — generowały paraliż decyzyjny. Odnalezienie kluczowej informacji odciągało wzrok od torów. Potrzebna była redukcja o 60%.',
   },
   {
     number: "03",
-    title: "Cognitive Load operatora",
-    description: "Jak obsłużyć setki strumieni wideo bez przeciążenia poznawczego? System musiał hierarchizować zdarzenia i dostarczać tylko te informacje, które wymagają interwencji — w odpowiednim czasie.",
+    title: "Fizyka środowiska kabiny",
+    description: 'Standardowy Dark Mode okazał się niebezpieczny — jasne elementy UI odbijały się w szybie lokomotywy nocą, przesłaniając widoczność torów. Projektowanie musiało dosłownie walczyć z fizyką środowiska.',
   },
 ];
 
 const results = [
-  { value: "20% ROI", label: "zwrotu z inwestycji w pierwszym półroczu po wdrożeniu" },
-  { value: "50+", label: "lokalizacji wdrożonych w zaledwie 60 dni od startu" },
-  { value: "97%", label: "operatorów zaufało nowej metodzie identyfikacji biometrycznej" },
-  { value: "32 sprinty", label: "180 dni iteracji z Design System bez długu projektowego" },
+  { value: "-20%", label: "ryzyka incydentów u regularnych użytkowników systemu w pilocie" },
+  { value: "-5%", label: "wypadkowości w skali całych organizacji kolejowych w 6 miesiącach" },
+  { value: "50+", label: "operatorów kolejowych wdrożyło system, potwierdzając realną wartość produktu" },
+  { value: "120+", label: "ekranów w skalowalnej, modularnej architekturze Safety-Critical" },
 ];
 
 const nextProjects = [
@@ -47,11 +47,11 @@ const nextProjects = [
     image: "/images/ing/KV_blik.webp",
   },
   {
-    overline: "Bezpieczeństwo krytyczne / Deep Tech",
-    title: "Wirtualny asystent dla maszynistów",
-    description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.",
-    href: "/projekty/vtda",
-    image: "/images/vtda/VTDA_01.webp",
+    overline: "Bezpieczeństwo / Computer Vision",
+    title: "System reidentyfikacji osób dla infrastruktury krytycznej",
+    description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI. 20% ROI w 6 miesięcy.",
+    href: "/projekty/reid",
+    image: "/images/reid/hero_reid.webp",
   },
   {
     overline: "MedTech / IoT / Product Design",
@@ -154,7 +154,7 @@ const nextProjects = [
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <p>
-            <strong>Nota o poufności:</strong> Ze względu na wrażliwy charakter danych biometrycznych, wizualizacje zostały zanonimizowane. Niniejsze case study koncentruje się na przywództwie projektowym, architekturze decyzji UX i mierzalnym wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.
+            <strong>Nota o charakterze projektu:</strong> VTDA jest systemem klasy Safety-Critical. Prezentowane materiały wizualne pochodzą z fazy projektowej i zostały zanonimizowane. Niniejsze case study koncentruje się na architekturze decyzji UX, psychologii bezpieczeństwa i mierzalnym wpływie operacyjnym — nie na finalnych detalach produkcyjnych interfejsu.
           </p>
         </div>
       </div>
@@ -165,7 +165,7 @@ const nextProjects = [
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
           <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
-            <img src="/images/reid/hero_reid.webp" alt="System reidentyfikacji osób dla infrastruktury krytycznej — kluczowy visual projektu" class="w-full h-full object-cover cs-img" loading="eager" />
+            <img src="/images/vtda/VTDA_01.webp" alt="VTDA — wirtualny asystent maszynisty, mockup tabletu w kabinie lokomotywy" class="w-full h-full object-cover cs-img" loading="eager" />
           </div>
         </div>
       </div>
@@ -186,7 +186,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
               <h2 class="cs-section-heading mt-3">
-                Komercjalizacja technologii głębokiego uczenia
+                System jako proaktywny asystent, nie pasywny wyświetlacz
               </h2>
             </Reveal>
           </div>
@@ -195,12 +195,12 @@ const nextProjects = [
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
               <p class="cs-body-text mb-6">
-                Zadaniem było przekształcenie zaawansowanych algorytmów reidentyfikacji (Face, Gait, Cloth) w stabilny produkt klasy SaaS. Technologia istniała — brakowało warstwy, która uczyni ją używalną przez człowieka pod presją.
+                W kabinie lokomotywy głównym wyzwaniem nie jest brak danych — jest ich nadmiar. Maszyniści pracowali reaktywnie: odpowiadali na alerty zamiast przewidywać zdarzenia. Przy prędkościach kolejowych reaktywność to krytyczny błąd bezpieczeństwa.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
               <p class="cs-body-text">
-                Kluczowym wyzwaniem nie była sama technologia Deep Learning, lecz projektowanie interfejsu minimalizującego Cognitive Overload operatorów monitoringu — przy zachowaniu 100% zgodności z normami etycznymi i prawnymi (GDPR/CCPA).
+                Moją diagnozą UX było to, że istniejące systemy wymuszały na człowieku rolę „procesora danych". Celem projektu było przesunięcie roli systemu z biernego wyświetlacza na proaktywnego asystenta, który zarządza uwagą maszynisty i filtruje szum informacyjny — szczególnie w sytuacjach wysokiego stresu.
               </p>
             </Reveal>
           </div>
@@ -212,15 +212,15 @@ const nextProjects = [
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/reid/ps_reid.webp" alt="Problems & Solutions — mapowanie wyzwań i rozwiązań projektowych" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/vtda/VTDA_04.webp" alt="Sterownia maszynisty - agregacja bodźców użytkownika" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Problems & Solutions — mapowanie wyzwań i rozwiązań projektowych</figcaption>
+              <figcaption class="cs-img-caption">Sterownia maszynisty - agregacja bodźców użytkownika</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/reid/ryzyko_reid.webp" alt="Trójkąt ryzyka — Privacy, Accuracy, Cognitive Load" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/vtda/VTDA_13.webp" alt="Ewolucja Dashboardu — wersja finalna po redukcji o 60%" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Trójkąt ryzyka — balansowanie między prywatnością, precyzją i wydajnością</figcaption>
+              <figcaption class="cs-img-caption">Ewolucja Dashboardu — wersja finalna po redukcji widoku</figcaption>
             </figure>
           </div>
         </div>
@@ -241,12 +241,12 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-section-heading mt-3 max-w-xl">
-              Design jako zarządzanie ryzykiem
+              Projektowanie pod presją fizyki i&nbsp;psychologii
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4">
-              Wdrożenie biometrii w infrastrukturze krytycznej wymagało wyważenia trzech sił. Każda z nich mogła samodzielnie zdyskredytować produkt na rynku.
+              Trzy wyzwania, z których każde mogło samodzielnie zdyskredytować produkt — albo kosztować życie.
             </p>
           </Reveal>
         </div>
@@ -264,13 +264,13 @@ const nextProjects = [
           ))}
         </div>
 
-        <!-- Flow diagram placeholder -->
+        <!-- Night mode image -->
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
           <figure class="m-0 p-0">
             <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
-              <img src="/images/reid/user_flow_reid.webp" alt="User Flow — ścieżki od detekcji (Gait Analysis) po akcję interwencyjną operatora" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/vtda/VTDA_11.webp" alt="Interfejs w trybie nocnym — ekstremalnie niska luminancja eliminująca refleksy na szybie" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">User Flow — ścieżki od detekcji (Gait Analysis) po akcję interwencyjną operatora</figcaption>
+            <figcaption class="cs-img-caption">Tryb nocny — ekstremalnie niska luminancja, barwy nieoddbijające się w szybie kabiny</figcaption>
           </figure>
         </div>
 
@@ -278,7 +278,7 @@ const nextProjects = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         SEKCJA 3 — MOJA ROLA
+         SEKCJA 3 — PODEJŚCIE PROJEKTOWE
     ════════════════════════════════════════════════════════════════════════ -->
     <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
       <div class="max-w-4xl mx-auto">
@@ -292,12 +292,12 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
               <h2 class="cs-section-heading mt-3">
-                Architektura produktu i&nbsp;podejście strategiczne
+                Architektura decyzji i&nbsp;logiki bezpieczeństwa
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
               <p class="cs-body-text mt-4">
-                180 dni iteracji w 32 sprintach. Zamiast budować system „dla wszystkich", skupiłem się na personie operatora i jego krytycznych napięciach.
+                Każda decyzja projektowa miała uzasadnienie w psychologii bezpieczeństwa i fizyce środowiska. UX służył tu nie wygodzie, a utrzymaniu czujności i precyzji operatora.
               </p>
             </Reveal>
           </div>
@@ -306,52 +306,52 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag">Empathy Mapping & Human-in-the-Loop</div>
+              <div class="cs-role-tag">Progressive Disclosure & Fail-Fast Minimalism</div>
               <p class="cs-body-text mt-3">
-                Empathy Map ujawniła krytyczne napięcie: strach operatora przed odpowiedzialnością za błąd AI vs. potrzeba wydajności. Odpowiedzią był mechanizm Human-in-the-loop — AI sugeruje, człowiek zatwierdza. Decyzja ta zbudowała zaufanie użytkowników i ograniczyła ryzyko prawne.
+                Zredukowałem widok główny o 60%. Widok krytyczny zawiera wyłącznie Prędkość, Następny Cel i Krzywą Hamowania. Szczegóły techniczne — parametry radia, diagnostyka — pojawiają się tylko na żądanie lub gdy system wykryje anomalię wymagającą interwencji. Mniej danych, więcej decyzji.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
                 <figure class="m-0 p-0">
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                    <img src="/images/reid/empathy_map_reid.webp" alt="Empathy Map — persona operatora, decyzja o Human-in-the-loop" class="w-full h-full object-cover cs-img" loading="lazy" />
+                    <img src="/images/vtda/VTDA_14.webp" alt="Dashboard po redukcji — widok krytyczny z Progressive Disclosure" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Empathy Map — persona operatora, decyzja o Human-in-the-loop</figcaption>
+                  <figcaption class="cs-img-caption">Dashboard po redukcji — trzy elementy krytyczne, zero szumu</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag">Architektura Streamwall</div>
+              <div class="cs-role-tag">Psychologia bezpieczeństwa — Efekt Checklisty</div>
               <p class="cs-body-text mt-3">
-                Zaprojektowałem centralny dashboard zarządzający wieloma strumieniami wideo z inteligentną hierarchią wizualną. Streamwall promuje najważniejsze zdarzenia operacyjne — operator widzi dokładnie to, co wymaga uwagi, w precyzyjnym momencie.
+                Mimo technicznej możliwości pełnej automatyzacji, zdecydowałem, że "System Check" przed odjazdem musi pozostać manualny. Maszynista musi fizycznie „zatwierdzić" gotowość składu. Checklist Effect buduje poczucie odpowiedzialności i zmusza do świadomego przejścia przez procedurę — UX służy tu utrzymaniu czujności, nie komfortu.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
                 <figure class="m-0 p-0">
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                    <img src="/images/reid/streamwall_reid.webp" alt="Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
+                    <img src="/images/vtda/VTDA_08.webp" alt="Ekran manualnej weryfikacji systemu — Checklist Effect" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer</figcaption>
+                  <figcaption class="cs-img-caption">System Check — manualna weryfikacja jako celowy mechanizm budowania czujności</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag">Design System & Skalowanie</div>
+              <div class="cs-role-tag">Architektura Guiding Rails — Widok Tunelowy</div>
               <p class="cs-body-text mt-3">
-                Wdrożyłem Design System, który umożliwił szybkie skalowanie produktu na 50+ lokalizacji bez długu projektowego. Spójność komponentów pozwoliła zespołowi deweloperów na wdrożenie w 60 dni — znacznie poniżej zakładanego harmonogramu.
+                Porzuciłem klasyczną mapę 2D na rzecz liniowej reprezentacji trasy (Guiding Rails). Pociąg porusza się wyłącznie w jednym kierunku — maszynistę nie interesuje otoczenie geograficzne, tylko to, co bezpośrednio na jego „nitce" toru. Skróciło to czas skanowania wzrokiem ekranu o 40%.
               </p>
             </div>
 
           </div>
         </div>
 
-        <!-- Full-width mockup placeholder -->
+        <!-- Full-width mockup -->
         <div class="mt-20 opacity-0" data-scroll-fade>
           <figure class="m-0 p-0">
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
-              <img src="/images/reid/dashboard_reid.webp" alt="Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/vtda/VTDA_09.webp" alt="VTDA — podsumowanie wyników systemu i statystyk pilotażu" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer</figcaption>
+            <figcaption class="cs-img-caption">VTDA w działaniu — podsumowanie kluczowych wyników 6-miesięcznego pilotażu</figcaption>
           </figure>
         </div>
 
@@ -371,12 +371,12 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-section-heading mt-3">
-              Wyniki mierzone danymi
+              Wyniki mierzone bezpieczeństwem
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4">
-              Decyzje projektowe bezpośrednio przełożyły się na sukces komercyjny. W sektorze bezpieczeństwa, gdzie zaufanie do nowej technologii buduje się latami — wyniki w 6 miesięcy to wyjątek, nie reguła.
+              Radykalne uproszczenie UX w przemyśle ciężkim przełożyło się na twarde wyniki operacyjne. W sektorze kolejowym, gdzie każdy incydent ma konsekwencje — 20% redukcja ryzyka to wynik wyjątkowy.
             </p>
           </Reveal>
         </div>
@@ -396,9 +396,9 @@ const nextProjects = [
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
             <blockquote class="cs-quote-text">
-              "Zamiast budować system dla wszystkich, skupiłem się na personie operatora. Empathy Map ujawniła krytyczne napięcie — i właśnie z niego zrodziło się rozwiązanie, które zbudowało zaufanie użytkowników."
+              "Zamiast przenosić do pociągów schematy znane z lotnictwa, skupiłem się na tym, czego maszynista naprawdę potrzebuje: nie więcej danych — lepszych decyzji w krytycznym momencie."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · Lead Product Designer, projekt ReID</p>
+            <p class="cs-quote-source">Kamil Wardak · Lead Product Designer / UX Architect, projekt VTDA</p>
           </div>
         </div>
 
@@ -425,17 +425,17 @@ const nextProjects = [
           <div class="md:col-span-8">
             <figure class="m-0 p-0">
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/reid/room_reid.webp" alt="Streamwall — centralny punkt zarządzania strumieniami wideo" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/vtda/VTDA_overview.webp" alt="Zestawienie widoków ekranów systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Streamwall — centralny punkt zarządzania strumieniami wideo z hierarchią wizualną</figcaption>
+              <figcaption class="cs-img-caption">Overview systemu VTDA</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
             <figure class="m-0 p-0">
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/reid/gait_reid.webp" alt="Gait Analysis — analiza chodu jako główny atrybut reidentyfikacji" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/vtda/VTDA_user_flow.webp" alt="User flow systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Gait Analysis — analiza chodu jako główny atrybut ReID</figcaption>
+              <figcaption class="cs-img-caption">User flow systemu VTDA</figcaption>
             </figure>
           </div>
         </div>
@@ -444,21 +444,21 @@ const nextProjects = [
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade style="--fade-delay: 0.15s">
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/reid/models_reid.webp" alt="Detection Models — modele identyfikacji biometrycznej" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/vtda/VTDA_08.webp" alt="Ekran manualnej weryfikacji systemu — System Check" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Detection Models — modele identyfikacji biometrycznej</figcaption>
+            <figcaption class="cs-img-caption">System Check — manualna weryfikacja gotowości</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/reid/wireframe_reid.webp" alt="Wireframe systemu — architektura interfejsu operatora" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/vtda/VTDA_empathy_map.webp" alt="VTDA - mapa empatii" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Wireframe systemu — architektura interfejsu operatora</figcaption>
+            <figcaption class="cs-img-caption">VTDA - mapa empatii</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/reid/analiza_reid.webp" alt="Anomaly Detection — zarządzanie alertami i diagnostyką kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/vtda/VTDA_wireframe.webp" alt="Low-fidelity wireframe systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Anomaly Detection — zarządzanie alertami i diagnostyką kamer</figcaption>
+            <figcaption class="cs-img-caption">Low-fidelity wireframe systemu VTDA</figcaption>
           </figure>
         </div>
 
@@ -688,56 +688,12 @@ const nextProjects = [
 
   /* ─── Placeholders ──────────────────────────────────────────────────────── */
 
-  .cs-placeholder {
-    position: relative;
-    background: rgba(255,255,255,0.02);
-    transition: border-color 0.3s ease, background 0.3s ease;
-  }
-
-  .cs-placeholder--hero {
-    background: linear-gradient(135deg, rgba(186,245,42,0.03) 0%, rgba(255,255,255,0.015) 100%);
-  }
-
-  .cs-placeholder--wide {
-    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(186,245,42,0.025) 100%);
-  }
-
-  .cs-placeholder-inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 24px;
-    text-align: center;
-  }
-
   .cs-placeholder-icon {
     color: rgba(255,255,255,0.15);
     margin-bottom: 4px;
   }
 
   .cs-placeholder-icon--sm { color: rgba(255,255,255,0.12); }
-
-  .cs-placeholder-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.3);
-    margin: 0;
-    letter-spacing: 0.02em;
-  }
-
-  .cs-placeholder-label--sm { font-size: 0.72rem; }
-
-  .cs-placeholder-note {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.15);
-    margin: 0;
-    max-width: 320px;
-    line-height: 1.5;
-  }
 
   /* ─── Challenges ────────────────────────────────────────────────────────── */
 
@@ -831,6 +787,14 @@ const nextProjects = [
 
   /* ─── Image captions ───────────────────────────────────────────────────── */
 
+  .cs-img-caption {
+    font-size: 0.68rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.25);
+    margin: 9px 2px 0;
+    letter-spacing: 0.02em;
+  }
+
   /* ─── Image hover + zoom ────────────────────────────────────────────────── */
 
   .cs-img-wrap {
@@ -874,14 +838,6 @@ const nextProjects = [
   .cs-img-wrap:hover .cs-img-hint {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-
-  .cs-img-caption {
-    font-size: 0.68rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.25);
-    margin: 9px 2px 0;
-    letter-spacing: 0.02em;
   }
 
   /* ─── Lightbox ──────────────────────────────────────────────────────────── */

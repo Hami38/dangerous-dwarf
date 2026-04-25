@@ -1,0 +1,831 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/images/portret_portfolio.webp';
+
+const pillars = [
+  {
+    number: "01",
+    title: "Kultura UX w instytucji finansowej",
+    body: "Buduję środowiska, w których design przestaje być kosztem — a staje się aktywem strategicznym. Edukuję interesariuszy, jak przez procesy Data-Driven Design budować lojalność klientów i optymalizować konwersję w najbardziej złożonych procesach transakcyjnych."
+  },
+  {
+    number: "02",
+    title: "Etyka projektowania systemów krytycznych",
+    body: "W FinTech i bankowości design jest obietnicą stabilności. Moje projekty obejmują sektory bez miejsca na domysły — od zaawansowanej bankowości po systemy bezpieczeństwa biometrycznego. Przemyślana architektura informacji to jedyna droga do eliminacji błędów ludzkich tam, gdzie w grę wchodzi kapitał i poufne dane."
+  },
+  {
+    number: "03",
+    title: "Synergia złożonych ekosystemów",
+    body: "Płynnie poruszam się wewnątrz skomplikowanych ekosystemów produktowych — łącząc świat cyfrowy z fizycznym i operacyjnym. Rozumiem specyfikę rygorystycznych regulacji rynkowych tak samo dobrze jak psychologię zachowań konsumenckich. Szukam optymalizacji tam, gdzie inni widzą bariery."
+  }
+];
+
+type Tool =
+  | { name: string; category: string; slug: string; svg?: never }
+  | { name: string; category: string; svg: string; slug?: never };
+
+interface ToolGroup {
+  label: string;
+  tools: Tool[];
+}
+
+const toolGroups: ToolGroup[] = [
+  {
+    label: "AI · Strategia, Badania & Synteza",
+    tools: [
+      { name: "Claude", category: "Anthropic · Logic & Strategy", slug: "claude" },
+      { name: "ChatGPT", category: "OpenAI · Ideation", slug: "openai" },
+      { name: "Perplexity", category: "Research AI", slug: "perplexity" },
+      { name: "Gemini", category: "Google · Deep Research", slug: "googlegemini" },
+      { name: "Fireflies", category: "Synteza z wywiadów", slug: "fireflies" },
+      { name: "Zoom", category: "User Research Calls", slug: "zoom" },
+    ]
+  },
+  {
+    label: "AI · Design & Kreacja Wizualna",
+    tools: [
+      { name: "Midjourney", category: "Visual Concepting", slug: "midjourney" },
+      {
+        name: "Uizard",
+        category: "AI Wireframing",
+        svg: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 4v8a5 5 0 0 0 10 0V4" stroke="rgba(255,255,255,0.85)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="19" x2="12" y2="21" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round"/></svg>'
+      },
+      {
+        name: "Relume",
+        category: "AI Sitemap & Layout",
+        svg: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="2.5" width="8" height="8" rx="1.5" fill="rgba(255,255,255,0.85)"/><rect x="13.5" y="2.5" width="8" height="8" rx="1.5" fill="rgba(255,255,255,0.85)"/><rect x="2.5" y="13.5" width="8" height="8" rx="1.5" fill="rgba(255,255,255,0.85)"/><rect x="13.5" y="13.5" width="8" height="3.5" rx="1" fill="rgba(255,255,255,0.85)"/><rect x="13.5" y="18.5" width="8" height="3" rx="1" fill="rgba(255,255,255,0.85)"/></svg>'
+      },
+      { name: "Framer AI", category: "AI Web Builder", slug: "framer" },
+    ]
+  },
+  {
+    label: "Design · Systemy & Prototypowanie",
+    tools: [
+      { name: "Figma", category: "Design Systems Expert", slug: "figma" },
+      { name: "Adobe CC", category: "Creative Suite", slug: "adobecreativecloud" },
+      {
+        name: "ProtoPie",
+        category: "Advanced Prototyping",
+        svg: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.8"/><path d="M12 3v9h9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2" fill="rgba(255,255,255,0.85)"/></svg>'
+      },
+      { name: "Framer", category: "Motion & Interaction", slug: "framer" },
+    ]
+  },
+  {
+    label: "Strategy · Warsztaty & Dokumentacja",
+    tools: [
+      { name: "Miro", category: "Service Design & Warsztaty", slug: "miro" },
+      { name: "Notion", category: "Dokumentacja & AI", slug: "notion" },
+      { name: "Loom", category: "Async Design Reviews", slug: "loom" },
+    ]
+  }
+];
+---
+
+<Layout title="O mnie | Kamil Wardak">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('preloaderFinished'));
+      }, 100);
+    });
+  </script>
+
+  <div class="bg-[#0c0a09] min-h-screen">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HERO — pełna szerokość nagłówka, zdjęcie poniżej
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="relative px-6 pt-16 md:pt-24 pb-24 md:pb-36 overflow-hidden">
+
+      <div class="hero-bg-glow" aria-hidden="true"></div>
+
+      <div class="max-w-4xl mx-auto">
+
+        <!-- ── Overline + pełna szerokość nagłówka ── -->
+        <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0s">
+          <p class="om-overline">UX Strateg & Product Lead · 12 lat doświadczenia</p>
+        </div>
+
+        <h1 class="om-headline opacity-0" data-hero-fade style="--delay: 0.07s">
+          Nie projektuję ekranów.<br/>
+          Projektuję <span class="om-headline-accent">architekturę zaufania.</span>
+        </h1>
+
+        <!-- ── Bio + zdjęcie side-by-side ── -->
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-12 md:gap-14 mt-6 items-start">
+
+          <!-- Lewa: lead text + stats -->
+          <div>
+            <p class="om-lead opacity-0" data-hero-fade style="--delay: 0.14s">
+              Działam tam, gdzie precyzja, bezpieczeństwo danych i przejrzystość procesów
+              decydują o stabilności finansowej i sukcesie biznesowym. Wierzę, że dobry
+              design to najwyższa forma profesjonalnej odpowiedzialności.
+            </p>
+
+            <div class="om-stats-grid mt-12 pt-10 border-t border-white/[0.07] opacity-0" data-hero-fade style="--delay: 0.21s">
+              <div class="om-stat">
+                <p class="om-stat-value">12+</p>
+                <p class="om-stat-label">lat doświadczenia</p>
+              </div>
+              <div class="om-stat-divider" aria-hidden="true"></div>
+              <div class="om-stat">
+                <p class="om-stat-value om-stat-value--white">4</p>
+                <p class="om-stat-label">sektory — FinTech, Security,<br/>MedTech, Transport</p>
+              </div>
+              <div class="om-stat-divider" aria-hidden="true"></div>
+              <div class="om-stat">
+                <p class="om-stat-value om-stat-value--white">50+</p>
+                <p class="om-stat-label">lokalizacji wdrożonych<br/>w projektach</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prawa: zdjęcie -->
+          <div class="om-photo-wrap opacity-0" data-hero-fade style="--delay: 0.1s">
+            <div class="om-photo-frame">
+              <Image
+                src={heroPhoto}
+                alt="Kamil Wardak — UX Strateg & Product Lead"
+                width={520}
+                height={660}
+                loading="eager"
+                class="om-photo"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         FILOZOFIA — 3 FILARY
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="px-6 pt-24 md:pt-32 pb-24 md:pb-32">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-16 md:mb-20 opacity-0" data-scroll-fade>
+          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5">
+            Mindset & Filozofia
+          </p>
+          <h2 class="om-section-heading max-w-2xl">
+            Przekonania, które kształtują każdy projekt
+          </h2>
+        </div>
+
+        <div class="om-pillars-grid">
+          {pillars.map((p, i) => (
+            <div
+              class="om-pillar opacity-0"
+              data-scroll-fade
+              style={`--fade-delay: ${0.1 + i * 0.12}s`}
+            >
+              <p class="om-pillar-number">{p.number}</p>
+              <div class="om-pillar-content">
+                <h3 class="om-pillar-title">{p.title}</h3>
+                <p class="om-pillar-body">{p.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="om-quote-block mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+          <div class="om-quote-line" aria-hidden="true"></div>
+          <p class="om-quote-text">
+            "Dobry design to najwyższa forma profesjonalnej odpowiedzialności. To on sprawia,
+            że w złożonym świecie finansów i technologii użytkownik podejmuje świadome decyzje,
+            a organizacja mityguje ryzyka, których inni nie potrafią dostrzec."
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TOOL STACK
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="px-6 pt-24 md:pt-32 pb-32 md:pb-40">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-6 opacity-0" data-scroll-fade>
+          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5">
+            Stack narzędzi
+          </p>
+          <h2 class="om-section-heading">
+            Narzędzia & Technologie
+          </h2>
+          <p class="om-section-sub">
+            Eksploruję AI nie po to, by zastąpić proces myślowy — ale by zautomatyzować
+            rzemiosło i zyskać więcej czasu na to, co najistotniejsze: strategię, analizę
+            ryzyk i empatię wobec użytkownika.
+          </p>
+        </div>
+
+        <!-- FEATURED: Claude -->
+        <div class="om-claude-feature opacity-0" data-scroll-fade style="--fade-delay: 0.08s">
+          <div class="om-claude-logo-wrap">
+            <img
+              src="https://cdn.simpleicons.org/claude/CC785C"
+              alt="Claude"
+              width="38"
+              height="38"
+              class="om-claude-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            />
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="om-claude-svg" style="display:none" aria-hidden="true">
+              <path d="M19.1 3.5h-6.2L4.5 28.5h5.7l2-5.7h9.6l2 5.7h5.7L19.1 3.5zm-5.1 15.3L16 10.9l2 7.9h-4z" fill="#CC785C"/>
+            </svg>
+          </div>
+          <div class="om-claude-text">
+            <div class="om-claude-badge">Główne narzędzie AI</div>
+            <h3 class="om-claude-name">Claude <span class="om-claude-by">by Anthropic</span></h3>
+            <p class="om-claude-desc">
+              Kluczowy partner w analizie logiki biznesowej, mapowaniu edge-case'ów, syntezie badań
+              i budowaniu argumentacji projektowej. Claude towarzyszy mi na każdym etapie — od
+              strategii po szczegółowe decyzje UX Writing.
+            </p>
+            <div class="om-claude-tags">
+              <span>Analiza logiki</span>
+              <span>Edge-case mapping</span>
+              <span>UX Writing</span>
+              <span>Strategia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grupy narzędzi -->
+        {toolGroups.map((group, gi) => (
+          <div class="mt-16 opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + gi * 0.1}s`}>
+            <p class="om-group-label">{group.label}</p>
+            <div class="om-tools-grid mt-6">
+              {group.tools.map((tool) => (
+                <div class="om-tool-card">
+                  <div class="om-tool-logo">
+                    {tool.svg ? (
+                      <span class="om-tool-svg-wrap" set:html={tool.svg} />
+                    ) : (
+                      <>
+                        <img
+                          src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
+                          alt={tool.name}
+                          width="26"
+                          height="26"
+                          loading="lazy"
+                          class="om-tool-img"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        />
+                        <div class="om-tool-fallback" style="display:none">
+                          {tool.name.charAt(0)}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div class="om-tool-info">
+                    <p class="om-tool-name">{tool.name}</p>
+                    <p class="om-tool-cat">{tool.category}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+
+  /* ─── Tło hero ──────────────────────────────────────────────────────────── */
+
+  .hero-bg-glow {
+    position: absolute;
+    top: -120px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(186,245,42,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* ─── Overline ──────────────────────────────────────────────────────────── */
+
+  .om-overline {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    margin: 0;
+  }
+
+  /* ─── Headline ──────────────────────────────────────────────────────────── */
+
+  .om-headline {
+    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .om-headline-accent {
+    background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Lead text ─────────────────────────────────────────────────────────── */
+
+  .om-lead {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  /* ─── Stats ─────────────────────────────────────────────────────────────── */
+
+  .om-stats-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .om-stat { flex-shrink: 0; }
+
+  .om-stat-value {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 0;
+    background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .om-stat-value--white {
+    background: none;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+  }
+
+  .om-stat-label {
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.35);
+    margin: 6px 0 0 0;
+  }
+
+  .om-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.08);
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  /* ─── Photo ─────────────────────────────────────────────────────────────── */
+
+  .om-photo-wrap { flex-shrink: 0; }
+
+  .om-photo-frame {
+    position: relative;
+    width: 100%;
+  }
+
+  .om-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    object-fit: cover;
+  }
+
+  .om-photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 21px;
+    background: linear-gradient(160deg, rgba(186,245,42,0.2), transparent 55%);
+    z-index: -1;
+    filter: blur(14px);
+  }
+
+  .om-photo-frame::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: -14px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, #BAF52A, transparent);
+    border-radius: 9999px;
+    opacity: 0.5;
+  }
+
+  /* ─── Section headings ──────────────────────────────────────────────────── */
+
+  .om-section-heading {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .om-section-sub {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.75;
+    color: rgba(255,255,255,0.45);
+    margin: 2.5rem 0 0 0;
+  }
+
+  /* ─── Filary ────────────────────────────────────────────────────────────── */
+
+  .om-pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .om-pillars-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .om-pillar {
+    padding: 32px 28px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.35s ease;
+  }
+
+  .om-pillar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .om-pillar:last-child { border-right: none; }
+    .om-pillar { border-bottom: none; }
+  }
+
+  .om-pillar:hover { background: rgba(186,245,42,0.035); }
+
+  .om-pillar-number {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #BAF52A;
+    margin: 0;
+  }
+
+  .om-pillar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .om-pillar-body {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #a8a29e;
+    margin: 0;
+  }
+
+  /* ─── Cytat ─────────────────────────────────────────────────────────────── */
+
+  .om-quote-block {
+    position: relative;
+    padding: 32px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    background: rgba(186,245,42,0.025);
+  }
+
+  .om-quote-line {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, #BAF52A, transparent);
+    border-radius: 9999px;
+  }
+
+  .om-quote-text {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+  }
+
+  /* ─── Claude Feature ────────────────────────────────────────────────────── */
+
+  .om-claude-feature {
+    margin-top: 48px;
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 36px;
+    border: 1px solid rgba(186,245,42,0.2);
+    border-radius: 24px;
+    background: rgba(186,245,42,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .om-claude-feature::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(ellipse, rgba(204,120,92,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    .om-claude-feature { flex-direction: column; gap: 20px; padding: 24px; }
+  }
+
+  .om-claude-logo-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: rgba(204,120,92,0.12);
+    border: 1px solid rgba(204,120,92,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .om-claude-img { width: 38px; height: 38px; object-fit: contain; }
+  .om-claude-svg { width: 36px; height: 36px; }
+
+  .om-claude-text { flex: 1; min-width: 0; }
+
+  .om-claude-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #BAF52A;
+    background: rgba(186,245,42,0.1);
+    border: 1px solid rgba(186,245,42,0.2);
+    border-radius: 9999px;
+    padding: 3px 12px;
+    margin-bottom: 10px;
+  }
+
+  .om-claude-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .om-claude-by {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .om-claude-desc {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    margin: 0 0 16px;
+    max-width: 560px;
+  }
+
+  .om-claude-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .om-claude-tags span {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(204,120,92,0.85);
+    background: rgba(204,120,92,0.1);
+    border: 1px solid rgba(204,120,92,0.2);
+    border-radius: 9999px;
+    padding: 4px 12px;
+  }
+
+  /* ─── Tool groups ───────────────────────────────────────────────────────── */
+
+  .om-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3);
+    margin: 0 0 0 2px;
+  }
+
+  /* ─── Tool grid ─────────────────────────────────────────────────────────── */
+
+  .om-tools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  @media (min-width: 480px) {
+    .om-tools-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 768px) {
+    .om-tools-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 900px) {
+    .om-tools-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ─── Tool card ─────────────────────────────────────────────────────────── */
+
+  .om-tool-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    overflow: hidden;
+    min-width: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .om-tool-card:hover {
+    background: rgba(186,245,42,0.04);
+    border-color: rgba(186,245,42,0.15);
+  }
+
+  /* ─── Tool logo ─────────────────────────────────────────────────────────── */
+
+  .om-tool-logo {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .om-tool-img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+    display: block;
+  }
+
+  .om-tool-card:hover .om-tool-img { opacity: 1; }
+
+  /* Wrapper dla inline SVG */
+  .om-tool-svg-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .om-tool-svg-wrap :global(svg) {
+    width: 26px;
+    height: 26px;
+  }
+
+  .om-tool-fallback {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.08);
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ─── Tool info ─────────────────────────────────────────────────────────── */
+
+  .om-tool-info {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .om-tool-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .om-tool-cat {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.3);
+    margin: 2px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ─── Animacje ──────────────────────────────────────────────────────────── */
+
+  [data-hero-fade] {
+    transform: translateY(14px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-hero-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  [data-scroll-fade] {
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-scroll-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  const heroFadeEls = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
+  heroFadeEls.forEach((el) => {
+    const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0');
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: 0.2 + delay,
+      ease: 'power3.out',
+    });
+  });
+
+  const scrollFadeEls = document.querySelectorAll<HTMLElement>('[data-scroll-fade]');
+
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = parseFloat(
+            getComputedStyle(el).getPropertyValue('--fade-delay') || '0'
+          );
+          setTimeout(() => el.classList.add('in-view'), delay * 1000);
+          scrollObserver.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -5% 0px' }
+  );
+
+  scrollFadeEls.forEach((el) => scrollObserver.observe(el));
+</script>

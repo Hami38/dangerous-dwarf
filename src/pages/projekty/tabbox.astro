@@ -4,38 +4,38 @@ import Reveal from '../../components/Reveal.astro';
 import Footer from '../../components/Footer.astro';
 
 const project = {
-  overline: "Bezpieczeństwo krytyczne / Deep Tech",
-  title: "VTDA — Wirtualny Asystent Maszynisty",
-  subtitle: "Architektura decyzji i logiki bezpieczeństwa w transporcie kolejowym. Redukcja ryzyka incydentów o 20% w 6-miesięcznym pilocie.",
-  role: "Lead Product Designer / UX Architect",
-  client: "Infracert",
-  year: "2022",
-  scope: "Product Design · Safety-Critical UX · Human Factors",
+  overline: "HealthTech / Senior Care / IoT",
+  title: "TabBox — Ekosystem farmakoterapii",
+  subtitle: "Zintegrowany system HW/SW dla osób z demencją: przeniesienie odpowiedzialności za terapię z pacjenta na technologię. 89% poprawa adherence, kontrakt na masową produkcję w 8 tygodniach od premiery.",
+  role: "Strategic Product Lead / Creative Director",
+  client: "TabBox",
+  year: "2023",
+  scope: "Industrial Design · Mobile UX · Service Design · IoT",
 };
 
 const challenges = [
   {
     number: "01",
-    title: "Kryzys uwagi i reaktywność",
-    description: 'Maszyniści pracowali w modelu reaktywnym — odpowiadali na alerty zamiast przewidywać zdarzenia. Istniejące systemy wymuszały rolę procesora danych. Przy prędkościach kolejowych to krytyczny błąd architektoniczny.',
+    title: "Bariery motoryczno-sensoryczne",
+    description: "Osoby z artretyzmem i ograniczonym chwytem pęsetowym nie mogły obsługiwać standardowych dozowników. Każda fizyczna interakcja z urządzeniem groziła wysypaniem leków lub całkowitym porzuceniem terapii.",
   },
   {
     number: "02",
-    title: "Paraliż decyzyjny — pułapka Szklanego Kokpitu",
-    description: 'Pierwsze prototypy wzorowane na systemach lotniczych — setki parametrów telemetrycznych na jednym ekranie — generowały paraliż decyzyjny. Odnalezienie kluczowej informacji odciągało wzrok od torów. Potrzebna była redukcja o 60%.',
+    title: "Churn Point: żmudny onboarding",
+    description: "Manualne wpisywanie nazw, dawek i harmonogramów leków było największym punktem porzucenia produktu. Złożone plany leczenia (leki stałe, suplementy, leki doraźne) generowały błędy i frustrację opiekunów.",
   },
   {
     number: "03",
-    title: "Fizyka środowiska kabiny",
-    description: 'Standardowy Dark Mode okazał się niebezpieczny — jasne elementy UI odbijały się w szybie lokomotywy nocą, przesłaniając widoczność torów. Projektowanie musiało dosłownie walczyć z fizyką środowiska.',
+    title: "Ciągłość opieki w czasie",
+    description: "Opiekun nie miał wglądu w to, czy senior faktycznie wziął leki — bez angażowania go w raportowanie. System musiał monitorować zapasy i przerwanie terapii zanim do niego dojdzie.",
   },
 ];
 
 const results = [
-  { value: "-20%", label: "ryzyka incydentów u regularnych użytkowników systemu w pilocie" },
-  { value: "-5%", label: "wypadkowości w skali całych organizacji kolejowych w 6 miesiącach" },
-  { value: "50+", label: "operatorów kolejowych wdrożyło system, potwierdzając realną wartość produktu" },
-  { value: "120+", label: "ekranów w skalowalnej, modularnej architekturze Safety-Critical" },
+  { value: "89%", label: "aktywnych użytkowników potwierdza realną poprawę systematyczności przyjmowania leków" },
+  { value: "5000+", label: "aktywnych użytkowników dołączyło do ekosystemu w zaledwie dwa miesiące od premiery" },
+  { value: "-75%", label: "skrócenie czasu onboardingu leku dzięki modułowi OCR Scan & Add" },
+  { value: "8 tyg.", label: "od rynkowej premiery do zabezpieczenia kontraktu na masową produkcję hardware" },
 ];
 
 const nextProjects = [
@@ -54,10 +54,11 @@ const nextProjects = [
     image: "/images/reid/hero_reid.webp",
   },
   {
-    overline: "MedTech / IoT / Product Design",
-    title: "Tabbox: Inteligentny system farmakoterapii",
-    description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.",
-    href: "/projekty/tabbox",
+    overline: "Bezpieczeństwo krytyczne / Deep Tech",
+    title: "VTDA — Wirtualny Asystent Maszynisty",
+    description: "Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.",
+    href: "/projekty/vtda",
+    image: "/images/vtda/VTDA_01.webp",
   },
 ];
 ---
@@ -145,16 +146,15 @@ const nextProjects = [
       </div>
     </section>
 
-    <!-- ─── NOTA O POUFNOŚCI ─────────────────────────────────────────────── -->
+    <!-- ─── NOTA O PROJEKCIE ─────────────────────────────────────────────── -->
     <section class="px-6 pt-8 pb-0">
       <div class="max-w-4xl mx-auto">
         <div class="cs-confidentiality-note opacity-0" data-hero-fade style="--delay: 0.85s">
           <svg class="cs-conf-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
           <p>
-            <strong>Nota o charakterze projektu:</strong> VTDA jest systemem klasy Safety-Critical. Prezentowane materiały wizualne pochodzą z fazy projektowej i zostały zanonimizowane. Niniejsze case study koncentruje się na architekturze decyzji UX, psychologii bezpieczeństwa i mierzalnym wpływie operacyjnym — nie na finalnych detalach produkcyjnych interfejsu.
+            <strong>Nota o projekcie:</strong> TabBox to autorski produkt komercyjny klasy HealthTech. Case study koncentruje się na strategii produktowej, architekturze decyzji projektowych i mierzalnym wpływie na bezpieczeństwo farmakologiczne — na podstawie danych zebranych po rynkowej premierze.
           </p>
         </div>
       </div>
@@ -165,14 +165,14 @@ const nextProjects = [
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
           <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
-            <img src="/images/vtda/VTDA_01.webp" alt="VTDA — wirtualny asystent maszynisty, mockup tabletu w kabinie lokomotywy" class="w-full h-full object-cover cs-img" loading="eager" />
+            <img src="/images/tabbox/KV_tabbox.webp" alt="TabBox — inteligentny ekosystem farmakoterapii dla seniorów" class="w-full h-full object-cover cs-img" loading="eager" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         SEKCJA 1 — KONTEKST
+         SEKCJA 1 — STRATEGIA
     ════════════════════════════════════════════════════════════════════════ -->
     <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
       <div class="max-w-4xl mx-auto">
@@ -186,7 +186,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
               <h2 class="cs-section-heading mt-3">
-                System jako proaktywny asystent, nie pasywny wyświetlacz
+                Strategia „Zero-Error Policy"
               </h2>
             </Reveal>
           </div>
@@ -195,12 +195,12 @@ const nextProjects = [
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
               <p class="cs-body-text mb-6">
-                W kabinie lokomotywy głównym wyzwaniem nie jest brak danych — jest ich nadmiar. Maszyniści pracowali reaktywnie: odpowiadali na alerty zamiast przewidywać zdarzenia. Przy prędkościach kolejowych reaktywność to krytyczny błąd bezpieczeństwa.
+                W systemach klasy Safety-Critical dla seniorów koszt błędu poznawczego jest zbyt wysoki, by polegać na standardowych wzorcach UX. Medication Non-Adherence — nieprzestrzeganie planu leczenia — jest jedną z głównych przyczyn hospitalizacji osób starszych.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
               <p class="cs-body-text">
-                Moją diagnozą UX było to, że istniejące systemy wymuszały na człowieku rolę „procesora danych". Celem projektu było przesunięcie roli systemu z biernego wyświetlacza na proaktywnego asystenta, który zarządza uwagą maszynisty i filtruje szum informacyjny — szczególnie w sytuacjach wysokiego stresu.
+                Przyjąłem strategię przeniesienia odpowiedzialności za proces z użytkownika na technologię. Senior nie powinien być administratorem własnej terapii — powinien być pacjentem. Każda decyzja projektowa, zarówno w warstwie hardware jak i software, wynikała z tej jednej zasady.
               </p>
             </Reveal>
           </div>
@@ -212,15 +212,15 @@ const nextProjects = [
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/vtda/VTDA_04.webp" alt="Sterownia maszynisty - agregacja bodźców użytkownika" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/tabbox/empathy_map_tabbox.webp" alt="Mapa empatii — perspektywa seniora i opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Sterownia maszynisty - agregacja bodźców użytkownika</figcaption>
+              <figcaption class="cs-img-caption">Mapa empatii — perspektywa seniora i opiekuna</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/vtda/VTDA_13.webp" alt="Ewolucja Dashboardu — wersja finalna po redukcji o 60%" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/tabbox/edherence_tabbox.webp" alt="Analiza kontekstu — bariery Medication Non-Adherence" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Ewolucja Dashboardu — wersja finalna po redukcji widoku</figcaption>
+              <figcaption class="cs-img-caption">Problems & Solutions — zestawienie barier i odpowiedzi projektowych</figcaption>
             </figure>
           </div>
         </div>
@@ -241,12 +241,12 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-section-heading mt-3 max-w-xl">
-              Projektowanie pod presją fizyki i&nbsp;psychologii
+              Trzy bariery do eliminacji
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4">
-              Trzy wyzwania, z których każde mogło samodzielnie zdyskredytować produkt — albo kosztować życie.
+              Projekt obejmował dwa produkty równolegle — fizyczne urządzenie i aplikację mobilną. Każdy z nich miał własne, krytyczne punkty niepowodzenia.
             </p>
           </Reveal>
         </div>
@@ -264,13 +264,13 @@ const nextProjects = [
           ))}
         </div>
 
-        <!-- Night mode image -->
+        <!-- Wide context image -->
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
           <figure class="m-0 p-0">
             <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
-              <img src="/images/vtda/VTDA_11.webp" alt="Interfejs w trybie nocnym — ekstremalnie niska luminancja eliminująca refleksy na szybie" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/tabbox/ujm_tabbox.webp" alt="User Journey Map — punkty tarcia na ścieżce seniora i opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Tryb nocny — ekstremalnie niska luminancja, barwy nieoddbijające się w szybie kabiny</figcaption>
+            <figcaption class="cs-img-caption">User Journey Map — punkty tarcia na ścieżce seniora i opiekuna</figcaption>
           </figure>
         </div>
 
@@ -278,7 +278,7 @@ const nextProjects = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         SEKCJA 3 — PODEJŚCIE PROJEKTOWE
+         SEKCJA 3 — PODEJŚCIE PROJEKTOWE (HW + SW)
     ════════════════════════════════════════════════════════════════════════ -->
     <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
       <div class="max-w-4xl mx-auto">
@@ -292,66 +292,78 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
               <h2 class="cs-section-heading mt-3">
-                Architektura decyzji i&nbsp;logiki bezpieczeństwa
+                Dwa produkty,&nbsp;jedna spójność
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
               <p class="cs-body-text mt-4">
-                Każda decyzja projektowa miała uzasadnienie w psychologii bezpieczeństwa i fizyce środowiska. UX służył tu nie wygodzie, a utrzymaniu czujności i precyzji operatora.
+                Jednoczesne projektowanie hardware i software wymagało utrzymania spójności doświadczenia w obu warstwach — od mechaniki klapki po architekturę powiadomień.
               </p>
             </Reveal>
+
+            <!-- HW/SW dual track badge -->
+            <div class="cs-dual-track mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.5s">
+              <div class="cs-dual-track-item">
+                <div class="cs-dual-track-dot cs-dual-track-dot--hw"></div>
+                <span>Hardware</span>
+              </div>
+              <div class="cs-dual-track-item">
+                <div class="cs-dual-track-dot cs-dual-track-dot--sw"></div>
+                <span>Software</span>
+              </div>
+            </div>
           </div>
 
           <!-- Right: Role items -->
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag">Progressive Disclosure & Fail-Fast Minimalism</div>
+              <div class="cs-role-tag cs-role-tag--hw">Evidence-Based Industrial Design</div>
               <p class="cs-body-text mt-3">
-                Zredukowałem widok główny o 60%. Widok krytyczny zawiera wyłącznie Prędkość, Następny Cel i Krzywą Hamowania. Szczegóły techniczne — parametry radia, diagnostyka — pojawiają się tylko na żądanie lub gdy system wykryje anomalię wymagającą interwencji. Mniej danych, więcej decyzji.
+                Zrezygnowałem z typowych szufladek na rzecz autorskich przegród otwieranych klapką do góry. Konstrukcja zoptymalizowana pod kątem osób z artretyzmem — mechanizm umożliwia bezwysiłkowy dostęp bez ryzyka wysypania leków. Każde otwarcie klapki jest jednocześnie zdarzeniem cyfrowym rejestrowanym w aplikacji, zamykając pętlę informacyjną bez angażowania pacjenta w raportowanie.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
                 <figure class="m-0 p-0">
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                    <img src="/images/vtda/VTDA_14.webp" alt="Dashboard po redukcji — widok krytyczny z Progressive Disclosure" class="w-full h-full object-cover cs-img" loading="lazy" />
+                    <img src="/images/tabbox/mechanizm_tabbox.webp" alt="Industrial Design — mechanizm klapki zoptymalizowany pod artretyzm" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Dashboard po redukcji — trzy elementy krytyczne, zero szumu</figcaption>
+                  <figcaption class="cs-img-caption">Industrial Design — mechanizm klapki zoptymalizowany pod artretyzm</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag">Psychologia bezpieczeństwa — Efekt Checklisty</div>
+              <div class="cs-role-tag cs-role-tag--sw">UX Architecture — Scan & Add (OCR)</div>
               <p class="cs-body-text mt-3">
-                Mimo technicznej możliwości pełnej automatyzacji, zdecydowałem, że "System Check" przed odjazdem musi pozostać manualny. Maszynista musi fizycznie „zatwierdzić" gotowość składu. Checklist Effect buduje poczucie odpowiedzialności i zmusza do świadomego przejścia przez procedurę — UX służy tu utrzymaniu czujności, nie komfortu.
+                Zidentyfikowałem żmudną, manualną konfigurację planów leczenia jako główny Churn Point produktu. Rozbudowałem architekturę aplikacji o autorski moduł OCR: opiekun skanuje opakowanie leku, system automatycznie paruje dane z bazą produktów leczniczych, pobierając nazwę, dawkę, datę ważności i status refundacji. Wynik: skrócenie onboardingu o 75% i eliminacja błędów wynikających z ręcznego przepisywania.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
                 <figure class="m-0 p-0">
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
-                    <img src="/images/vtda/VTDA_08.webp" alt="Ekran manualnej weryfikacji systemu — Checklist Effect" class="w-full h-full object-cover cs-img" loading="lazy" />
+                    <img src="/images/tabbox/scan_tabbox.webp" alt="Scan & Add — flow skanowania opakowania i automatycznego onboardingu leku" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">System Check — manualna weryfikacja jako celowy mechanizm budowania czujności</figcaption>
+                  <figcaption class="cs-img-caption">Scan & Add — widok ekranów procesu skanowania opakowania leku</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag">Architektura Guiding Rails — Widok Tunelowy</div>
+              <div class="cs-role-tag cs-role-tag--sw">Service Design — Zarządzanie zapasami</div>
               <p class="cs-body-text mt-3">
-                Porzuciłem klasyczną mapę 2D na rzecz liniowej reprezentacji trasy (Guiding Rails). Pociąg porusza się wyłącznie w jednym kierunku — maszynistę nie interesuje otoczenie geograficzne, tylko to, co bezpośrednio na jego „nitce" toru. Skróciło to czas skanowania wzrokiem ekranu o 40%.
+                Zaprojektowałem system zarządzania wieloma zmiennymi (leki stałe, suplementy, leki doraźne) zachowujący minimalizm poznawczy niezbędny w sytuacjach stresowych dla opiekuna. System w czasie rzeczywistym monitoruje fizyczny stan tabletek i generuje alerty o konieczności uzupełnienia — zapobiegając przerwaniu terapii zanim do niego dojdzie.
               </p>
             </div>
 
           </div>
         </div>
 
-        <!-- Full-width mockup -->
+        <!-- Full-width app mockup -->
         <div class="mt-20 opacity-0" data-scroll-fade>
           <figure class="m-0 p-0">
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
-              <img src="/images/vtda/VTDA_09.webp" alt="VTDA — podsumowanie wyników systemu i statystyk pilotażu" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/tabbox/dashboard_tabbox.webp" alt="TabBox App — główny ekran dashboardu opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">VTDA w działaniu — podsumowanie kluczowych wyników 6-miesięcznego pilotażu</figcaption>
+            <figcaption class="cs-img-caption">TabBox App — główny ekran dashboardu opiekuna</figcaption>
           </figure>
         </div>
 
@@ -371,12 +383,12 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
             <h2 class="cs-section-heading mt-3">
-              Wyniki mierzone bezpieczeństwem
+              Walidacja rynkowa i&nbsp;impact
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4">
-              Radykalne uproszczenie UX w przemyśle ciężkim przełożyło się na twarde wyniki operacyjne. W sektorze kolejowym, gdzie każdy incydent ma konsekwencje — 20% redukcja ryzyka to wynik wyjątkowy.
+              Inkluzywny design oparty na dowodach (Evidence-Based) okazał się silnym driverem wzrostu. Produkt przeszedł pełną walidację rynkową — od UX, przez hardware, po skalę biznesową.
             </p>
           </Reveal>
         </div>
@@ -391,14 +403,14 @@ const nextProjects = [
           ))}
         </div>
 
-        <!-- Quote / highlight -->
+        <!-- Quote -->
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
             <blockquote class="cs-quote-text">
-              "Zamiast przenosić do pociągów schematy znane z lotnictwa, skupiłem się na tym, czego maszynista naprawdę potrzebuje: nie więcej danych — lepszych decyzji w krytycznym momencie."
+              "Zamiast projektować kolejną aplikację z przypomnieniami, zbudowałem ekosystem, który przenosi odpowiedzialność za terapię z użytkownika na technologię — tak, żeby senior mógł być pacjentem, a nie administratorem własnego leczenia."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · Lead Product Designer / UX Architect, projekt VTDA</p>
+            <p class="cs-quote-source">Kamil Wardak · Strategic Product Lead / Creative Director, projekt TabBox</p>
           </div>
         </div>
 
@@ -425,17 +437,17 @@ const nextProjects = [
           <div class="md:col-span-8">
             <figure class="m-0 p-0">
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/vtda/VTDA_overview.webp" alt="Zestawienie widoków ekranów systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/tabbox/overview_tabbox.webp" alt="Overview ekosystemu TabBox — połączenie hardware i aplikacji mobilnej" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Overview systemu VTDA</figcaption>
+              <figcaption class="cs-img-caption">Overview ekosystemu — połączenie hardware i aplikacji mobilnej</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
             <figure class="m-0 p-0">
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
-                <img src="/images/vtda/VTDA_user_flow.webp" alt="User flow systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
+                <img src="/images/tabbox/user_flow_tabbox.webp" alt="User flow — ścieżka onboardingu opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">User flow systemu VTDA</figcaption>
+              <figcaption class="cs-img-caption">User flow — ścieżka onboardingu opiekuna</figcaption>
             </figure>
           </div>
         </div>
@@ -444,21 +456,21 @@ const nextProjects = [
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade style="--fade-delay: 0.15s">
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/vtda/VTDA_08.webp" alt="Ekran manualnej weryfikacji systemu — System Check" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/tabbox/kasetka_tabbox.webp" alt="Fizyczna kasetka TabBox — widok produktu" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">System Check — manualna weryfikacja gotowości</figcaption>
+            <figcaption class="cs-img-caption">Fizyczna kasetka TabBox — widok produktu</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/vtda/VTDA_empathy_map.webp" alt="VTDA - mapa empatii" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/tabbox/wireframe_tabbox.webp" alt="Wireframes — architektura ekranu zarządzania lekami" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">VTDA - mapa empatii</figcaption>
+            <figcaption class="cs-img-caption">Wireframes — architektura ekranu zarządzania lekami</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/vtda/VTDA_wireframe.webp" alt="Low-fidelity wireframe systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/tabbox/system_alertow_tabbox.png" alt="System alertów — hierarchia krytyczności powiadomień" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Low-fidelity wireframe systemu VTDA</figcaption>
+            <figcaption class="cs-img-caption">System alertów — hierarchia krytyczności powiadomień</figcaption>
           </figure>
         </div>
 
@@ -550,15 +562,10 @@ const nextProjects = [
 
   /* ─── Hero ──────────────────────────────────────────────────────────────── */
 
-  .cs-back-link {
-    letter-spacing: 0.01em;
-  }
+  .cs-back-link { letter-spacing: 0.01em; }
+  .cs-back-link:hover { color: #BAF52A; }
 
-  .cs-back-link:hover {
-    color: #BAF52A;
-  }
-
-  /* ─── Nota o poufności ──────────────────────────────────────────────────── */
+  /* ─── Nota ──────────────────────────────────────────────────────────────── */
 
   .cs-confidentiality-note {
     display: flex;
@@ -601,9 +608,7 @@ const nextProjects = [
     line-height: 1.05;
   }
 
-  .cs-hero-subtitle {
-    line-height: 1.65;
-  }
+  .cs-hero-subtitle { line-height: 1.65; }
 
   /* Meta strip */
   .cs-meta-strip {
@@ -657,9 +662,7 @@ const nextProjects = [
 
   /* ─── Hero image ────────────────────────────────────────────────────────── */
 
-  .cs-hero-img-wrapper {
-    transform: translateY(16px);
-  }
+  .cs-hero-img-wrapper { transform: translateY(16px); }
 
   /* ─── Section shared ────────────────────────────────────────────────────── */
 
@@ -688,12 +691,87 @@ const nextProjects = [
 
   /* ─── Placeholders ──────────────────────────────────────────────────────── */
 
+  .cs-placeholder {
+    position: relative;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .cs-placeholder:hover {
+    background: rgba(186, 245, 42, 0.025);
+    border-color: rgba(186, 245, 42, 0.1) !important;
+  }
+
+  .cs-placeholder-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    text-align: center;
+  }
+
   .cs-placeholder-icon {
-    color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.12);
     margin-bottom: 4px;
   }
 
-  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.12); }
+  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.1); }
+
+  .cs-placeholder-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.25);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .cs-placeholder-label--sm { font-size: 0.7rem; }
+
+  .cs-placeholder-note {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.12);
+    margin: 0;
+    max-width: 320px;
+    line-height: 1.5;
+  }
+
+  .cs-placeholder--gallery { background: rgba(255,255,255,0.015); }
+
+  /* ─── Dual track badge ──────────────────────────────────────────────────── */
+
+  .cs-dual-track {
+    display: inline-flex;
+    gap: 16px;
+    padding: 10px 16px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .cs-dual-track-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cs-dual-track-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cs-dual-track-dot--hw { background: #BAF52A; }
+  .cs-dual-track-dot--sw { background: rgba(186,245,42,0.45); }
 
   /* ─── Challenges ────────────────────────────────────────────────────────── */
 
@@ -726,10 +804,7 @@ const nextProjects = [
   }
 
   .cs-challenge-card:last-child { border-right: none; }
-
-  .cs-challenge-card:hover {
-    background: rgba(186,245,42,0.03);
-  }
+  .cs-challenge-card:hover { background: rgba(186,245,42,0.03); }
 
   .cs-challenge-number {
     font-size: 0.7rem;
@@ -785,6 +860,18 @@ const nextProjects = [
     backdrop-filter: blur(4px);
   }
 
+  .cs-role-tag--hw {
+    background: rgba(186,245,42,0.07);
+    border-color: rgba(186,245,42,0.18);
+    color: #BAF52A;
+  }
+
+  .cs-role-tag--sw {
+    background: rgba(186,245,42,0.04);
+    border-color: rgba(186,245,42,0.1);
+    color: rgba(186,245,42,0.75);
+  }
+
   /* ─── Image captions ───────────────────────────────────────────────────── */
 
   .cs-img-caption {
@@ -795,7 +882,7 @@ const nextProjects = [
     letter-spacing: 0.02em;
   }
 
-  /* ─── Image hover + zoom ────────────────────────────────────────────────── */
+  /* ─── Image hover ───────────────────────────────────────────────────────── */
 
   .cs-img-wrap {
     position: relative;
@@ -803,17 +890,10 @@ const nextProjects = [
     transition: border-color 0.3s ease;
   }
 
-  .cs-img-wrap:hover {
-    border-color: rgba(186, 245, 42, 0.2) !important;
-  }
+  .cs-img-wrap:hover { border-color: rgba(186, 245, 42, 0.2) !important; }
 
-  .cs-img-wrap .cs-img {
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .cs-img-wrap:hover .cs-img {
-    transform: scale(1.035);
-  }
+  .cs-img-wrap .cs-img { transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+  .cs-img-wrap:hover .cs-img { transform: scale(1.035); }
 
   .cs-img-hint {
     position: absolute;
@@ -855,10 +935,7 @@ const nextProjects = [
     transition: opacity 0.3s ease;
   }
 
-  #cs-lightbox.cs-lb-open {
-    pointer-events: auto;
-    opacity: 1;
-  }
+  #cs-lightbox.cs-lb-open { pointer-events: auto; opacity: 1; }
 
   .cs-lb-backdrop {
     position: absolute;
@@ -887,11 +964,7 @@ const nextProjects = [
     backdrop-filter: blur(8px);
   }
 
-  .cs-lb-close:hover {
-    background: rgba(255,255,255,0.12);
-    color: #ffffff;
-    border-color: rgba(255,255,255,0.25);
-  }
+  .cs-lb-close:hover { background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.25); }
 
   .cs-lb-frame {
     position: relative;
@@ -902,9 +975,7 @@ const nextProjects = [
     transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  #cs-lightbox.cs-lb-open .cs-lb-frame {
-    transform: scale(1);
-  }
+  #cs-lightbox.cs-lb-open .cs-lb-frame { transform: scale(1); }
 
   .cs-lb-image {
     display: block;
@@ -920,9 +991,7 @@ const nextProjects = [
 
   /* ─── Results ───────────────────────────────────────────────────────────── */
 
-  .cs-section--results {
-    background: #0c0a09;
-  }
+  .cs-section--results { background: #0c0a09; }
 
   .cs-results-grid {
     display: grid;
@@ -1059,12 +1128,11 @@ const nextProjects = [
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     transition: background 0.35s ease;
   }
 
-  .cs-next-card:hover .cs-next-visual {
-    background: rgba(186,245,42,0.04);
-  }
+  .cs-next-card:hover .cs-next-visual { background: rgba(186,245,42,0.04); }
 
   .cs-next-img-placeholder {
     display: flex;
@@ -1074,12 +1142,13 @@ const nextProjects = [
   }
 
   .cs-next-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .cs-next-card:hover .cs-next-img {
-    transform: scale(1.04);
-  }
+  .cs-next-card:hover .cs-next-img { transform: scale(1.04); }
 
   .cs-next-content {
     padding: 20px 22px 22px;
@@ -1145,11 +1214,10 @@ const nextProjects = [
   }
 
   .cs-next-cta-icon .icon-eye { transform: translateY(100%); }
-
   .cs-next-card:hover .cs-next-cta-icon .icon-arrow { transform: translateY(-100%); }
   .cs-next-card:hover .cs-next-cta-icon .icon-eye   { transform: translateY(0); }
 
-  /* ─── Scroll fade shared ────────────────────────────────────────────────── */
+  /* ─── Scroll fade ───────────────────────────────────────────────────────── */
 
   [data-scroll-fade] {
     transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1160,8 +1228,6 @@ const nextProjects = [
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
-
-  /* ─── Hero fade ─────────────────────────────────────────────────────────── */
 
   [data-hero-fade] {
     transform: translateY(14px);
@@ -1184,20 +1250,12 @@ const nextProjects = [
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
 
-  // ─── Hero fade-in elements ─────────────────────────────────────────────────
   const heroFadeEls = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
   heroFadeEls.forEach((el) => {
     const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0');
-    gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      delay: 0.2 + delay,
-      ease: 'power3.out',
-    });
+    gsap.to(el, { opacity: 1, y: 0, duration: 0.7, delay: 0.2 + delay, ease: 'power3.out' });
   });
 
-  // ─── Scroll-triggered fade-in ──────────────────────────────────────────────
   const scrollFadeEls = document.querySelectorAll<HTMLElement>('[data-scroll-fade]');
 
   const scrollObserver = new IntersectionObserver(
@@ -1205,12 +1263,8 @@ const nextProjects = [
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const el = entry.target as HTMLElement;
-          const delay = parseFloat(
-            getComputedStyle(el).getPropertyValue('--fade-delay') || '0'
-          );
-          setTimeout(() => {
-            el.classList.add('in-view');
-          }, delay * 1000);
+          const delay = parseFloat(getComputedStyle(el).getPropertyValue('--fade-delay') || '0');
+          setTimeout(() => { el.classList.add('in-view'); }, delay * 1000);
           scrollObserver.unobserve(el);
         }
       });
@@ -1220,7 +1274,6 @@ const nextProjects = [
 
   scrollFadeEls.forEach((el) => scrollObserver.observe(el));
 
-  // ─── Challenge & result cards individual stagger ───────────────────────────
   const cardObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -1228,13 +1281,7 @@ const nextProjects = [
           const parent = entry.target;
           const cards = parent.querySelectorAll<HTMLElement>('.cs-challenge-card, .cs-result-card, .cs-next-card');
           cards.forEach((card, i) => {
-            gsap.to(card, {
-              opacity: 1,
-              y: 0,
-              duration: 0.65,
-              delay: 0.08 * i,
-              ease: 'power3.out',
-            });
+            gsap.to(card, { opacity: 1, y: 0, duration: 0.65, delay: 0.08 * i, ease: 'power3.out' });
           });
           cardObserver.unobserve(parent);
         }
@@ -1247,7 +1294,6 @@ const nextProjects = [
     cardObserver.observe(grid);
   });
 
-  // ─── Image zoom hints ──────────────────────────────────────────────────────
   const zoomHintSVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>`;
 
   document.querySelectorAll<HTMLElement>('.cs-img').forEach((img) => {
@@ -1260,15 +1306,13 @@ const nextProjects = [
     wrapper.appendChild(hint);
   });
 
-  // ─── Lightbox ──────────────────────────────────────────────────────────────
   const lightbox   = document.getElementById('cs-lightbox') as HTMLElement;
   const lbImg      = document.getElementById('cs-lb-img') as HTMLImageElement;
   const lbClose    = lightbox.querySelector<HTMLElement>('.cs-lb-close')!;
   const lbBackdrop = lightbox.querySelector<HTMLElement>('.cs-lb-backdrop')!;
 
   function openLightbox(src: string, alt: string) {
-    lbImg.src = src;
-    lbImg.alt = alt;
+    lbImg.src = src; lbImg.alt = alt;
     lightbox.classList.add('cs-lb-open');
     document.body.style.overflow = 'hidden';
   }

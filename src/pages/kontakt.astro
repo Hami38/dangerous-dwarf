@@ -4,6 +4,15 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Kontakt | Kamil Wardak">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('preloaderFinished'));
+      }, 100);
+    });
+  </script>
+
   <div class="min-h-[calc(100vh-5rem)] bg-[#0c0a09] flex flex-col justify-end">
     <Footer />
   </div>

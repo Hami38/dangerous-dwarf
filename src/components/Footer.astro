@@ -72,7 +72,7 @@ const year = new Date().getFullYear();
 
     <div class="footer-bottom opacity-0 footer-reveal" data-delay="380">
       <!-- Lewa: copyright -->
-      <p class="footer-copy text-white/25 text-xs font-medium tracking-wide">
+      <p class="footer-copy text-white/50 text-xs font-medium tracking-wide">
         © {year} Kamil Wardak. Wszelkie prawa zastrzeżone.
       </p>
 
@@ -255,7 +255,7 @@ const year = new Date().getFullYear();
   .footer-nav-link {
     font-size: 13px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
     transition: color 0.3s ease;
     white-space: nowrap;
@@ -311,22 +311,45 @@ const year = new Date().getFullYear();
   gsap.registerPlugin(ScrollTrigger);
 
   const revealEls = document.querySelectorAll<HTMLElement>('.footer-reveal');
+  let animated = false;
 
+  const animateFooter = () => {
+    if (animated) return;
+    animated = true;
+    revealEls.forEach((el) => {
+      const delay = parseInt(el.dataset.delay || '0') / 1000;
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        delay,
+        ease: 'power3.out',
+      });
+    });
+  };
+
+  const isInView = () => {
+    const footer = document.querySelector('footer');
+    return !!footer && footer.getBoundingClientRect().top < window.innerHeight * 0.9;
+  };
+
+  // Standardowa ścieżka: scroll na normalnych stronach
   ScrollTrigger.create({
     trigger: 'footer',
     start: 'top 85%',
     once: true,
-    onEnter: () => {
-      revealEls.forEach((el) => {
-        const delay = parseInt(el.dataset.delay || '0') / 1000;
-        gsap.to(el, {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          delay,
-          ease: 'power3.out',
-        });
-      });
-    },
+    onEnter: animateFooter,
   });
+
+  // Fallback 1: footer już w viewport przy załadowaniu (np. /kontakt wejście bezpośrednie)
+  requestAnimationFrame(() => {
+    if (isInView()) animateFooter();
+  });
+
+  // Fallback 2: po opadnięciu zasłony nawigacyjnej (desktop nav przez PageTransition)
+  window.addEventListener('curtainDone', () => {
+    requestAnimationFrame(() => {
+      if (isInView()) animateFooter();
+    });
+  }, { once: true });
 </script>

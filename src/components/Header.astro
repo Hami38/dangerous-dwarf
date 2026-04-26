@@ -106,8 +106,7 @@ const currentPath = Astro.url.pathname;
 
 <script>
   const EASE     = 'cubic-bezier(0.87, 0, 0.13, 1)';
-  const PANEL_MS = 300;   /* czas slajdu jednego panelu */
-  const OFFSET   = 80;    /* opóźnienie ciemnego za zielonym */
+  const PANEL_MS = 300;
 
   const toggle   = document.getElementById('menu-toggle') as HTMLButtonElement;
   const overlay  = document.getElementById('mobile-menu') as HTMLElement;
@@ -373,7 +372,7 @@ const currentPath = Astro.url.pathname;
   }
   .mob-footer-copy {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.04em;
   }
 

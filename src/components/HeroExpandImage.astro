@@ -1,6 +1,6 @@
 ---
 /* src/components/HeroExpandImage.astro */
-const staticPlaceholder = "/sequence/000001.jpg";
+const staticPlaceholder = "/sequence/000001.webp";
 
 const stats = [
   {
@@ -207,7 +207,7 @@ const stats = [
 
   mm.add("(min-width: 768px)", () => {
     const frameCount = 48;
-    const framePath = (i: number) => `/sequence/${i.toString().padStart(6, '0')}.jpg`;
+    const framePath = (i: number) => `/sequence/${i.toString().padStart(6, '0')}.webp`;
 
     const trigger   = document.querySelector('.de-trigger') as HTMLElement;
     const stage     = document.querySelector('.de-stage') as HTMLElement;
@@ -227,7 +227,7 @@ const stats = [
     let cW = 0, cH = 0;
 
     const cacheSize = () => {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = canvas.getBoundingClientRect();
       cW = Math.round(rect.width * dpr);
       cH = Math.round(rect.height * dpr);
@@ -339,7 +339,7 @@ const stats = [
       }, '>-0.3');
 
       // Faza 5 — Block Reveal tekstu w każdym kaflu, jeden po drugim
-      statCards.forEach((card, i) => {
+      statCards.forEach((card) => {
         masterTL.add(buildCardReveal(card), `>-0.3`);
       });
 

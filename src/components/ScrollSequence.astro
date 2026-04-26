@@ -138,9 +138,8 @@
   const canvas = document.getElementById('sequence-canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d');
   
-  // Twoje dane: 48 klatek, format 000001.jpg
-  const frameCount = 48; 
-  const currentFrame = (index: number) => `/sequence/${(index + 1).toString().padStart(6, '0')}.jpg`;
+  const frameCount = 48;
+  const currentFrame = (index: number) => `/sequence/${(index + 1).toString().padStart(6, '0')}.webp`;
 
   const images: HTMLImageElement[] = [];
   const sequence = { frame: 0 };

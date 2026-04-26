@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
+const MAX_DPR = 1.5;
+
 export default function DarkVeil() {
   const containerRef = useRef(null);
 
@@ -8,11 +10,15 @@ export default function DarkVeil() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Podstawowa konfiguracja Three.js
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true,
+      powerPreference: 'low-power',
+    });
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_DPR));
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 
@@ -20,7 +26,6 @@ export default function DarkVeil() {
     const material = new THREE.ShaderMaterial({
       uniforms: {
         uTime: { value: 0 },
-        // Kolor bazowy (Twój limonkowy #BAF52A)
         uColor: { value: new THREE.Color(0xBAF52A) },
       },
       vertexShader: `
@@ -35,7 +40,6 @@ export default function DarkVeil() {
         uniform vec3 uColor;
         varying vec2 vUv;
 
-        // Funkcja generująca szum (Simplex-like)
         float noise(vec3 p) {
           vec3 i = floor(p);
           vec3 f = fract(p);
@@ -50,11 +54,8 @@ export default function DarkVeil() {
         void main() {
           vec2 uv = vUv;
           float n = noise(vec3(uv * 3.0, uTime * 0.2));
-          
-          // Tworzenie efektu warstwowej mgły
           float alpha = smoothstep(0.4, 0.6, n);
           vec3 color = mix(vec3(0.047, 0.039, 0.035), uColor, alpha * 0.15);
-          
           gl_FragColor = vec4(color, 1.0);
         }
       `
@@ -63,23 +64,45 @@ export default function DarkVeil() {
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
+    let rafId = 0;
+    let isVisible = !document.hidden;
+
     const handleResize = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener('resize', handleResize);
-
-    const animate = (time) => {
-      material.uniforms.uTime.value = time * 0.001;
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
+    const handleVisibility = () => {
+      isVisible = !document.hidden;
+      if (isVisible && rafId === 0) {
+        rafId = requestAnimationFrame(animate);
+      }
     };
 
-    requestAnimationFrame(animate);
+    window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    const animate = (time) => {
+      if (!isVisible) {
+        rafId = 0;
+        return;
+      }
+      material.uniforms.uTime.value = time * 0.001;
+      renderer.render(scene, camera);
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
 
     return () => {
+      cancelAnimationFrame(rafId);
       window.removeEventListener('resize', handleResize);
-      container.removeChild(renderer.domElement);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
+      renderer.dispose();
+      geometry.dispose();
+      material.dispose();
     };
   }, []);
 

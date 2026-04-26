@@ -87,7 +87,7 @@ const nextProjects = [
 
         <!-- Breadcrumb -->
         <div class="cs-breadcrumb mb-10 opacity-0" data-hero-fade style="--delay: 0s">
-          <a href="/prace" class="cs-back-link group inline-flex items-center gap-2 text-white/40 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
+          <a href="/prace" class="cs-back-link group inline-flex items-center gap-2 text-white/50 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
             <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-7-7-7 7 7 7"/>
             </svg>
@@ -165,7 +165,7 @@ const nextProjects = [
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
           <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
-            <img src="/images/tabbox/KV_tabbox.webp" alt="TabBox — inteligentny ekosystem farmakoterapii dla seniorów" class="w-full h-full object-cover cs-img" loading="eager" />
+            <img src="/images/tabbox/KV_tabbox.webp" alt="TabBox — inteligentny ekosystem farmakoterapii dla seniorów" class="w-full h-full object-cover cs-img" loading="eager" fetchpriority="high" decoding="async" />
           </div>
         </div>
       </div>
@@ -468,7 +468,7 @@ const nextProjects = [
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <img src="/images/tabbox/system_alertow_tabbox.png" alt="System alertów — hierarchia krytyczności powiadomień" class="w-full h-full object-cover cs-img" loading="lazy" />
+              <img src="/images/tabbox/system_alertow_tabbox.webp" alt="System alertów — hierarchia krytyczności powiadomień" class="w-full h-full object-cover cs-img" loading="lazy" decoding="async" />
             </div>
             <figcaption class="cs-img-caption">System alertów — hierarchia krytyczności powiadomień</figcaption>
           </figure>
@@ -581,19 +581,19 @@ const nextProjects = [
   .cs-conf-icon {
     flex-shrink: 0;
     margin-top: 1px;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .cs-confidentiality-note p {
     margin: 0;
     font-size: 0.75rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .cs-confidentiality-note strong {
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.01em;
   }
 
@@ -637,7 +637,7 @@ const nextProjects = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.5);
   }
 
   .cs-meta-value {
@@ -715,16 +715,16 @@ const nextProjects = [
   }
 
   .cs-placeholder-icon {
-    color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.4);
     margin-bottom: 4px;
   }
 
-  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.1); }
+  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.4); }
 
   .cs-placeholder-label {
     font-size: 0.78rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.5);
     margin: 0;
     letter-spacing: 0.02em;
   }
@@ -733,7 +733,7 @@ const nextProjects = [
 
   .cs-placeholder-note {
     font-size: 0.68rem;
-    color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
     margin: 0;
     max-width: 320px;
     line-height: 1.5;
@@ -758,7 +758,7 @@ const nextProjects = [
     gap: 7px;
     font-size: 0.72rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.5);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -877,7 +877,7 @@ const nextProjects = [
   .cs-img-caption {
     font-size: 0.68rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5);
     margin: 9px 2px 0;
     letter-spacing: 0.02em;
   }
@@ -964,7 +964,7 @@ const nextProjects = [
     backdrop-filter: blur(8px);
   }
 
-  .cs-lb-close:hover { background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.25); }
+  .cs-lb-close:hover { background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.5); }
 
   .cs-lb-frame {
     position: relative;
@@ -1039,7 +1039,7 @@ const nextProjects = [
   .cs-result-label {
     font-size: 0.8rem;
     line-height: 1.55;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.55);
     margin: 0;
   }
 
@@ -1076,7 +1076,7 @@ const nextProjects = [
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.5);
     margin: 0;
     text-transform: uppercase;
   }
@@ -1138,7 +1138,7 @@ const nextProjects = [
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
   }
 
   .cs-next-img {
@@ -1178,7 +1178,7 @@ const nextProjects = [
   .cs-next-desc {
     font-size: 0.78rem;
     line-height: 1.6;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.5);
     margin: 0;
     flex: 1;
   }
@@ -1189,7 +1189,7 @@ const nextProjects = [
     gap: 8px;
     font-size: 0.78rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.5);
     margin-top: 4px;
     transition: color 0.3s ease;
   }

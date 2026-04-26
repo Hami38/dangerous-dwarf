@@ -7,9 +7,16 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
+  compressHTML: true,
+
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
   },
 
-  integrations: [react()]
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
+  integrations: [react()],
 });

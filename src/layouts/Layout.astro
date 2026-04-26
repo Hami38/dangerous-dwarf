@@ -16,10 +16,13 @@ const { title = "Kamil Wardak | Portfolio" } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"></noscript>
 		<title>{title}</title>
 		<!-- Ustawia stan przejścia PRZED pierwszym renderem — zero flashu -->
 		<script is:inline>
@@ -63,34 +66,6 @@ const { title = "Kamil Wardak | Portfolio" } = Astro.props;
 </html>
 
 <style is:global>
-	:root {
-		--brand-main: #BAF52A;
-		--bg-stone: #0c0a09;
-	}
-
-	html,
-	body {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		min-height: 100%;
-		background-color: var(--bg-stone);
-		color: #ffffff;
-		font-family: 'Inter', sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		overflow-x: hidden;
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-
 	.action-reveal {
 		opacity: 0;
 		transform: translateY(20px);

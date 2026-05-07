@@ -20,6 +20,17 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026.pdf',
     'hero.trusted':      'Zaufały mi wiodące marki:',
 
+    // ── ApproachSection (homepage) ────────────────────────────
+    'home.approach.overline': 'Podejście',
+    'home.approach.heading':  'Diabeł tkwi w szczegółach.',
+    'home.approach.cta':      'Czytaj więcej',
+    'home.approach.0.overline': 'Zarządzanie & Przywództwo',
+    'home.approach.0.title':    'W roli lidera',
+    'home.approach.0.desc':     'Wierzę w design jako sport zespołowy. Moja rola to usuwanie barier, facylitacja trudnych decyzji i budowanie kultury opartej na dowodach, nie opiniach.',
+    'home.approach.1.overline': 'Fragmentacja & Big picture',
+    'home.approach.1.title':    'Problemy, które rozwiązuję',
+    'home.approach.1.desc':     'Specjalizuję się w systemach o krytycznym znaczeniu. Tam, gdzie złożoność regulacyjna i technologiczna przytłacza, ja wprowadzam strukturę i prostotę.',
+
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Zaczynamy?',
     'footer.headline.line1':  'Masz projekt.',
@@ -406,6 +417,17 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.cta.cv':       'Download CV',
     'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026_ENG.pdf',
     'hero.trusted':      'Trusted by leading brands:',
+
+    // ── ApproachSection (homepage) ────────────────────────────
+    'home.approach.overline': 'Approach',
+    'home.approach.heading':  'The devil is in the details.',
+    'home.approach.cta':      'Read more',
+    'home.approach.0.overline': 'Management & Leadership',
+    'home.approach.0.title':    'In the role of a leader',
+    'home.approach.0.desc':     'I believe in design as a team sport. My role is to remove barriers, facilitate difficult decisions and build a culture based on evidence, not opinions.',
+    'home.approach.1.overline': 'Fragmentation & Big picture',
+    'home.approach.1.title':    'Problems I solve',
+    'home.approach.1.desc':     'I specialise in systems of critical importance. Where regulatory and technological complexity overwhelms, I introduce structure and simplicity.',
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Shall we start?',

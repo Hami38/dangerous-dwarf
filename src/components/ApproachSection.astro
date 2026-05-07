@@ -32,10 +32,10 @@ const approaches = [
     <!-- Section Header -->
     <div class="mb-16 md:mb-20">
       <Reveal delay={0.1} color="#BAF52A">
-        <p class="text-[#BAF52A] text-xs normalcase tracking-[0.15em] font-bold mb-4">Podejście</p>
+        <p class="text-[#BAF52A] text-xs normalcase tracking-[0.15em] font-bold mb-4" data-i18n="home.approach.overline">Podejście</p>
       </Reveal>
       <Reveal delay={0.25} color="#ffffff">
-        <h2 class="approach-heading text-white text-4xl md:text-5xl font-bold leading-tight">
+        <h2 class="approach-heading text-white text-4xl md:text-5xl font-bold leading-tight" data-i18n="home.approach.heading">
           Diabeł tkwi w szczegółach.
         </h2>
       </Reveal>
@@ -55,7 +55,7 @@ const approaches = [
           <!-- Overline -->
           <div class="mb-4 relative z-10">
             <Reveal delay={0.15 + index * 0.15} color="#BAF52A" tag="span">
-              <p class="text-[#BAF52A] text-[11px] normalcase tracking-[0.15em] font-bold">
+              <p class="text-[#BAF52A] text-[11px] normalcase tracking-[0.15em] font-bold" data-i18n={`home.approach.${index}.overline`}>
                 {item.overline}
               </p>
             </Reveal>
@@ -64,7 +64,7 @@ const approaches = [
           <!-- Title -->
           <div class="mb-5 relative z-10">
             <Reveal delay={0.3 + index * 0.15} color="#ffffff" tag="span">
-              <h3 class="approach-title text-white text-2xl md:text-3xl font-bold leading-tight">
+              <h3 class="approach-title text-white text-2xl md:text-3xl font-bold leading-tight" data-i18n={`home.approach.${index}.title`}>
                 {item.title}
               </h3>
             </Reveal>
@@ -73,7 +73,7 @@ const approaches = [
           <!-- Description -->
           <div class="mb-8 relative z-10">
             <Reveal delay={0.45 + index * 0.15} color="#a8a29e" tag="span">
-              <p class="text-stone-400 text-sm md:text-base font-medium leading-relaxed">
+              <p class="text-stone-400 text-sm md:text-base font-medium leading-relaxed" data-i18n={`home.approach.${index}.desc`}>
                 {item.description}
               </p>
             </Reveal>
@@ -86,7 +86,7 @@ const approaches = [
             data-approach-fade
             style={`transition-delay: ${0.6 + index * 0.15}s`}
           >
-            <span>Czytaj więcej</span>
+            <span data-i18n="home.approach.cta">Czytaj więcej</span>
             <div class="icon-wrapper relative w-4 h-4 overflow-hidden">
               <svg
                 class="icon-arrow absolute inset-0 transition-transform duration-300 group-hover/cta:-translate-y-full"

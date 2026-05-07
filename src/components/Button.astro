@@ -6,13 +6,14 @@ interface Props {
   href?: string;
   download?: boolean;
   class?: string;
+  i18nKey?: string;
 }
 
-const { text, variant = 'primary', href = "#", download = false, class: className = '' } = Astro.props;
+const { text, variant = 'primary', href = "#", download = false, class: className = '', i18nKey } = Astro.props;
 ---
 
 <a href={href} class={`btn-pill ${variant} ${className}`.trim()} download={download ? "" : undefined}>
-  <span class="btn-text">{text}</span>
+  <span class="btn-text" data-i18n={i18nKey || undefined}>{text}</span>
   
   <div class="icon-outer">
     <div class="icon-inner">

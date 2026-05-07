@@ -107,12 +107,11 @@ const toolGroups: ToolGroup[] = [
 
         <!-- ── Overline + pełna szerokość nagłówka ── -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0s">
-          <p class="om-overline">UX Strateg & Product Lead · 12 lat doświadczenia</p>
+          <p class="om-overline" data-i18n="about.overline">UX Strateg & Product Lead · 12 lat doświadczenia</p>
         </div>
 
         <h1 class="om-headline opacity-0" data-hero-fade style="--delay: 0.07s">
-          Nie projektuję ekranów.<br/>
-          Projektuję <span class="om-headline-accent">architekturę zaufania.</span>
+          <span data-i18n-html="about.headline">Nie projektuję ekranów.<br/>Projektuję <span class="om-headline-accent">architekturę zaufania.</span></span>
         </h1>
 
         <!-- ── Bio + zdjęcie side-by-side ── -->
@@ -120,7 +119,7 @@ const toolGroups: ToolGroup[] = [
 
           <!-- Lewa: lead text + stats -->
           <div>
-            <p class="om-lead opacity-0" data-hero-fade style="--delay: 0.14s">
+            <p class="om-lead opacity-0" data-hero-fade style="--delay: 0.14s" data-i18n="about.lead">
               Działam tam, gdzie precyzja, bezpieczeństwo danych i przejrzystość procesów
               decydują o stabilności finansowej i sukcesie biznesowym. Wierzę, że dobry
               design to najwyższa forma profesjonalnej odpowiedzialności.
@@ -129,17 +128,17 @@ const toolGroups: ToolGroup[] = [
             <div class="om-stats-grid mt-12 pt-10 border-t border-white/[0.07] opacity-0" data-hero-fade style="--delay: 0.21s">
               <div class="om-stat">
                 <p class="om-stat-value">12+</p>
-                <p class="om-stat-label">lat doświadczenia</p>
+                <p class="om-stat-label" data-i18n="about.stat.years">lat doświadczenia</p>
               </div>
               <div class="om-stat-divider" aria-hidden="true"></div>
               <div class="om-stat">
                 <p class="om-stat-value om-stat-value--white">4</p>
-                <p class="om-stat-label">sektory — FinTech, Security,<br/>MedTech, Transport</p>
+                <p class="om-stat-label" data-i18n-html="about.stat.sectors">sektory — FinTech, Security,<br/>MedTech, Transport</p>
               </div>
               <div class="om-stat-divider" aria-hidden="true"></div>
               <div class="om-stat">
                 <p class="om-stat-value om-stat-value--white">50+</p>
-                <p class="om-stat-label">lokalizacji wdrożonych<br/>w projektach</p>
+                <p class="om-stat-label" data-i18n-html="about.stat.deployments">lokalizacji wdrożonych<br/>w projektach</p>
               </div>
             </div>
           </div>
@@ -169,10 +168,10 @@ const toolGroups: ToolGroup[] = [
       <div class="max-w-4xl mx-auto">
 
         <div class="mb-16 md:mb-20 opacity-0" data-scroll-fade>
-          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5">
+          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5" data-i18n="about.philosophy.overline">
             Mindset & Filozofia
           </p>
-          <h2 class="om-section-heading max-w-2xl">
+          <h2 class="om-section-heading max-w-2xl" data-i18n="about.philosophy.heading">
             Przekonania, które kształtują każdy projekt
           </h2>
         </div>
@@ -186,8 +185,8 @@ const toolGroups: ToolGroup[] = [
             >
               <p class="om-pillar-number">{p.number}</p>
               <div class="om-pillar-content">
-                <h3 class="om-pillar-title">{p.title}</h3>
-                <p class="om-pillar-body">{p.body}</p>
+                <h3 class="om-pillar-title" data-i18n={`about.pillar.${i}.title`}>{p.title}</h3>
+                <p class="om-pillar-body" data-i18n={`about.pillar.${i}.body`}>{p.body}</p>
               </div>
             </div>
           ))}
@@ -195,7 +194,7 @@ const toolGroups: ToolGroup[] = [
 
         <div class="om-quote-block mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
           <div class="om-quote-line" aria-hidden="true"></div>
-          <p class="om-quote-text">
+          <p class="om-quote-text" data-i18n="about.quote">
             "Dobry design to najwyższa forma profesjonalnej odpowiedzialności. To on sprawia,
             że w złożonym świecie finansów i technologii użytkownik podejmuje świadome decyzje,
             a organizacja mityguje ryzyka, których inni nie potrafią dostrzec."
@@ -212,13 +211,13 @@ const toolGroups: ToolGroup[] = [
       <div class="max-w-4xl mx-auto">
 
         <div class="mb-6 opacity-0" data-scroll-fade>
-          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5">
+          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5" data-i18n="about.tools.overline">
             Stack narzędzi
           </p>
-          <h2 class="om-section-heading">
+          <h2 class="om-section-heading" data-i18n="about.tools.heading">
             Narzędzia & Technologie
           </h2>
-          <p class="om-section-sub">
+          <p class="om-section-sub" data-i18n="about.tools.desc">
             Eksploruję AI nie po to, by zastąpić proces myślowy — ale by zautomatyzować
             rzemiosło i zyskać więcej czasu na to, co najistotniejsze: strategię, analizę
             ryzyk i empatię wobec użytkownika.
@@ -241,9 +240,9 @@ const toolGroups: ToolGroup[] = [
             </svg>
           </div>
           <div class="om-claude-text">
-            <div class="om-claude-badge">Główne narzędzie AI</div>
+            <div class="om-claude-badge" data-i18n="about.claude.badge">Główne narzędzie AI</div>
             <h3 class="om-claude-name">Claude <span class="om-claude-by">by Anthropic</span></h3>
-            <p class="om-claude-desc">
+            <p class="om-claude-desc" data-i18n="about.claude.desc">
               Kluczowy partner w analizie logiki biznesowej, mapowaniu edge-case'ów, syntezie badań
               i budowaniu argumentacji projektowej. Claude towarzyszy mi na każdym etapie — od
               strategii po szczegółowe decyzje UX Writing.
@@ -260,7 +259,7 @@ const toolGroups: ToolGroup[] = [
         <!-- Grupy narzędzi -->
         {toolGroups.map((group, gi) => (
           <div class="mt-16 opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + gi * 0.1}s`}>
-            <p class="om-group-label">{group.label}</p>
+            <p class="om-group-label" data-i18n={`about.toolgroup.${gi}`}>{group.label}</p>
             <div class="om-tools-grid mt-6">
               {group.tools.map((tool) => (
                 <div class="om-tool-card">

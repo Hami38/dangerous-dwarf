@@ -3,9 +3,9 @@
 import LinkedInButton from './LinkedInButton.astro';
 
 const navLinks = [
-  { label: 'O mnie',     href: '/o-mnie' },
-  { label: 'Prace',      href: '/prace' },
-  { label: 'Podejście', href: '/podejscie' },
+  { label: 'O mnie',    href: '/o-mnie',    key: 'footer.nav.about' },
+  { label: 'Prace',     href: '/prace',     key: 'footer.nav.work' },
+  { label: 'Podejście', href: '/podejscie', key: 'footer.nav.approach' },
 ];
 
 const year = new Date().getFullYear();
@@ -25,16 +25,16 @@ const year = new Date().getFullYear();
 
     <!-- GŁÓWNE CTA -->
     <div class="footer-cta-block mb-20 md:mb-24">
-      <p class="footer-label text-[#BAF52A] text-xs normalcase tracking-[0.2em] font-extrabold mb-5 opacity-0 footer-reveal" data-delay="0">
+      <p class="footer-label text-[#BAF52A] text-xs normalcase tracking-[0.2em] font-extrabold mb-5 opacity-0 footer-reveal" data-delay="0" data-i18n="footer.label">
         Zaczynamy?
       </p>
 
       <h2 class="footer-headline opacity-0 footer-reveal" data-delay="80">
-        Masz projekt.<br/>
-        <span class="footer-headline-accent">Porozmawiajmy.</span>
+        <span data-i18n="footer.headline.line1">Masz projekt.</span><br/>
+        <span class="footer-headline-accent" data-i18n="footer.headline.accent">Porozmawiajmy.</span>
       </h2>
 
-      <p class="footer-sub text-stone-400 text-base md:text-lg font-medium max-w-lg mt-6 leading-relaxed opacity-0 footer-reveal" data-delay="160">
+      <p class="footer-sub text-stone-400 text-base md:text-lg font-medium max-w-lg mt-6 leading-relaxed opacity-0 footer-reveal" data-delay="160" data-i18n="footer.sub">
         Szukam nowych wyzwań, w których mogę połączyć strategię, design i technologię. Napisz — szybko odpiszę.
       </p>
 
@@ -73,13 +73,13 @@ const year = new Date().getFullYear();
     <div class="footer-bottom opacity-0 footer-reveal" data-delay="380">
       <!-- Lewa: copyright -->
       <p class="footer-copy text-white/50 text-xs font-medium tracking-wide">
-        © {year} Kamil Wardak. Wszelkie prawa zastrzeżone.
+        © {year} Kamil Wardak. <span data-i18n="footer.copy">Wszelkie prawa zastrzeżone.</span>
       </p>
 
       <!-- Środek: nawigacja -->
       <nav class="footer-nav">
         {navLinks.map((link) => (
-          <a href={link.href} class="footer-nav-link">{link.label}</a>
+          <a href={link.href} class="footer-nav-link" data-i18n={link.key}>{link.label}</a>
         ))}
       </nav>
 

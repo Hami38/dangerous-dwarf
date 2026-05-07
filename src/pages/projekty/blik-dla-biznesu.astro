@@ -11,6 +11,7 @@ const project = {
   client: "ING Bank Śląski",
   year: "2025",
   scope: "Strategia UX · Badania · Stakeholder Management",
+  i18n: "blik",
 };
 
 const challenges = [
@@ -39,27 +40,9 @@ const results = [
 ];
 
 const nextProjects = [
-  {
-    overline: "Bezpieczeństwo / Computer Vision",
-    title: "System reidentyfikacji osób dla infrastruktury krytycznej",
-    description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
-    href: "/projekty/reid",
-    image: "/images/reid/hero_reid.webp",
-  },
-  {
-    overline: "Bezpieczeństwo krytyczne / Deep Tech",
-    title: "Wirtualny asystent dla maszynistów",
-    description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.",
-    href: "/projekty/vtda",
-    image: "/images/vtda/VTDA_01.webp",
-  },
-  {
-    overline: "MedTech / IoT / Product Design",
-    title: "Tabbox: Inteligentny system farmakoterapii",
-    description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.",
-    href: "/projekty/tabbox",
-    image: "/images/tabbox/KV_tabbox.webp",
-  },
+  { id: "reid",   overline: "Bezpieczeństwo / Computer Vision",   title: "System reidentyfikacji osób dla infrastruktury krytycznej", description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.", href: "/projekty/reid",   image: "/images/reid/hero_reid.webp" },
+  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "Wirtualny asystent dla maszynistów", description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",   image: "/images/vtda/VTDA_01.webp" },
+  { id: "tabbox", overline: "MedTech / IoT / Product Design",       title: "Tabbox: Inteligentny system farmakoterapii", description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.", href: "/projekty/tabbox", image: "/images/tabbox/KV_tabbox.webp" },
 ];
 ---
 
@@ -92,21 +75,21 @@ const nextProjects = [
             <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-7-7-7 7 7 7"/>
             </svg>
-            <span>Wszystkie projekty</span>
+            <span data-i18n="cs.back">Wszystkie projekty</span>
           </a>
         </div>
 
         <!-- Overline label -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
           <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
-            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold">{project.overline}</p>
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n={`${project.i18n}.overline`}>{project.overline}</p>
           </Reveal>
         </div>
 
         <!-- Main title -->
         <div class="mb-6">
           <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
-            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight" data-i18n={`${project.i18n}.title`}>
               {project.title}
             </h1>
           </Reveal>
@@ -115,7 +98,7 @@ const nextProjects = [
         <!-- Subtitle -->
         <div class="max-w-2xl mb-12">
           <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
-            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed" data-i18n={`${project.i18n}.subtitle`}>
               {project.subtitle}
             </p>
           </Reveal>
@@ -124,23 +107,23 @@ const nextProjects = [
         <!-- Meta strip -->
         <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rola</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.role">Rola</span>
             <span class="cs-meta-value">{project.role}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Klient</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.client">Klient</span>
             <span class="cs-meta-value">{project.client}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rok</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.year">Rok</span>
             <span class="cs-meta-value">{project.year}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Zakres</span>
-            <span class="cs-meta-value">{project.scope}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
           </div>
         </div>
 
@@ -156,7 +139,7 @@ const nextProjects = [
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <p>
-            <strong>Nota o poufności:</strong> Ze względu na umowę NDA i wymagania poufności, wizualizacje i diagramy zostały zanonimizowane i uproszczone. Niniejsze case study koncentruje się na procesie decyzyjnym, strategii UX i wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.
+            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o poufności:</strong> <span data-i18n={`${project.i18n}.conf`}>Ze względu na umowę NDA i wymagania poufności, wizualizacje i diagramy zostały zanonimizowane i uproszczone. Niniejsze case study koncentruje się na procesie decyzyjnym, strategii UX i wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.</span>
           </p>
         </div>
       </div>
@@ -187,7 +170,7 @@ const nextProjects = [
               <p class="cs-section-number">01</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s1.heading`}>
                 Przeniesienie nawyku do świata procedur
               </h2>
             </Reveal>
@@ -196,12 +179,12 @@ const nextProjects = [
           <!-- Right: Body text -->
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
-              <p class="cs-body-text mb-6">
+              <p class="cs-body-text mb-6" data-i18n={`${project.i18n}.s1.body1`}>
                 BLIK stał się standardem rynkowym. Klienci biznesowi, przyzwyczajeni do wygody prywatnych przelewów P2P, oczekiwali analogicznej szybkości w zarządzaniu finansami firmowymi.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
-              <p class="cs-body-text">
+              <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
                 Wyzwaniem było bezpieczne przeniesienie tego nawyku do środowiska o wysokim rygorze prawnym i operacyjnym — bez utraty intuicyjności, którą BLIK zawdzięcza swój sukces w bankowości detalicznej.
               </p>
             </Reveal>
@@ -216,13 +199,13 @@ const nextProjects = [
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/ing/UJM_blik.webp" alt="User Journey Map — model mentalny Retail → Business" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">User Journey Map — model mentalny Retail → Business</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="blik.caption.0">User Journey Map — model mentalny Retail → Business</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/ing/Context_research_blik.webp" alt="Analiza kontekstu — Competitive & Behavioral Research" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Analiza kontekstu — Competitive & Behavioral Research</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="blik.caption.1">Analiza kontekstu — Competitive & Behavioral Research</figcaption>
             </figure>
           </div>
         </div>
@@ -242,12 +225,12 @@ const nextProjects = [
             <p class="cs-section-number">02</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3 max-w-xl">
+            <h2 class="cs-section-heading mt-3 max-w-xl" data-i18n={`${project.i18n}.s2.heading`}>
               Zarządzanie asymetrią systemową
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
               Jako projektant musiałem zarządzić trzema krytycznymi barierami, które mogły wpłynąć na negatywne postrzeganie produktu.
             </p>
           </Reveal>
@@ -259,8 +242,8 @@ const nextProjects = [
             <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
               <div class="cs-challenge-number">{ch.number}</div>
               <div class="cs-challenge-content">
-                <h3 class="cs-challenge-title">{ch.title}</h3>
-                <p class="cs-challenge-desc">{ch.description}</p>
+                <h3 class="cs-challenge-title" data-i18n={`${project.i18n}.challenge.${i}.title`}>{ch.title}</h3>
+                <p class="cs-challenge-desc" data-i18n={`${project.i18n}.challenge.${i}.desc`}>{ch.description}</p>
               </div>
             </div>
           ))}
@@ -272,7 +255,7 @@ const nextProjects = [
             <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/ing/User_flow_blik.webp" alt="User Flow — ścieżki aktywacji i autoryzacji BLIK dla Biznesu" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">User Flow — ścieżki aktywacji i autoryzacji BLIK dla Biznesu</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="blik.caption.2">User Flow — ścieżki aktywacji i autoryzacji BLIK dla Biznesu</figcaption>
           </figure>
         </div>
 
@@ -293,12 +276,12 @@ const nextProjects = [
               <p class="cs-section-number">03</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s3.heading`}>
                 Strategia UX i&nbsp;„Design Ograniczeń"
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
-              <p class="cs-body-text mt-4">
+              <p class="cs-body-text mt-4" data-i18n={`${project.i18n}.s3.intro`}>
                 Moim zadaniem było pełnienie roli mediatora między technologicznymi ograniczeniami a oczekiwaniami klienta.
               </p>
             </Reveal>
@@ -308,8 +291,8 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag">Mapowanie Flow</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Mapowanie Flow</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
                 Zaprojektowałem ścieżki aktywacji i autoryzacji, które integrowały się z istniejącymi systemami uprawnień korporacyjnych. Każdy krok przepływu był analizowany pod kątem błędów poznawczych wynikających z nawyków z bankowości detalicznej.
               </p>
               <!-- Placeholder for flow wireframe -->
@@ -318,21 +301,21 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/ing/LF_wireframe_blik.webp" alt="Low-Fidelity wireframes — flow aktywacji BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Low-Fidelity wireframes — flow aktywacji BLIK</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="blik.caption.3">Low-Fidelity wireframes — flow aktywacji BLIK</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag">UX Copywriting & Edukacja</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>UX Copywriting & Edukacja</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
                 Opracowałem strategię transparentnej komunikacji. Zamiast ukrywać braki systemowe, projektowałem interakcje, które tłumaczyły aktualny zakres funkcji — budując zaufanie zamiast frustracji.
               </p>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag">Walidacja hipotez</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Walidacja hipotez</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
                 Prowadziłem testy użyteczności, identyfikując momenty, w których nawyki z bankowości detalicznej prowadziły do błędów poznawczych w kontekście biznesowym. Wyniki bezpośrednio kształtowały kolejne iteracje projektu.
               </p>
               <!-- Placeholder for research visual -->
@@ -341,7 +324,7 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/ing/Key_insights_blik.webp" alt="Usability Testing — Key Insights z testów użyteczności" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Usability Testing — kluczowe wnioski z testów użyteczności</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="blik.caption.4">Usability Testing — kluczowe wnioski z testów użyteczności</figcaption>
                 </figure>
               </div>
             </div>
@@ -355,7 +338,7 @@ const nextProjects = [
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/ing/HF_blik.webp" alt="Wireframes ekranów — Przelew na telefon, Zmiana ustawień, Kod BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">High-Fidelity wireframes — Przelew na telefon, Zmiana ustawień, Kod BLIK</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="blik.caption.5">High-Fidelity wireframes — Przelew na telefon, Zmiana ustawień, Kod BLIK</figcaption>
           </figure>
         </div>
 
@@ -374,12 +357,12 @@ const nextProjects = [
             <p class="cs-section-number">04</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3">
+            <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s4.heading`}>
               Efekty i&nbsp;wpływ biznesowy
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s4.intro`}>
               Decyzja o wdrożeniu MVP przy silnym wsparciu UX okazała się sukcesem rynkowym. Projekt potwierdził, że dobrze zaprojektowane ograniczenia mogą być przewagą konkurencyjną.
             </p>
           </Reveal>
@@ -389,8 +372,8 @@ const nextProjects = [
         <div class="cs-results-grid">
           {results.map((r, i) => (
             <div class="cs-result-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
-              <div class="cs-result-value">{r.value}</div>
-              <p class="cs-result-label">{r.label}</p>
+              <div class="cs-result-value" data-i18n={`${project.i18n}.result.${i}.value`}>{r.value}</div>
+              <p class="cs-result-label" data-i18n={`${project.i18n}.result.${i}.label`}>{r.label}</p>
             </div>
           ))}
         </div>
@@ -399,10 +382,10 @@ const nextProjects = [
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
-            <blockquote class="cs-quote-text">
+            <blockquote class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
               "Zamiast ukrywać braki systemowe, projektowałem interakcje, które tłumaczyły aktualny zakres funkcji — budując zaufanie zamiast frustracji."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · UX Expert, projekt BLIK dla Biznesu</p>
+            <p class="cs-quote-source" data-i18n={`${project.i18n}.quote.source`}>Kamil Wardak · UX Expert, projekt BLIK dla Biznesu</p>
           </div>
         </div>
 
@@ -417,10 +400,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Materiały wizualne</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.gallery.overline">Materiały wizualne</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Dokumentacja procesu</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.gallery.heading">Dokumentacja procesu</h2>
           </Reveal>
         </div>
 
@@ -431,7 +414,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/ing/ux_writing_tweeks.webp" alt="Process Flow — ścieżki aktywacji i autoryzacji" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Ekslopracja klarownego języka w komunikatach - ux writing</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="blik.caption.6">Ekslopracja klarownego języka w komunikatach - ux writing</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
@@ -439,7 +422,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/ing/usability_testing_blik.webp" alt="Context Analysis — badanie kontekstu i wzorców zachowań" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Schemat badań użyteczności</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="blik.caption.7">Schemat badań użyteczności</figcaption>
             </figure>
           </div>
         </div>
@@ -450,19 +433,19 @@ const nextProjects = [
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/ing/budowa_procesu_blik.webp" alt="Low-Fidelity — ekrany aktywacji BLIK" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Budowa procesu - podział odpowiedzialności systemów</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="blik.caption.8">Budowa procesu - podział odpowiedzialności systemów</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/ing/mental_gap_blik.webp" alt="User Journey Map — ścieżka klienta biznesowego" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Mental Gap — niezrozumienie przez użytkownika</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="blik.caption.9">Mental Gap — niezrozumienie przez użytkownika</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/ing/multi_channel_blik.webp" alt="Key Insights — wyniki testów użyteczności" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Multi-Channel — integracja kanałów komunikacji</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="blik.caption.10">Multi-Channel — integracja kanałów komunikacji</figcaption>
           </figure>
         </div>
 
@@ -480,10 +463,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Więcej projektów</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.next.overline">Więcej projektów</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Inne realizacje</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.next.heading">Inne realizacje</h2>
           </Reveal>
         </div>
 
@@ -506,11 +489,11 @@ const nextProjects = [
               </div>
               <!-- Text -->
               <div class="cs-next-content">
-                <p class="cs-next-overline">{np.overline}</p>
-                <h3 class="cs-next-title">{np.title}</h3>
-                <p class="cs-next-desc">{np.description}</p>
+                <p class="cs-next-overline" data-i18n={`nextproject.${np.id}.overline`}>{np.overline}</p>
+                <h3 class="cs-next-title" data-i18n={`nextproject.${np.id}.title`}>{np.title}</h3>
+                <p class="cs-next-desc" data-i18n={`nextproject.${np.id}.desc`}>{np.description}</p>
                 <div class="cs-next-cta">
-                  <span>Zobacz case study</span>
+                  <span data-i18n="cs.next.cta">Zobacz case study</span>
                   <div class="cs-next-cta-icon">
                     <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>

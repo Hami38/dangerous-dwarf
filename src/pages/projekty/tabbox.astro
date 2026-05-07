@@ -11,6 +11,7 @@ const project = {
   client: "TabBox",
   year: "2023",
   scope: "Industrial Design · Mobile UX · Service Design · IoT",
+  i18n: "tabbox",
 };
 
 const challenges = [
@@ -39,27 +40,9 @@ const results = [
 ];
 
 const nextProjects = [
-  {
-    overline: "Finanse / Strategia UX",
-    title: "BLIK dla Biznesu w ING",
-    description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.",
-    href: "/projekty/blik-dla-biznesu",
-    image: "/images/ing/KV_blik.webp",
-  },
-  {
-    overline: "Bezpieczeństwo / Computer Vision",
-    title: "System reidentyfikacji osób dla infrastruktury krytycznej",
-    description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI. 20% ROI w 6 miesięcy.",
-    href: "/projekty/reid",
-    image: "/images/reid/hero_reid.webp",
-  },
-  {
-    overline: "Bezpieczeństwo krytyczne / Deep Tech",
-    title: "VTDA — Wirtualny Asystent Maszynisty",
-    description: "Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.",
-    href: "/projekty/vtda",
-    image: "/images/vtda/VTDA_01.webp",
-  },
+  { id: "blik", overline: "Finanse / Strategia UX",             title: "BLIK dla Biznesu w ING", description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.", href: "/projekty/blik-dla-biznesu", image: "/images/ing/KV_blik.webp" },
+  { id: "reid", overline: "Bezpieczeństwo / Computer Vision",   title: "System reidentyfikacji osób dla infrastruktury krytycznej", description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI. 20% ROI w 6 miesięcy.", href: "/projekty/reid",             image: "/images/reid/hero_reid.webp" },
+  { id: "vtda", overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "VTDA — Wirtualny Asystent Maszynisty", description: "Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",           image: "/images/vtda/VTDA_01.webp" },
 ];
 ---
 
@@ -91,21 +74,21 @@ const nextProjects = [
             <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-7-7-7 7 7 7"/>
             </svg>
-            <span>Wszystkie projekty</span>
+            <span data-i18n="cs.back">Wszystkie projekty</span>
           </a>
         </div>
 
         <!-- Overline label -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
           <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
-            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold">{project.overline}</p>
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n={`${project.i18n}.overline`}>{project.overline}</p>
           </Reveal>
         </div>
 
         <!-- Main title -->
         <div class="mb-6">
           <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
-            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight" data-i18n={`${project.i18n}.title`}>
               {project.title}
             </h1>
           </Reveal>
@@ -114,7 +97,7 @@ const nextProjects = [
         <!-- Subtitle -->
         <div class="max-w-2xl mb-12">
           <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
-            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed" data-i18n={`${project.i18n}.subtitle`}>
               {project.subtitle}
             </p>
           </Reveal>
@@ -123,23 +106,23 @@ const nextProjects = [
         <!-- Meta strip -->
         <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rola</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.role">Rola</span>
             <span class="cs-meta-value">{project.role}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Klient</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.client">Klient</span>
             <span class="cs-meta-value">{project.client}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rok</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.year">Rok</span>
             <span class="cs-meta-value">{project.year}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Zakres</span>
-            <span class="cs-meta-value">{project.scope}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
           </div>
         </div>
 
@@ -154,7 +137,7 @@ const nextProjects = [
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
           <p>
-            <strong>Nota o projekcie:</strong> TabBox to autorski produkt komercyjny klasy HealthTech. Case study koncentruje się na strategii produktowej, architekturze decyzji projektowych i mierzalnym wpływie na bezpieczeństwo farmakologiczne — na podstawie danych zebranych po rynkowej premierze.
+            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o projekcie:</strong> <span data-i18n={`${project.i18n}.conf`}>TabBox to autorski produkt komercyjny klasy HealthTech. Case study koncentruje się na strategii produktowej, architekturze decyzji projektowych i mierzalnym wpływie na bezpieczeństwo farmakologiczne — na podstawie danych zebranych po rynkowej premierze.</span>
           </p>
         </div>
       </div>
@@ -185,7 +168,7 @@ const nextProjects = [
               <p class="cs-section-number">01</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s1.heading`}>
                 Strategia „Zero-Error Policy"
               </h2>
             </Reveal>
@@ -194,12 +177,12 @@ const nextProjects = [
           <!-- Right: Body text -->
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
-              <p class="cs-body-text mb-6">
+              <p class="cs-body-text mb-6" data-i18n={`${project.i18n}.s1.body1`}>
                 W systemach klasy Safety-Critical dla seniorów koszt błędu poznawczego jest zbyt wysoki, by polegać na standardowych wzorcach UX. Medication Non-Adherence — nieprzestrzeganie planu leczenia — jest jedną z głównych przyczyn hospitalizacji osób starszych.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
-              <p class="cs-body-text">
+              <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
                 Przyjąłem strategię przeniesienia odpowiedzialności za proces z użytkownika na technologię. Senior nie powinien być administratorem własnej terapii — powinien być pacjentem. Każda decyzja projektowa, zarówno w warstwie hardware jak i software, wynikała z tej jednej zasady.
               </p>
             </Reveal>
@@ -214,13 +197,13 @@ const nextProjects = [
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/tabbox/empathy_map_tabbox.webp" alt="Mapa empatii — perspektywa seniora i opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Mapa empatii — perspektywa seniora i opiekuna</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="tabbox.caption.0">Mapa empatii — perspektywa seniora i opiekuna</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/tabbox/edherence_tabbox.webp" alt="Analiza kontekstu — bariery Medication Non-Adherence" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Problems & Solutions — zestawienie barier i odpowiedzi projektowych</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="tabbox.caption.1">Problems & Solutions — zestawienie barier i odpowiedzi projektowych</figcaption>
             </figure>
           </div>
         </div>
@@ -240,12 +223,12 @@ const nextProjects = [
             <p class="cs-section-number">02</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3 max-w-xl">
+            <h2 class="cs-section-heading mt-3 max-w-xl" data-i18n={`${project.i18n}.s2.heading`}>
               Trzy bariery do eliminacji
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
               Projekt obejmował dwa produkty równolegle — fizyczne urządzenie i aplikację mobilną. Każdy z nich miał własne, krytyczne punkty niepowodzenia.
             </p>
           </Reveal>
@@ -257,8 +240,8 @@ const nextProjects = [
             <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
               <div class="cs-challenge-number">{ch.number}</div>
               <div class="cs-challenge-content">
-                <h3 class="cs-challenge-title">{ch.title}</h3>
-                <p class="cs-challenge-desc">{ch.description}</p>
+                <h3 class="cs-challenge-title" data-i18n={`${project.i18n}.challenge.${i}.title`}>{ch.title}</h3>
+                <p class="cs-challenge-desc" data-i18n={`${project.i18n}.challenge.${i}.desc`}>{ch.description}</p>
               </div>
             </div>
           ))}
@@ -270,7 +253,7 @@ const nextProjects = [
             <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/tabbox/ujm_tabbox.webp" alt="User Journey Map — punkty tarcia na ścieżce seniora i opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">User Journey Map — punkty tarcia na ścieżce seniora i opiekuna</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="tabbox.caption.2">User Journey Map — punkty tarcia na ścieżce seniora i opiekuna</figcaption>
           </figure>
         </div>
 
@@ -291,12 +274,12 @@ const nextProjects = [
               <p class="cs-section-number">03</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s3.heading`}>
                 Dwa produkty,&nbsp;jedna spójność
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
-              <p class="cs-body-text mt-4">
+              <p class="cs-body-text mt-4" data-i18n={`${project.i18n}.s3.intro`}>
                 Jednoczesne projektowanie hardware i software wymagało utrzymania spójności doświadczenia w obu warstwach — od mechaniki klapki po architekturę powiadomień.
               </p>
             </Reveal>
@@ -318,8 +301,8 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag cs-role-tag--hw">Evidence-Based Industrial Design</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag cs-role-tag--hw" data-i18n={`${project.i18n}.role1.tag`}>Evidence-Based Industrial Design</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
                 Zrezygnowałem z typowych szufladek na rzecz autorskich przegród otwieranych klapką do góry. Konstrukcja zoptymalizowana pod kątem osób z artretyzmem — mechanizm umożliwia bezwysiłkowy dostęp bez ryzyka wysypania leków. Każde otwarcie klapki jest jednocześnie zdarzeniem cyfrowym rejestrowanym w aplikacji, zamykając pętlę informacyjną bez angażowania pacjenta w raportowanie.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
@@ -327,14 +310,14 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/tabbox/mechanizm_tabbox.webp" alt="Industrial Design — mechanizm klapki zoptymalizowany pod artretyzm" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Industrial Design — mechanizm klapki zoptymalizowany pod artretyzm</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="tabbox.caption.3">Industrial Design — mechanizm klapki zoptymalizowany pod artretyzm</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag cs-role-tag--sw">UX Architecture — Scan & Add (OCR)</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag cs-role-tag--sw" data-i18n={`${project.i18n}.role2.tag`}>UX Architecture — Scan & Add (OCR)</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
                 Zidentyfikowałem żmudną, manualną konfigurację planów leczenia jako główny Churn Point produktu. Rozbudowałem architekturę aplikacji o autorski moduł OCR: opiekun skanuje opakowanie leku, system automatycznie paruje dane z bazą produktów leczniczych, pobierając nazwę, dawkę, datę ważności i status refundacji. Wynik: skrócenie onboardingu o 75% i eliminacja błędów wynikających z ręcznego przepisywania.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
@@ -342,14 +325,14 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/tabbox/scan_tabbox.webp" alt="Scan & Add — flow skanowania opakowania i automatycznego onboardingu leku" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Scan & Add — widok ekranów procesu skanowania opakowania leku</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="tabbox.caption.4">Scan & Add — widok ekranów procesu skanowania opakowania leku</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag cs-role-tag--sw">Service Design — Zarządzanie zapasami</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag cs-role-tag--sw" data-i18n={`${project.i18n}.role3.tag`}>Service Design — Zarządzanie zapasami</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
                 Zaprojektowałem system zarządzania wieloma zmiennymi (leki stałe, suplementy, leki doraźne) zachowujący minimalizm poznawczy niezbędny w sytuacjach stresowych dla opiekuna. System w czasie rzeczywistym monitoruje fizyczny stan tabletek i generuje alerty o konieczności uzupełnienia — zapobiegając przerwaniu terapii zanim do niego dojdzie.
               </p>
             </div>
@@ -363,7 +346,7 @@ const nextProjects = [
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/tabbox/dashboard_tabbox.webp" alt="TabBox App — główny ekran dashboardu opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">TabBox App — główny ekran dashboardu opiekuna</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="tabbox.caption.5">TabBox App — główny ekran dashboardu opiekuna</figcaption>
           </figure>
         </div>
 
@@ -382,12 +365,12 @@ const nextProjects = [
             <p class="cs-section-number">04</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3">
+            <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s4.heading`}>
               Walidacja rynkowa i&nbsp;impact
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s4.intro`}>
               Inkluzywny design oparty na dowodach (Evidence-Based) okazał się silnym driverem wzrostu. Produkt przeszedł pełną walidację rynkową — od UX, przez hardware, po skalę biznesową.
             </p>
           </Reveal>
@@ -397,8 +380,8 @@ const nextProjects = [
         <div class="cs-results-grid">
           {results.map((r, i) => (
             <div class="cs-result-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
-              <div class="cs-result-value">{r.value}</div>
-              <p class="cs-result-label">{r.label}</p>
+              <div class="cs-result-value" data-i18n={`${project.i18n}.result.${i}.value`}>{r.value}</div>
+              <p class="cs-result-label" data-i18n={`${project.i18n}.result.${i}.label`}>{r.label}</p>
             </div>
           ))}
         </div>
@@ -407,10 +390,10 @@ const nextProjects = [
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
-            <blockquote class="cs-quote-text">
+            <blockquote class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
               "Zamiast projektować kolejną aplikację z przypomnieniami, zbudowałem ekosystem, który przenosi odpowiedzialność za terapię z użytkownika na technologię — tak, żeby senior mógł być pacjentem, a nie administratorem własnego leczenia."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · Strategic Product Lead / Creative Director, projekt TabBox</p>
+            <p class="cs-quote-source" data-i18n={`${project.i18n}.quote.source`}>Kamil Wardak · Strategic Product Lead / Creative Director, projekt TabBox</p>
           </div>
         </div>
 
@@ -425,10 +408,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Materiały wizualne</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.gallery.overline">Materiały wizualne</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Dokumentacja procesu</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.gallery.heading">Dokumentacja procesu</h2>
           </Reveal>
         </div>
 
@@ -439,7 +422,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/tabbox/overview_tabbox.webp" alt="Overview ekosystemu TabBox — połączenie hardware i aplikacji mobilnej" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Overview ekosystemu — połączenie hardware i aplikacji mobilnej</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="tabbox.caption.6">Overview ekosystemu — połączenie hardware i aplikacji mobilnej</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
@@ -447,7 +430,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/tabbox/user_flow_tabbox.webp" alt="User flow — ścieżka onboardingu opiekuna" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">User flow — ścieżka onboardingu opiekuna</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="tabbox.caption.7">User flow — ścieżka onboardingu opiekuna</figcaption>
             </figure>
           </div>
         </div>
@@ -458,19 +441,19 @@ const nextProjects = [
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/tabbox/kasetka_tabbox.webp" alt="Fizyczna kasetka TabBox — widok produktu" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Fizyczna kasetka TabBox — widok produktu</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="tabbox.caption.8">Fizyczna kasetka TabBox — widok produktu</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/tabbox/wireframe_tabbox.webp" alt="Wireframes — architektura ekranu zarządzania lekami" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Wireframes — architektura ekranu zarządzania lekami</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="tabbox.caption.9">Wireframes — architektura ekranu zarządzania lekami</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/tabbox/system_alertow_tabbox.webp" alt="System alertów — hierarchia krytyczności powiadomień" class="w-full h-full object-cover cs-img" loading="lazy" decoding="async" />
             </div>
-            <figcaption class="cs-img-caption">System alertów — hierarchia krytyczności powiadomień</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="tabbox.caption.10">System alertów — hierarchia krytyczności powiadomień</figcaption>
           </figure>
         </div>
 
@@ -488,10 +471,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Więcej projektów</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.next.overline">Więcej projektów</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Inne realizacje</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.next.heading">Inne realizacje</h2>
           </Reveal>
         </div>
 
@@ -513,11 +496,11 @@ const nextProjects = [
                 )}
               </div>
               <div class="cs-next-content">
-                <p class="cs-next-overline">{np.overline}</p>
-                <h3 class="cs-next-title">{np.title}</h3>
-                <p class="cs-next-desc">{np.description}</p>
+                <p class="cs-next-overline" data-i18n={`nextproject.${np.id}.overline`}>{np.overline}</p>
+                <h3 class="cs-next-title" data-i18n={`nextproject.${np.id}.title`}>{np.title}</h3>
+                <p class="cs-next-desc" data-i18n={`nextproject.${np.id}.desc`}>{np.description}</p>
                 <div class="cs-next-cta">
-                  <span>Zobacz case study</span>
+                  <span data-i18n="cs.next.cta">Zobacz case study</span>
                   <div class="cs-next-cta-icon">
                     <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>

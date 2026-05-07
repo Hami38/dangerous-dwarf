@@ -35,22 +35,22 @@ const stats = [
 
         <div class="me-overlay opacity-0 pointer-events-none">
           <div class="me-cards-scroll">
-            {stats.map((stat) => (
+            {stats.map((stat, i) => (
               <div class="me-stat-card">
                 <div class="me-card-label">
                   {/* Blok w kolorze labelki — zielony */}
                   <span class="reveal-block-el reveal-block-label"></span>
-                  <span class="me-label-text text-[#BAF52A] text-[10px] normalcase tracking-widest font-extrabold block">{stat.title}</span>
+                  <span class="me-label-text text-[#BAF52A] text-[10px] normalcase tracking-widest font-extrabold block" data-i18n={`expand.stat.${i}.title`}>{stat.title}</span>
                 </div>
                 <div class="me-card-heading">
                   {/* Blok w kolorze headingu — biały */}
                   <span class="reveal-block-el reveal-block-heading"></span>
-                  <h3 class="me-heading-text text-white text-xl font-bold">{stat.heading}</h3>
+                  <h3 class="me-heading-text text-white text-xl font-bold" data-i18n={`expand.stat.${i}.heading`}>{stat.heading}</h3>
                 </div>
                 <div class="me-card-desc">
                   {/* Blok w kolorze opisu — stone-300 */}
                   <span class="reveal-block-el reveal-block-desc"></span>
-                  <p class="me-desc-text text-stone-300 text-xs leading-relaxed font-medium">{stat.description}</p>
+                  <p class="me-desc-text text-stone-300 text-xs leading-relaxed font-medium" data-i18n={`expand.stat.${i}.desc`}>{stat.description}</p>
                 </div>
               </div>
             ))}

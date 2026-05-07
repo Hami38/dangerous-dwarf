@@ -11,6 +11,7 @@ const project = {
   client: "Infracert",
   year: "2022",
   scope: "Product Design · Safety-Critical UX · Human Factors",
+  i18n: "vtda",
 };
 
 const challenges = [
@@ -39,27 +40,9 @@ const results = [
 ];
 
 const nextProjects = [
-  {
-    overline: "Finanse / Strategia UX",
-    title: "BLIK dla Biznesu w ING",
-    description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.",
-    href: "/projekty/blik-dla-biznesu",
-    image: "/images/ing/KV_blik.webp",
-  },
-  {
-    overline: "Bezpieczeństwo / Computer Vision",
-    title: "System reidentyfikacji osób dla infrastruktury krytycznej",
-    description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI. 20% ROI w 6 miesięcy.",
-    href: "/projekty/reid",
-    image: "/images/reid/hero_reid.webp",
-  },
-  {
-    overline: "MedTech / IoT / Product Design",
-    title: "Tabbox: Inteligentny system farmakoterapii",
-    description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.",
-    href: "/projekty/tabbox",
-    image: "/images/tabbox/KV_tabbox.webp",
-  },
+  { id: "blik",   overline: "Finanse / Strategia UX",             title: "BLIK dla Biznesu w ING", description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.", href: "/projekty/blik-dla-biznesu", image: "/images/ing/KV_blik.webp" },
+  { id: "reid",   overline: "Bezpieczeństwo / Computer Vision",   title: "System reidentyfikacji osób dla infrastruktury krytycznej", description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI. 20% ROI w 6 miesięcy.", href: "/projekty/reid",             image: "/images/reid/hero_reid.webp" },
+  { id: "tabbox", overline: "MedTech / IoT / Product Design",       title: "Tabbox: Inteligentny system farmakoterapii", description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.", href: "/projekty/tabbox",           image: "/images/tabbox/KV_tabbox.webp" },
 ];
 ---
 
@@ -91,21 +74,21 @@ const nextProjects = [
             <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-7-7-7 7 7 7"/>
             </svg>
-            <span>Wszystkie projekty</span>
+            <span data-i18n="cs.back">Wszystkie projekty</span>
           </a>
         </div>
 
         <!-- Overline label -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
           <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
-            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold">{project.overline}</p>
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n={`${project.i18n}.overline`}>{project.overline}</p>
           </Reveal>
         </div>
 
         <!-- Main title -->
         <div class="mb-6">
           <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
-            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight" data-i18n={`${project.i18n}.title`}>
               {project.title}
             </h1>
           </Reveal>
@@ -114,7 +97,7 @@ const nextProjects = [
         <!-- Subtitle -->
         <div class="max-w-2xl mb-12">
           <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
-            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed" data-i18n={`${project.i18n}.subtitle`}>
               {project.subtitle}
             </p>
           </Reveal>
@@ -123,23 +106,23 @@ const nextProjects = [
         <!-- Meta strip -->
         <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rola</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.role">Rola</span>
             <span class="cs-meta-value">{project.role}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Klient</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.client">Klient</span>
             <span class="cs-meta-value">{project.client}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rok</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.year">Rok</span>
             <span class="cs-meta-value">{project.year}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Zakres</span>
-            <span class="cs-meta-value">{project.scope}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
           </div>
         </div>
 
@@ -155,7 +138,7 @@ const nextProjects = [
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <p>
-            <strong>Nota o charakterze projektu:</strong> VTDA jest systemem klasy Safety-Critical. Prezentowane materiały wizualne pochodzą z fazy projektowej i zostały zanonimizowane. Niniejsze case study koncentruje się na architekturze decyzji UX, psychologii bezpieczeństwa i mierzalnym wpływie operacyjnym — nie na finalnych detalach produkcyjnych interfejsu.
+            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o charakterze projektu:</strong> <span data-i18n={`${project.i18n}.conf`}>VTDA jest systemem klasy Safety-Critical. Prezentowane materiały wizualne pochodzą z fazy projektowej i zostały zanonimizowane. Niniejsze case study koncentruje się na architekturze decyzji UX, psychologii bezpieczeństwa i mierzalnym wpływie operacyjnym — nie na finalnych detalach produkcyjnych interfejsu.</span>
           </p>
         </div>
       </div>
@@ -186,7 +169,7 @@ const nextProjects = [
               <p class="cs-section-number">01</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s1.heading`}>
                 System jako proaktywny asystent, nie pasywny wyświetlacz
               </h2>
             </Reveal>
@@ -195,12 +178,12 @@ const nextProjects = [
           <!-- Right: Body text -->
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
-              <p class="cs-body-text mb-6">
+              <p class="cs-body-text mb-6" data-i18n={`${project.i18n}.s1.body1`}>
                 W kabinie lokomotywy głównym wyzwaniem nie jest brak danych — jest ich nadmiar. Maszyniści pracowali reaktywnie: odpowiadali na alerty zamiast przewidywać zdarzenia. Przy prędkościach kolejowych reaktywność to krytyczny błąd bezpieczeństwa.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
-              <p class="cs-body-text">
+              <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
                 Moją diagnozą UX było to, że istniejące systemy wymuszały na człowieku rolę „procesora danych". Celem projektu było przesunięcie roli systemu z biernego wyświetlacza na proaktywnego asystenta, który zarządza uwagą maszynisty i filtruje szum informacyjny — szczególnie w sytuacjach wysokiego stresu.
               </p>
             </Reveal>
@@ -215,13 +198,13 @@ const nextProjects = [
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/vtda/VTDA_04.webp" alt="Sterownia maszynisty - agregacja bodźców użytkownika" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Sterownia maszynisty - agregacja bodźców użytkownika</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="vtda.caption.0">Sterownia maszynisty - agregacja bodźców użytkownika</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/vtda/VTDA_13.webp" alt="Ewolucja Dashboardu — wersja finalna po redukcji o 60%" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Ewolucja Dashboardu — wersja finalna po redukcji widoku</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="vtda.caption.1">Ewolucja Dashboardu — wersja finalna po redukcji widoku</figcaption>
             </figure>
           </div>
         </div>
@@ -241,12 +224,12 @@ const nextProjects = [
             <p class="cs-section-number">02</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3 max-w-xl">
+            <h2 class="cs-section-heading mt-3 max-w-xl" data-i18n={`${project.i18n}.s2.heading`}>
               Projektowanie pod presją fizyki i&nbsp;psychologii
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
               Trzy wyzwania, z których każde mogło samodzielnie zdyskredytować produkt — albo kosztować życie.
             </p>
           </Reveal>
@@ -258,8 +241,8 @@ const nextProjects = [
             <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
               <div class="cs-challenge-number">{ch.number}</div>
               <div class="cs-challenge-content">
-                <h3 class="cs-challenge-title">{ch.title}</h3>
-                <p class="cs-challenge-desc">{ch.description}</p>
+                <h3 class="cs-challenge-title" data-i18n={`${project.i18n}.challenge.${i}.title`}>{ch.title}</h3>
+                <p class="cs-challenge-desc" data-i18n={`${project.i18n}.challenge.${i}.desc`}>{ch.description}</p>
               </div>
             </div>
           ))}
@@ -271,7 +254,7 @@ const nextProjects = [
             <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/vtda/VTDA_11.webp" alt="Interfejs w trybie nocnym — ekstremalnie niska luminancja eliminująca refleksy na szybie" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Tryb nocny — ekstremalnie niska luminancja, barwy nieoddbijające się w szybie kabiny</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="vtda.caption.2">Tryb nocny — ekstremalnie niska luminancja, barwy nieoddbijające się w szybie kabiny</figcaption>
           </figure>
         </div>
 
@@ -292,12 +275,12 @@ const nextProjects = [
               <p class="cs-section-number">03</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s3.heading`}>
                 Architektura decyzji i&nbsp;logiki bezpieczeństwa
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
-              <p class="cs-body-text mt-4">
+              <p class="cs-body-text mt-4" data-i18n={`${project.i18n}.s3.intro`}>
                 Każda decyzja projektowa miała uzasadnienie w psychologii bezpieczeństwa i fizyce środowiska. UX służył tu nie wygodzie, a utrzymaniu czujności i precyzji operatora.
               </p>
             </Reveal>
@@ -307,8 +290,8 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag">Progressive Disclosure & Fail-Fast Minimalism</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Progressive Disclosure & Fail-Fast Minimalism</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
                 Zredukowałem widok główny o 60%. Widok krytyczny zawiera wyłącznie Prędkość, Następny Cel i Krzywą Hamowania. Szczegóły techniczne — parametry radia, diagnostyka — pojawiają się tylko na żądanie lub gdy system wykryje anomalię wymagającą interwencji. Mniej danych, więcej decyzji.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
@@ -316,14 +299,14 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/vtda/VTDA_14.webp" alt="Dashboard po redukcji — widok krytyczny z Progressive Disclosure" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Dashboard po redukcji — trzy elementy krytyczne, zero szumu</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="vtda.caption.3">Dashboard po redukcji — trzy elementy krytyczne, zero szumu</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag">Psychologia bezpieczeństwa — Efekt Checklisty</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Psychologia bezpieczeństwa — Efekt Checklisty</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
                 Mimo technicznej możliwości pełnej automatyzacji, zdecydowałem, że "System Check" przed odjazdem musi pozostać manualny. Maszynista musi fizycznie „zatwierdzić" gotowość składu. Checklist Effect buduje poczucie odpowiedzialności i zmusza do świadomego przejścia przez procedurę — UX służy tu utrzymaniu czujności, nie komfortu.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
@@ -331,14 +314,14 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/vtda/VTDA_08.webp" alt="Ekran manualnej weryfikacji systemu — Checklist Effect" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">System Check — manualna weryfikacja jako celowy mechanizm budowania czujności</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="vtda.caption.4">System Check — manualna weryfikacja jako celowy mechanizm budowania czujności</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag">Architektura Guiding Rails — Widok Tunelowy</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Architektura Guiding Rails — Widok Tunelowy</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
                 Porzuciłem klasyczną mapę 2D na rzecz liniowej reprezentacji trasy (Guiding Rails). Pociąg porusza się wyłącznie w jednym kierunku — maszynistę nie interesuje otoczenie geograficzne, tylko to, co bezpośrednio na jego „nitce" toru. Skróciło to czas skanowania wzrokiem ekranu o 40%.
               </p>
             </div>
@@ -352,7 +335,7 @@ const nextProjects = [
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/vtda/VTDA_09.webp" alt="VTDA — podsumowanie wyników systemu i statystyk pilotażu" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">VTDA w działaniu — podsumowanie kluczowych wyników 6-miesięcznego pilotażu</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="vtda.caption.5">VTDA w działaniu — podsumowanie kluczowych wyników 6-miesięcznego pilotażu</figcaption>
           </figure>
         </div>
 
@@ -371,12 +354,12 @@ const nextProjects = [
             <p class="cs-section-number">04</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3">
+            <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s4.heading`}>
               Wyniki mierzone bezpieczeństwem
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s4.intro`}>
               Radykalne uproszczenie UX w przemyśle ciężkim przełożyło się na twarde wyniki operacyjne. W sektorze kolejowym, gdzie każdy incydent ma konsekwencje — 20% redukcja ryzyka to wynik wyjątkowy.
             </p>
           </Reveal>
@@ -387,7 +370,7 @@ const nextProjects = [
           {results.map((r, i) => (
             <div class="cs-result-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
               <div class="cs-result-value">{r.value}</div>
-              <p class="cs-result-label">{r.label}</p>
+              <p class="cs-result-label" data-i18n={`${project.i18n}.result.${i}.label`}>{r.label}</p>
             </div>
           ))}
         </div>
@@ -396,10 +379,10 @@ const nextProjects = [
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
-            <blockquote class="cs-quote-text">
+            <blockquote class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
               "Zamiast przenosić do pociągów schematy znane z lotnictwa, skupiłem się na tym, czego maszynista naprawdę potrzebuje: nie więcej danych — lepszych decyzji w krytycznym momencie."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · Lead Product Designer / UX Architect, projekt VTDA</p>
+            <p class="cs-quote-source" data-i18n={`${project.i18n}.quote.source`}>Kamil Wardak · Lead Product Designer / UX Architect, projekt VTDA</p>
           </div>
         </div>
 
@@ -414,10 +397,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Materiały wizualne</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.gallery.overline">Materiały wizualne</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Dokumentacja procesu</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.gallery.heading">Dokumentacja procesu</h2>
           </Reveal>
         </div>
 
@@ -428,7 +411,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/vtda/VTDA_overview.webp" alt="Zestawienie widoków ekranów systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Overview systemu VTDA</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="vtda.caption.6">Overview systemu VTDA</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
@@ -436,7 +419,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/vtda/VTDA_user_flow.webp" alt="User flow systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">User flow systemu VTDA</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="vtda.caption.7">User flow systemu VTDA</figcaption>
             </figure>
           </div>
         </div>
@@ -447,19 +430,19 @@ const nextProjects = [
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/vtda/VTDA_08.webp" alt="Ekran manualnej weryfikacji systemu — System Check" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">System Check — manualna weryfikacja gotowości</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="vtda.caption.8">System Check — manualna weryfikacja gotowości</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/vtda/VTDA_empathy_map.webp" alt="VTDA - mapa empatii" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">VTDA - mapa empatii</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="vtda.caption.9">VTDA - mapa empatii</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/vtda/VTDA_wireframe.webp" alt="Low-fidelity wireframe systemu VTDA" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Low-fidelity wireframe systemu VTDA</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="vtda.caption.10">Low-fidelity wireframe systemu VTDA</figcaption>
           </figure>
         </div>
 
@@ -477,10 +460,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Więcej projektów</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.next.overline">Więcej projektów</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Inne realizacje</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.next.heading">Inne realizacje</h2>
           </Reveal>
         </div>
 
@@ -502,11 +485,11 @@ const nextProjects = [
                 )}
               </div>
               <div class="cs-next-content">
-                <p class="cs-next-overline">{np.overline}</p>
-                <h3 class="cs-next-title">{np.title}</h3>
-                <p class="cs-next-desc">{np.description}</p>
+                <p class="cs-next-overline" data-i18n={`nextproject.${np.id}.overline`}>{np.overline}</p>
+                <h3 class="cs-next-title" data-i18n={`nextproject.${np.id}.title`}>{np.title}</h3>
+                <p class="cs-next-desc" data-i18n={`nextproject.${np.id}.desc`}>{np.description}</p>
                 <div class="cs-next-cta">
-                  <span>Zobacz case study</span>
+                  <span data-i18n="cs.next.cta">Zobacz case study</span>
                   <div class="cs-next-cta-icon">
                     <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>

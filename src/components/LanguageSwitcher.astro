@@ -1,0 +1,130 @@
+---
+interface Props {
+  variant?: 'desktop' | 'mobile';
+}
+const { variant = 'desktop' } = Astro.props;
+---
+
+{variant === 'desktop' && (
+  <div class="lang-switcher-desktop" role="group" aria-label="Wybór języka">
+    <button class="lang-btn" data-lang-btn="pl" aria-pressed="true" aria-label="Język polski">PL</button>
+    <span class="lang-sep" aria-hidden="true">|</span>
+    <button class="lang-btn" data-lang-btn="en" aria-pressed="false" aria-label="Switch to English">EN</button>
+  </div>
+)}
+
+{variant === 'mobile' && (
+  <div class="lang-switcher-mobile" role="group" aria-label="Language selection">
+    <button class="flag-btn" data-lang-btn="pl" aria-pressed="true" aria-label="Język polski">
+      <span class="flag-icon" aria-hidden="true">🇵🇱</span>
+      <span class="flag-label">PL</span>
+    </button>
+    <button class="flag-btn" data-lang-btn="en" aria-pressed="false" aria-label="Switch to English">
+      <span class="flag-icon" aria-hidden="true">🇬🇧</span>
+      <span class="flag-label">EN</span>
+    </button>
+  </div>
+)}
+
+<script>
+  import { setLang, getLang, type Lang } from '../i18n/client';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang-btn') as Lang | null;
+      if (lang === 'pl' || lang === 'en') setLang(lang);
+    });
+  });
+
+  // Set initial active state based on stored language
+  const current = getLang();
+  document.querySelectorAll<HTMLElement>('[data-lang-btn]').forEach((btn) => {
+    const isActive = btn.getAttribute('data-lang-btn') === current;
+    btn.classList.toggle('is-active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
+</script>
+
+<style>
+  /* ── Desktop switcher ──────────────────────────────────────── */
+  .lang-switcher-desktop {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .lang-btn {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 3px;
+    line-height: 1;
+    transition: color 0.25s ease;
+  }
+
+  .lang-btn:hover,
+  .lang-btn.is-active {
+    color: var(--brand-main);
+  }
+
+  .lang-sep {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.15);
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* ── Mobile switcher ───────────────────────────────────────── */
+  .lang-switcher-mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .flag-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 10px;
+    opacity: 0.45;
+    border: 1px solid transparent;
+    transition: opacity 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  }
+
+  .flag-btn:hover,
+  .flag-btn.is-active {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .flag-btn.is-active {
+    border-color: rgba(186, 245, 42, 0.3);
+    transform: scale(1.05);
+  }
+
+  .flag-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .flag-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1;
+  }
+
+  .flag-btn.is-active .flag-label {
+    color: var(--brand-main);
+  }
+</style>

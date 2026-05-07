@@ -38,23 +38,23 @@ const stats = [
 
           <div class="de-overlay opacity-0 pointer-events-none">
             <div class="max-w-4xl mx-auto px-6 w-full grid grid-cols-2 gap-8">
-              {stats.map((stat) => (
+              {stats.map((stat, i) => (
                 <div class="de-stat-card">
                   <div class="de-card-text">
                     <div class="de-card-label">
                       {/* Blok w kolorze labelki — zielony #BAF52A */}
                       <span class="reveal-block-el reveal-block-label"></span>
-                      <span class="de-label-text text-[#BAF52A] text-[12px] normalcase tracking-[0.15em] font-bold block">{stat.title}</span>
+                      <span class="de-label-text text-[#BAF52A] text-[12px] normalcase tracking-[0.15em] font-bold block" data-i18n={`expand.stat.${i}.title`}>{stat.title}</span>
                     </div>
                     <div class="de-card-heading">
                       {/* Blok w kolorze headingu — biały */}
                       <span class="reveal-block-el reveal-block-heading"></span>
-                      <h3 class="de-heading-text text-white text-3xl font-bold tracking-tight">{stat.heading}</h3>
+                      <h3 class="de-heading-text text-white text-3xl font-bold tracking-tight" data-i18n={`expand.stat.${i}.heading`}>{stat.heading}</h3>
                     </div>
                     <div class="de-card-desc">
                       {/* Blok w kolorze opisu — stone-300 */}
                       <span class="reveal-block-el reveal-block-desc"></span>
-                      <p class="de-desc-text text-stone-300 text-sm leading-relaxed font-medium">{stat.description}</p>
+                      <p class="de-desc-text text-stone-300 text-sm leading-relaxed font-medium" data-i18n={`expand.stat.${i}.desc`}>{stat.description}</p>
                     </div>
                   </div>
                 </div>

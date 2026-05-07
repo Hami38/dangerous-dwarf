@@ -76,16 +76,15 @@ const whyMe = [
 
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0s">
           <Reveal delay={0} color="#BAF52A">
-            <p class="pd-overline">Podejście</p>
+            <p class="pd-overline" data-i18n="approach.overline">Podejście</p>
           </Reveal>
         </div>
 
         <h1 class="pd-headline opacity-0" data-hero-fade style="--delay: 0.07s">
-          Strategia to rzemiosło<br/>
-          <span class="pd-headline-accent">wprowadzania struktury w chaos.</span>
+          <span data-i18n-html="approach.headline">Strategia to rzemiosło<br/><span class="pd-headline-accent">wprowadzania struktury w chaos.</span></span>
         </h1>
 
-        <p class="pd-lead max-w-2xl mt-6 opacity-0" data-hero-fade style="--delay: 0.14s">
+        <p class="pd-lead max-w-2xl mt-6 opacity-0" data-hero-fade style="--delay: 0.14s" data-i18n="approach.lead">
           Moje podejście opiera się na dwóch filarach: precyzyjnej analizie skomplikowanych
           ekosystemów oraz budowaniu kultury projektowej, w której design jest mierzalnym
           partnerem biznesu. Nie szukam najprostszych rozwiązań — szukam tych najskuteczniejszych.
@@ -94,13 +93,13 @@ const whyMe = [
         <!-- Pillar navigation anchors -->
         <div class="flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 mt-10 opacity-0" data-hero-fade style="--delay: 0.21s">
           <a href="#fragmentacja-big-picture" class="pd-anchor-btn pd-anchor-btn--primary">
-            <span>01 · Fragmentacja & Big Picture</span>
+            <span data-i18n="approach.pillar1.anchor">01 · Fragmentacja & Big Picture</span>
             <svg class="pd-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 5v14m-7-7 7 7 7-7"/>
             </svg>
           </a>
           <a href="#zarzadzanie-przywodztwo" class="pd-anchor-btn pd-anchor-btn--secondary">
-            <span>02 · Zarządzanie & Przywództwo</span>
+            <span data-i18n="approach.pillar2.anchor">02 · Zarządzanie & Przywództwo</span>
             <svg class="pd-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 5v14m-7-7 7 7 7-7"/>
             </svg>
@@ -129,19 +128,18 @@ const whyMe = [
         <div class="mb-14 md:mb-20">
 
           <div class="opacity-0 mb-5" data-scroll-fade>
-            <span class="pd-pill">Filar I</span>
+            <span class="pd-pill" data-i18n="approach.pillar1.pill">Filar I</span>
           </div>
 
           <div class="opacity-0" data-scroll-fade style="--fade-delay: 0.08s">
-            <p class="pd-pillar-tag">Fragmentacja & Big Picture</p>
+            <p class="pd-pillar-tag" data-i18n="approach.pillar1.tag">Fragmentacja & Big Picture</p>
           </div>
 
           <h2 class="pd-pillar-heading opacity-0" data-scroll-fade style="--fade-delay: 0.16s">
-            Projektowanie logiki<br class="hidden md:block"/>
-            w środowiskach wysokiej złożoności.
+            <span data-i18n-html="approach.pillar1.heading">Projektowanie logiki<br class="hidden md:block"/>w środowiskach wysokiej złożoności.</span>
           </h2>
 
-          <p class="pd-pillar-intro opacity-0" data-scroll-fade style="--fade-delay: 0.24s">
+          <p class="pd-pillar-intro opacity-0" data-scroll-fade style="--fade-delay: 0.24s" data-i18n="approach.pillar1.intro">
             W sektorze finansowym i systemach krytycznych złożoność nie jest przeszkodą —
             jest naturalnym środowiskiem pracy. Moim zadaniem jest dekonstrukcja tej złożoności
             i zamiana jej w intuicyjne, bezpieczne procesy.
@@ -159,8 +157,8 @@ const whyMe = [
             >
               <p class="pd-item-num">{String(i + 1).padStart(2, '0')}</p>
               <div class="pd-item-line" aria-hidden="true"></div>
-              <h3 class="pd-item-heading">{item.heading}</h3>
-              <p class="pd-item-body">{item.body}</p>
+              <h3 class="pd-item-heading" data-i18n={`approach.pillar1.item.${i}.heading`}>{item.heading}</h3>
+              <p class="pd-item-body" data-i18n={`approach.pillar1.item.${i}.body`}>{item.body}</p>
             </div>
           ))}
         </div>
@@ -184,19 +182,18 @@ const whyMe = [
         <div class="mb-14 md:mb-20">
 
           <div class="opacity-0 mb-5" data-scroll-fade>
-            <span class="pd-pill pd-pill--alt">Filar II</span>
+            <span class="pd-pill pd-pill--alt" data-i18n="approach.pillar2.pill">Filar II</span>
           </div>
 
           <div class="opacity-0" data-scroll-fade style="--fade-delay: 0.08s">
-            <p class="pd-pillar-tag">Zarządzanie & Przywództwo</p>
+            <p class="pd-pillar-tag" data-i18n="approach.pillar2.tag">Zarządzanie & Przywództwo</p>
           </div>
 
           <h2 class="pd-pillar-heading opacity-0" data-scroll-fade style="--fade-delay: 0.16s">
-            Design to sport zespołowy.<br class="hidden md:block"/>
-            Moja rola to facylitacja zwycięstwa.
+            <span data-i18n-html="approach.pillar2.heading">Design to sport zespołowy.<br/>Moja rola to facylitacja zwycięstwa.</span>
           </h2>
 
-          <p class="pd-pillar-intro opacity-0" data-scroll-fade style="--fade-delay: 0.24s">
+          <p class="pd-pillar-intro opacity-0" data-scroll-fade style="--fade-delay: 0.24s" data-i18n="approach.pillar2.intro">
             Lider UX w dużej organizacji to nie tylko strażnik jakości projektowej —
             to przede wszystkim łącznik między biznesem, technologią a użytkownikiem.
             Most, który sprawia, że decyzje mają sens dla wszystkich stron.
@@ -214,8 +211,8 @@ const whyMe = [
             >
               <p class="pd-item-num pd-item-num--alt">{String(i + 1).padStart(2, '0')}</p>
               <div class="pd-item-line pd-item-line--alt" aria-hidden="true"></div>
-              <h3 class="pd-item-heading">{item.heading}</h3>
-              <p class="pd-item-body">{item.body}</p>
+              <h3 class="pd-item-heading" data-i18n={`approach.pillar2.item.${i}.heading`}>{item.heading}</h3>
+              <p class="pd-item-body" data-i18n={`approach.pillar2.item.${i}.body`}>{item.body}</p>
             </div>
           ))}
         </div>
@@ -231,12 +228,11 @@ const whyMe = [
       <div class="max-w-4xl mx-auto">
 
         <div class="mb-16 md:mb-20 opacity-0" data-scroll-fade>
-          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5 uppercase">
+          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5 uppercase" data-i18n="approach.why.overline">
             Dlaczego ja?
           </p>
-          <h2 class="pd-section-heading">
-            Dlaczego potrzebujesz UX&nbsp;Stratega<br class="hidden md:block"/>
-            na tym etapie?
+          <h2 class="pd-section-heading" data-i18n-html="approach.why.heading">
+            Dlaczego potrzebujesz UX&nbsp;Stratega<br class="hidden md:block"/>na tym etapie?
           </h2>
         </div>
 
@@ -248,8 +244,8 @@ const whyMe = [
               style={`--fade-delay: ${0.06 + i * 0.1}s`}
             >
               <p class="pd-why-num">{item.number}</p>
-              <h3 class="pd-why-heading">{item.heading}</h3>
-              <p class="pd-why-body">{item.body}</p>
+              <h3 class="pd-why-heading" data-i18n={`approach.why.${i}.heading`}>{item.heading}</h3>
+              <p class="pd-why-body" data-i18n={`approach.why.${i}.body`}>{item.body}</p>
             </div>
           ))}
         </div>
@@ -257,8 +253,8 @@ const whyMe = [
         <!-- Closing quote -->
         <div class="pd-quote opacity-0 mt-16 md:mt-20" data-scroll-fade style="--fade-delay: 0.3s">
           <div class="pd-quote-bar" aria-hidden="true"></div>
-          <p class="pd-quote-kicker">Filozofia pracy</p>
-          <p class="pd-quote-text">
+          <p class="pd-quote-kicker" data-i18n="approach.quote.kicker">Filozofia pracy</p>
+          <p class="pd-quote-text" data-i18n="approach.quote.text">
             "Strategia bez egzekucji to marzenie. Egzekucja bez strategii to koszmar.
             Moje podejście łączy oba światy — bo tylko tak design staje się realną
             przewagą konkurencyjną, a nie kosztem projektowym."

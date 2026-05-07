@@ -56,10 +56,10 @@ const cases = [
     <!-- Section Header -->
     <div class="mb-20 md:mb-28 max-w-4xl">
       <Reveal delay={0.1}>
-        <p class="section-overline text-[#BAF52A] text-xs Normalcase tracking-[0.15em] font-bold mb-4">Wybrane projekty</p>
+        <p class="section-overline text-[#BAF52A] text-xs Normalcase tracking-[0.15em] font-bold mb-4" data-i18n="portfolio.overline">Wybrane projekty</p>
       </Reveal>
       <Reveal delay={0.25}>
-        <h2 class="section-heading text-white text-4xl md:text-5xl font-bold leading-tight">
+        <h2 class="section-heading text-white text-4xl md:text-5xl font-bold leading-tight" data-i18n-html="portfolio.heading">
           Od strategii <br class="hidden md:block" />po realny wpływ.
         </h2>
       </Reveal>
@@ -93,23 +93,23 @@ const cases = [
             <div class={`case-content md:col-span-5 ${caseItem.reverse ? 'md:order-1 md:text-right' : ''}`}>
               <div class="mb-3">
                 <Reveal delay={0.2 + index * 0.1} color="#BAF52A" tag="span">
-                  <p class="case-overline text-[#BAF52A] text-[12px] normalcase tracking-[0.15em] font-bold">
+                  <p class="case-overline text-[#BAF52A] text-[12px] normalcase tracking-[0.15em] font-bold" data-i18n={`portfolio.case.${index}.overline`}>
                     {caseItem.overline}
                   </p>
                 </Reveal>
               </div>
-              
+
               <div class="mb-4">
                 <Reveal delay={0.35 + index * 0.1} color="#ffffff" tag="span">
-                  <h3 class="case-headline text-white text-2xl md:text-3xl font-bold leading-tight">
+                  <h3 class="case-headline text-white text-2xl md:text-3xl font-bold leading-tight" data-i18n={`portfolio.case.${index}.headline`}>
                     {caseItem.headline}
                   </h3>
                 </Reveal>
               </div>
-              
+
               <div class="mb-6">
                 <Reveal delay={0.5 + index * 0.1} color="#a8a29e" tag="span">
-                  <p class="case-subtext text-stone-400 text-sm md:text-base font-medium leading-relaxed">
+                  <p class="case-subtext text-stone-400 text-sm md:text-base font-medium leading-relaxed" data-i18n={`portfolio.case.${index}.subtext`}>
                     {caseItem.subtext}
                   </p>
                 </Reveal>
@@ -117,11 +117,11 @@ const cases = [
 
               <div class="flex flex-col gap-4">
                 <div class="case-metric inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 opacity-0 w-fit" data-fade-in style={`transition-delay: ${0.65 + index * 0.1}s`}>
-                  <span class="text-xs font-bold text-white/80 leading-none">{caseItem.metric}</span>
+                  <span class="text-xs font-bold text-white/80 leading-none" data-i18n={`portfolio.case.${index}.metric`}>{caseItem.metric}</span>
                 </div>
 
                 <a href={caseItem.href} class="case-cta group inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 opacity-0 w-fit" data-fade-in style={`transition-delay: ${0.8 + index * 0.1}s`}>
-                  <span>Zobacz case study</span>
+                  <span data-i18n="portfolio.cta">Zobacz case study</span>
                   <div class="icon-wrapper relative w-4 h-4 overflow-hidden">
                     <svg class="icon-arrow absolute inset-0 transition-transform duration-300 group-hover:-translate-y-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>

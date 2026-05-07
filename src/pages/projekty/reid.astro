@@ -11,6 +11,7 @@ const project = {
   client: "New Security Systems",
   year: "2023",
   scope: "Product Design · AI/UX Strategy · Ethics & GDPR",
+  i18n: "reid",
 };
 
 const challenges = [
@@ -39,27 +40,9 @@ const results = [
 ];
 
 const nextProjects = [
-  {
-    overline: "Finanse / Strategia UX",
-    title: "BLIK dla Biznesu w ING",
-    description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.",
-    href: "/projekty/blik-dla-biznesu",
-    image: "/images/ing/KV_blik.webp",
-  },
-  {
-    overline: "Bezpieczeństwo krytyczne / Deep Tech",
-    title: "Wirtualny asystent dla maszynistów",
-    description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.",
-    href: "/projekty/vtda",
-    image: "/images/vtda/VTDA_01.webp",
-  },
-  {
-    overline: "MedTech / IoT / Product Design",
-    title: "Tabbox: Inteligentny system farmakoterapii",
-    description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.",
-    href: "/projekty/tabbox",
-    image: "/images/tabbox/KV_tabbox.webp",
-  },
+  { id: "blik",   overline: "Finanse / Strategia UX",             title: "BLIK dla Biznesu w ING", description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.", href: "/projekty/blik-dla-biznesu", image: "/images/ing/KV_blik.webp" },
+  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "Wirtualny asystent dla maszynistów", description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",             image: "/images/vtda/VTDA_01.webp" },
+  { id: "tabbox", overline: "MedTech / IoT / Product Design",       title: "Tabbox: Inteligentny system farmakoterapii", description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.", href: "/projekty/tabbox",           image: "/images/tabbox/KV_tabbox.webp" },
 ];
 ---
 
@@ -91,21 +74,21 @@ const nextProjects = [
             <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-7-7-7 7 7 7"/>
             </svg>
-            <span>Wszystkie projekty</span>
+            <span data-i18n="cs.back">Wszystkie projekty</span>
           </a>
         </div>
 
         <!-- Overline label -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
           <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
-            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold">{project.overline}</p>
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n={`${project.i18n}.overline`}>{project.overline}</p>
           </Reveal>
         </div>
 
         <!-- Main title -->
         <div class="mb-6">
           <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
-            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight" data-i18n={`${project.i18n}.title`}>
               {project.title}
             </h1>
           </Reveal>
@@ -114,7 +97,7 @@ const nextProjects = [
         <!-- Subtitle -->
         <div class="max-w-2xl mb-12">
           <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
-            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed" data-i18n={`${project.i18n}.subtitle`}>
               {project.subtitle}
             </p>
           </Reveal>
@@ -123,23 +106,23 @@ const nextProjects = [
         <!-- Meta strip -->
         <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rola</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.role">Rola</span>
             <span class="cs-meta-value">{project.role}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Klient</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.client">Klient</span>
             <span class="cs-meta-value">{project.client}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Rok</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.year">Rok</span>
             <span class="cs-meta-value">{project.year}</span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label">Zakres</span>
-            <span class="cs-meta-value">{project.scope}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
           </div>
         </div>
 
@@ -155,7 +138,7 @@ const nextProjects = [
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <p>
-            <strong>Nota o poufności:</strong> Ze względu na wrażliwy charakter danych biometrycznych, wizualizacje zostały zanonimizowane. Niniejsze case study koncentruje się na przywództwie projektowym, architekturze decyzji UX i mierzalnym wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.
+            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o poufności:</strong> <span data-i18n={`${project.i18n}.conf`}>Ze względu na wrażliwy charakter danych biometrycznych, wizualizacje zostały zanonimizowane. Niniejsze case study koncentruje się na przywództwie projektowym, architekturze decyzji UX i mierzalnym wpływie biznesowym — nie na finalnych, produkcyjnych detalach interfejsu.</span>
           </p>
         </div>
       </div>
@@ -186,7 +169,7 @@ const nextProjects = [
               <p class="cs-section-number">01</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s1.heading`}>
                 Komercjalizacja technologii głębokiego uczenia
               </h2>
             </Reveal>
@@ -195,12 +178,12 @@ const nextProjects = [
           <!-- Right: Body text -->
           <div class="md:col-span-7">
             <Reveal delay={0.35} color="#a8a29e">
-              <p class="cs-body-text mb-6">
+              <p class="cs-body-text mb-6" data-i18n={`${project.i18n}.s1.body1`}>
                 Zadaniem było przekształcenie zaawansowanych algorytmów reidentyfikacji (Face, Gait, Cloth) w stabilny produkt klasy SaaS. Technologia istniała — brakowało warstwy, która uczyni ją używalną przez człowieka pod presją.
               </p>
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
-              <p class="cs-body-text">
+              <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
                 Kluczowym wyzwaniem nie była sama technologia Deep Learning, lecz projektowanie interfejsu minimalizującego Cognitive Overload operatorów monitoringu — przy zachowaniu 100% zgodności z normami etycznymi i prawnymi (GDPR/CCPA).
               </p>
             </Reveal>
@@ -215,13 +198,13 @@ const nextProjects = [
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/reid/ps_reid.webp" alt="Problems & Solutions — mapowanie wyzwań i rozwiązań projektowych" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Problems & Solutions — mapowanie wyzwań i rozwiązań projektowych</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="reid.caption.0">Problems & Solutions — mapowanie wyzwań i rozwiązań projektowych</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/reid/ryzyko_reid.webp" alt="Trójkąt ryzyka — Privacy, Accuracy, Cognitive Load" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Trójkąt ryzyka — balansowanie między prywatnością, precyzją i wydajnością</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="reid.caption.1">Trójkąt ryzyka — balansowanie między prywatnością, precyzją i wydajnością</figcaption>
             </figure>
           </div>
         </div>
@@ -241,12 +224,12 @@ const nextProjects = [
             <p class="cs-section-number">02</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3 max-w-xl">
+            <h2 class="cs-section-heading mt-3 max-w-xl" data-i18n={`${project.i18n}.s2.heading`}>
               Design jako zarządzanie ryzykiem
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
               Wdrożenie biometrii w infrastrukturze krytycznej wymagało wyważenia trzech sił. Każda z nich mogła samodzielnie zdyskredytować produkt na rynku.
             </p>
           </Reveal>
@@ -258,8 +241,8 @@ const nextProjects = [
             <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
               <div class="cs-challenge-number">{ch.number}</div>
               <div class="cs-challenge-content">
-                <h3 class="cs-challenge-title">{ch.title}</h3>
-                <p class="cs-challenge-desc">{ch.description}</p>
+                <h3 class="cs-challenge-title" data-i18n={`${project.i18n}.challenge.${i}.title`}>{ch.title}</h3>
+                <p class="cs-challenge-desc" data-i18n={`${project.i18n}.challenge.${i}.desc`}>{ch.description}</p>
               </div>
             </div>
           ))}
@@ -271,7 +254,7 @@ const nextProjects = [
             <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/reid/user_flow_reid.webp" alt="User Flow — ścieżki od detekcji (Gait Analysis) po akcję interwencyjną operatora" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">User Flow — ścieżki od detekcji (Gait Analysis) po akcję interwencyjną operatora</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="reid.caption.2">User Flow — ścieżki od detekcji (Gait Analysis) po akcję interwencyjną operatora</figcaption>
           </figure>
         </div>
 
@@ -292,12 +275,12 @@ const nextProjects = [
               <p class="cs-section-number">03</p>
             </Reveal>
             <Reveal delay={0.25} color="#ffffff">
-              <h2 class="cs-section-heading mt-3">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s3.heading`}>
                 Architektura produktu i&nbsp;podejście strategiczne
               </h2>
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
-              <p class="cs-body-text mt-4">
+              <p class="cs-body-text mt-4" data-i18n={`${project.i18n}.s3.intro`}>
                 180 dni iteracji w 32 sprintach. Zamiast budować system „dla wszystkich", skupiłem się na personie operatora i jego krytycznych napięciach.
               </p>
             </Reveal>
@@ -307,8 +290,8 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag">Empathy Mapping & Human-in-the-Loop</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Empathy Mapping & Human-in-the-Loop</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
                 Empathy Map ujawniła krytyczne napięcie: strach operatora przed odpowiedzialnością za błąd AI vs. potrzeba wydajności. Odpowiedzią był mechanizm Human-in-the-loop — AI sugeruje, człowiek zatwierdza. Decyzja ta zbudowała zaufanie użytkowników i ograniczyła ryzyko prawne.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
@@ -316,14 +299,14 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/reid/empathy_map_reid.webp" alt="Empathy Map — persona operatora, decyzja o Human-in-the-loop" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Empathy Map — persona operatora, decyzja o Human-in-the-loop</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="reid.caption.3">Empathy Map — persona operatora, decyzja o Human-in-the-loop</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag">Architektura Streamwall</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Architektura Streamwall</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
                 Zaprojektowałem centralny dashboard zarządzający wieloma strumieniami wideo z inteligentną hierarchią wizualną. Streamwall promuje najważniejsze zdarzenia operacyjne — operator widzi dokładnie to, co wymaga uwagi, w precyzyjnym momencie.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
@@ -331,14 +314,14 @@ const nextProjects = [
                   <div class="aspect-[16/7] rounded-2xl overflow-hidden border border-white/5">
                     <img src="/images/reid/streamwall_reid.webp" alt="Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
                   </div>
-                  <figcaption class="cs-img-caption">Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer</figcaption>
+                  <figcaption class="cs-img-caption" data-i18n="reid.caption.4">Dashboard Streamwall — inteligentna hierarchia wizualna, 500k+ kamer</figcaption>
                 </figure>
               </div>
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag">Design System & Skalowanie</div>
-              <p class="cs-body-text mt-3">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Design System & Skalowanie</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
                 Wdrożyłem Design System, który umożliwił szybkie skalowanie produktu na 50+ lokalizacji bez długu projektowego. Spójność komponentów pozwoliła zespołowi deweloperów na wdrożenie w 60 dni — znacznie poniżej zakładanego harmonogramu.
               </p>
             </div>
@@ -352,7 +335,7 @@ const nextProjects = [
             <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
               <img src="/images/reid/dashboard_reid.webp" alt="Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="reid.caption.5">Explore Dashboard — Gait Analysis jako główny atrybut reidentyfikacji, pełna diagnostyka kamer</figcaption>
           </figure>
         </div>
 
@@ -371,12 +354,12 @@ const nextProjects = [
             <p class="cs-section-number">04</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-section-heading mt-3">
+            <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s4.heading`}>
               Wyniki mierzone danymi
             </h2>
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
-            <p class="cs-body-text max-w-2xl mt-4">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s4.intro`}>
               Decyzje projektowe bezpośrednio przełożyły się na sukces komercyjny. W sektorze bezpieczeństwa, gdzie zaufanie do nowej technologii buduje się latami — wyniki w 6 miesięcy to wyjątek, nie reguła.
             </p>
           </Reveal>
@@ -386,8 +369,8 @@ const nextProjects = [
         <div class="cs-results-grid">
           {results.map((r, i) => (
             <div class="cs-result-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
-              <div class="cs-result-value">{r.value}</div>
-              <p class="cs-result-label">{r.label}</p>
+              <div class="cs-result-value" data-i18n={`${project.i18n}.result.${i}.value`}>{r.value}</div>
+              <p class="cs-result-label" data-i18n={`${project.i18n}.result.${i}.label`}>{r.label}</p>
             </div>
           ))}
         </div>
@@ -396,10 +379,10 @@ const nextProjects = [
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
           <div class="cs-quote-block">
             <div class="cs-quote-line" aria-hidden="true"></div>
-            <blockquote class="cs-quote-text">
+            <blockquote class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
               "Zamiast budować system dla wszystkich, skupiłem się na personie operatora. Empathy Map ujawniła krytyczne napięcie — i właśnie z niego zrodziło się rozwiązanie, które zbudowało zaufanie użytkowników."
             </blockquote>
-            <p class="cs-quote-source">Kamil Wardak · Lead Product Designer, projekt ReID</p>
+            <p class="cs-quote-source" data-i18n={`${project.i18n}.quote.source`}>Kamil Wardak · Lead Product Designer, projekt ReID</p>
           </div>
         </div>
 
@@ -414,10 +397,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Materiały wizualne</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.gallery.overline">Materiały wizualne</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Dokumentacja procesu</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.gallery.heading">Dokumentacja procesu</h2>
           </Reveal>
         </div>
 
@@ -428,7 +411,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/reid/room_reid.webp" alt="Streamwall — centralny punkt zarządzania strumieniami wideo" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Streamwall — centralny punkt zarządzania strumieniami wideo z hierarchią wizualną</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="reid.caption.6">Streamwall — centralny punkt zarządzania strumieniami wideo z hierarchią wizualną</figcaption>
             </figure>
           </div>
           <div class="md:col-span-4">
@@ -436,7 +419,7 @@ const nextProjects = [
               <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-white/5">
                 <img src="/images/reid/gait_reid.webp" alt="Gait Analysis — analiza chodu jako główny atrybut reidentyfikacji" class="w-full h-full object-cover cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption">Gait Analysis — analiza chodu jako główny atrybut ReID</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="reid.caption.7">Gait Analysis — analiza chodu jako główny atrybut ReID</figcaption>
             </figure>
           </div>
         </div>
@@ -447,19 +430,19 @@ const nextProjects = [
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/reid/models_reid.webp" alt="Detection Models — modele identyfikacji biometrycznej" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Detection Models — modele identyfikacji biometrycznej</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="reid.caption.8">Detection Models — modele identyfikacji biometrycznej</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/reid/wireframe_reid.webp" alt="Wireframe systemu — architektura interfejsu operatora" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Wireframe systemu — architektura interfejsu operatora</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="reid.caption.9">Wireframe systemu — architektura interfejsu operatora</figcaption>
           </figure>
           <figure class="m-0 p-0">
             <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
               <img src="/images/reid/analiza_reid.webp" alt="Anomaly Detection — zarządzanie alertami i diagnostyką kamer" class="w-full h-full object-cover cs-img" loading="lazy" />
             </div>
-            <figcaption class="cs-img-caption">Anomaly Detection — zarządzanie alertami i diagnostyką kamer</figcaption>
+            <figcaption class="cs-img-caption" data-i18n="reid.caption.10">Anomaly Detection — zarządzanie alertami i diagnostyką kamer</figcaption>
           </figure>
         </div>
 
@@ -477,10 +460,10 @@ const nextProjects = [
 
         <div class="mb-12">
           <Reveal delay={0.1} color="#BAF52A">
-            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold">Więcej projektów</p>
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.next.overline">Więcej projektów</p>
           </Reveal>
           <Reveal delay={0.25} color="#ffffff">
-            <h2 class="cs-gallery-heading mt-2">Inne realizacje</h2>
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.next.heading">Inne realizacje</h2>
           </Reveal>
         </div>
 
@@ -502,11 +485,11 @@ const nextProjects = [
                 )}
               </div>
               <div class="cs-next-content">
-                <p class="cs-next-overline">{np.overline}</p>
-                <h3 class="cs-next-title">{np.title}</h3>
-                <p class="cs-next-desc">{np.description}</p>
+                <p class="cs-next-overline" data-i18n={`nextproject.${np.id}.overline`}>{np.overline}</p>
+                <h3 class="cs-next-title" data-i18n={`nextproject.${np.id}.title`}>{np.title}</h3>
+                <p class="cs-next-desc" data-i18n={`nextproject.${np.id}.desc`}>{np.description}</p>
                 <div class="cs-next-cta">
-                  <span>Zobacz case study</span>
+                  <span data-i18n="cs.next.cta">Zobacz case study</span>
                   <div class="cs-next-cta-icon">
                     <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>

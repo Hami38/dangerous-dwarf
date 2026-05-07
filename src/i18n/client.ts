@@ -22,6 +22,11 @@ export function applyTranslations(lang: Lang): void {
     if (key in t) el.innerHTML = t[key];
   });
 
+  document.querySelectorAll<HTMLAnchorElement>('[data-i18n-href]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-href')!;
+    if (key in t) el.href = t[key];
+  });
+
   document.querySelectorAll<HTMLElement>('[data-lang-btn]').forEach((btn) => {
     const isActive = btn.getAttribute('data-lang-btn') === lang;
     btn.classList.toggle('is-active', isActive);

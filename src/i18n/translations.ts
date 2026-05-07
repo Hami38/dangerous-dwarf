@@ -14,10 +14,11 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // ── Hero (index) ──────────────────────────────────────────
     'hero.desc': '<span class="highlight">Od 12 lat</span> projektuję systemy o wysokim stopniu złożoności dla <span class="highlight">liderów sektora finansowego, medycznego i zbrojeniowego</span>. Obecnie w <span class="highlight">ING Banku Śląskim</span> definiuję przyszłość bankowości korporacyjnej oraz wdrażam innowacje oparte na <span class="highlight">GenAI</span>.',
-    'hero.location':  'Lokalizacja:',
-    'hero.cta.talk':  'Porozmawiajmy',
-    'hero.cta.cv':    'Pobierz CV',
-    'hero.trusted':   'Zaufały mi wiodące marki:',
+    'hero.location':      'Lokalizacja:',
+    'hero.cta.talk':     'Porozmawiajmy',
+    'hero.cta.cv':       'Pobierz CV',
+    'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026.pdf',
+    'hero.trusted':      'Zaufały mi wiodące marki:',
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Zaczynamy?',
@@ -400,10 +401,11 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // ── Hero (index) ──────────────────────────────────────────
     'hero.desc': '<span class="highlight">For 12 years</span> I\'ve been designing high-complexity systems for <span class="highlight">leaders in the financial, medical and defence sectors</span>. Currently at <span class="highlight">ING Bank Śląski</span> I\'m defining the future of corporate banking and driving <span class="highlight">GenAI</span>-powered innovation.',
-    'hero.location':  'Location:',
-    'hero.cta.talk':  'Let\'s talk',
-    'hero.cta.cv':    'Download CV',
-    'hero.trusted':   'Trusted by leading brands:',
+    'hero.location':      'Location:',
+    'hero.cta.talk':     'Let\'s talk',
+    'hero.cta.cv':       'Download CV',
+    'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026_ENG.pdf',
+    'hero.trusted':      'Trusted by leading brands:',
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Shall we start?',

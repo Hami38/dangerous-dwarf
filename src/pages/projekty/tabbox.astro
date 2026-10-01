@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Reveal from '../../components/Reveal.astro';
 import Footer from '../../components/Footer.astro';
 import ProjectImage from '../../components/ProjectImage.astro';
+import CaseTldr from '../../components/CaseTldr.astro';
 
 const project = {
   overline: "HealthTech / Senior Care / IoT",
@@ -127,6 +128,14 @@ const nextProjects = [
           </div>
         </div>
 
+
+        <!-- TL;DR — problem, rola, wynik w trzech liniach -->
+        <CaseTldr
+          i18n={project.i18n}
+          problem="Seniorzy z demencją i ograniczoną sprawnością dłoni gubili się w terapii, a opiekunowie nie wiedzieli, czy leki zostały przyjęte."
+          role="Strategic Product Lead / Creative Director: ekosystem HW/SW — od industrial designu dozownika po aplikację mobilną i service design."
+          result="89% poprawa adherence, 5000+ użytkowników w dwa miesiące i kontrakt na masową produkcję 8 tygodni po premierze."
+        />
       </div>
     </section>
 

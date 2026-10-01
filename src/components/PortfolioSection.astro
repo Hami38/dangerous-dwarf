@@ -8,7 +8,8 @@ const cases = [
     id: 1,
     overline: "Finanse / Strategia",
     headline: "Pierwszy na rynku BLIK korporacyjny dla ING",
-    subtext: "1 mln transakcji w 1. tygodniu produktu. Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.",
+    subtext: "Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.",
+    result: { value: "1 mln", label: "transakcji w pierwszym tygodniu" },
     metric: "UX Expert & Interaction Designer",
     image: "/images/ing/KV_blik.webp",
     imageAlt: "BLIK dla Biznesu w ING — kluczowy visual projektu",
@@ -20,6 +21,7 @@ const cases = [
     overline: "Bezpieczeństwo / Computer Vision",
     headline: "System reidentyfikacji osób dla infrastruktury krytycznej",
     subtext: "Skalowanie technologii analizy chodu i cech ogólnych. Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
+    result: { value: "20% ROI", label: "w pierwszym półroczu po wdrożeniu" },
     metric: "Lead Product Designer",
     image: "/images/reid/hero_reid.webp",
     imageAlt: "REID — dashboard operatora z podglądem kamer i detekcją osób na laptopie oraz aplikacja mobilna",
@@ -30,7 +32,8 @@ const cases = [
     id: 3,
     overline: "Bezpieczeństwo krytyczne / Deep Tech",
     headline: "Wirtualny asystent dla maszynistów kolejowych",
-    subtext: "Redukcja incydentów kolejowych o 21%. Budowa systemu wspomagania decyzji w czasie rzeczywistym i minimalizacja obciążenia poznawczego.",
+    subtext: "Budowa systemu wspomagania decyzji w czasie rzeczywistym i minimalizacja obciążenia poznawczego.",
+    result: { value: "−20%", label: "ryzyka incydentów w 6-miesięcznym pilocie" },
     metric: "Lead Product Designer",
     image: "/images/vtda/VTDA_01.webp",
     imageAlt: "VTDA — wirtualny asystent maszynisty, mockup tabletu w kabinie lokomotywy",
@@ -41,7 +44,8 @@ const cases = [
     id: 4,
     overline: "HealthTech / Senior Care / IoT",
     headline: "TabBox: Ekosystem farmakoterapii dla osób z demencją",
-    subtext: "89% poprawa adherence. Zintegrowany system HW/SW łączący fizyczny dozownik leków z aplikacją mobilną. Kontrakt na masową produkcję w 8 tygodniach.",
+    subtext: "Zintegrowany system HW/SW łączący fizyczny dozownik leków z aplikacją mobilną. Kontrakt na masową produkcję w 8 tygodniach.",
+    result: { value: "89%", label: "poprawa adherence (regularności leczenia)" },
     metric: "Strategic Product Lead / Creative Director",
     image: "/images/tabbox/KV_tabbox.webp",
     imageAlt: "TabBox — inteligentny system farmakoterapii dla seniorów",
@@ -107,6 +111,12 @@ const cases = [
                     {caseItem.headline}
                   </h3>
                 </Reveal>
+              </div>
+
+              <!-- Kluczowy wynik — najważniejsza liczba projektu -->
+              <div class="case-result mb-5 opacity-0" data-fade-in style={`transition-delay: ${0.45 + index * 0.1}s`}>
+                <span class="case-result-value" data-i18n={`portfolio.case.${index}.result.value`}>{caseItem.result.value}</span>
+                <span class="case-result-label" data-i18n={`portfolio.case.${index}.result.label`}>{caseItem.result.label}</span>
               </div>
 
               <div class="mb-6">
@@ -207,6 +217,35 @@ const cases = [
   .case-card-wrapper.in-view [data-fade-in] {
     opacity: 1 !important;
     transform: translateY(0);
+  }
+
+  /* Kluczowy wynik */
+  .case-result {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .case-result-value {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #BAF52A;
+    white-space: nowrap;
+  }
+
+  .case-result-label {
+    max-width: 15rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #d6d3d1;
+  }
+
+  @media (min-width: 768px) {
+    .case-card-wrapper.reverse .case-result { justify-content: flex-end; }
   }
 
   /* Metric badge - poprawione wyrównanie tekstu */

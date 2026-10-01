@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Reveal from '../../components/Reveal.astro';
 import Footer from '../../components/Footer.astro';
 import ProjectImage from '../../components/ProjectImage.astro';
+import CaseTldr from '../../components/CaseTldr.astro';
 
 const project = {
   overline: "Finanse / Strategia UX",
@@ -42,7 +43,7 @@ const results = [
 
 const nextProjects = [
   { id: "reid",   overline: "Bezpieczeństwo / Computer Vision",   title: "System reidentyfikacji osób dla infrastruktury krytycznej", description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.", href: "/projekty/reid",   image: "/images/reid/hero_reid.webp" },
-  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "Wirtualny asystent dla maszynistów", description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",   image: "/images/vtda/VTDA_01.webp" },
+  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "Wirtualny asystent dla maszynistów", description: "Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",   image: "/images/vtda/VTDA_01.webp" },
   { id: "tabbox", overline: "MedTech / IoT / Product Design",       title: "Tabbox: Inteligentny system farmakoterapii", description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.", href: "/projekty/tabbox", image: "/images/tabbox/KV_tabbox.webp" },
 ];
 ---
@@ -128,6 +129,14 @@ const nextProjects = [
           </div>
         </div>
 
+
+        <!-- TL;DR — problem, rola, wynik w trzech liniach -->
+        <CaseTldr
+          i18n={project.i18n}
+          problem="Przenieść prosty, retailowy BLIK do bankowości firmowej — z jednostronnym przepływem środków, hierarchią uprawnień i funkcją dostępną tylko w aplikacji mobilnej."
+          role="UX Expert & Interaction Designer: strategia UX, badania i zarządzanie interesariuszami — od modelu mentalnego po testy użyteczności."
+          result="1 mln transakcji w pierwszym tygodniu i utrzymany wysoki NPS w wymagającym segmencie SME/MC."
+        />
       </div>
     </section>
 

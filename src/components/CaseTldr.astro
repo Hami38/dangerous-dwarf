@@ -1,0 +1,95 @@
+---
+/**
+ * CaseTldr.astro
+ *
+ * Podsumowanie case study w trzech liniach (Problem → Moja rola → Wynik)
+ * dla osób, które tylko przeglądają stronę. Treść PL w propsach,
+ * tłumaczenia pod kluczami `${i18n}.tldr.problem|role|result`.
+ */
+interface Props {
+  /** Prefiks kluczy tłumaczeń projektu, np. "reid" */
+  i18n: string;
+  problem: string;
+  role: string;
+  result: string;
+}
+
+const { i18n, problem, role, result } = Astro.props;
+
+const rows = [
+  { key: 'problem', label: 'Problem',   text: problem },
+  { key: 'role',    label: 'Moja rola', text: role },
+  { key: 'result',  label: 'Wynik',     text: result },
+];
+---
+
+<aside class="tldr opacity-0" data-hero-fade style="--delay: 0.8s" aria-labelledby={`${i18n}-tldr-title`}>
+  <p class="tldr-title" id={`${i18n}-tldr-title`} data-i18n="cs.tldr.title">W skrócie</p>
+  <dl class="tldr-list">
+    {rows.map((row) => (
+      <div class={`tldr-row tldr-row--${row.key}`}>
+        <dt class="tldr-label" data-i18n={`cs.tldr.${row.key}`}>{row.label}</dt>
+        <dd class="tldr-text" data-i18n={`${i18n}.tldr.${row.key}`}>{row.text}</dd>
+      </div>
+    ))}
+  </dl>
+</aside>
+
+<style>
+  .tldr {
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.75rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--brand-main);
+  }
+
+  .tldr-title {
+    margin: 0 0 1rem;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brand-main);
+  }
+
+  .tldr-list {
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .tldr-row {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .tldr-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .tldr-text {
+    margin: 0;
+    font-size: 0.975rem;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #d6d3d1;
+  }
+
+  .tldr-row--result .tldr-text {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .tldr { padding: 1.25rem; }
+    .tldr-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+</style>

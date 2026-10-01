@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Reveal from '../../components/Reveal.astro';
 import Footer from '../../components/Footer.astro';
 import ProjectImage from '../../components/ProjectImage.astro';
+import CaseTldr from '../../components/CaseTldr.astro';
 
 const project = {
   overline: "Bezpieczeństwo / Computer Vision",
@@ -42,7 +43,7 @@ const results = [
 
 const nextProjects = [
   { id: "blik",   overline: "Finanse / Strategia UX",             title: "BLIK dla Biznesu w ING", description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.", href: "/projekty/blik-dla-biznesu", image: "/images/ing/KV_blik.webp" },
-  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "Wirtualny asystent dla maszynistów", description: "Redukcja incydentów kolejowych o 21%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",             image: "/images/vtda/VTDA_01.webp" },
+  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "Wirtualny asystent dla maszynistów", description: "Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda",             image: "/images/vtda/VTDA_01.webp" },
   { id: "tabbox", overline: "MedTech / IoT / Product Design",       title: "Tabbox: Inteligentny system farmakoterapii", description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.", href: "/projekty/tabbox",           image: "/images/tabbox/KV_tabbox.webp" },
 ];
 ---
@@ -127,6 +128,14 @@ const nextProjects = [
           </div>
         </div>
 
+
+        <!-- TL;DR — problem, rola, wynik w trzech liniach -->
+        <CaseTldr
+          i18n={project.i18n}
+          problem="Zaprojektować system reidentyfikacji osób dla infrastruktury krytycznej, który operator obsłuży bez przeciążenia — przy pełnej zgodności z RODO i minimalnej liczbie fałszywych alarmów."
+          role="Lead Product Designer / Strategic Architect: strategia AI/UX, etyka i RODO, architektura interfejsu operatora z człowiekiem w pętli decyzyjnej."
+          result="20% ROI w pierwszym półroczu, 50+ lokalizacji w 60 dni i 97% operatorów ufających nowej metodzie identyfikacji."
+        />
       </div>
     </section>
 

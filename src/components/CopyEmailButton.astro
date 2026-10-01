@@ -1,0 +1,130 @@
+---
+/**
+ * CopyEmailButton.astro
+ *
+ * Kopiuje adres e-mail do schowka — dla osób, u których mailto: nie otwiera programu pocztowego.
+ *   variant="icon" — okrągły przycisk z samą ikoną (stopka)
+ *   variant="pill" — ikona + napis „Kopiuj” (strona kontaktowa)
+ */
+interface Props {
+  email?: string;
+  variant?: 'icon' | 'pill';
+  class?: string;
+}
+
+const { email = 'kamil.wardak97@gmail.com', variant = 'icon', class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  class={`copy-email copy-email--${variant} ${className}`.trim()}
+  data-copy-email={email}
+  aria-label="Kopiuj adres e-mail"
+  data-i18n-aria="contact.copy.aria"
+>
+  <span class="copy-email-icons" aria-hidden="true">
+    <svg class="copy-email-icon copy-email-icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+    </svg>
+    <svg class="copy-email-icon copy-email-icon--done" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+  </span>
+  {variant === 'pill' && <span class="copy-email-label" data-copy-label data-i18n="contact.copy">Kopiuj</span>}
+  <span class="copy-email-status" data-copy-status aria-live="polite"></span>
+</button>
+
+<style>
+  .copy-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .copy-email:hover {
+    color: var(--brand-main);
+    border-color: var(--brand-main);
+  }
+
+  .copy-email--icon { width: 52px; height: 52px; }
+  .copy-email--pill { height: 40px; padding: 0 16px; }
+
+  .copy-email.is-copied {
+    color: #000;
+    background-color: var(--brand-main);
+    border-color: var(--brand-main);
+  }
+
+  .copy-email-icons {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+  }
+
+  .copy-email-icon {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .copy-email-icon--done { opacity: 0; transform: scale(0.6); }
+  .copy-email.is-copied .copy-email-icon--copy { opacity: 0; transform: scale(0.6); }
+  .copy-email.is-copied .copy-email-icon--done { opacity: 1; transform: scale(1); }
+
+  /* Komunikat tylko dla czytników ekranu */
+  .copy-email-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .copy-email--icon { width: 46px; height: 46px; }
+  }
+</style>
+
+<script>
+  import { translations } from '../i18n/translations';
+  import { getLang } from '../i18n/client';
+  import { copyText } from '../utils/clipboard';
+
+  const RESET_MS = 2000;
+
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-email]').forEach((btn) => {
+    const label  = btn.querySelector<HTMLElement>('[data-copy-label]');
+    const status = btn.querySelector<HTMLElement>('[data-copy-status]');
+    let timer: number | undefined;
+
+    btn.addEventListener('click', async () => {
+      const ok = await copyText(btn.dataset.copyEmail ?? '');
+
+      const t = translations[getLang()];
+      const message = ok ? t['contact.copied'] : t['contact.copy.failed'];
+      btn.classList.toggle('is-copied', ok);
+      if (label) label.textContent = message;
+      if (status) status.textContent = message;
+
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        const tNow = translations[getLang()];
+        btn.classList.remove('is-copied');
+        if (label) label.textContent = tNow['contact.copy'];
+        if (status) status.textContent = '';
+      }, RESET_MS);
+    });
+  });
+</script>

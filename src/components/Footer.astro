@@ -1,6 +1,14 @@
 ---
 /* src/components/Footer.astro */
 import LinkedInButton from './LinkedInButton.astro';
+import ContactButtons from './ContactButtons.astro';
+
+interface Props {
+  /** Duże CTA „Masz złożony problem? Porozmawiajmy.” — wyłączone na stronie /kontakt */
+  cta?: boolean;
+}
+
+const { cta = true } = Astro.props;
 
 const navLinks = [
   { label: 'O mnie',    href: '/o-mnie',    key: 'footer.nav.about' },
@@ -11,19 +19,20 @@ const navLinks = [
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer relative bg-[#0c0a09] overflow-hidden px-6 pb-10">
+<footer class={`footer relative bg-[#0c0a09] overflow-hidden px-6 pb-10 ${cta ? '' : 'footer--compact'}`}>
 
   <!-- Dekoracyjna wielka litera tła -->
   <span class="footer-bg-letter" aria-hidden="true">KW</span>
 
   <!-- Górna zielona linia -->
   <div class="max-w-4xl mx-auto">
-    <div class="w-full h-px bg-[#BAF52A]/20 mb-16"></div>
+    <div class={`w-full h-px bg-[#BAF52A]/20 ${cta ? 'mb-16' : 'mb-8'}`}></div>
   </div>
 
   <div class="max-w-4xl mx-auto relative z-10">
 
     <!-- GŁÓWNE CTA -->
+    {cta && (
     <div class="footer-cta-block mb-20 md:mb-24">
       <p class="footer-label text-[#BAF52A] text-xs normalcase tracking-[0.2em] font-extrabold mb-5 opacity-0 footer-reveal" data-delay="0" data-i18n="footer.label">
         Zaczynamy?
@@ -39,36 +48,14 @@ const year = new Date().getFullYear();
       </p>
 
       <!-- Przyciski CTA -->
-      <div class="mt-10 flex flex-wrap items-center gap-4 opacity-0 footer-reveal" data-delay="240">
-        <a
-          href="mailto:kamil.wardak97@gmail.com"
-          class="footer-cta-btn group"
-        >
-          <span>kamil.wardak97@gmail.com</span>
-          <div class="footer-cta-icon">
-            <svg class="icon-default" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="16" x="2" y="4" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-            <svg class="icon-hover" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14m-7-7 7 7-7 7"/>
-            </svg>
-          </div>
-        </a>
-
-        <a href="tel:+48794054199" class="footer-phone-btn group">
-          <div class="footer-phone-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.36 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.06 6.06l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-          </div>
-          <span>+48 794 054 199</span>
-        </a>
+      <div class="mt-10 opacity-0 footer-reveal" data-delay="240">
+        <ContactButtons />
       </div>
     </div>
+    )}
 
     <!-- DOLNY PASEK -->
-    <div class="w-full h-px bg-white/5 mb-8 opacity-0 footer-reveal" data-delay="320"></div>
+    {cta && <div class="w-full h-px bg-white/5 mb-8 opacity-0 footer-reveal" data-delay="320"></div>}
 
     <div class="footer-bottom opacity-0 footer-reveal" data-delay="380">
       <!-- Lewa: copyright -->
@@ -129,35 +116,17 @@ const year = new Date().getFullYear();
     pointer-events: none;
   }
 
-  /* Przycisk secondary — telefon */
-  .footer-phone-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 28px;
-    border-radius: 9999px;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    text-decoration: none;
-    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-    white-space: nowrap;
-    height: 52px;
-  }
-
-  .footer-phone-btn:hover {
-    color: #BAF52A;
-    border-color: #BAF52A;
-    box-shadow: 0 0 20px rgba(186, 245, 42, 0.1);
-  }
-
-  .footer-phone-icon {
+  /* Wersja bez CTA (/kontakt) — stopka musi być co najmniej tak wysoka jak
+     litery „KW”, inaczej overflow:hidden ucina je od góry */
+  .footer--compact {
+    min-height: clamp(8rem, 25vw, 18rem);
     display: flex;
-    align-items: center;
-    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: flex-end;
   }
+
+  /* mx-auto w kolumnie flex wyłącza rozciąganie — przywracamy pełną szerokość treści */
+  .footer--compact > div:not(.footer-glow) { width: 100%; }
 
   /* Label */
   .footer-label {
@@ -179,57 +148,6 @@ const year = new Date().getFullYear();
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* CTA Button */
-  .footer-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 32px;
-    border-radius: 9999px;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: #BAF52A;
-    color: #000;
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    white-space: nowrap;
-    height: 52px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .footer-cta-btn:hover {
-    background-color: #000;
-    color: #BAF52A;
-    box-shadow: 0 0 0 1px #BAF52A, 0 0 30px rgba(186, 245, 42, 0.2);
-  }
-
-  .footer-cta-icon {
-    position: relative;
-    width: 18px;
-    height: 18px;
-    overflow: hidden;
-  }
-
-  .footer-cta-icon .icon-default,
-  .footer-cta-icon .icon-hover {
-    position: absolute;
-    inset: 0;
-    transition: transform 0.4s cubic-bezier(0.6, 0.01, 0.05, 0.95);
-  }
-
-  .footer-cta-icon .icon-hover {
-    transform: translateY(100%);
-  }
-
-  .footer-cta-btn:hover .footer-cta-icon .icon-default {
-    transform: translateY(-100%);
-  }
-
-  .footer-cta-btn:hover .footer-cta-icon .icon-hover {
-    transform: translateY(0);
   }
 
   /* Dolny pasek */
@@ -284,18 +202,6 @@ const year = new Date().getFullYear();
 
     .footer-nav {
       gap: 1.5rem;
-    }
-
-    .footer-cta-btn {
-      font-size: 13px;
-      padding: 12px 22px;
-      height: 46px;
-    }
-
-    .footer-phone-btn {
-      font-size: 13px;
-      padding: 0 20px;
-      height: 46px;
     }
 
     .footer-bg-letter {

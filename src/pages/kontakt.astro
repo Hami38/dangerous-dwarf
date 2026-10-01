@@ -1,9 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+import Reveal from '../components/Reveal.astro';
+import ContactButtons from '../components/ContactButtons.astro';
+
+const EMAIL    = 'kamil.wardak97@gmail.com';
+const PHONE    = '+48 794 054 199';
+const LINKEDIN = 'https://pl.linkedin.com/in/kamil-wardak-760b6119b';
+
+const topics = [
+  'Rola na etacie',
+  'Projekt / współpraca',
+  'Audyt / konsultacja UX',
+  'Warsztat / wystąpienie',
+  'Coś innego',
+];
+
+const steps = [
+  { title: 'Piszesz',           desc: 'Kilka zdań o kontekście wystarczy.' },
+  { title: 'Odpowiadam w 24 h', desc: 'Dopytam o szczegóły lub zaproponuję termin.' },
+  { title: 'Rozmowa 30 min',    desc: 'Sprawdzamy, czy i jak mogę pomóc.' },
+];
 ---
 
-<Layout title="Kontakt | Kamil Wardak">
+<Layout title="Kontakt | Kamil Wardak" description="Skontaktuj się z Kamilem Wardakiem — Design Strategist & Lead UX Designer z Warszawy. E-mail, telefon, LinkedIn.">
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +33,609 @@ import Footer from '../components/Footer.astro';
     });
   </script>
 
-  <div class="min-h-[calc(100vh-5rem)] bg-[#0c0a09] flex flex-col justify-end">
-    <Footer />
+  <div class="kt bg-[#0c0a09]">
+
+    <!-- ═══ HERO ════════════════════════════════════════════════════════════ -->
+    <section class="kt-hero px-6 pt-14 md:pt-24">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-6">
+          <Reveal trigger="onLoad" delay={0.1} color="#BAF52A" tag="span">
+            <p class="kt-overline" data-i18n="contact.overline">Kontakt</p>
+          </Reveal>
+        </div>
+
+        <Reveal trigger="onLoad" delay={0.25} duration={0.75} color="#ffffff">
+          <h1 class="kt-heading" data-i18n-html="contact.heading">
+            Masz złożony problem? <br class="hidden md:block" /><span class="kt-accent">Porozmawiajmy.</span>
+          </h1>
+        </Reveal>
+
+        <p class="kt-lead kt-fade" style="--delay: 0.6s" data-i18n="contact.lead">
+          Najlepiej odnajduję się tam, gdzie strategia, design i technologia muszą zagrać razem — w produktach o wysokiej stawce. Napisz dwa zdania o swoim wyzwaniu, resztę ustalimy na rozmowie.
+        </p>
+
+        <!-- E-mail — ten sam przycisk co w sekcji kontaktowej na stronie głównej -->
+        <div class="kt-email kt-fade" style="--delay: 0.75s">
+          <ContactButtons phone={false} />
+          <p class="kt-response">
+            <span class="kt-response-dot" aria-hidden="true"></span>
+            <span data-i18n="contact.response">Odpowiadam zwykle w ciągu 24 godzin</span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ MINI-BRIEF ═══════════════════════════════════════════════════════ -->
+    <section class="kt-brief-section px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="kt-brief kt-fade" style="--delay: 0.2s" data-kt-scroll>
+          <div class="kt-brief-intro">
+            <p class="kt-label kt-label--accent" data-i18n="contact.brief.overline">Mini-brief</p>
+            <h2 class="kt-h2" data-i18n="contact.brief.title">Od czego zaczynamy?</h2>
+            <p class="kt-muted" data-i18n="contact.brief.desc">
+              Zaznacz, czego dotyczy wiadomość — przygotuję temat i szkic maila, żebyś nie zaczynał od pustej kartki.
+            </p>
+          </div>
+
+          <div class="kt-brief-form">
+            <!-- Natywne radio — jeden temat na wiadomość; strzałki i czytniki ekranu działają bez JS -->
+            <fieldset class="kt-chips">
+              <legend class="kt-sr-only" data-i18n="contact.brief.group">Temat wiadomości</legend>
+              {topics.map((topic, i) => (
+                <label class="kt-chip">
+                  <input type="radio" name="kt-topic" value={i} class="kt-chip-input" data-kt-topic />
+                  <span class="kt-chip-radio" aria-hidden="true"></span>
+                  <span data-i18n={`contact.topic.${i}`}>{topic}</span>
+                </label>
+              ))}
+            </fieldset>
+
+            <!-- Podgląd tematu maila — aktualizuje się na żywo -->
+            <div class="kt-preview">
+              <span class="kt-preview-label" data-i18n="contact.brief.subject">Temat</span>
+              <span class="kt-preview-value" data-kt-subject aria-live="polite">[Portfolio] Wiadomość z portfolio</span>
+            </div>
+
+            <a href={`mailto:${EMAIL}`} class="kt-cta" data-kt-mailto={EMAIL}>
+              <span data-i18n="contact.brief.cta">Napisz wiadomość</span>
+              <span class="kt-cta-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CO DALEJ + INNE KANAŁY ═══════════════════════════════════════════ -->
+    <section class="kt-info-section px-6">
+      <div class="max-w-4xl mx-auto kt-info">
+
+        <div class="kt-steps-wrap kt-fade" style="--delay: 0.1s" data-kt-scroll>
+          <h2 class="kt-h3" data-i18n="contact.steps.title">Co dalej?</h2>
+          <ol class="kt-steps">
+            {steps.map((step, i) => (
+              <li class="kt-step">
+                <span class="kt-step-num" aria-hidden="true">0{i + 1}</span>
+                <div>
+                  <p class="kt-step-title" data-i18n={`contact.step.${i}.title`}>{step.title}</p>
+                  <p class="kt-step-desc" data-i18n={`contact.step.${i}.desc`}>{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="kt-channels-wrap kt-fade" style="--delay: 0.2s" data-kt-scroll>
+          <h2 class="kt-h3" data-i18n="contact.channels.title">Inne kanały</h2>
+          <ul class="kt-channels">
+            <li>
+              <a href={`tel:${PHONE.replace(/\s/g, '')}`} class="kt-channel">
+                <span class="kt-channel-label" data-i18n="contact.phone.label">Telefon</span>
+                <span class="kt-channel-value">{PHONE}</span>
+                <span class="kt-channel-action">
+                  <span data-i18n="contact.phone.action">Zadzwoń</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" class="kt-channel">
+                <span class="kt-channel-label" data-i18n="contact.linkedin.label">LinkedIn</span>
+                <span class="kt-channel-value">/in/kamil-wardak</span>
+                <span class="kt-channel-action">
+                  <span data-i18n="contact.linkedin.action">Otwórz profil</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <Footer cta={false} />
   </div>
 </Layout>
+
+<style>
+  /* ── Typografia wspólna ──────────────────────────────────────────── */
+  .kt-overline,
+  .kt-label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .kt-overline,
+  .kt-label--accent { color: var(--brand-main); }
+  .kt-label { color: rgba(255, 255, 255, 0.45); }
+
+  .kt-h2 {
+    margin: 0.75rem 0 0;
+    font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .kt-h3 {
+    margin: 0 0 1.75rem;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .kt-muted {
+    margin: 1rem 0 0;
+    color: #a8a29e;
+    font-size: 1rem;
+    line-height: 1.65;
+    font-weight: 500;
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────────────── */
+  /* Ten sam nagłówek co w sekcji kontaktowej stopki (.footer-headline) — rozmiar musi się zgadzać */
+  .kt-heading {
+    margin: 0;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  /* :global — span wstawiany też przez tłumaczenia (innerHTML, bez atrybutu scope) */
+  .kt-heading :global(.kt-accent) {
+    background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .kt-lead {
+    margin: 1.5rem 0 0;
+    color: #a8a29e;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  /* ── E-mail ───────────────────────────────────────────────────────── */
+  .kt-email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .kt-response {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .kt-response-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--brand-main);
+    animation: kt-pulse 2.4s ease-out infinite;
+  }
+
+  @keyframes kt-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(186, 245, 42, 0.55); }
+    70%  { box-shadow: 0 0 0 7px rgba(186, 245, 42, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(186, 245, 42, 0); }
+  }
+
+  /* ── Mini-brief ───────────────────────────────────────────────────── */
+  .kt-brief-section { padding-top: 5.5rem; }
+
+  .kt-brief {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 3rem;
+    padding: 2.5rem;
+    border-radius: 1.75rem;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(186, 245, 42, 0.08) 0%, transparent 55%),
+      rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Równa siatka 2 kolumn — wszystkie opcje tej samej szerokości */
+  .kt-chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .kt-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .kt-chip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.55rem 1rem 0.55rem 0.8rem;
+    text-align: left;
+    line-height: 1.3;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .kt-chip:hover { border-color: rgba(186, 245, 42, 0.5); color: #fff; }
+
+  /* Natywny input ukryty wizualnie, ale dostępny dla klawiatury i czytników */
+  .kt-chip-input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Znacznik radio — kółko z kropką w środku po zaznaczeniu */
+  .kt-chip-radio {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.25s ease;
+  }
+
+  .kt-chip-radio::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 9999px;
+    background: var(--brand-main);
+    transform: scale(0);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .kt-chip:has(.kt-chip-input:checked) {
+    border-color: var(--brand-main);
+    background: rgba(186, 245, 42, 0.1);
+    color: #fff;
+  }
+
+  .kt-chip:has(.kt-chip-input:checked) .kt-chip-radio { border-color: var(--brand-main); }
+  .kt-chip:has(.kt-chip-input:checked) .kt-chip-radio::after { transform: scale(1); }
+
+  /* Fokus klawiatury — obwódka na całej pigułce, nie na ukrytym inpucie */
+  .kt-chip:has(.kt-chip-input:focus-visible) {
+    outline: 2px solid var(--brand-main);
+    outline-offset: 3px;
+  }
+
+  .kt-preview {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 0.9rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+  }
+
+  .kt-preview-label {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .kt-preview-value {
+    color: #e7e5e4;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .kt-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    height: 52px;
+    margin-top: 1.5rem;
+    padding: 0 10px 0 28px;
+    border-radius: 9999px;
+    background: var(--brand-main);
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .kt-cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background: #000;
+    color: var(--brand-main);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease, color 0.35s ease;
+  }
+
+  .kt-cta:hover {
+    background: #000;
+    color: var(--brand-main);
+    box-shadow: 0 0 0 1px var(--brand-main), 0 0 30px rgba(186, 245, 42, 0.2);
+  }
+
+  .kt-cta:hover .kt-cta-icon {
+    background: var(--brand-main);
+    color: #000;
+    transform: translateX(3px);
+  }
+
+  /* ── Co dalej + kanały ────────────────────────────────────────────── */
+  /* Mały dolny odstęp — stopka /kontakt ma własną wysokość pod litery „KW” */
+  .kt-info-section { padding-top: 5.5rem; padding-bottom: 1rem; }
+
+  .kt-info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+  }
+
+  .kt-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .kt-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 1rem;
+    padding-bottom: 1.1rem;
+  }
+
+  .kt-step:last-child { padding-bottom: 0; }
+
+  /* Linia łącząca kółko kroku z następnym — kończy się na ostatnim kroku */
+  .kt-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(186, 245, 42, 0.5), rgba(186, 245, 42, 0.12));
+  }
+
+  .kt-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background: #0c0a09;
+    border: 1px solid rgba(186, 245, 42, 0.45);
+    color: var(--brand-main);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .kt-step-title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .kt-step-desc {
+    margin: 0.15rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #a8a29e;
+  }
+
+  .kt-channels {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .kt-channel {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem 0.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease;
+  }
+
+  .kt-channel-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .kt-channel-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    overflow-wrap: anywhere;
+  }
+
+  .kt-channel-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.3s ease, gap 0.3s ease;
+  }
+
+  .kt-channel:hover {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background: rgba(186, 245, 42, 0.04);
+  }
+
+  .kt-channel:hover .kt-channel-value,
+  .kt-channel:hover .kt-channel-action { color: var(--brand-main); }
+  .kt-channel:hover .kt-channel-action { gap: 10px; }
+
+  /* ── Animacja wejścia (stan końcowy bez JS / reduced motion w global.css) ── */
+  .kt-fade {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  /* ── Responsywność ────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .kt-brief { grid-template-columns: 1fr; gap: 2rem; padding: 1.75rem 1.25rem; }
+    .kt-info { grid-template-columns: 1fr; gap: 3.5rem; }
+    .kt-cta { width: 100%; justify-content: space-between; }
+  }
+
+  /* Telefony — jedna kolumna, etykiety nie łamią się na dwie linie */
+  @media (max-width: 560px) {
+    .kt-chips { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 420px) {
+    .kt-channel { grid-template-columns: minmax(0, 1fr) auto; }
+    .kt-channel-label { grid-column: 1 / -1; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { translations } from '../i18n/translations';
+  import { getLang } from '../i18n/client';
+
+  const t = () => translations[getLang()];
+
+  /* ── Animacje wejścia: hero od razu, reszta przy przewinięciu ─────── */
+  const fadeIn = (el: HTMLElement, extraDelay = 0) => {
+    const delay = (parseFloat(el.style.getPropertyValue('--delay')) || 0) + extraDelay;
+    gsap.to(el, { opacity: 1, y: 0, duration: 0.8, delay, ease: 'power3.out' });
+  };
+
+  let played = false;
+  const playHero = () => {
+    if (played) return;
+    played = true;
+    document.querySelectorAll<HTMLElement>('.kt-fade:not([data-kt-scroll])').forEach((el) => fadeIn(el));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        fadeIn(entry.target as HTMLElement);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll<HTMLElement>('[data-kt-scroll]').forEach((el) => io.observe(el));
+  };
+
+  window.addEventListener('preloaderFinished', playHero, { once: true });
+  window.addEventListener('curtainDone', playHero, { once: true });
+
+  /* ── Mini-brief: tematy → temat i szkic maila ────────────────────── */
+  const topics = Array.from(document.querySelectorAll<HTMLInputElement>('[data-kt-topic]'));
+  const subjectEl = document.querySelector<HTMLElement>('[data-kt-subject]');
+  const mailto = document.querySelector<HTMLAnchorElement>('[data-kt-mailto]');
+
+  // Jeden temat (radio) — przed wyborem temat domyślny
+  const buildSubject = () => {
+    const tr = t();
+    const picked = topics.find((input) => input.checked);
+    return `[Portfolio] ${picked ? tr[`contact.topic.${picked.value}`] : tr['contact.brief.subject.default']}`;
+  };
+
+  const updateBrief = () => {
+    const subject = buildSubject();
+    if (subjectEl) subjectEl.textContent = subject;
+    if (mailto) {
+      const body = t()['contact.brief.body'];
+      mailto.href = `mailto:${mailto.dataset.ktMailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+  };
+
+  topics.forEach((input) => input.addEventListener('change', updateBrief));
+
+  // Język mógł się zmienić od ostatniej aktualizacji — odśwież przed otwarciem maila
+  mailto?.addEventListener('click', updateBrief);
+  // setTimeout — uruchom po tym, jak przełącznik zapisze nowy język
+  document.querySelectorAll('[data-lang-btn]').forEach((btn) => btn.addEventListener('click', () => {
+    setTimeout(updateBrief, 0);
+  }));
+
+  updateBrief();
+</script>

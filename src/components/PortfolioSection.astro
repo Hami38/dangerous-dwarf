@@ -216,16 +216,18 @@ const cases = [
     transform: translateY(0);
   }
 
-  /* Kluczowy wynik */
+  /* Kluczowy wynik — jeden stały układ: liczba nad etykietą, spięte linią z lewej.
+     Wcześniej etykieta raz stała obok liczby, raz pod nią (zależnie od długości). */
   .case-result {
     display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.25rem 0.75rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.15rem 0 0.15rem 0.9rem;
+    border-left: 2px solid rgba(186, 245, 42, 0.55);
   }
 
   .case-result-value {
-    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-size: clamp(1.75rem, 3.2vw, 2.25rem);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -234,11 +236,11 @@ const cases = [
   }
 
   .case-result-label {
-    max-width: 15rem;
+    max-width: 18rem;
     font-size: 0.8125rem;
-    font-weight: 600;
-    line-height: 1.35;
-    color: #d6d3d1;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #a8a29e;
   }
 
   /* Metric badge - poprawione wyrównanie tekstu */

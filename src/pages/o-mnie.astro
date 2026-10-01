@@ -8,18 +8,18 @@ import Button from '../components/Button.astro';
 const pillars = [
   {
     number: "01",
-    title: "Kultura UX w instytucji finansowej",
-    body: "Buduję środowiska, w których design przestaje być kosztem — a staje się aktywem strategicznym. Edukuję interesariuszy, jak przez procesy Data-Driven Design budować lojalność klientów i optymalizować konwersję w najbardziej złożonych procesach transakcyjnych."
+    title: "UX jako inwestycja, nie koszt",
+    body: "Pokazuję interesariuszom, jak decyzje projektowe oparte na danych przekładają się na lojalność klientów i konwersję — także w najbardziej złożonych procesach transakcyjnych."
   },
   {
     number: "02",
-    title: "Etyka projektowania systemów krytycznych",
-    body: "W FinTech i bankowości design jest obietnicą stabilności. Moje projekty obejmują sektory bez miejsca na domysły — od zaawansowanej bankowości po systemy bezpieczeństwa biometrycznego. Przemyślana architektura informacji to jedyna droga do eliminacji błędów ludzkich tam, gdzie w grę wchodzi kapitał i poufne dane."
+    title: "Odpowiedzialność w systemach krytycznych",
+    body: "Projektuję tam, gdzie nie ma miejsca na domysły — od bankowości po biometrię. Przemyślana architektura informacji ogranicza błędy ludzkie tam, gdzie chodzi o pieniądze i poufne dane."
   },
   {
     number: "03",
-    title: "Synergia złożonych ekosystemów",
-    body: "Płynnie poruszam się wewnątrz skomplikowanych ekosystemów produktowych — łącząc świat cyfrowy z fizycznym i operacyjnym. Rozumiem specyfikę rygorystycznych regulacji rynkowych tak samo dobrze jak psychologię zachowań konsumenckich. Szukam optymalizacji tam, gdzie inni widzą bariery."
+    title: "Produkty na styku świata cyfrowego i fizycznego",
+    body: "Projektowałem rozwiązania, w których aplikacja współpracuje z urządzeniem lub pracą w terenie: dozownik leków, kabina maszynisty, sieć kamer. Łączę wymagania regulacyjne z tym, jak ludzie naprawdę zachowują się na co dzień."
   }
 ];
 
@@ -34,52 +34,30 @@ interface ToolGroup {
 
 const toolGroups: ToolGroup[] = [
   {
-    label: "AI · Strategia, Badania & Synteza",
+    label: "Projektowanie i prototypowanie",
     tools: [
-      { name: "Claude", category: "Anthropic · Logic & Strategy", slug: "claude" },
-      { name: "ChatGPT", category: "OpenAI · Ideation", slug: "openai" },
-      { name: "Perplexity", category: "Research AI", slug: "perplexity" },
-      { name: "Gemini", category: "Google · Deep Research", slug: "googlegemini" },
-      { name: "Fireflies", category: "Synteza z wywiadów", slug: "fireflies" },
-      { name: "Zoom", category: "User Research Calls", slug: "zoom" },
-    ]
-  },
-  {
-    label: "AI · Design & Kreacja Wizualna",
-    tools: [
-      { name: "Midjourney", category: "Visual Concepting", slug: "midjourney" },
-      {
-        name: "Uizard",
-        category: "AI Wireframing",
-        svg: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 4v8a5 5 0 0 0 10 0V4" stroke="rgba(255,255,255,0.85)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="19" x2="12" y2="21" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round"/></svg>'
-      },
-      {
-        name: "Relume",
-        category: "AI Sitemap & Layout",
-        svg: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="2.5" width="8" height="8" rx="1.5" fill="rgba(255,255,255,0.85)"/><rect x="13.5" y="2.5" width="8" height="8" rx="1.5" fill="rgba(255,255,255,0.85)"/><rect x="2.5" y="13.5" width="8" height="8" rx="1.5" fill="rgba(255,255,255,0.85)"/><rect x="13.5" y="13.5" width="8" height="3.5" rx="1" fill="rgba(255,255,255,0.85)"/><rect x="13.5" y="18.5" width="8" height="3" rx="1" fill="rgba(255,255,255,0.85)"/></svg>'
-      },
-      { name: "Framer AI", category: "AI Web Builder", slug: "framer" },
-    ]
-  },
-  {
-    label: "Design · Systemy & Prototypowanie",
-    tools: [
-      { name: "Figma", category: "Design Systems Expert", slug: "figma" },
-      { name: "Adobe CC", category: "Creative Suite", slug: "adobecreativecloud" },
+      { name: "Figma", category: "Design systemy i interfejsy", slug: "figma" },
       {
         name: "ProtoPie",
-        category: "Advanced Prototyping",
+        category: "Zaawansowane prototypy",
         svg: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.8"/><path d="M12 3v9h9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2" fill="rgba(255,255,255,0.85)"/></svg>'
       },
-      { name: "Framer", category: "Motion & Interaction", slug: "framer" },
+      { name: "Framer", category: "Animacja i interakcje", slug: "framer" },
+      { name: "Adobe CC", category: "Grafika i wideo", slug: "adobecreativecloud" },
     ]
   },
   {
-    label: "Strategy · Warsztaty & Dokumentacja",
+    label: "Współpraca",
     tools: [
-      { name: "Miro", category: "Service Design & Warsztaty", slug: "miro" },
-      { name: "Notion", category: "Dokumentacja & AI", slug: "notion" },
-      { name: "Loom", category: "Async Design Reviews", slug: "loom" },
+      { name: "Miro", category: "Warsztaty i service design", slug: "miro" },
+      { name: "Notion", category: "Dokumentacja", slug: "notion" },
+    ]
+  },
+  {
+    label: "AI",
+    tools: [
+      { name: "Claude", category: "Analiza, synteza, UX writing", slug: "claude" },
+      { name: "ChatGPT", category: "Ideacja", slug: "openai" },
     ]
   }
 ];
@@ -168,7 +146,7 @@ const education = [
         </div>
 
         <h1 class="om-headline opacity-0" data-hero-fade style="--delay: 0.07s">
-          <span data-i18n-html="about.headline">Nie projektuję ekranów.<br/>Projektuję <span class="om-headline-accent">architekturę zaufania.</span></span>
+          <span data-i18n-html="about.headline">Projektuję produkty,<br/>którym ludzie mogą <span class="om-headline-accent">zaufać.</span></span>
         </h1>
 
         <!-- ── Bio + zdjęcie side-by-side ── -->
@@ -177,9 +155,7 @@ const education = [
           <!-- Lewa: lead text + stats -->
           <div>
             <p class="om-lead opacity-0" data-hero-fade style="--delay: 0.14s" data-i18n="about.lead">
-              Działam tam, gdzie precyzja, bezpieczeństwo danych i przejrzystość procesów
-              decydują o stabilności finansowej i sukcesie biznesowym. Wierzę, że dobry
-              design to najwyższa forma profesjonalnej odpowiedzialności.
+              Od 12 lat projektuję produkty tam, gdzie błąd kosztuje: w bankowości, medycynie, transporcie kolejowym i bezpieczeństwie. Zaczynałem od grafiki i montażu wideo, dziś łączę rzemiosło projektowe ze strategią produktu i wdrażaniem GenAI.
             </p>
 
             <div class="om-stats-grid mt-12 pt-10 border-t border-white/[0.07] opacity-0" data-hero-fade style="--delay: 0.21s">
@@ -195,7 +171,7 @@ const education = [
               <div class="om-stat-divider" aria-hidden="true"></div>
               <div class="om-stat">
                 <p class="om-stat-value om-stat-value--white">50+</p>
-                <p class="om-stat-label" data-i18n-html="about.stat.deployments">lokalizacji wdrożonych<br/>w projektach</p>
+                <p class="om-stat-label" data-i18n-html="about.stat.deployments">lokalizacji w 60 dni<br/>(REID)</p>
               </div>
             </div>
           </div>
@@ -280,7 +256,7 @@ const education = [
 
         <div class="mb-16 md:mb-20 opacity-0" data-scroll-fade>
           <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5" data-i18n="about.philosophy.overline">
-            Mindset & Filozofia
+            Jak myślę
           </p>
           <h2 class="om-section-heading max-w-2xl" data-i18n="about.philosophy.heading">
             Przekonania, które kształtują każdy projekt
@@ -305,10 +281,9 @@ const education = [
 
         <div class="om-quote-block mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
           <div class="om-quote-line" aria-hidden="true"></div>
-          <p class="om-quote-text" data-i18n="about.quote">
-            "Dobry design to najwyższa forma profesjonalnej odpowiedzialności. To on sprawia,
-            że w złożonym świecie finansów i technologii użytkownik podejmuje świadome decyzje,
-            a organizacja mityguje ryzyka, których inni nie potrafią dostrzec."
+          <p class="om-personal-label" data-i18n="about.personal.label">Poza projektami</p>
+          <p class="om-quote-text om-personal-text" data-i18n="about.quote">
+            Pracuję po angielsku (C1), dogaduję się po niemiecku (B1) i uczę się japońskiego. Poza pracą najchętniej spędzam czas w naturze — to ona najlepiej uczy, jak żyć w harmonii.
           </p>
         </div>
 
@@ -323,15 +298,13 @@ const education = [
 
         <div class="mb-6 opacity-0" data-scroll-fade>
           <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5" data-i18n="about.tools.overline">
-            Stack narzędzi
+            Warsztat
           </p>
           <h2 class="om-section-heading" data-i18n="about.tools.heading">
-            Narzędzia & Technologie
+            Narzędzia, z których korzystam
           </h2>
           <p class="om-section-sub" data-i18n="about.tools.desc">
-            Eksploruję AI nie po to, by zastąpić proces myślowy — ale by zautomatyzować
-            rzemiosło i zyskać więcej czasu na to, co najistotniejsze: strategię, analizę
-            ryzyk i empatię wobec użytkownika.
+            Używam AI, żeby przyspieszyć rzemiosło, a nie zastąpić myślenie. Zostaje mi więcej czasu na strategię, analizę ryzyk i rozmowy z użytkownikami.
           </p>
         </div>
 
@@ -354,15 +327,13 @@ const education = [
             <div class="om-claude-badge" data-i18n="about.claude.badge">Główne narzędzie AI</div>
             <h3 class="om-claude-name">Claude <span class="om-claude-by">by Anthropic</span></h3>
             <p class="om-claude-desc" data-i18n="about.claude.desc">
-              Kluczowy partner w analizie logiki biznesowej, mapowaniu edge-case'ów, syntezie badań
-              i budowaniu argumentacji projektowej. Claude towarzyszy mi na każdym etapie — od
-              strategii po szczegółowe decyzje UX Writing.
+              Używam go do analizy logiki biznesowej, wyszukiwania przypadków brzegowych, syntezy badań i UX writingu.
             </p>
             <div class="om-claude-tags">
-              <span>Analiza logiki</span>
-              <span>Edge-case mapping</span>
-              <span>UX Writing</span>
-              <span>Strategia</span>
+              <span data-i18n="about.claude.tag.0">Analiza logiki</span>
+              <span data-i18n="about.claude.tag.1">Przypadki brzegowe</span>
+              <span data-i18n="about.claude.tag.2">UX writing</span>
+              <span data-i18n="about.claude.tag.3">Strategia</span>
             </div>
           </div>
         </div>
@@ -372,7 +343,7 @@ const education = [
           <div class="mt-16 opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + gi * 0.1}s`}>
             <p class="om-group-label" data-i18n={`about.toolgroup.${gi}`}>{group.label}</p>
             <div class="om-tools-grid mt-6">
-              {group.tools.map((tool) => (
+              {group.tools.map((tool, ti) => (
                 <div class="om-tool-card">
                   <div class="om-tool-logo">
                     {tool.svg ? (
@@ -396,7 +367,7 @@ const education = [
                   </div>
                   <div class="om-tool-info">
                     <p class="om-tool-name">{tool.name}</p>
-                    <p class="om-tool-cat">{tool.category}</p>
+                    <p class="om-tool-cat" data-i18n={`about.tools.g${gi}.t${ti}.cat`}>{tool.category}</p>
                   </div>
                 </div>
               ))}
@@ -551,6 +522,17 @@ const education = [
     border-radius: 9999px;
     opacity: 0.5;
   }
+
+  /* „Poza projektami” — osobista notka zamiast cytatu */
+  .om-personal-label {
+    margin: 0 0 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #BAF52A;
+  }
+  .om-quote-text.om-personal-text { font-style: normal; }
 
   /* ─── Doświadczenie — oś czasu ──────────────────────────────────────────── */
 

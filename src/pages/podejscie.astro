@@ -6,48 +6,54 @@ import Reveal from '../components/Reveal.astro';
 const pillar1Items = [
   {
     heading: "Struktura ponad estetyką",
-    body: "Tam, gdzie regulacje prawne (KNF, EBA, GDPR), ograniczenia technologiczne i legacy systemów przytłaczają proces, wprowadzam porządek. Projektuję architekturę informacji, która mityguje ryzyko błędów operacyjnych i pozwala użytkownikowi skupić się na decyzji, a nie na walce z interfejsem."
+    body: "Tam, gdzie regulacje (KNF, EBA, RODO), ograniczenia technologiczne i starsze systemy komplikują proces, porządkuję go. Projektuję architekturę informacji, która ogranicza ryzyko błędów i pozwala skupić się na decyzji, a nie na walce z interfejsem.",
+    example: { id: "blik", href: "/projekty/blik-dla-biznesu", title: "BLIK dla Biznesu w ING" }
   },
   {
-    heading: "Design jako mitygacja ryzyka",
-    body: "W bankowości i systemach bezpieczeństwa prostota to nie minimalizm wizualny — to redukcja obciążenia poznawczego. Buduję systemy, w których każda interakcja jest bezpieczna, przewidywalna i zgodna z najwyższymi standardami compliance."
+    heading: "Prostota, która ogranicza ryzyko",
+    body: "W bankowości i systemach bezpieczeństwa prostota to nie minimalizm wizualny, tylko mniejsze obciążenie poznawcze. Projektuję interakcje przewidywalne i zgodne z wymaganiami compliance.",
+    example: { id: "vtda", href: "/projekty/vtda", title: "VTDA — Wirtualny Asystent Maszynisty" }
   },
   {
-    heading: "Data-Informed Strategy",
-    body: "Dane mówią mi, co się dzieje, ale badania jakościowe i psychologia finansowa tłumaczą, dlaczego. Analityka waliduje hipotezy, lecz to głębokie rozumienie Big Picture pozwala projektować rozwiązania, które wyprzedzają potrzeby rynku."
+    heading: "Dane i badania razem",
+    body: "Dane pokazują, co się dzieje, a badania jakościowe — dlaczego. Analityka weryfikuje hipotezy, a zrozumienie szerszego kontekstu pozwala projektować z wyprzedzeniem.",
+    example: { id: "reid", href: "/projekty/reid", title: "System reidentyfikacji osób dla infrastruktury krytycznej" }
   }
 ];
 
 const pillar2Items = [
   {
     heading: "Kultura oparta na dowodach",
-    body: 'Usuwam frazę „wydaje mi się” ze słownika projektowego. Wdrażam procesy, w których decyzje są wynikiem badań i twardych danych rynkowych — design staje się przewidywalnym procesem biznesowym, a nie subiektywną opinią jednostki.'
+    body: "Zamieniam „wydaje mi się” na „sprawdziliśmy”. Decyzje opieram na badaniach i danych, dzięki czemu design staje się przewidywalną częścią procesu biznesowego, a nie kwestią gustu.",
+    example: { id: "blik", href: "/projekty/blik-dla-biznesu", title: "BLIK dla Biznesu w ING" }
   },
   {
     heading: "Facylitacja i współpraca",
-    body: "Jako Product Lead usuwam bariery komunikacyjne między IT, Business i Compliance. Prowadzę warsztaty i procesy decyzyjne tak, aby każda funkcja produktu realizowała konkretny cel biznesowy przy zachowaniu najwyższej jakości UX."
+    body: "Łączę IT, biznes i compliance. Prowadzę warsztaty i proces decyzyjny tak, żeby każda funkcja miała jasny cel biznesowy i nie traciła na jakości UX.",
+    example: { id: "vtda", href: "/projekty/vtda", title: "VTDA — Wirtualny Asystent Maszynisty" }
   },
   {
-    heading: "Mentoring i skalowanie dojrzałości",
-    body: "Buduję zespoły rozumiejące kontekst biznesowy swojej pracy. Inwestuję w samodzielność projektantów — uczę strategicznego myślenia i bronienia decyzji argumentami merytorycznymi, nie osobistym gustem."
+    heading: "Mentoring i samodzielność zespołu",
+    body: "Rozwijam samodzielność projektantów: uczę myślenia strategicznego i bronienia decyzji argumentami, a nie gustem. Prowadziłem zespoły projektowe w REID i TabBox.",
+    example: { id: "tabbox", href: "/projekty/tabbox", title: "TabBox — Ekosystem farmakoterapii" }
   }
 ];
 
 const whyMe = [
   {
     number: "01",
-    heading: "Zrozumienie regulacji",
-    body: "Nie boję się compliance. Traktuję ramy prawne jako zestaw parametrów projektowych — przekształcam ograniczenia w przewagę konkurencyjną produktu."
+    heading: "Gdy produkt działa w regulowanym środowisku",
+    body: "Regulacje traktuję jak parametry projektowe. W BLIK dla Biznesu ograniczenia systemu stały się podstawą prostego procesu dla firm."
   },
   {
     number: "02",
-    heading: "Odpowiedzialność za KPI",
-    body: "Nie dostarczam makiet. Dostarczam rozwiązania z realnym wpływem na konwersję, retencję i bezpieczeństwo operacyjne. Każda decyzja jest mierzalna."
+    heading: "Gdy liczy się mierzalny wynik",
+    body: "20% ROI w pół roku w REID, −20% ryzyka incydentów w VTDA, ponad 1 mln zł transakcji w pierwszym tygodniu BLIK dla Biznesu."
   },
   {
     number: "03",
-    heading: "12 lat praktyki",
-    body: "Wiem, kiedy walczyć o detale, a kiedy skupić się na szybkim dowiezieniu wartości biznesowej. Time-to-Market i jakość nie muszą być w konflikcie."
+    heading: "Gdy trzeba pogodzić jakość z tempem",
+    body: "Wiem, kiedy dopracować detal, a kiedy szybciej dostarczyć wartość. REID: wdrożenie w 50+ lokalizacjach w 60 dni."
   }
 ];
 ---
@@ -93,13 +99,13 @@ const whyMe = [
         <!-- Pillar navigation anchors -->
         <div class="flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 mt-10 opacity-0" data-hero-fade style="--delay: 0.21s">
           <a href="#fragmentacja-big-picture" class="pd-anchor-btn pd-anchor-btn--primary">
-            <span data-i18n="approach.pillar1.anchor">01 · Fragmentacja & Big Picture</span>
+            <span data-i18n="approach.pillar1.anchor">01 · Porządkowanie złożoności</span>
             <svg class="pd-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 5v14m-7-7 7 7 7-7"/>
             </svg>
           </a>
           <a href="#zarzadzanie-przywodztwo" class="pd-anchor-btn pd-anchor-btn--secondary">
-            <span data-i18n="approach.pillar2.anchor">02 · Zarządzanie & Przywództwo</span>
+            <span data-i18n="approach.pillar2.anchor">02 · Przywództwo i współpraca</span>
             <svg class="pd-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 5v14m-7-7 7 7 7-7"/>
             </svg>
@@ -113,7 +119,7 @@ const whyMe = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         FILAR I — Fragmentacja & Big Picture
+         FILAR I — Porządkowanie złożoności
     ════════════════════════════════════════════════════════════════════════ -->
     <section
       id="fragmentacja-big-picture"
@@ -132,7 +138,7 @@ const whyMe = [
           </div>
 
           <div class="opacity-0" data-scroll-fade style="--fade-delay: 0.08s">
-            <p class="pd-pillar-tag" data-i18n="approach.pillar1.tag">Fragmentacja & Big Picture</p>
+            <p class="pd-pillar-tag" data-i18n="approach.pillar1.tag">Porządkowanie złożoności</p>
           </div>
 
           <h2 class="pd-pillar-heading opacity-0" data-scroll-fade style="--fade-delay: 0.16s">
@@ -159,6 +165,10 @@ const whyMe = [
               <div class="pd-item-line" aria-hidden="true"></div>
               <h3 class="pd-item-heading" data-i18n={`approach.pillar1.item.${i}.heading`}>{item.heading}</h3>
               <p class="pd-item-body" data-i18n={`approach.pillar1.item.${i}.body`}>{item.body}</p>
+              <a href={item.example.href} class="pd-item-example">
+                <span class="pd-item-example-label"><span data-i18n="approach.example">Przykład</span>:</span>
+                <span data-i18n={`nextproject.${item.example.id}.title`}>{item.example.title}</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </a>
             </div>
           ))}
         </div>
@@ -167,7 +177,7 @@ const whyMe = [
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════════════
-         FILAR II — Zarządzanie & Przywództwo
+         FILAR II — Przywództwo i współpraca
     ════════════════════════════════════════════════════════════════════════ -->
     <section
       id="zarzadzanie-przywodztwo"
@@ -186,11 +196,11 @@ const whyMe = [
           </div>
 
           <div class="opacity-0" data-scroll-fade style="--fade-delay: 0.08s">
-            <p class="pd-pillar-tag" data-i18n="approach.pillar2.tag">Zarządzanie & Przywództwo</p>
+            <p class="pd-pillar-tag" data-i18n="approach.pillar2.tag">Przywództwo i współpraca</p>
           </div>
 
           <h2 class="pd-pillar-heading opacity-0" data-scroll-fade style="--fade-delay: 0.16s">
-            <span data-i18n-html="approach.pillar2.heading">Design to sport zespołowy.<br/>Moja rola to facylitacja zwycięstwa.</span>
+            <span data-i18n-html="approach.pillar2.heading">Design to sport zespołowy.<br/>Moja rola: pomóc zespołowi podejmować dobre decyzje.</span>
           </h2>
 
           <p class="pd-pillar-intro opacity-0" data-scroll-fade style="--fade-delay: 0.24s" data-i18n="approach.pillar2.intro">
@@ -213,6 +223,10 @@ const whyMe = [
               <div class="pd-item-line pd-item-line--alt" aria-hidden="true"></div>
               <h3 class="pd-item-heading" data-i18n={`approach.pillar2.item.${i}.heading`}>{item.heading}</h3>
               <p class="pd-item-body" data-i18n={`approach.pillar2.item.${i}.body`}>{item.body}</p>
+              <a href={item.example.href} class="pd-item-example">
+                <span class="pd-item-example-label"><span data-i18n="approach.example">Przykład</span>:</span>
+                <span data-i18n={`nextproject.${item.example.id}.title`}>{item.example.title}</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </a>
             </div>
           ))}
         </div>
@@ -229,7 +243,7 @@ const whyMe = [
 
         <div class="mb-16 md:mb-20 opacity-0" data-scroll-fade>
           <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5 uppercase" data-i18n="approach.why.overline">
-            Dlaczego ja?
+            Współpraca
           </p>
           <h2 class="pd-section-heading" data-i18n-html="approach.why.heading">
             Kiedy warto zaprosić mnie do projektu?
@@ -250,15 +264,13 @@ const whyMe = [
           ))}
         </div>
 
-        <!-- Closing quote -->
-        <div class="pd-quote opacity-0 mt-16 md:mt-20" data-scroll-fade style="--fade-delay: 0.3s">
-          <div class="pd-quote-bar" aria-hidden="true"></div>
-          <p class="pd-quote-kicker" data-i18n="approach.quote.kicker">Filozofia pracy</p>
-          <p class="pd-quote-text" data-i18n="approach.quote.text">
-            "Strategia bez egzekucji to marzenie. Egzekucja bez strategii to koszmar.
-            Moje podejście łączy oba światy — bo tylko tak design staje się realną
-            przewagą konkurencyjną, a nie kosztem projektowym."
-          </p>
+        <!-- Dowody zamiast cytatu — link do case study -->
+        <div class="pd-practice opacity-0 mt-16 md:mt-20" data-scroll-fade style="--fade-delay: 0.3s">
+          <p class="pd-practice-label" data-i18n="approach.practice.label">Zobacz to w praktyce</p>
+          <a href="/prace" class="pd-practice-link">
+            <span data-i18n="approach.practice.link">Wszystkie projekty</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          </a>
         </div>
 
       </div>
@@ -273,6 +285,58 @@ const whyMe = [
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+  }
+
+  /* ─── Przykład z case study pod zasadą ─── */
+  /* Zwykły tekst w linii — strzałka trzyma się ostatniego słowa tytułu */
+  .pd-item-example {
+    display: block;
+    margin-top: 14px;
+    line-height: 1.5;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    transition: color 0.3s ease;
+  }
+  .pd-item-example:hover { color: #BAF52A; }
+  .pd-item-example-label { color: rgba(255,255,255,0.5); margin-right: 4px; }
+  .pd-item-example svg { display: inline-block; vertical-align: -2px; margin-left: 6px; }
+
+  /* ─── „Zobacz to w praktyce” zamiast cytatu ─── */
+  .pd-practice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+    padding: 28px 32px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    background: rgba(186,245,42,0.03);
+  }
+  .pd-practice-label {
+    margin: 0;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    color: #fff;
+  }
+  .pd-practice-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 9999px;
+    background: #BAF52A;
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .pd-practice-link:hover {
+    background: #000;
+    color: #BAF52A;
+    box-shadow: 0 0 0 1px #BAF52A;
   }
 </style>
 

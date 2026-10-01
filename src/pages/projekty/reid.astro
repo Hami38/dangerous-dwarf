@@ -13,6 +13,9 @@ const project = {
   client: "New Security Systems",
   year: "2023",
   scope: "Product Design · AI/UX Strategy · Ethics & GDPR",
+  team: "4 osoby",
+  duration: "12 miesięcy",
+  learned: "Na początku szukaliśmy zastosowań dla gotowej technologii, zamiast zaczynać od problemu. Przełomem było odwrócenie tej logiki: wyszliśmy od potrzeb operatorów i klientów, a technologię dopasowaliśmy do tego, co faktycznie miała rozwiązać. Dziś zacząłbym projekt właśnie od tego kroku — to on ukształtował finalny produkt.",
   i18n: "reid",
 };
 
@@ -125,6 +128,16 @@ const nextProjects = [
           <div class="cs-meta-item">
             <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
             <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.team">Zespół</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.team`}>{project.team}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.duration">Czas</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.duration`}>{project.duration}</span>
           </div>
         </div>
 
@@ -387,12 +400,18 @@ const nextProjects = [
 
         <!-- Quote / highlight -->
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-          <div class="cs-quote-block">
+          <div class="cs-quote-block cs-decision">
             <div class="cs-quote-line" aria-hidden="true"></div>
-            <blockquote class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
-              "Zamiast budować system dla wszystkich, skupiłem się na personie operatora. Empathy Map ujawniła krytyczne napięcie — i właśnie z niego zrodziło się rozwiązanie, które zbudowało zaufanie użytkowników."
-            </blockquote>
-            <p class="cs-quote-source" data-i18n={`${project.i18n}.quote.source`}>Kamil Wardak · Lead Product Designer, projekt ReID</p>
+            <p class="cs-decision-label" data-i18n="cs.decision.label">Kluczowa decyzja</p>
+            <p class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
+              Zamiast budować system dla wszystkich, skupiłem się na personie operatora. Empathy Map ujawniła krytyczne napięcie — i właśnie z niego zrodziło się rozwiązanie, które zbudowało zaufanie użytkowników.
+            </p>
+          </div>
+
+          <!-- Czego się nauczyłem -->
+          <div class="cs-learn-block">
+            <p class="cs-decision-label" data-i18n="cs.learned.label">Czego się nauczyłem</p>
+            <p class="cs-learn-text" data-i18n={`${project.i18n}.learned`}>{project.learned}</p>
           </div>
         </div>
 
@@ -1212,6 +1231,41 @@ const nextProjects = [
     transform: translateY(0) !important;
   }
 
+
+  /* ─── Pasek informacji: 6 pól (rola, klient, rok, zakres, zespół, czas) w siatce ─── */
+  .cs-meta-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+  .cs-meta-strip .cs-meta-divider { display: none; }
+  .cs-meta-strip .cs-meta-item { padding: 0; min-width: 0; }
+  @media (max-width: 640px) {
+    .cs-meta-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+  }
+
+  /* ─── Kluczowa decyzja + Czego się nauczyłem ─── */
+  .cs-decision .cs-quote-text { font-style: normal; margin: 0; }
+  .cs-decision-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #BAF52A;
+    margin: 0 0 12px;
+  }
+  .cs-learn-block {
+    margin-top: 20px;
+    padding: 28px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+  }
+  .cs-learn-block .cs-decision-label { color: rgba(255,255,255,0.5); }
+  .cs-learn-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .cs-learn-block { padding: 24px 22px; }
+  }
 </style>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════

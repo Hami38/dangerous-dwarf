@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import { Image } from 'astro:assets';
 import heroPhoto from '../assets/images/portret_portfolio.webp';
+import Button from '../components/Button.astro';
 
 const pillars = [
   {
@@ -82,6 +83,62 @@ const toolGroups: ToolGroup[] = [
     ]
   }
 ];
+
+// Oś czasu — dane z CV; role zgodne z case study (tłumaczenia: about.exp.N.*)
+const experience = [
+  {
+    period: "05.2024 – obecnie",
+    company: "ING Bank Śląski · Business Banking",
+    role: "UX Expert & Interaction Designer",
+    desc: "BLIK dla Biznesu, asystent GenAI dla bankowości firmowej, strategia wdrażania AI i międzynarodowa gildia projektowa ING.",
+    href: "/projekty/blik-dla-biznesu",
+  },
+  {
+    period: "01.2024 – 09.2024",
+    company: "Hack the Climate · PFR",
+    role: "Lead UX & UI Designer",
+    desc: "Platforma klimatyczna dla mieszkańców Rzeszowa. Wyróżnienie w konkursie Polskiego Funduszu Rozwoju.",
+  },
+  {
+    period: "01.2023 – 12.2023",
+    company: "New Security Systems",
+    role: "Lead Product Designer / Strategic Architect",
+    desc: "Lider 4-osobowego zespołu. SaaS do reidentyfikacji biometrycznej dla infrastruktury krytycznej (REID).",
+    href: "/projekty/reid",
+  },
+  {
+    period: "01.2023 – 07.2023",
+    company: "TabBox",
+    role: "Strategic Product Lead / Creative Director",
+    desc: "Lider 3-osobowego zespołu. Inteligentny dozownik leków dla seniorów — od koncepcji po masową produkcję.",
+    href: "/projekty/tabbox",
+  },
+  {
+    period: "01.2023 – 07.2023",
+    company: "PGZ Stocznia Wojenna · PFR",
+    role: "Lead Product Designer",
+    desc: "System wykrywania anomalii morskich oparty na sieciach neuronowych, wdrożony operacyjnie u kontraktora.",
+  },
+  {
+    period: "04.2021 – 12.2022",
+    company: "Infracert",
+    role: "Lead Product Designer / UX Architect",
+    desc: "VTDA — system wsparcia maszynistów dla przewoźników kolejowych z Europy Środkowo-Wschodniej.",
+    href: "/projekty/vtda",
+  },
+  {
+    period: "2014 – 2021",
+    company: "Freelance · R&B Studio · in-house",
+    role: "Product Designer · Graphic Designer",
+    desc: "Siedem lat pracy z agencjami i klientami bezpośrednimi: branding, layout, motion i pierwsze projekty produktowe.",
+  },
+];
+
+const education = [
+  { year: "2020 – 2024", title: "Magister sztuki", org: "Polsko-Japońska Akademia Technik Komputerowych" },
+  { year: "2024", title: "Google UX Design Professional Certificate", org: "Google" },
+  { year: "2026", title: "Umiejętności Jutra 3.0", org: "Google i SGH" },
+];
 ---
 
 <Layout title="O mnie | Kamil Wardak" description="Poznaj Kamila Wardaka — 12 lat doświadczenia w projektowaniu produktów cyfrowych dla bankowości, HealthTech i sektora obronnego. Obecnie ING Bank Śląski.">
@@ -158,6 +215,60 @@ const toolGroups: ToolGroup[] = [
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         DOŚWIADCZENIE — oś czasu + wykształcenie
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="px-6 pt-8 md:pt-12 pb-8" aria-labelledby="om-exp-heading">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-12 md:mb-16 opacity-0" data-scroll-fade>
+          <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold mb-5" data-i18n="about.exp.overline">Kariera</p>
+          <h2 class="om-section-heading" id="om-exp-heading" data-i18n="about.exp.heading">Doświadczenie zawodowe</h2>
+        </div>
+
+        <ol class="om-timeline" role="list">
+          {experience.map((job, i) => (
+            <li class="om-job opacity-0" data-scroll-fade style={`--fade-delay: ${0.05 + i * 0.06}s`}>
+              <p class="om-job-period" data-i18n={`about.exp.${i}.period`}>{job.period}</p>
+              <div class="om-job-body">
+                <h3 class="om-job-role" data-i18n={`about.exp.${i}.role`}>{job.role}</h3>
+                <p class="om-job-company">{job.company}</p>
+                <p class="om-job-desc" data-i18n={`about.exp.${i}.desc`}>{job.desc}</p>
+                {job.href && (
+                  <a href={job.href} class="om-job-link">
+                    <span data-i18n="about.exp.case">Zobacz case study</span>
+                    <span class="sr-only"> — {job.company}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                  </a>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div class="om-edu opacity-0" data-scroll-fade>
+          <h3 class="om-edu-heading" data-i18n="about.edu.heading">Wykształcenie i certyfikaty</h3>
+          <ul class="om-edu-list" role="list">
+            {education.map((e, i) => (
+              <li class="om-edu-item">
+                <span class="om-edu-year">{e.year}</span>
+                <span class="om-edu-title" data-i18n={`about.edu.${i}.title`}>{e.title}</span>
+                <span class="om-edu-org" data-i18n={`about.edu.${i}.org`}>{e.org}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="mt-12 opacity-0" data-scroll-fade>
+          <Button text="Pobierz pełne CV" i18nKey="about.exp.cv" hrefI18nKey="hero.cta.cv.href" variant="secondary" href="/Kamil_Wardak_CV_2026.pdf" download={true}>
+            <svg slot="icon-default" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            <span slot="icon-hover" class="file-size">1.7 MB</span>
+          </Button>
+        </div>
+
       </div>
     </section>
 
@@ -439,6 +550,110 @@ const toolGroups: ToolGroup[] = [
     background: linear-gradient(180deg, transparent, #BAF52A, transparent);
     border-radius: 9999px;
     opacity: 0.5;
+  }
+
+  /* ─── Doświadczenie — oś czasu ──────────────────────────────────────────── */
+
+  .om-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .om-job {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .om-job-period {
+    margin: 0.2rem 0 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .om-job-role {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+  }
+
+  .om-job-company {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #BAF52A;
+  }
+
+  .om-job-desc {
+    margin: 0.6rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.6);
+    max-width: 38rem;
+  }
+
+  .om-job-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: color 0.3s ease, gap 0.3s ease;
+  }
+
+  .om-job-link:hover { color: #BAF52A; gap: 10px; }
+
+  /* Wykształcenie i certyfikaty */
+  .om-edu { margin-top: 3.5rem; }
+
+  .om-edu-heading {
+    margin: 0 0 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .om-edu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .om-edu-item {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    column-gap: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .om-edu-year {
+    grid-row: span 2;
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .om-edu-title { color: #ffffff; font-weight: 600; }
+  .om-edu-org { color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 640px) {
+    .om-job { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
+    .om-edu-item { grid-template-columns: 1fr; }
+    .om-edu-year { grid-row: auto; font-size: 0.8rem; }
   }
 
   /* ─── Section headings ──────────────────────────────────────────────────── */

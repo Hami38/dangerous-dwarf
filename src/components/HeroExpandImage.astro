@@ -269,7 +269,8 @@ const stats = [
           trigger: trigger,
           pin: stage,
           start: 'top top',
-          end: '+=300%',
+          // Wariant A (audyt UX pkt 4): krótsze przypięcie — było '+=300%'
+          end: '+=120%',
           scrub: 1,
           pinSpacing: true,
           anticipatePin: 1,
@@ -303,19 +304,20 @@ const stats = [
         onStart: () => { overlay.style.pointerEvents = 'auto'; },
       }, '>-0.5');
 
-      // Faza 4 — kafle wjeżdżają jako całość (fade+up)
+      // Faza 4 — kafle wjeżdżają razem (minimalny stagger)
+      masterTL.addLabel('cards', '>-0.3');
       masterTL.to(statCards, {
         opacity: 1, y: 0,
-        duration: 0.7, stagger: 0.15, ease: 'power3.out',
-      }, '>-0.3');
+        duration: 0.7, stagger: 0.06, ease: 'power3.out',
+      }, 'cards');
 
-      // Faza 5 — Block Reveal tekstu w każdym kaflu, jeden po drugim
+      // Faza 5 — Block Reveal tekstu we wszystkich kaflach jednocześnie
       statCards.forEach((card) => {
-        masterTL.add(buildCardReveal(card), `>-0.3`);
+        masterTL.add(buildCardReveal(card), 'cards+=0.2');
       });
 
-      // Faza 6 — chwila zatrzymania zanim scroll puści
-      masterTL.to({}, { duration: 1.5 });
+      // Faza 6 — krótka chwila zatrzymania zanim scroll puści (było 1.5)
+      masterTL.to({}, { duration: 0.4 });
 
       window.addEventListener('resize', () => { cacheSize(); render(); ScrollTrigger.refresh(); });
       ScrollTrigger.refresh();

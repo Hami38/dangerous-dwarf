@@ -3,9 +3,22 @@
 import Reveal from './Reveal.astro';
 import ProjectImage from './ProjectImage.astro';
 
+interface Props {
+  /** Nagłówek sekcji „Od strategii po realny wpływ” — na /prace strona ma własny H1 */
+  showHeader?: boolean;
+  /** Wiersz z rokiem, czasem trwania i zespołem (na /prace) */
+  showMeta?: boolean;
+}
+
+const { showHeader = true, showMeta = false } = Astro.props;
+
 const cases = [
   {
     id: 1,
+    key: "blik",
+    duration: "4 miesiące",
+    team: "20 osób (zespół produktowy)",
+    year: "2025",
     overline: "Finanse / Strategia",
     headline: "BLIK dla Biznesu w ING",
     subtext: "Pierwszy na rynku BLIK korporacyjny. Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.",
@@ -18,6 +31,10 @@ const cases = [
   },
   {
     id: 2,
+    key: "reid",
+    duration: "12 miesięcy",
+    team: "4 osoby",
+    year: "2023",
     overline: "Bezpieczeństwo / Computer Vision",
     headline: "System reidentyfikacji osób dla infrastruktury krytycznej",
     subtext: "Skalowanie technologii analizy chodu i cech ogólnych. Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI.",
@@ -30,6 +47,10 @@ const cases = [
   },
   {
     id: 3,
+    key: "vtda",
+    duration: "21 miesięcy",
+    team: "4 osoby",
+    year: "2022",
     overline: "Bezpieczeństwo krytyczne / Deep Tech",
     headline: "VTDA — Wirtualny Asystent Maszynisty",
     subtext: "Budowa systemu wspomagania decyzji w czasie rzeczywistym i minimalizacja obciążenia poznawczego.",
@@ -42,6 +63,10 @@ const cases = [
   },
   {
     id: 4,
+    key: "tabbox",
+    duration: "7 miesięcy",
+    team: "3 osoby",
+    year: "2023",
     overline: "HealthTech / Senior Care / IoT",
     headline: "TabBox — Ekosystem farmakoterapii",
     subtext: "Zintegrowany system HW/SW łączący fizyczny dozownik leków z aplikacją mobilną. Kontrakt na masową produkcję w 8 tygodniach.",
@@ -55,10 +80,11 @@ const cases = [
 ];
 ---
 
-<section class="portfolio-section relative bg-[#0c0a09] pt-24 pb-0 md:pt-24 md:pb-0 px-6 overflow-hidden">
+<section class={`portfolio-section relative bg-[#0c0a09] ${showHeader ? "pt-24" : "pt-0"} pb-0 px-6 overflow-hidden`}>
   <div class="max-w-4xl w-full mx-auto">
     
     <!-- Section Header -->
+    {showHeader && (
     <div class="mb-20 md:mb-28 max-w-4xl">
       <Reveal delay={0.1}>
         <p class="section-overline text-[#BAF52A] text-xs Normalcase tracking-[0.15em] font-bold mb-4" data-i18n="portfolio.overline">Wybrane projekty</p>
@@ -69,6 +95,7 @@ const cases = [
         </h2>
       </Reveal>
     </div>
+    )}
 
     <!-- Case Cards -->
     <div class="cases-grid flex flex-col gap-32 md:gap-40">
@@ -112,6 +139,16 @@ const cases = [
                   </h3>
                 </Reveal>
               </div>
+
+              {showMeta && (
+                <p class="case-meta">
+                  <span>{caseItem.year}</span>
+                  <span class="case-meta-dot" aria-hidden="true">·</span>
+                  <span data-i18n={`${caseItem.key}.duration`}>{caseItem.duration}</span>
+                  <span class="case-meta-dot" aria-hidden="true">·</span>
+                  <span data-i18n={`${caseItem.key}.team`}>{caseItem.team}</span>
+                </p>
+              )}
 
               <!-- Kluczowy wynik — najważniejsza liczba projektu -->
               <div class="case-result mb-5 opacity-0" data-fade-in style={`transition-delay: ${0.45 + index * 0.1}s`}>
@@ -215,6 +252,18 @@ const cases = [
     opacity: 1 !important;
     transform: translateY(0);
   }
+
+  /* Wiersz informacji (rok · czas · zespół) — tylko na /prace */
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    margin: -4px 0 18px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .case-meta-dot { color: rgba(255, 255, 255, 0.25); }
 
   /* Kluczowy wynik — jeden stały układ: liczba nad etykietą, spięte linią z lewej.
      Wcześniej etykieta raz stała obok liczby, raz pod nią (zależnie od długości). */

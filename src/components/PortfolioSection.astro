@@ -7,8 +7,8 @@ const cases = [
   {
     id: 1,
     overline: "Finanse / Strategia",
-    headline: "Pierwszy na rynku BLIK korporacyjny dla ING",
-    subtext: "Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.",
+    headline: "BLIK dla Biznesu w ING",
+    subtext: "Pierwszy na rynku BLIK korporacyjny. Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.",
     result: { value: "1 mln", label: "transakcji w pierwszym tygodniu" },
     metric: "UX Expert & Interaction Designer",
     image: "/images/ing/KV_blik.webp",
@@ -31,7 +31,7 @@ const cases = [
   {
     id: 3,
     overline: "Bezpieczeństwo krytyczne / Deep Tech",
-    headline: "Wirtualny asystent dla maszynistów kolejowych",
+    headline: "VTDA — Wirtualny Asystent Maszynisty",
     subtext: "Budowa systemu wspomagania decyzji w czasie rzeczywistym i minimalizacja obciążenia poznawczego.",
     result: { value: "−20%", label: "ryzyka incydentów w 6-miesięcznym pilocie" },
     metric: "Lead Product Designer",
@@ -43,7 +43,7 @@ const cases = [
   {
     id: 4,
     overline: "HealthTech / Senior Care / IoT",
-    headline: "TabBox: Ekosystem farmakoterapii dla osób z demencją",
+    headline: "TabBox — Ekosystem farmakoterapii",
     subtext: "Zintegrowany system HW/SW łączący fizyczny dozownik leków z aplikacją mobilną. Kontrakt na masową produkcję w 8 tygodniach.",
     result: { value: "89%", label: "poprawa adherence (regularności leczenia)" },
     metric: "Strategic Product Lead / Creative Director",
@@ -96,7 +96,7 @@ const cases = [
             </div>
 
             <!-- Content (40%) -->
-            <div class={`case-content md:col-span-5 ${caseItem.reverse ? 'md:order-1 md:text-right' : ''}`}>
+            <div class={`case-content md:col-span-5 ${caseItem.reverse ? 'md:order-1' : ''}`}>
               <div class="mb-3">
                 <Reveal delay={0.2 + index * 0.1} color="#BAF52A" tag="span">
                   <p class="case-overline text-[#BAF52A] text-[12px] normalcase tracking-[0.15em] font-bold" data-i18n={`portfolio.case.${index}.overline`}>
@@ -134,6 +134,8 @@ const cases = [
 
                 <a href={caseItem.href} class="case-cta group inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 opacity-0 w-fit" data-fade-in style={`transition-delay: ${0.8 + index * 0.1}s`}>
                   <span data-i18n="portfolio.cta">Zobacz case study</span>
+                  <!-- Cel linku dla czytników ekranu (4× „Zobacz case study” jest niejednoznaczne) -->
+                  <span class="sr-only"> — <span data-i18n={`portfolio.case.${index}.headline`}>{caseItem.headline}</span></span>
                   <div class="icon-wrapper relative w-4 h-4 overflow-hidden">
                     <svg class="icon-arrow absolute inset-0 transition-transform duration-300 group-hover:-translate-y-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>
@@ -163,11 +165,6 @@ const cases = [
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* Z-Pattern Alignment */
-  .case-card-wrapper.reverse .case-content {
-    align-items: flex-end;
   }
 
   /* Reveal wrapper - inline-block dla dopasowania szerokości do treści */
@@ -244,10 +241,6 @@ const cases = [
     color: #d6d3d1;
   }
 
-  @media (min-width: 768px) {
-    .case-card-wrapper.reverse .case-result { justify-content: flex-end; }
-  }
-
   /* Metric badge - poprawione wyrównanie tekstu */
   .case-metric {
     height: auto;
@@ -287,28 +280,11 @@ const cases = [
     height: 16px;
   }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .case-content { text-align: left !important; }
-    
-    /* Na mobile też w-fit i flex-col */
-    .case-content .case-metric,
-    .case-content .case-cta {
-      align-self: flex-start;
-    }
-  }
-
-  /* Dla reverse layout - wyrównanie do prawej */
-  .case-card-wrapper.reverse .case-content .case-metric,
-  .case-card-wrapper.reverse .case-content .case-cta {
-    align-self: flex-end;
-  }
-
-  @media (max-width: 768px) {
-    .case-card-wrapper.reverse .case-content .case-metric,
-    .case-card-wrapper.reverse .case-content .case-cta {
-      align-self: flex-start;
-    }
+  /* Tekst zawsze do lewej — w odwróconych kartach zmienia się tylko strona zdjęcia
+     (wielowierszowe akapity wyrównane do prawej czyta się gorzej) */
+  .case-content .case-metric,
+  .case-content .case-cta {
+    align-self: flex-start;
   }
 </style>
 

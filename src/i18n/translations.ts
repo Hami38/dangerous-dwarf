@@ -28,16 +28,16 @@ export const translations: Record<Lang, Record<string, string>> = {
     'home.approach.overline': 'Podejście',
     'home.approach.heading':  'Diabeł tkwi w szczegółach.',
     'home.approach.cta':      'Czytaj więcej',
-    'home.approach.0.overline': 'Zarządzanie & Przywództwo',
-    'home.approach.0.title':    'W roli lidera',
-    'home.approach.0.desc':     'Wierzę w design jako sport zespołowy. Moja rola to usuwanie barier, facylitacja trudnych decyzji i budowanie kultury opartej na dowodach, nie opiniach.',
-    'home.approach.1.overline': 'Fragmentacja & Big picture',
-    'home.approach.1.title':    'Problemy, które rozwiązuję',
-    'home.approach.1.desc':     'Specjalizuję się w systemach o krytycznym znaczeniu. Tam, gdzie złożoność regulacyjna i technologiczna przytłacza, ja wprowadzam strukturę i prostotę.',
+    'home.approach.1.overline': 'Zarządzanie & Przywództwo',
+    'home.approach.1.title':    'W roli lidera',
+    'home.approach.1.desc':     'Wierzę w design jako sport zespołowy. Moja rola to usuwanie barier, facylitacja trudnych decyzji i budowanie kultury opartej na dowodach, nie opiniach.',
+    'home.approach.0.overline': 'Fragmentacja & Big Picture',
+    'home.approach.0.title':    'Problemy, które rozwiązuję',
+    'home.approach.0.desc':     'Specjalizuję się w systemach o krytycznym znaczeniu. Tam, gdzie złożoność regulacyjna i technologiczna przytłacza, ja wprowadzam strukturę i prostotę.',
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Zaczynamy?',
-    'footer.sub':             'Szukam nowych wyzwań, w których mogę połączyć strategię, design i technologię. Napisz — szybko odpiszę.',
+    'footer.sub':             "Szukam zespołu, w którym strategia, design i technologia grają do jednej bramki. Napisz — odpowiadam zwykle w ciągu 24 godzin.",
     'footer.copy':            'Wszelkie prawa zastrzeżone.',
     'footer.nav.about':       'O mnie',
     'footer.nav.work':        'Prace',
@@ -84,8 +84,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     'portfolio.cta':      'Zobacz case study',
 
     'portfolio.case.0.overline':  'Finanse / Strategia',
-    'portfolio.case.0.headline':  'Pierwszy na rynku BLIK korporacyjny dla ING',
-    'portfolio.case.0.subtext':   'Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.',
+    'portfolio.case.0.headline':  "BLIK dla Biznesu w ING",
+    'portfolio.case.0.subtext':   'Pierwszy na rynku BLIK korporacyjny. Workflow procesu i strategia UX dla kluczowego produktu bankowości biznesowej.',
     'portfolio.case.0.metric':    'UX Expert & Interaction Designer',
     'portfolio.case.0.result.value': '1 mln',
     'portfolio.case.0.result.label': 'transakcji w pierwszym tygodniu',
@@ -98,21 +98,21 @@ export const translations: Record<Lang, Record<string, string>> = {
     'portfolio.case.1.result.label': 'w pierwszym półroczu po wdrożeniu',
 
     'portfolio.case.2.overline':  'Bezpieczeństwo krytyczne / Deep Tech',
-    'portfolio.case.2.headline':  'Wirtualny asystent dla maszynistów kolejowych',
+    'portfolio.case.2.headline':  "VTDA — Wirtualny Asystent Maszynisty",
     'portfolio.case.2.subtext':   'Budowa systemu wspomagania decyzji w czasie rzeczywistym i minimalizacja obciążenia poznawczego.',
     'portfolio.case.2.metric':    'Lead Product Designer',
     'portfolio.case.2.result.value': '−20%',
     'portfolio.case.2.result.label': 'ryzyka incydentów w 6-miesięcznym pilocie',
 
     'portfolio.case.3.overline':  'HealthTech / Senior Care / IoT',
-    'portfolio.case.3.headline':  'TabBox: Ekosystem farmakoterapii dla osób z demencją',
+    'portfolio.case.3.headline':  "TabBox — Ekosystem farmakoterapii",
     'portfolio.case.3.subtext':   'Zintegrowany system HW/SW łączący fizyczny dozownik leków z aplikacją mobilną. Kontrakt na masową produkcję w 8 tygodniach.',
     'portfolio.case.3.metric':    'Strategic Product Lead / Creative Director',
     'portfolio.case.3.result.value': '89%',
     'portfolio.case.3.result.label': 'poprawa adherence (regularności leczenia)',
 
     // ── O mnie ────────────────────────────────────────────────
-    'about.overline': 'UX Strateg & Product Lead · 12 lat doświadczenia',
+    'about.overline': "Design Strategist & Lead UX Designer · 12 lat doświadczenia",
     'about.headline': 'Nie projektuję ekranów.<br/>Projektuję <span class="om-headline-accent">architekturę zaufania.</span>',
     'about.lead':     'Działam tam, gdzie precyzja, bezpieczeństwo danych i przejrzystość procesów decydują o stabilności finansowej i sukcesie biznesowym. Wierzę, że dobry design to najwyższa forma profesjonalnej odpowiedzialności.',
 
@@ -175,7 +175,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'approach.pillar2.item.2.body':    'Buduję zespoły rozumiejące kontekst biznesowy swojej pracy. Inwestuję w samodzielność projektantów — uczę strategicznego myślenia i bronienia decyzji argumentami merytorycznymi, nie osobistym gustem.',
 
     'approach.why.overline': 'Dlaczego ja?',
-    'approach.why.heading':  'Dlaczego potrzebujesz UX&nbsp;Stratega na tym etapie?',
+    'approach.why.heading':  "Kiedy warto zaprosić mnie do projektu?",
 
     'approach.why.0.heading': 'Zrozumienie regulacji',
     'approach.why.0.body':    'Nie boję się compliance. Traktuję ramy prawne jako zestaw parametrów projektowych — przekształcam ograniczenia w przewagę konkurencyjną produktu.',
@@ -284,7 +284,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'nextproject.vtda.title':    'VTDA — Wirtualny Asystent Maszynisty',
     'nextproject.vtda.desc':     'Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.',
     'nextproject.tabbox.overline': 'HealthTech / Senior Care / IoT',
-    'nextproject.tabbox.title':    'TabBox: Ekosystem farmakoterapii dla osób z demencją',
+    'nextproject.tabbox.title':    "TabBox — Ekosystem farmakoterapii",
     'nextproject.tabbox.desc':     'Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.',
 
     // ── BLIK dla Biznesu ──────────────────────────────────────
@@ -488,16 +488,16 @@ export const translations: Record<Lang, Record<string, string>> = {
     'home.approach.overline': 'Approach',
     'home.approach.heading':  'The devil is in the details.',
     'home.approach.cta':      'Read more',
-    'home.approach.0.overline': 'Management & Leadership',
-    'home.approach.0.title':    'In the role of a leader',
-    'home.approach.0.desc':     'I believe in design as a team sport. My role is to remove barriers, facilitate difficult decisions and build a culture based on evidence, not opinions.',
-    'home.approach.1.overline': 'Fragmentation & Big picture',
-    'home.approach.1.title':    'Problems I solve',
-    'home.approach.1.desc':     'I specialise in systems of critical importance. Where regulatory and technological complexity overwhelms, I introduce structure and simplicity.',
+    'home.approach.1.overline': 'Management & Leadership',
+    'home.approach.1.title':    'In the role of a leader',
+    'home.approach.1.desc':     'I believe in design as a team sport. My role is to remove barriers, facilitate difficult decisions and build a culture based on evidence, not opinions.',
+    'home.approach.0.overline': 'Fragmentation & Big Picture',
+    'home.approach.0.title':    'Problems I solve',
+    'home.approach.0.desc':     'I specialise in systems of critical importance. Where regulatory and technological complexity overwhelms, I introduce structure and simplicity.',
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Shall we start?',
-    'footer.sub':             'I\'m looking for new challenges where I can combine strategy, design and technology. Write to me — I reply quickly.',
+    'footer.sub':             "I'm looking for a team where strategy, design and technology play towards the same goal. Write to me — I usually reply within 24 hours.",
     'footer.copy':            'All rights reserved.',
     'footer.nav.about':       'About',
     'footer.nav.work':        'Work',
@@ -544,8 +544,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     'portfolio.cta':      'View case study',
 
     'portfolio.case.0.overline':  'Finance / Strategy',
-    'portfolio.case.0.headline':  "Poland's first corporate BLIK for ING",
-    'portfolio.case.0.subtext':   "Process workflow and UX strategy for a key corporate banking product.",
+    'portfolio.case.0.headline':  "BLIK for Business at ING",
+    'portfolio.case.0.subtext':   "Poland's first corporate BLIK. Process workflow and UX strategy for a key corporate banking product.",
     'portfolio.case.0.metric':    'UX Expert & Interaction Designer',
     'portfolio.case.0.result.value': '1M',
     'portfolio.case.0.result.label': 'transactions in the first week',
@@ -558,21 +558,21 @@ export const translations: Record<Lang, Record<string, string>> = {
     'portfolio.case.1.result.label': 'in the first six months after launch',
 
     'portfolio.case.2.overline':  'Critical Safety / Deep Tech',
-    'portfolio.case.2.headline':  'Virtual assistant for railway drivers',
+    'portfolio.case.2.headline':  "VTDA — Virtual Train Driver Assistant",
     'portfolio.case.2.subtext':   'Building a real-time decision support system and minimising cognitive load.',
     'portfolio.case.2.metric':    'Lead Product Designer',
     'portfolio.case.2.result.value': '−20%',
     'portfolio.case.2.result.label': 'incident risk in a 6-month pilot',
 
     'portfolio.case.3.overline':  'HealthTech / Senior Care / IoT',
-    'portfolio.case.3.headline':  'TabBox: Pharmacotherapy ecosystem for people with dementia',
+    'portfolio.case.3.headline':  "TabBox — Pharmacotherapy Ecosystem",
     'portfolio.case.3.subtext':   'Integrated HW/SW system combining a physical pill dispenser with a mobile app. Mass production contract in 8 weeks.',
     'portfolio.case.3.metric':    'Strategic Product Lead / Creative Director',
     'portfolio.case.3.result.value': '89%',
     'portfolio.case.3.result.label': 'adherence improvement',
 
     // ── About ─────────────────────────────────────────────────
-    'about.overline': 'UX Strategist & Product Lead · 12 years of experience',
+    'about.overline': "Design Strategist & Lead UX Designer · 12 years of experience",
     'about.headline': 'I don\'t design screens.<br/>I design <span class="om-headline-accent">the architecture of trust.</span>',
     'about.lead':     'I work where precision, data security and process transparency determine financial stability and business success. I believe that good design is the highest form of professional responsibility.',
 
@@ -635,7 +635,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'approach.pillar2.item.2.body':    "I build teams that understand the business context of their work. I invest in designers' independence — teaching strategic thinking and defending decisions with substantive arguments, not personal taste.",
 
     'approach.why.overline': 'Why me?',
-    'approach.why.heading':  'Why do you need a UX&nbsp;Strategist at this stage?',
+    'approach.why.heading':  "When is it worth bringing me into a project?",
 
     'approach.why.0.heading': 'Understanding regulations',
     'approach.why.0.body':    "I'm not afraid of compliance. I treat legal frameworks as a set of design parameters — I turn constraints into competitive product advantages.",
@@ -744,7 +744,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'nextproject.vtda.title':    'VTDA — Virtual Train Driver Assistant',
     'nextproject.vtda.desc':     '20% reduction in railway incidents. Real-time decision support system.',
     'nextproject.tabbox.overline': 'HealthTech / Senior Care / IoT',
-    'nextproject.tabbox.title':    'TabBox: Pharmacotherapy ecosystem for people with dementia',
+    'nextproject.tabbox.title':    "TabBox — Pharmacotherapy Ecosystem",
     'nextproject.tabbox.desc':     'Ecosystem connecting a physical pill dispenser with a mobile app.',
 
     // ── BLIK for Business ─────────────────────────────────────

@@ -2,20 +2,21 @@
 /* src/components/ApproachSection.astro */
 import Reveal from './Reveal.astro';
 
+// Kolejność i nazwy jak na /podejscie (Filar I, Filar II)
 const approaches = [
   {
     number: "01",
+    overline: "Fragmentacja & Big Picture",
+    title: "Problemy, które rozwiązuję",
+    description: "Specjalizuję się w systemach o krytycznym znaczeniu. Tam, gdzie złożoność regulacyjna i technologiczna przytłacza, ja wprowadzam strukturę i prostotę.",
+    href: "/podejscie#fragmentacja-big-picture",
+  },
+  {
+    number: "02",
     overline: "Zarządzanie & Przywództwo",
     title: "W roli lidera",
     description: "Wierzę w design jako sport zespołowy. Moja rola to usuwanie barier, facylitacja trudnych decyzji i budowanie kultury opartej na dowodach, nie opiniach.",
     href: "/podejscie#zarzadzanie-przywodztwo",
-  },
-  {
-    number: "02",
-    overline: "Fragmentacja & Big picture",
-    title: "Problemy, które rozwiązuję",
-    description: "Specjalizuję się w systemach o krytycznym znaczeniu. Tam, gdzie złożoność regulacyjna i technologiczna przytłacza, ja wprowadzam strukturę i prostotę.",
-    href: "/podejscie#fragmentacja-big-picture",
   },
 ];
 ---
@@ -87,6 +88,8 @@ const approaches = [
             style={`transition-delay: ${0.6 + index * 0.15}s`}
           >
             <span data-i18n="home.approach.cta">Czytaj więcej</span>
+            <!-- Cel linku dla czytników ekranu (same „Czytaj więcej” jest niejednoznaczne) -->
+            <span class="sr-only"> — <span data-i18n={`home.approach.${index}.title`}>{item.title}</span></span>
             <div class="icon-wrapper relative w-4 h-4 overflow-hidden">
               <svg
                 class="icon-arrow absolute inset-0 transition-transform duration-300 group-hover/cta:-translate-y-full"

@@ -107,7 +107,7 @@ const toolGroups: ToolGroup[] = [
 
         <!-- ── Overline + pełna szerokość nagłówka ── -->
         <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0s">
-          <p class="om-overline" data-i18n="about.overline">UX Strateg & Product Lead · 12 lat doświadczenia</p>
+          <p class="om-overline" data-i18n="about.overline">Design Strategist & Lead UX Designer · 12 lat doświadczenia</p>
         </div>
 
         <h1 class="om-headline opacity-0" data-hero-fade style="--delay: 0.07s">
@@ -148,7 +148,7 @@ const toolGroups: ToolGroup[] = [
             <div class="om-photo-frame">
               <Image
                 src={heroPhoto}
-                alt="Kamil Wardak — UX Strateg & Product Lead"
+                alt="Kamil Wardak — Design Strategist & Lead UX Designer"
                 width={520}
                 height={660}
                 loading="eager"
@@ -765,13 +765,12 @@ const toolGroups: ToolGroup[] = [
     text-overflow: ellipsis;
   }
 
+  /* Zawijanie zamiast wielokropka — dłuższe kategorie („Logic & Strategy”) były ucinane */
   .om-tool-cat {
     font-size: 0.68rem;
+    line-height: 1.35;
     color: rgba(255,255,255,0.5);
     margin: 2px 0 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   /* ─── Animacje ──────────────────────────────────────────────────────────── */

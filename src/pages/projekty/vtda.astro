@@ -22,26 +22,26 @@ const project = {
 const challenges = [
   {
     number: "01",
-    title: "Kryzys uwagi i reaktywność",
+    title: "Reagowanie zamiast przewidywania",
     description: 'Maszyniści pracowali w modelu reaktywnym — odpowiadali na alerty zamiast przewidywać zdarzenia. Istniejące systemy wymuszały rolę procesora danych. Przy prędkościach kolejowych to krytyczny błąd architektoniczny.',
   },
   {
     number: "02",
-    title: "Paraliż decyzyjny — pułapka Szklanego Kokpitu",
-    description: 'Pierwsze prototypy wzorowane na systemach lotniczych — setki parametrów telemetrycznych na jednym ekranie — generowały paraliż decyzyjny. Odnalezienie kluczowej informacji odciągało wzrok od torów. Potrzebna była redukcja o 60%.',
+    title: "Za dużo danych na jednym ekranie",
+    description: 'Pierwsze prototypy wzorowane na systemach lotniczych (tzw. szklany kokpit) pokazywały setki parametrów telemetrycznych na jednym ekranie i paraliżowały decyzje. Szukanie kluczowej informacji odciągało wzrok od torów. Trzeba było pokazać o 60% mniej elementów.',
   },
   {
     number: "03",
     title: "Fizyka środowiska kabiny",
-    description: 'Standardowy Dark Mode okazał się niebezpieczny — jasne elementy UI odbijały się w szybie lokomotywy nocą, przesłaniając widoczność torów. Projektowanie musiało dosłownie walczyć z fizyką środowiska.',
+    description: 'Standardowy tryb ciemny okazał się niebezpieczny: jasne elementy interfejsu odbijały się nocą w szybie lokomotywy i zasłaniały widok torów. Projekt musiał dosłownie zmierzyć się z fizyką kabiny.',
   },
 ];
 
 const results = [
-  { value: "-20%", label: "ryzyka incydentów u regularnych użytkowników systemu w pilocie" },
-  { value: "-5%", label: "wypadkowości w skali całych organizacji kolejowych w 6 miesiącach" },
-  { value: "50+", label: "operatorów kolejowych wdrożyło system, potwierdzając realną wartość produktu" },
-  { value: "120+", label: "ekranów w skalowalnej, modularnej architekturze Safety-Critical" },
+  { value: "−20%", label: "ryzyka incydentów u regularnych użytkowników systemu w pilocie" },
+  { value: "−5%", label: "wypadkowości u wszystkich przewoźników w pilocie w ciągu 6 miesięcy" },
+  { value: "−40%", label: "czasu skanowania ekranu w testach z maszynistami (eye tracking)" },
+  { value: "120+", label: "ekranów w skalowalnej, modularnej architekturze krytycznej dla bezpieczeństwa" },
 ];
 
 const nextProjects = [
@@ -161,7 +161,7 @@ const nextProjects = [
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
           <p>
-            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o charakterze projektu:</strong> <span data-i18n={`${project.i18n}.conf`}>VTDA jest systemem klasy Safety-Critical. Prezentowane materiały wizualne pochodzą z fazy projektowej i zostały zanonimizowane. Niniejsze case study koncentruje się na architekturze decyzji UX, psychologii bezpieczeństwa i mierzalnym wpływie operacyjnym — nie na finalnych detalach produkcyjnych interfejsu.</span>
+            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o charakterze projektu:</strong> <span data-i18n={`${project.i18n}.conf`}>VTDA jest systemem krytycznym dla bezpieczeństwa. Prezentowane materiały wizualne pochodzą z fazy projektowej i zostały zanonimizowane. Niniejsze case study koncentruje się na architekturze decyzji UX, psychologii bezpieczeństwa i mierzalnym wpływie operacyjnym — nie na finalnych detalach produkcyjnych interfejsu.</span>
           </p>
         </div>
       </div>
@@ -207,7 +207,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.5} color="#a8a29e">
               <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
-                Moją diagnozą UX było to, że istniejące systemy wymuszały na człowieku rolę „procesora danych". Celem projektu było przesunięcie roli systemu z biernego wyświetlacza na proaktywnego asystenta, który zarządza uwagą maszynisty i filtruje szum informacyjny — szczególnie w sytuacjach wysokiego stresu.
+                Moją diagnozą UX było to, że istniejące systemy wymuszały na człowieku rolę „procesora danych”. Celem projektu było przesunięcie roli systemu z biernego wyświetlacza na proaktywnego asystenta, który zarządza uwagą maszynisty i filtruje szum informacyjny — szczególnie w sytuacjach wysokiego stresu.
               </p>
             </Reveal>
           </div>
@@ -253,7 +253,7 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
-              Trzy wyzwania, z których każde mogło samodzielnie zdyskredytować produkt — albo kosztować życie.
+              Trzy wyzwania, z których każde wprost wpływało na bezpieczeństwo jazdy.
             </p>
           </Reveal>
         </div>
@@ -313,9 +313,9 @@ const nextProjects = [
           <div class="md:col-span-7 flex flex-col gap-10">
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Progressive Disclosure & Fail-Fast Minimalism</div>
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Stopniowe ujawnianie informacji</div>
               <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
-                Zredukowałem widok główny o 60%. Widok krytyczny zawiera wyłącznie Prędkość, Następny Cel i Krzywą Hamowania. Szczegóły techniczne — parametry radia, diagnostyka — pojawiają się tylko na żądanie lub gdy system wykryje anomalię wymagającą interwencji. Mniej danych, więcej decyzji.
+                Na ekranie głównym zostało o 60% mniej elementów. Widok krytyczny pokazuje wyłącznie prędkość, następny cel i krzywą hamowania. Szczegóły techniczne — parametry radia, diagnostyka — pojawiają się tylko na żądanie albo gdy system wykryje anomalię wymagającą interwencji. Mniej danych, lepsze decyzje.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
                 <figure class="m-0 p-0">
@@ -328,9 +328,9 @@ const nextProjects = [
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
-              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Psychologia bezpieczeństwa — Efekt Checklisty</div>
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Efekt checklisty: świadome potwierdzenie gotowości</div>
               <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
-                Mimo technicznej możliwości pełnej automatyzacji, zdecydowałem, że "System Check" przed odjazdem musi pozostać manualny. Maszynista musi fizycznie „zatwierdzić" gotowość składu. Checklist Effect buduje poczucie odpowiedzialności i zmusza do świadomego przejścia przez procedurę — UX służy tu utrzymaniu czujności, nie komfortu.
+                Mimo technicznej możliwości pełnej automatyzacji zdecydowałem, że kontrola systemu przed odjazdem („System Check”) zostaje manualna. Maszynista musi świadomie zatwierdzić gotowość składu. Efekt checklisty buduje poczucie odpowiedzialności i wymusza świadome przejście przez procedurę — UX służy tu czujności, nie komfortowi.
               </p>
               <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.25s">
                 <figure class="m-0 p-0">
@@ -343,9 +343,9 @@ const nextProjects = [
             </div>
 
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
-              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Architektura Guiding Rails — Widok Tunelowy</div>
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Widok tunelowy trasy</div>
               <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
-                Porzuciłem klasyczną mapę 2D na rzecz liniowej reprezentacji trasy (Guiding Rails). Pociąg porusza się wyłącznie w jednym kierunku — maszynistę nie interesuje otoczenie geograficzne, tylko to, co bezpośrednio na jego „nitce" toru. Skróciło to czas skanowania wzrokiem ekranu o 40%.
+                Zamiast klasycznej mapy 2D zaprojektowałem liniową reprezentację trasy (Guiding Rails). Pociąg jedzie tylko w jednym kierunku — maszynistę nie interesuje otoczenie geograficzne, tylko to, co jest na jego „nitce” toru. W testach z maszynistami z użyciem eye trackingu czas skanowania ekranu skrócił się o 40%.
               </p>
             </div>
 
@@ -383,7 +383,7 @@ const nextProjects = [
           </Reveal>
           <Reveal delay={0.4} color="#a8a29e">
             <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s4.intro`}>
-              Radykalne uproszczenie UX w przemyśle ciężkim przełożyło się na twarde wyniki operacyjne. W sektorze kolejowym, gdzie każdy incydent ma konsekwencje — 20% redukcja ryzyka to wynik wyjątkowy.
+              Uproszczenie interfejsu przełożyło się na wyniki operacyjne w pilocie u kilku przewoźników kolejowych z Europy Środkowo-Wschodniej. W kolejnictwie każdy punkt procentowy mniej incydentów to realna różnica dla bezpieczeństwa.
             </p>
           </Reveal>
         </div>

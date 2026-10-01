@@ -1,6 +1,7 @@
 ---
 /* src/components/PortfolioSection.astro */
 import Reveal from './Reveal.astro';
+import ProjectImage from './ProjectImage.astro';
 
 const cases = [
   {
@@ -78,9 +79,10 @@ const cases = [
             <div class={`case-visual md:col-span-7 ${caseItem.reverse ? 'md:order-2' : ''}`}>
               <a href={caseItem.href} class="visual-link block">
                 <div class="visual-frame relative aspect-[16/10] bg-stone-900/50 rounded-3xl overflow-hidden border border-white/5">
-                  <img 
-                    src={caseItem.image} 
+                  <ProjectImage
+                    src={caseItem.image}
                     alt={caseItem.imageAlt}
+                    sizes="(min-width: 944px) 520px, (min-width: 768px) 56vw, calc(100vw - 48px)"
                     class="w-full h-full object-cover opacity-0"
                     data-reveal-image
                   />

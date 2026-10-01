@@ -1,0 +1,46 @@
+---
+/**
+ * ProjectImage.astro
+ *
+ * Zdjęcie projektu z automatycznym srcset i wymiarami (brak przeskakiwania układu).
+ * data-full wskazuje oryginał w pełnej rozdzielczości — używa go lightbox.
+ *
+ *   <ProjectImage src="/images/ing/KV_blik.webp" alt="…" class="w-full h-full object-cover" />
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { Image } from 'astro:assets';
+import { getProjectImage } from '../utils/projectImages';
+
+type Props = Omit<HTMLAttributes<'img'>, 'src' | 'width' | 'height' | 'srcset'> & {
+  src: string;
+  alt: string;
+  /** Szerokość wyświetlania — domyślnie kolumna treści (max-w-4xl) */
+  sizes?: string;
+};
+
+const {
+  src,
+  alt,
+  sizes = '(min-width: 944px) 896px, calc(100vw - 48px)',
+  loading = 'lazy',
+  decoding = 'async',
+  ...rest
+} = Astro.props;
+
+const image = getProjectImage(src);
+
+// Rozmiary dopasowane do kolumny 896 px przy ekranach 1x i 2x
+const widths = [480, 800, 1200, 1800].filter((w) => w < image.width);
+widths.push(Math.min(image.width, 2400));
+---
+
+<Image
+  src={image}
+  alt={alt}
+  widths={widths}
+  sizes={sizes}
+  loading={loading}
+  decoding={decoding}
+  data-full={image.src}
+  {...rest}
+/>

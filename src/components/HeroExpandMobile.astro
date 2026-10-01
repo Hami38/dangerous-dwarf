@@ -30,7 +30,7 @@ const stats = [
   <div class="me-trigger">
     <div class="me-stage">
       <div class="me-inner">
-        <img src={staticPlaceholder} class="me-static-img" alt="Kamil Wardak" />
+        <img src={staticPlaceholder} class="me-static-img" alt="Kamil Wardak" width="1920" height="1080" decoding="async" />
         <canvas id="me-canvas" class="me-canvas opacity-0"></canvas>
 
         <div class="me-overlay opacity-0 pointer-events-none">
@@ -149,6 +149,7 @@ const stats = [
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { createFrameSequence } from '../utils/frameSequence';
   gsap.registerPlugin(ScrollTrigger);
 
   const mm = gsap.matchMedia();
@@ -165,42 +166,12 @@ const stats = [
     const overlay   = document.querySelector('.me-overlay') as HTMLElement;
     const statCards = document.querySelectorAll('.me-stat-card');
 
-    if (!trigger || !stage || !canvas) return;
+    if (!trigger || !stage || !canvas || !staticImg) return;
 
-    const ctx = canvas.getContext('2d');
-    const seq = { frame: 1 };
-    const images: HTMLImageElement[] = [];
-    let cW = 0, cH = 0;
-
-    const cacheSize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      cW = Math.round(canvas.offsetWidth * dpr);
-      cH = Math.round(canvas.offsetHeight * dpr);
-      canvas.width = cW;
-      canvas.height = cH;
-    };
-
-    const render = () => {
-      const img = images[seq.frame - 1];
-      if (!img?.complete || !ctx || cW === 0) return;
-      const ir = img.naturalWidth / img.naturalHeight;
-      const cr = cW / cH;
-      let dW, dH, dX, dY;
-      if (ir > cr) { dH = cH; dW = cH * ir; dX = (cW - dW) / 2; dY = 0; }
-      else         { dW = cW; dH = cW / ir; dX = 0; dY = (cH - dH) / 2; }
-      ctx.clearRect(0, 0, cW, cH);
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.drawImage(img, dX, dY, dW, dH);
-    };
-
-    let loaded = 0;
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new Image();
-      img.src = framePath(i);
-      img.onload = img.onerror = () => { if (++loaded === frameCount) buildTimeline(); };
-      images.push(img);
-    }
+    // Klatki pobierają się dopiero, gdy sekcja zbliża się do ekranu
+    const { seq, render, cacheSize, destroy } = createFrameSequence({
+      canvas, firstFrame: staticImg, trigger, frameCount, framePath,
+    });
 
     /**
      * Block Reveal dla jednego kafla mobilnego.
@@ -278,5 +249,9 @@ const stats = [
       window.addEventListener('resize', () => { cacheSize(); render(); ScrollTrigger.refresh(); });
       ScrollTrigger.refresh();
     };
+
+    // Pinowanie od razu — nie czekamy na klatki, więc układ strony nie skacze
+    buildTimeline();
+    return destroy;
   });
 </script>

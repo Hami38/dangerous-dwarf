@@ -205,7 +205,8 @@ const stats = [
 
   const mm = gsap.matchMedia();
 
-  mm.add("(min-width: 768px)", () => {
+  // Przy prefers-reduced-motion sekcja zostaje statyczna (stan końcowy w global.css)
+  mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
     const frameCount = 48;
     const framePath = (i: number) => `/sequence/${i.toString().padStart(6, '0')}.webp`;
 

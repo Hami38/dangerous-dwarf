@@ -509,7 +509,7 @@ const nextProjects = [
     </section>
 
     <!-- ─── LIGHTBOX ────────────────────────────────────────────────────────── -->
-    <div id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd obrazu">
+    <div id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd obrazu" inert>
       <div class="cs-lb-backdrop"></div>
       <button class="cs-lb-close" aria-label="Zamknij podgląd">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1210,6 +1210,7 @@ const nextProjects = [
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { initLightbox } from '../../utils/lightbox';
   gsap.registerPlugin(ScrollTrigger);
 
   // ─── Hero fade-in elements ─────────────────────────────────────────────────
@@ -1275,48 +1276,6 @@ const nextProjects = [
     cardObserver.observe(grid);
   });
 
-  // ─── Image zoom hints ──────────────────────────────────────────────────────
-  const zoomHintSVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>`;
-
-  document.querySelectorAll<HTMLElement>('.cs-img').forEach((img) => {
-    const wrapper = img.parentElement as HTMLElement;
-    wrapper.classList.add('cs-img-wrap');
-    const hint = document.createElement('div');
-    hint.className = 'cs-img-hint';
-    hint.innerHTML = zoomHintSVG;
-    hint.setAttribute('aria-hidden', 'true');
-    wrapper.appendChild(hint);
-  });
-
-  // ─── Lightbox ──────────────────────────────────────────────────────────────
-  const lightbox   = document.getElementById('cs-lightbox') as HTMLElement;
-  const lbImg      = document.getElementById('cs-lb-img') as HTMLImageElement;
-  const lbClose    = lightbox.querySelector<HTMLElement>('.cs-lb-close')!;
-  const lbBackdrop = lightbox.querySelector<HTMLElement>('.cs-lb-backdrop')!;
-
-  function openLightbox(src: string, alt: string) {
-    lbImg.src = src;
-    lbImg.alt = alt;
-    lightbox.classList.add('cs-lb-open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('cs-lb-open');
-    document.body.style.removeProperty('overflow');
-    setTimeout(() => { lbImg.src = ''; }, 380);
-  }
-
-  document.querySelectorAll<HTMLElement>('.cs-img-wrap').forEach((wrap) => {
-    wrap.addEventListener('click', () => {
-      const img = wrap.querySelector<HTMLImageElement>('.cs-img');
-      if (img) openLightbox(img.src, img.alt);
-    });
-  });
-
-  lbClose.addEventListener('click', closeLightbox);
-  lbBackdrop.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('cs-lb-open')) closeLightbox();
-  });
+  // ─── Lightbox (miniatury + podgląd) ───────────────────────────────────────
+  initLightbox();
 </script>

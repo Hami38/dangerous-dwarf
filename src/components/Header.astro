@@ -65,7 +65,8 @@ const currentPath = Astro.url.pathname;
           id="menu-toggle"
           aria-label="Otwórz menu"
           aria-expanded="false"
-          class="md:hidden relative w-12 h-12 -mr-3 focus:outline-none cursor-pointer"
+          aria-controls="mobile-menu"
+          class="md:hidden relative w-12 h-12 -mr-3 cursor-pointer rounded-full"
         >
           <span class="hbar hbar-t"></span>
           <span class="hbar hbar-b"></span>
@@ -113,6 +114,8 @@ const currentPath = Astro.url.pathname;
 <div class="h-20" aria-hidden="true"></div>
 
 <script>
+  import { getLang } from '../i18n/client';
+
   const EASE     = 'cubic-bezier(0.87, 0, 0.13, 1)';
   const PANEL_MS = 300;
 
@@ -125,6 +128,19 @@ const currentPath = Astro.url.pathname;
   const contentEls = [...navItems, ...(footerEl ? [footerEl] : [])];
 
   let busy = false;
+
+  const LABELS = {
+    pl: { open: 'Otwórz menu', close: 'Zamknij menu' },
+    en: { open: 'Open menu',   close: 'Close menu' },
+  };
+  const label = (kind: 'open' | 'close') => LABELS[getLang()]?.[kind] ?? LABELS.pl[kind];
+  toggle.setAttribute('aria-label', label('open'));
+
+  /* Elementy, między którymi krąży Tab przy otwartym menu: przycisk + treść overlayu */
+  const focusables = () => [
+    toggle,
+    ...Array.from(overlay.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')),
+  ];
 
   function panelReset() {
     [panelG, panelD].forEach(p => {
@@ -140,7 +156,7 @@ const currentPath = Astro.url.pathname;
 
     toggle.classList.add('is-active');
     toggle.setAttribute('aria-expanded', 'true');
-    toggle.setAttribute('aria-label', 'Zamknij menu');
+    toggle.setAttribute('aria-label', label('close'));
     overlay.setAttribute('aria-hidden', 'false');
     overlay.classList.add('is-open');
     document.documentElement.classList.add('menu-open');
@@ -170,6 +186,8 @@ const currentPath = Astro.url.pathname;
           el.classList.add('is-vis');
         });
         busy = false;
+        /* 4. Fokus na pierwszą pozycję — klawiatura i czytniki ekranu trafiają do menu */
+        navItems[0]?.focus({ preventScroll: true });
       }, PANEL_MS * 2 + 30);
     }));
   }
@@ -181,7 +199,10 @@ const currentPath = Astro.url.pathname;
 
     toggle.classList.remove('is-active');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Otwórz menu');
+    toggle.setAttribute('aria-label', label('open'));
+
+    /* Fokus wraca na przycisk, jeśli był w menu */
+    if (overlay.contains(document.activeElement)) toggle.focus({ preventScroll: true });
 
     /* 1. Elementy menu gasną */
     contentEls.forEach(el => {
@@ -218,7 +239,29 @@ const currentPath = Astro.url.pathname;
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeMenu();
+    if (!overlay.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape') {
+      closeMenu();
+      return;
+    }
+
+    /* Pułapka fokusu — Tab nie wychodzi poza menu na ukrytą stronę */
+    if (e.key === 'Tab') {
+      const items = focusables();
+      const first = items[0];
+      const last  = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      const inside = !!active && items.includes(active);
+
+      if (e.shiftKey && (active === first || !inside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !inside)) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 </script>
 

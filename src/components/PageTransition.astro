@@ -37,6 +37,8 @@
 </style>
 
 <script>
+  import { prefersReducedMotion } from '../utils/motion';
+
   const EASE    = 'cubic-bezier(0.87, 0, 0.13, 1)';
   const STAGGER = 55;
   const IN_MS   = 580;
@@ -118,6 +120,8 @@
 
   /* ── Przechwytywanie kliknięć ──────────────────────────────────────── */
   document.addEventListener('click', (e) => {
+    // Ograniczenie ruchu — zwykła nawigacja, bez zasłony
+    if (prefersReducedMotion()) return;
     // Nowa karta / okno (Ctrl, Cmd, Shift, środkowy przycisk) — zostawiamy przeglądarce
     if (e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
 

@@ -34,22 +34,33 @@ import Footer from '../components/Footer.astro';
 
 <script>
   const preloader = document.getElementById("preloader");
+  const root = document.documentElement;
 
-  if (sessionStorage.getItem('np')) {
-    // Przyszliśmy przez nawigację — preloader pomijamy całkowicie.
-    // curtainDone (z PageTransition) odpali initBlockReveals i animateHero.
+  // Klasę no-preloader ustawia <head> (Layout.astro): nawigacja wewnętrzna,
+  // preloader już widziany w tej sesji albo prefers-reduced-motion.
+  if (root.classList.contains('no-preloader')) {
     sessionStorage.removeItem('np');
-    const preloader = document.getElementById('preloader');
     if (preloader) {
       preloader.style.display = 'none';       // twarde ukrycie niezależne od CSS
-      preloader.classList.add('preloader-hidden'); // belt-and-suspenders
+      preloader.classList.add('preloader-hidden');
     }
     document.body.style.removeProperty('overflow');
     // Usuwamy klasę dopiero po twardym ukryciu — bez ryzyka flashu
-    document.documentElement.classList.remove('no-preloader');
+    root.classList.remove('no-preloader');
+
+    // Bez zasłony (odświeżenie / wpisany adres) nikt nie wyśle curtainDone —
+    // startujemy animacje strony sami, gdy wszystkie skrypty są już podpięte.
+    if (!root.classList.contains('curtain-ready')) {
+      document.addEventListener('DOMContentLoaded', () => {
+        window.dispatchEvent(new CustomEvent('preloaderFinished'));
+      }, { once: true });
+    }
   } else {
-    // Świeże wejście lub odświeżenie — pokazujemy pełny preloader
-    const words = ["∙ Hello", "∙ Hallo", "∙ Hola", "∙ こんにちは", "∙ 你好", "∙ Witaj"];
+    // Pierwsze wejście w sesji — krótki preloader (~1,8 s).
+    // Mniej słów w spokojnym tempie zamiast wielu w pośpiechu (szybsze tempo = mruganie).
+    const words = ["∙ Hello", "∙ こんにちは", "∙ Witaj"];
+    const FADE_MS = 150;
+    const HOLD_MS = 250;
     let currentIndex = 0;
     const textElement = document.getElementById("welcome-text");
 
@@ -60,20 +71,21 @@ import Footer from '../components/Footer.astro';
           textElement.textContent = words[currentIndex];
           textElement.style.opacity = "1";
           currentIndex++;
-          setTimeout(updateText, 250);
-        }, 150);
+          setTimeout(updateText, HOLD_MS);
+        }, FADE_MS);
       } else if (preloader) {
         setTimeout(() => {
           window.scrollTo(0, 0);
           preloader.classList.add("preloader-hidden");
           document.body.style.removeProperty('overflow');
+          sessionStorage.setItem('preloaderSeen', '1');
           window.dispatchEvent(new CustomEvent('preloaderFinished'));
-        }, 500);
+        }, 350);
       }
     }
 
     document.body.style.overflow = "hidden";
-    setTimeout(updateText, 400);
+    setTimeout(updateText, 300);
   }
 </script>
 

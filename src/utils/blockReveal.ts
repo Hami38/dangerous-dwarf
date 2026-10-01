@@ -14,6 +14,7 @@
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { prefersReducedMotion } from './motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,6 +137,9 @@ const buildRevealTimeline = (
  * document.addEventListener('DOMContentLoaded', () => initBlockReveals());
  */
 export const initBlockReveals = (): void => {
+  // Ograniczenie ruchu — treść zostaje widoczna od razu, bez bloków
+  if (prefersReducedMotion()) return;
+
   const elements = document.querySelectorAll<HTMLElement>('[data-reveal]');
 
   if (elements.length === 0) return;
@@ -176,6 +180,7 @@ export const initBlockReveals = (): void => {
  * revealElement(myElement, { delay: 0.2, color: '#fff' });
  */
 export const revealElement = (el: HTMLElement, options: RevealOptions = {}): void => {
+  if (prefersReducedMotion()) return;
   const merged: Required<RevealOptions> = { ...DEFAULTS, ...options };
   const { block, inner } = prepareElement(el, merged.color);
   buildRevealTimeline(block, inner, merged);

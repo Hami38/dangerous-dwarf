@@ -56,10 +56,17 @@ const imageURL = new URL(image, Astro.site);
 		<meta name="twitter:image" content={imageURL} />
 		<!-- Ustawia stan przejścia i język PRZED pierwszym renderem — zero flashu -->
 		<script is:inline>
+			// .js — JS działa (bez niej CSS pokazuje treść bez animacji)
+			// .reduce-motion — użytkownik ma w systemie ograniczenie ruchu
+			document.documentElement.classList.add('js');
+			var _reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (_reduce) document.documentElement.classList.add('reduce-motion');
+
 			if (sessionStorage.getItem('ct')) {
 				document.documentElement.classList.add('curtain-ready');
 			}
-			if (sessionStorage.getItem('np')) {
+			// Preloader tylko przy pierwszym wejściu w sesji
+			if (sessionStorage.getItem('np') || sessionStorage.getItem('preloaderSeen') || _reduce) {
 				document.documentElement.classList.add('no-preloader');
 			}
 			var _lang = localStorage.getItem('lang') || 'pl';

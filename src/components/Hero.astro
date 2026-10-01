@@ -7,6 +7,14 @@ import ingLogo from '../assets/logos/ING_logo.svg';
 import ltgLogo from '../assets/logos/LTG-cargo-PL.png';
 import creotechLogo from '../assets/logos/logo_creotech.svg';
 import pgzLogo from '../assets/logos/Logotyp-PGZSW.svg';
+
+// Loga marek — linki do oficjalnych stron (nowa karta)
+const brands = [
+  { name: 'ING Bank Śląski',      logo: ingLogo,      href: 'https://www.ing.pl/',     noFilter: false },
+  { name: 'LTG Cargo Polska',     logo: ltgLogo,      href: 'https://ltgcargo.pl/',    noFilter: false },
+  { name: 'Creotech',             logo: creotechLogo, href: 'https://creotech.pl/',    noFilter: false },
+  { name: 'PGZ Stocznia Wojenna', logo: pgzLogo,      href: 'https://pgzsw.com.pl/',   noFilter: true },
+];
 ---
 
 <section class="hero-section relative min-h-fit flex flex-col items-center px-6 pt-16 md:pt-32 pb-12 overflow-hidden bg-transparent">
@@ -52,12 +60,22 @@ import pgzLogo from '../assets/logos/Logotyp-PGZSW.svg';
     <!-- ⑤ Trust bar — label osobno, potem loga jedno po drugim -->
     <div class="trust-bar w-full">
       <p class="trust-label hero-fade-up" style="--delay: 1.75s" data-i18n="hero.trusted">Zaufały mi wiodące marki:</p>
-      <div class="logos-grid">
-        <div class="logo-item hero-logo" style="--delay: 1.9s"><Image src={ingLogo} alt="ING Bank Śląski" class="brand-logo" /></div>
-        <div class="logo-item hero-logo" style="--delay: 2.0s"><Image src={ltgLogo} alt="LTG Cargo Polska" class="brand-logo" /></div>
-        <div class="logo-item hero-logo" style="--delay: 2.1s"><Image src={creotechLogo} alt="Creotech" class="brand-logo" /></div>
-        <div class="logo-item hero-logo" style="--delay: 2.2s"><Image src={pgzLogo} alt="PGZ Stocznia wojskowa" class="brand-logo no-filter" /></div>
-      </div>
+      <ul class="logos-grid" role="list">
+        {brands.map((brand, i) => (
+          <li class="logo-item hero-logo" style={`--delay: ${(1.9 + i * 0.1).toFixed(1)}s`}>
+            <a
+              href={brand.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="logo-link"
+              aria-label={`${brand.name} — strona główna (otwiera się w nowej karcie)`}
+              data-i18n-aria={`hero.brand.${i}.aria`}
+            >
+              <Image src={brand.logo} alt="" class={`brand-logo${brand.noFilter ? ' no-filter' : ''}`} />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
 
   </div>
@@ -104,11 +122,13 @@ import pgzLogo from '../assets/logos/Logotyp-PGZSW.svg';
 
   /* Trust bar */
   .trust-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); margin-bottom: 2rem; }
-  .logos-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 3.5rem; }
-  .brand-logo { height: 64px; width: auto; max-width: 250px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.3; transition: all 0.4s ease; }
+  .logos-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 3.5rem; list-style: none; margin: 0; padding: 0; }
+  .logo-link { display: block; border-radius: 6px; }
+  .brand-logo { display: block; height: 64px; width: auto; max-width: 250px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.3; transition: all 0.4s ease; }
   .brand-logo.no-filter { filter: none; }
-  .brand-logo:hover,
-  .brand-logo.no-filter:hover { opacity: 1; transform: translateY(-2px); }
+  /* Hover i fokus klawiatury — logo się rozjaśnia, sygnalizując, że to link */
+  .logo-link:hover .brand-logo,
+  .logo-link:focus-visible .brand-logo { opacity: 1; transform: translateY(-2px); }
 
   /* Stan startowy dla GSAP — niewidoczne, przesunięte w dół */
   .hero-fade-up { opacity: 0; transform: translateY(18px); }

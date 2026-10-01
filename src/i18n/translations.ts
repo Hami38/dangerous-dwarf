@@ -19,6 +19,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.cta.cv':       'Pobierz CV',
     'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026.pdf',
     'hero.trusted':      'Zaufały mi wiodące marki:',
+    'hero.brand.0.aria': "ING Bank Śląski — strona główna (otwiera się w nowej karcie)",
+    'hero.brand.1.aria': "LTG Cargo Polska — strona główna (otwiera się w nowej karcie)",
+    'hero.brand.2.aria': "Creotech — strona główna (otwiera się w nowej karcie)",
+    'hero.brand.3.aria': "PGZ Stocznia Wojenna — strona główna (otwiera się w nowej karcie)",
 
     // ── ApproachSection (homepage) ────────────────────────────
     'home.approach.overline': 'Podejście',
@@ -475,6 +479,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.cta.cv':       'Download CV',
     'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026_ENG.pdf',
     'hero.trusted':      'Trusted by leading brands:',
+    'hero.brand.0.aria': "ING Bank Śląski — homepage (opens in a new tab)",
+    'hero.brand.1.aria': "LTG Cargo Polska — homepage (opens in a new tab)",
+    'hero.brand.2.aria': "Creotech — homepage (opens in a new tab)",
+    'hero.brand.3.aria': "PGZ Stocznia Wojenna — homepage (opens in a new tab)",
 
     // ── ApproachSection (homepage) ────────────────────────────
     'home.approach.overline': 'Approach',

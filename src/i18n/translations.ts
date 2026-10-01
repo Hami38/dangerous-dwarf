@@ -33,8 +33,6 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Zaczynamy?',
-    'footer.headline.line1':  'Masz projekt.',
-    'footer.headline.accent': 'Porozmawiajmy.',
     'footer.sub':             'Szukam nowych wyzwań, w których mogę połączyć strategię, design i technologię. Napisz — szybko odpiszę.',
     'footer.copy':            'Wszelkie prawa zastrzeżone.',
     'footer.nav.about':       'O mnie',
@@ -143,7 +141,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // ── Podejście ─────────────────────────────────────────────
     'approach.overline': 'Podejście',
-    'approach.headline': 'Strategia to rzemiosło<br/><span class="pd-headline-accent">wprowadzania struktury w chaos.</span>',
+    'approach.headline': 'Strategia to rzemiosło<br/><span class="pd-headline-accent">wprowadzania struktury w&nbsp;chaos.</span>',
     'approach.lead':     'Moje podejście opiera się na dwóch filarach: precyzyjnej analizie skomplikowanych ekosystemów oraz budowaniu kultury projektowej, w której design jest mierzalnym partnerem biznesu. Nie szukam najprostszych rozwiązań — szukam tych najskuteczniejszych.',
 
     'approach.pillar1.pill':    'Filar I',
@@ -491,8 +489,6 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // ── Footer ────────────────────────────────────────────────
     'footer.label':           'Shall we start?',
-    'footer.headline.line1':  'You have a project.',
-    'footer.headline.accent': 'Let\'s talk.',
     'footer.sub':             'I\'m looking for new challenges where I can combine strategy, design and technology. Write to me — I reply quickly.',
     'footer.copy':            'All rights reserved.',
     'footer.nav.about':       'About',

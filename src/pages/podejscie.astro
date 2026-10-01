@@ -81,7 +81,7 @@ const whyMe = [
         </div>
 
         <h1 class="pd-headline opacity-0" data-hero-fade style="--delay: 0.07s">
-          <span data-i18n-html="approach.headline">Strategia to rzemiosło<br/><span class="pd-headline-accent">wprowadzania struktury w chaos.</span></span>
+          <span data-i18n-html="approach.headline">Strategia to rzemiosło<br/><span class="pd-headline-accent">wprowadzania struktury w&nbsp;chaos.</span></span>
         </h1>
 
         <p class="pd-lead max-w-2xl mt-6 opacity-0" data-hero-fade style="--delay: 0.14s" data-i18n="approach.lead">
@@ -313,16 +313,22 @@ const whyMe = [
 
   /* ─── Hero headline ──────────────────────────────────────────────────────── */
 
+  /* Rozmiar i grubość jak tytuł na stronie głównej (.hero-title w Hero.astro) */
   .pd-headline {
-    font-size: clamp(2.5rem, 7vw, 4.8rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+    text-wrap: balance;
     color: #ffffff;
     margin: 0;
   }
 
-  .pd-headline-accent {
+  @media (max-width: 768px) {
+    .pd-headline { font-size: 2.25rem; }
+  }
+
+  /* :global — span wstawiany przez tłumaczenia (innerHTML, bez atrybutu scope) */
+  .pd-headline :global(.pd-headline-accent) {
     background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -335,7 +341,8 @@ const whyMe = [
     font-size: clamp(0.95rem, 2vw, 1.1rem);
     line-height: 1.8;
     color: rgba(255,255,255,0.5);
-    margin: 0;
+    /* Odstęp od nagłówka tutaj — „margin: 0” nadpisywało klasę mt-6 z Tailwinda */
+    margin: 1.5rem 0 0;
   }
 
   /* ─── Anchor navigation buttons ─────────────────────────────────────────── */

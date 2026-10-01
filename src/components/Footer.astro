@@ -38,9 +38,9 @@ const year = new Date().getFullYear();
         Zaczynamy?
       </p>
 
-      <h2 class="footer-headline opacity-0 footer-reveal" data-delay="80">
-        <span data-i18n="footer.headline.line1">Masz projekt.</span><br/>
-        <span class="footer-headline-accent" data-i18n="footer.headline.accent">Porozmawiajmy.</span>
+      <!-- Ten sam nagłówek i klucz tłumaczenia co na stronie /kontakt -->
+      <h2 class="footer-headline opacity-0 footer-reveal" data-delay="80" data-i18n-html="contact.heading">
+        Masz złożony problem? <br class="hidden md:block" /><span class="kt-accent">Porozmawiajmy.</span>
       </h2>
 
       <p class="footer-sub text-stone-400 text-base md:text-lg font-medium max-w-lg mt-6 leading-relaxed opacity-0 footer-reveal" data-delay="160" data-i18n="footer.sub">
@@ -143,7 +143,8 @@ const year = new Date().getFullYear();
     margin: 0;
   }
 
-  .footer-headline-accent {
+  /* :global — span wstawiany też przez tłumaczenia (innerHTML, bez atrybutu scope) */
+  .footer-headline :global(.kt-accent) {
     background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

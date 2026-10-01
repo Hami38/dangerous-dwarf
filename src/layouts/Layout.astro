@@ -7,9 +7,18 @@ import Analytics from '@vercel/analytics/astro';
 
 interface Props {
 	title?: string;
+	description?: string;
+	image?: string;
 }
 
-const { title = "Kamil Wardak | Portfolio" } = Astro.props;
+const {
+	title = "Kamil Wardak | Portfolio",
+	description = "Kamil Wardak — Design Strategist & Lead UX Designer. 12 lat projektowania złożonych systemów dla sektora finansowego, medycznego i zbrojeniowego. Obecnie ING Bank Śląski.",
+	image = "/og-image.jpg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -23,6 +32,28 @@ const { title = "Kamil Wardak | Portfolio" } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Open Graph / LinkedIn / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Kamil Wardak" />
+		<meta property="og:locale" content="pl_PL" />
+		<meta property="og:locale:alternate" content="en_GB" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageURL} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Kamil Wardak — Design Strategist & Lead UX Designer" />
+
+		<!-- Twitter / X -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageURL} />
 		<!-- Ustawia stan przejścia i język PRZED pierwszym renderem — zero flashu -->
 		<script is:inline>
 			if (sessionStorage.getItem('ct')) {
@@ -39,7 +70,9 @@ const { title = "Kamil Wardak | Portfolio" } = Astro.props;
 	<body>
 		<PageTransition />
 		<Header />
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<SpeedInsights />
 		<Analytics />
 

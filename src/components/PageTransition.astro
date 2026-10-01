@@ -118,6 +118,9 @@
 
   /* ── Przechwytywanie kliknięć ──────────────────────────────────────── */
   document.addEventListener('click', (e) => {
+    // Nowa karta / okno (Ctrl, Cmd, Shift, środkowy przycisk) — zostawiamy przeglądarce
+    if (e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+
     const link = (e.target as Element).closest('a[href]') as HTMLAnchorElement | null;
     if (!link) return;
 
@@ -130,10 +133,14 @@
       href.startsWith('//') ||
       href.startsWith('mailto') ||
       href.startsWith('tel') ||
-      link.target === '_blank'
+      link.target === '_blank' ||
+      link.hasAttribute('download')
     ) return;
 
-    if (new URL(href, window.location.href).pathname === window.location.pathname) return;
+    const url = new URL(href, window.location.href);
+    if (url.pathname === window.location.pathname) return;
+    // Pliki (np. PDF z CV) — bez animacji, natywna obsługa przeglądarki
+    if (/\.[a-z0-9]+$/i.test(url.pathname)) return;
 
     e.preventDefault();
     cover(() => {

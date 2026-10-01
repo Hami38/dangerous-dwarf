@@ -329,13 +329,13 @@ const year = new Date().getFullYear();
   };
 
   const isInView = () => {
-    const footer = document.querySelector('footer');
+    const footer = document.querySelector('footer.footer');
     return !!footer && footer.getBoundingClientRect().top < window.innerHeight * 0.9;
   };
 
   // Standardowa ścieżka: scroll na normalnych stronach
   ScrollTrigger.create({
-    trigger: 'footer',
+    trigger: 'footer.footer',
     start: 'top 85%',
     once: true,
     onEnter: animateFooter,

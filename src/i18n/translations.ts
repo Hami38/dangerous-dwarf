@@ -171,7 +171,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'blik.caption.3':  'Low-Fidelity wireframes — flow aktywacji BLIK',
     'blik.caption.4':  'Usability Testing — kluczowe wnioski z testów użyteczności',
     'blik.caption.5':  'High-Fidelity wireframes — Przelew na telefon, Zmiana ustawień, Kod BLIK',
-    'blik.caption.6':  'Ekslopracja klarownego języka w komunikatach - ux writing',
+    'blik.caption.6':  'Eksploracja klarownego języka w komunikatach - ux writing',
     'blik.caption.7':  'Schemat badań użyteczności',
     'blik.caption.8':  'Budowa procesu - podział odpowiedzialności systemów',
     'blik.caption.9':  'Mental Gap — niezrozumienie przez użytkownika',

@@ -1,0 +1,1395 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Reveal from '../../components/Reveal.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectImage from '../../components/ProjectImage.astro';
+import CaseTldr from '../../components/CaseTldr.astro';
+
+// Ekrany: placeholdery (.cs-placeholder) — do podmiany na <ProjectImage> z /images/ing/fx_*.webp
+const project = {
+  overline: "Finanse / Product Design",
+  title: "Konta walutowe dla firm w ING",
+  subtitle: "Jeden wniosek zamiast kilku kroków: konto w nowej walucie, karta i kantor w jednej ścieżce.",
+  role: "UX Expert – Interaction Design",
+  client: "ING Bank Śląski",
+  year: "2026",
+  scope: "Discovery · Badania · Prototypowanie z AI · UI",
+  team: "15 osób (jedyny projektant)",
+  duration: "2 miesiące",
+  platforms: "Web · iOS · Android",
+  learned: "Warto eksperymentować z procesem — nowe narzędzia pozwalają stale rozwijać warsztat i na nowo definiować sposób projektowania. Prototyp, który zwykle powstaje na końcu projektu albo wcale, był tu punktem wyjścia i to on najbardziej wpłynął na tempo wdrożenia i jakość usługi.",
+  i18n: "fx",
+};
+
+const challenges = [
+  { number: "01", title: "Prawdziwa potrzeba", description: "Konto w nowej walucie to dla klienta tylko środek. Celem jest udana transakcja z zagranicznym kontrahentem — bez szukania, co jeszcze trzeba włączyć." },
+  { number: "02", title: "Kantor za osobnym wnioskiem", description: "Po otwarciu konta klient wchodził do kantoru i nie mógł z niego skorzystać. Najpierw musiał złożyć osobny wniosek, wyrazić zgody i przejść przez kilka dodatkowych ekranów." },
+  { number: "03", title: "Nowe usługi poza ścieżką", description: "Karta wielowalutowa i inne nowe usługi dla firm już istniały, ale stary wniosek ich nie łączył. Klient sam musiał je odkryć i aktywować." },
+];
+
+const results = [
+  { value: "11", label: "walut obcych w ofercie dla firm (wcześniej 3)" },
+  { value: "1 wniosek", label: "konto, karta i dostęp do kantoru w jednej ścieżce" },
+  { value: "~1 mies.", label: "szybciej, niż zakładał harmonogram wdrożenia" },
+];
+
+const nextProjects = [
+  { id: "blik",   overline: "Finanse / Strategia UX",             title: "BLIK dla Biznesu w ING", description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.", href: "/projekty/blik-dla-biznesu", image: "/images/ing/KV_blik.webp" },
+  { id: "tabbox", overline: "HealthTech / Senior Care / IoT",       title: "TabBox — Ekosystem farmakoterapii", description: "Ekosystem łączący fizyczny dozownik leków z aplikacją mobilną.", href: "/projekty/tabbox", image: "/images/tabbox/KV_tabbox.webp" },
+  { id: "vtda",   overline: "Bezpieczeństwo krytyczne / Deep Tech", title: "VTDA — Wirtualny Asystent Maszynisty", description: "Redukcja incydentów kolejowych o 20%. System wspomagania decyzji w czasie rzeczywistym.", href: "/projekty/vtda", image: "/images/vtda/VTDA_01.webp" },
+];
+---
+
+<Layout title={`${project.title} | Kamil Wardak`} description={project.subtitle}>
+
+  <!-- ─── PRELOADER BYPASS ───────────────────────────────────────────────── -->
+  <script>
+    // Na stronach projektów nie ma preloadera — odpalamy event natychmiast
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('preloaderFinished'));
+      }, 100);
+    });
+  </script>
+
+  <div class="bg-[#0c0a09] min-h-screen">
+
+    <!-- ─── SPACER pod header ──────────────────────────────────────────────── -->
+    <div class="h-20"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-hero relative px-6 pt-0 pb-0 md:pt-16 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Breadcrumb -->
+        <div class="cs-breadcrumb mb-10 opacity-0" data-hero-fade style="--delay: 0s">
+          <a href="/prace" class="cs-back-link group inline-flex items-center gap-2 text-white/50 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
+            <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14m-7-7-7 7 7 7"/>
+            </svg>
+            <span data-i18n="cs.back">Wszystkie projekty</span>
+          </a>
+        </div>
+
+        <!-- Overline label -->
+        <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
+          <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n={`${project.i18n}.overline`}>{project.overline}</p>
+          </Reveal>
+        </div>
+
+        <!-- Main title -->
+        <div class="mb-6">
+          <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight" data-i18n={`${project.i18n}.title`}>
+              {project.title}
+            </h1>
+          </Reveal>
+        </div>
+
+        <!-- Subtitle -->
+        <div class="max-w-2xl mb-12">
+          <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed" data-i18n={`${project.i18n}.subtitle`}>
+              {project.subtitle}
+            </p>
+          </Reveal>
+        </div>
+
+        <!-- Meta strip -->
+        <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.role">Rola</span>
+            <span class="cs-meta-value">{project.role}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.client">Klient</span>
+            <span class="cs-meta-value">{project.client}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.when">Rok · czas</span>
+            <span class="cs-meta-value">{project.year} · <span data-i18n={`${project.i18n}.duration`}>{project.duration}</span></span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.team">Zespół</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.team`}>{project.team}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.platforms">Platformy</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.platforms`}>{project.platforms}</span>
+          </div>
+        </div>
+
+
+        <!-- TL;DR — problem, rola, wynik w trzech liniach -->
+        <CaseTldr
+          i18n={project.i18n}
+          problem="Rozszerzyć wniosek o konto walutowe o 8 nowych walut. Wniosek powstał jednak, zanim bank wprowadził nowe usługi dla firm, a dostęp do kantoru wymagał osobnego wniosku i kilku dodatkowych zgód."
+          role="UX Expert – Interaction Design, jedyny projektant w 15-osobowym zespole: eksploracja i analiza głosu klienta, prototyp, testy i finalne makiety."
+          result="Jedna ścieżka: konto, karta i dostęp do kantoru. Oferta urosła z 3 do 11 walut obcych, a wdrożenie było o około miesiąc szybsze od harmonogramu."
+        />
+      </div>
+    </section>
+
+    <!-- ─── NOTA O POUFNOŚCI ─────────────────────────────────────────────── -->
+    <section class="px-6 pt-8 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="cs-confidentiality-note opacity-0" data-hero-fade style="--delay: 0.85s">
+          <svg class="cs-conf-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <p>
+            <strong data-i18n={`${project.i18n}.conf.title`}>Nota o poufności:</strong> <span data-i18n={`${project.i18n}.conf`}>Ekrany zostały odtworzone na fikcyjnych danych. Case study opisuje proces i decyzje projektowe — sam produkt jest publicznie dostępny w Moim ING.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── HERO IMAGE (placeholder) ───────────────────────────────────────── -->
+    <section class="cs-hero-image-section px-6 pt-12 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
+          <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.hero">Kluczowy widok projektu</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 1 — KONTEKST
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div class="md:col-span-5">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">01</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3 " data-i18n={`${project.i18n}.s1.heading`}>
+                Od trzech walut do jedenastu
+              </h2>
+            </Reveal>
+          </div>
+          <div class="md:col-span-7">
+            <Reveal delay={0.35} color="#a8a29e">
+              <p class="cs-body-text mb-6" data-i18n={`${project.i18n}.s1.body1`}>
+                Przedsiębiorcy w Moim ING mogli otworzyć konto w euro, dolarach lub funtach. Firmy pracujące z kontrahentami z innych krajów potrzebowały więcej — bank postanowił dodać osiem walut: SEK, CHF, NOK, DKK, CZK, HUF, TRY i RON.
+              </p>
+            </Reveal>
+            <Reveal delay={0.5} color="#a8a29e">
+              <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
+                Początkowy zamysł był prosty: dopisać nowe waluty do istniejącego wniosku. W fazie eksploracji okazało się, że od czasu jego powstania bank wprowadził kilka nowych usług dla firm, których ta ścieżka w ogóle nie wykorzystywała.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+
+        <div class="cs-img-wrapper mt-16 opacity-0" data-scroll-fade>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <figure class="m-0 p-0">
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.0">Mapa dotychczasowej ścieżki</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.0">Mapa dotychczasowej ścieżki</figcaption>
+            </figure>
+            <figure class="m-0 p-0">
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.1">Analiza głosu klienta</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.1">Analiza głosu klienta</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 2 — ODKRYCIE
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-16 md:mb-20">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">02</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3 max-w-xl" data-i18n={`${project.i18n}.s2.heading`}>
+                Klient nie chce konta. Chce zapłacić kontrahentowi.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
+                Dogłębna analiza głosu klientów zmieniła cel projektu: z „dodać waluty” na „doprowadzić do udanej transakcji”.
+              </p>
+            </Reveal>
+        </div>
+
+        <div class="cs-challenges-grid">
+          {challenges.map((ch, i) => (
+            <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
+              <div class="cs-challenge-number">{ch.number}</div>
+              <div class="cs-challenge-content">
+                <h3 class="cs-challenge-title" data-i18n={`${project.i18n}.challenge.${i}.title`}>{ch.title}</h3>
+                <p class="cs-challenge-desc" data-i18n={`${project.i18n}.challenge.${i}.desc`}>{ch.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+          <figure class="m-0 p-0">
+              <div class="aspect-[21/9] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.2">Ścieżka przed zmianą i po niej</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.2">Ścieżka przed zmianą i po niej</figcaption>
+            </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 3 — ROZWIĄZANIE
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div class="md:col-span-5 md:sticky md:top-28">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">03</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3 " data-i18n={`${project.i18n}.s3.heading`}>
+                Trzy kroki, jedna decyzja na krok
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s3.intro`}>
+                Cały wniosek podzieliliśmy na etapy, w których klient podejmuje po jednej decyzji.
+              </p>
+            </Reveal>
+          </div>
+          <div class="md:col-span-7 flex flex-col gap-10">
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Krok 1: waluta</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
+                Klient wybiera, w jakiej walucie chce otworzyć nowe konto.
+              </p>
+            </div>
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Krok 2: karta</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
+                Decyduje, czy zamawia nową kartę do konta, czy podpina je do karty wielowalutowej, którą już ma. Nową kartę może odebrać w paczkomacie.
+              </p>
+            </div>
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Krok 3: kantor</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
+                Na końcu wyraża zgody potrzebne do korzystania z kantoru. Po złożeniu wniosku może od razu wymieniać waluty — bez osobnego wniosku.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade>
+          <figure class="m-0 p-0">
+              <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.4">Krok 1 — wybór waluty</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.4">Krok 1 — wybór waluty</figcaption>
+            </figure>
+          <figure class="m-0 p-0">
+              <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.5">Krok 2 — nowa karta lub podpięcie istniejącej</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.5">Krok 2 — nowa karta lub podpięcie istniejącej</figcaption>
+            </figure>
+          <figure class="m-0 p-0">
+              <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.6">Krok 3 — zgody do kantoru</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.6">Krok 3 — zgody do kantoru</figcaption>
+            </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 4 — PROCES: PROTOTYP Z AI NA STARCIE
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div class="md:col-span-5 md:sticky md:top-28">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">04</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3 " data-i18n={`${project.i18n}.s4.heading`}>
+                Najpierw prototyp, potem makiety
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s4.intro`}>
+                Zamiast klasycznej kolejności — eksploracja, makiety o niskiej, a potem wysokiej szczegółowości — zaczęliśmy od działającego prototypu całej ścieżki, zbudowanego z pomocą AI (Copilot i Claude).
+              </p>
+            </Reveal>
+          </div>
+          <div class="md:col-span-7 flex flex-col gap-10">
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.s4.t1`}>Prototyp z AI na starcie</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.s4.b1`}>
+                W krótkim czasie przeszliśmy całą ścieżkę tak, jak zobaczy ją klient, i od razu widzieliśmy, co działa, a co wymaga uwagi.
+              </p>
+            </div>
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.s4.t2`}>Deweloperzy startują równolegle</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.s4.b2`}>
+                Prototyp pokazywał mechanikę wniosku, więc zespół deweloperski zaczął pracę, gdy my jeszcze dopracowywaliśmy koncepcję i szlifowaliśmy finalne makiety. Wdrożenie skończyliśmy o około miesiąc wcześniej, niż zakładał harmonogram.
+              </p>
+            </div>
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.s4.t3`}>Walidacja: 15 sesji z użytkownikami</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.s4.b3`}>
+                Testy pokazały, że zebranie wszystkich decyzji na jednym ekranie przeciąża. Rozdzieliliśmy je na trzy kroki: ekrany stały się łatwiejsze do przejrzenia, a klient skupia się na jednej decyzji naraz.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+          <figure class="m-0 p-0">
+              <div class="aspect-[16/8] rounded-2xl overflow-hidden border border-white/5 cs-placeholder">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.3">Prototyp całej ścieżki zbudowany z AI</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.3">Prototyp całej ścieżki zbudowany z AI</figcaption>
+            </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 5 — EFEKTY
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--results px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-16 md:mb-20">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">05</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3 " data-i18n={`${project.i18n}.s5.heading`}>
+                Efekty
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s5.intro`}>
+                Wniosek prowadzi klienta od wyboru nowej waluty do pierwszej wymiany w kantorze — w jednej ścieżce, na webie i w aplikacji mobilnej.
+              </p>
+            </Reveal>
+            <a href="https://media.ing.pl/informacje-prasowe/926/pr/872931/ing-rozszerza-oferte-walutowa-dla-przedsiebiorcow-firmy-moga-korzystac-juz-z-11-walut-obcych" target="_blank" rel="noopener noreferrer" class="cs-press-link mt-6">
+              <span data-i18n="fx.s5.link">Komunikat prasowy ING o wdrożeniu</span>
+              <span class="sr-only" data-i18n="works.newtab">(otwiera się w nowej karcie)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+        </div>
+
+        <div class="cs-results-grid">
+          {results.map((r, i) => (
+            <div class="cs-result-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
+              <div class="cs-result-value" data-i18n={`${project.i18n}.result.${i}.value`}>{r.value}</div>
+              <p class="cs-result-label" data-i18n={`${project.i18n}.result.${i}.label`}>{r.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+          <div class="cs-quote-block cs-decision">
+            <div class="cs-quote-line" aria-hidden="true"></div>
+            <p class="cs-decision-label" data-i18n="cs.decision.label">Kluczowa decyzja</p>
+            <p class="cs-quote-text" data-i18n={`${project.i18n}.quote`}>
+              Zamiast dopisać waluty do starego wniosku, przeprojektowaliśmy go wokół prawdziwego celu klienta: zapłacić kontrahentowi w obcej walucie.
+            </p>
+          </div>
+          <div class="cs-learn-block">
+            <p class="cs-decision-label" data-i18n="cs.learned.label">Czego się nauczyłem</p>
+            <p class="cs-learn-text" data-i18n={`${project.i18n}.learned`}>{project.learned}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GALERIA EKRANÓW — placeholdery do podmiany na widoki
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-gallery-section px-6 pb-28 md:pb-36 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-12">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.gallery.overline">Materiały wizualne</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.gallery.heading">Dokumentacja procesu</h2>
+          </Reveal>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 opacity-0" data-scroll-fade>
+          <figure class="m-0 p-0">
+              <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 cs-placeholder cs-placeholder--gallery">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.7">Podsumowanie wniosku</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.7">Podsumowanie wniosku</figcaption>
+            </figure>
+          <figure class="m-0 p-0">
+              <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 cs-placeholder cs-placeholder--gallery">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.8">Ekran sukcesu</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.8">Ekran sukcesu</figcaption>
+            </figure>
+          <figure class="m-0 p-0">
+              <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/5 cs-placeholder cs-placeholder--gallery">
+                <div class="cs-placeholder-inner">
+                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                  <p class="cs-placeholder-label" data-i18n="fx.ph.9">Pierwsza wymiana w kantorze</p>
+                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
+                </div>
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.9">Pierwsza wymiana w kantorze</figcaption>
+            </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         NEXT PROJECTS — nawigacja do kolejnych projektów
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-next-section px-6 pt-0 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-white/5 mb-16 opacity-0" data-scroll-fade></div>
+
+        <div class="mb-12">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.next.overline">Więcej projektów</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.next.heading">Inne realizacje</h2>
+          </Reveal>
+        </div>
+
+        <div class="cs-next-grid">
+          {nextProjects.map((np, i) => (
+            <a href={np.href} class="cs-next-card group opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
+              <div class="cs-next-visual">
+                {np.image ? (
+                  <ProjectImage src={np.image} sizes="(min-width: 768px) 290px, calc(100vw - 48px)" alt={np.title} class="w-full h-full object-cover cs-next-img" loading="lazy" />
+                ) : (
+                  <div class="cs-next-img-placeholder">
+                    <div class="cs-placeholder-icon cs-placeholder-icon--sm">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                        <path d="M21 15l-5-5L5 21"/>
+                      </svg>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <!-- Text -->
+              <div class="cs-next-content">
+                <p class="cs-next-overline" data-i18n={`nextproject.${np.id}.overline`}>{np.overline}</p>
+                <h3 class="cs-next-title" data-i18n={`nextproject.${np.id}.title`}>{np.title}</h3>
+                <p class="cs-next-desc" data-i18n={`nextproject.${np.id}.desc`}>{np.description}</p>
+                <div class="cs-next-cta">
+                  <span data-i18n="cs.next.cta">Zobacz case study</span>
+                  <div class="cs-next-cta-icon">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14m-7-7 7 7-7 7"/>
+                    </svg>
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── LIGHTBOX ────────────────────────────────────────────────────────── -->
+    <div id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd obrazu" inert>
+      <div class="cs-lb-backdrop"></div>
+      <button class="cs-lb-close" aria-label="Zamknij podgląd">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="cs-lb-frame">
+        <img id="cs-lb-img" src="" alt="" class="cs-lb-image" />
+      </div>
+    </div>
+
+    <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
+    <Footer />
+
+  </div>
+</Layout>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STYLES
+═════════════════════════════════════════════════════════════════════════════ -->
+<style>
+
+  /* ─── Hero ──────────────────────────────────────────────────────────────── */
+
+  .cs-back-link {
+    letter-spacing: 0.01em;
+  }
+
+  .cs-back-link:hover {
+    color: #BAF52A;
+  }
+
+  /* ─── Nota o poufności ──────────────────────────────────────────────────── */
+
+  .cs-confidentiality-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transform: translateY(10px);
+  }
+
+  .cs-conf-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cs-confidentiality-note p {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cs-confidentiality-note strong {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.01em;
+  }
+
+  .cs-overline {
+    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+  }
+
+  .cs-hero-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .cs-hero-subtitle {
+    line-height: 1.65;
+  }
+
+  /* Meta strip */
+  .cs-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transform: translateY(12px);
+  }
+
+  .cs-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 28px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .cs-meta-item:first-child { padding-left: 0; }
+
+  .cs-meta-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .cs-meta-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .cs-meta-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.07);
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .cs-meta-strip { gap: 16px; flex-direction: column; }
+    .cs-meta-divider { display: none; }
+    .cs-meta-item { padding: 0; min-width: auto; }
+  }
+
+  /* ─── Hero image ────────────────────────────────────────────────────────── */
+
+  .cs-hero-img-wrapper {
+    transform: translateY(16px);
+  }
+
+  /* ─── Section shared ────────────────────────────────────────────────────── */
+
+  .cs-section-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    opacity: 0.9;
+  }
+
+  .cs-section-heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .cs-body-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a8a29e;
+    font-weight: 400;
+  }
+
+  /* ─── Placeholders ──────────────────────────────────────────────────────── */
+
+  .cs-placeholder {
+    position: relative;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .cs-placeholder:hover {
+    background: rgba(186, 245, 42, 0.03);
+    border-color: rgba(186, 245, 42, 0.12) !important;
+  }
+
+  .cs-placeholder-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .cs-placeholder-icon {
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+  }
+
+  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.4); }
+
+  .cs-placeholder-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .cs-placeholder-label--sm { font-size: 0.72rem; }
+
+  .cs-placeholder-note {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    max-width: 320px;
+    line-height: 1.5;
+  }
+
+  /* ─── Challenges ────────────────────────────────────────────────────────── */
+
+  .cs-section--dark {
+    background: linear-gradient(180deg, #0c0a09 0%, rgba(186,245,42,0.025) 50%, #0c0a09 100%);
+  }
+
+  .cs-challenges-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cs-challenges-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .cs-challenge-card {
+    padding: 32px 28px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: translateY(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  .cs-challenge-card:last-child { border-right: none; }
+
+  .cs-challenge-card:hover {
+    background: rgba(186,245,42,0.03);
+  }
+
+  .cs-challenge-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    opacity: 0.7;
+  }
+
+  .cs-challenge-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .cs-challenge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cs-challenge-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #a8a29e;
+    margin: 0;
+  }
+
+  /* ─── Role items ────────────────────────────────────────────────────────── */
+
+  .cs-role-item {
+    transform: translateY(12px);
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cs-role-item:first-child { padding-top: 0; border-top: none; }
+
+  .cs-role-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ─── Image captions ───────────────────────────────────────────────────── */
+
+  .cs-img-caption {
+    font-size: 0.68rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 9px 2px 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Image hover + zoom ────────────────────────────────────────────────── */
+
+  .cs-img-wrap {
+    position: relative;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='17' fill='none' stroke='%23BAF52A' stroke-width='1.5'/%3E%3Cline x1='22' y1='15' x2='22' y2='29' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='15' y1='22' x2='29' y2='22' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") 22 22, zoom-in;
+    transition: border-color 0.3s ease;
+  }
+
+  .cs-img-wrap:hover {
+    border-color: rgba(186, 245, 42, 0.2) !important;
+  }
+
+  .cs-img-wrap .cs-img {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cs-img-wrap:hover .cs-img {
+    transform: scale(1.035);
+  }
+
+  .cs-img-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(12, 10, 9, 0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(4px) scale(0.88);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  .cs-img-wrap:hover .cs-img-hint {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* ─── Lightbox ──────────────────────────────────────────────────────────── */
+
+  #cs-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #cs-lightbox.cs-lb-open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .cs-lb-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .cs-lb-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .cs-lb-close:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .cs-lb-frame {
+    position: relative;
+    z-index: 1;
+    max-width: min(92vw, 1440px);
+    max-height: 88vh;
+    transform: scale(0.94);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #cs-lightbox.cs-lb-open .cs-lb-frame {
+    transform: scale(1);
+  }
+
+  .cs-lb-image {
+    display: block;
+    max-width: 100%;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+  }
+
+  /* ─── Results ───────────────────────────────────────────────────────────── */
+
+  .cs-section--results {
+    background: #0c0a09;
+  }
+
+  .cs-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cs-results-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .cs-result-card {
+    padding: 32px 24px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: translateY(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .cs-result-card:last-child { border-right: none; }
+    .cs-result-card { border-bottom: none; }
+  }
+
+  .cs-result-card:hover { background: rgba(186,245,42,0.04); }
+
+  .cs-result-value {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .cs-result-label {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  /* ─── Quote block ───────────────────────────────────────────────────────── */
+
+  .cs-quote-block {
+    padding: 36px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    background: rgba(186,245,42,0.03);
+    position: relative;
+  }
+
+  .cs-quote-line {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, #BAF52A, transparent);
+    border-radius: 9999px;
+  }
+
+  .cs-quote-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 16px 0;
+    font-style: italic;
+  }
+
+  .cs-quote-source {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* ─── Gallery ───────────────────────────────────────────────────────────── */
+
+  .cs-gallery-heading {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .cs-placeholder--gallery {
+    background: rgba(255,255,255,0.015);
+  }
+
+  .cs-placeholder--gallery .cs-placeholder-inner {
+    gap: 6px;
+  }
+
+  /* ─── Next projects ─────────────────────────────────────────────────────── */
+
+  .cs-next-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .cs-next-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .cs-next-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(12px);
+  }
+
+  .cs-next-card:hover {
+    border-color: rgba(186,245,42,0.2);
+    background: rgba(186,245,42,0.03);
+    transform: translateY(-4px) !important;
+  }
+
+  .cs-next-visual {
+    aspect-ratio: 16 / 9;
+    background: rgba(255,255,255,0.025);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.35s ease;
+  }
+
+  .cs-next-card:hover .cs-next-visual {
+    background: rgba(186,245,42,0.04);
+  }
+
+  .cs-next-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .cs-next-content {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .cs-next-overline {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .cs-next-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .cs-next-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    flex: 1;
+  }
+
+  .cs-next-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .cs-next-card:hover .cs-next-cta { color: #BAF52A; }
+
+  .cs-next-cta-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .cs-next-cta-icon .icon-arrow,
+  .cs-next-cta-icon .icon-eye {
+    position: absolute;
+    inset: 0;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.35s cubic-bezier(0.6, 0.01, 0.05, 0.95);
+  }
+
+  .cs-next-cta-icon .icon-eye { transform: translateY(100%); }
+
+  .cs-next-card:hover .cs-next-cta-icon .icon-arrow { transform: translateY(-100%); }
+  .cs-next-card:hover .cs-next-cta-icon .icon-eye   { transform: translateY(0); }
+
+  /* ─── Scroll fade shared ────────────────────────────────────────────────── */
+
+  [data-scroll-fade] {
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-scroll-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* ─── Hero fade ─────────────────────────────────────────────────────────── */
+
+  [data-hero-fade] {
+    transform: translateY(14px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-hero-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+
+  /* Wyniki BLIK — 3 pozycje */
+  @media (min-width: 768px) { .cs-results-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ─── Pasek informacji: 6 pól (rola, klient, rok, zakres, zespół, czas) w siatce ─── */
+  .cs-meta-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+  .cs-meta-strip .cs-meta-divider { display: none; }
+  .cs-meta-strip .cs-meta-item { padding: 0; min-width: 0; }
+  @media (max-width: 640px) {
+    .cs-meta-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+  }
+
+  /* ─── Drugie wdrożenie: link do publikacji ─── */
+  .cs-press-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #BAF52A;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(186,245,42,0.4);
+    transition: text-decoration-color 0.2s;
+  }
+  .cs-press-link:hover { text-decoration-color: #BAF52A; }
+
+  /* ─── Kluczowa decyzja + Czego się nauczyłem ─── */
+  .cs-decision .cs-quote-text { font-style: normal; margin: 0; }
+  .cs-decision-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #BAF52A;
+    margin: 0 0 12px;
+  }
+  .cs-learn-block {
+    margin-top: 20px;
+    padding: 28px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+  }
+  .cs-learn-block .cs-decision-label { color: rgba(255,255,255,0.5); }
+  .cs-learn-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .cs-learn-block { padding: 24px 22px; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SCRIPTS
+═════════════════════════════════════════════════════════════════════════════ -->
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { initLightbox } from '../../utils/lightbox';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Hero fade-in elements ─────────────────────────────────────────────────
+  const heroFadeEls = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
+  heroFadeEls.forEach((el) => {
+    const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0');
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: 0.2 + delay,
+      ease: 'power3.out',
+    });
+  });
+
+  // ─── Scroll-triggered fade-in ──────────────────────────────────────────────
+  const scrollFadeEls = document.querySelectorAll<HTMLElement>('[data-scroll-fade]');
+
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = parseFloat(
+            getComputedStyle(el).getPropertyValue('--fade-delay') || '0'
+          );
+          setTimeout(() => {
+            el.classList.add('in-view');
+          }, delay * 1000);
+          scrollObserver.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -5% 0px' }
+  );
+
+  scrollFadeEls.forEach((el) => scrollObserver.observe(el));
+
+  // ─── Challenge & result cards individual stagger ───────────────────────────
+  const cardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const parent = entry.target;
+          const cards = parent.querySelectorAll<HTMLElement>('.cs-challenge-card, .cs-result-card, .cs-next-card');
+          cards.forEach((card, i) => {
+            gsap.to(card, {
+              opacity: 1,
+              y: 0,
+              duration: 0.65,
+              delay: 0.08 * i,
+              ease: 'power3.out',
+            });
+          });
+          cardObserver.unobserve(parent);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.cs-challenges-grid, .cs-results-grid, .cs-next-grid').forEach((grid) => {
+    cardObserver.observe(grid);
+  });
+
+  // ─── Lightbox (miniatury + podgląd) ───────────────────────────────────────
+  initLightbox();
+</script>

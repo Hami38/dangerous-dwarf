@@ -71,11 +71,12 @@ const others = [
                 <th scope="col" data-i18n="works.col.sector">Branża</th>
                 <th scope="col" data-i18n="works.col.role">Rola</th>
                 <th scope="col" data-i18n="works.col.result">Wynik</th>
+                <td aria-hidden="true"></td>
               </tr>
             </thead>
             <tbody>
               {rows.map((r, i) => (
-                <tr>
+                <tr class="wk-row">
                   <td class="wk-year">{r.year}</td>
                   <th scope="row" class="wk-project">
                     <a href={r.href} class="wk-project-link">
@@ -91,6 +92,11 @@ const others = [
                   </td>
                   <td class="wk-role">{r.role}</td>
                   <td class="wk-result" data-i18n={`works.row.${i}.result`}>{r.result}</td>
+                  <td class="wk-go" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class={r.href.startsWith('#') ? 'wk-go--down' : ''}>
+                      <path d="M5 12h14m-7-7 7 7-7 7"/>
+                    </svg>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -253,7 +259,33 @@ const others = [
     transition: color 0.3s ease;
   }
 
-  .wk-project-link:hover { color: var(--brand-main); }
+  /* Cały wiersz klikalny: link w nazwie projektu rozciągnięty na wiersz (jeden link na wiersz dla czytników ekranu) */
+  .wk-row { position: relative; transition: background-color 0.2s ease; }
+  .wk-table tbody .wk-year,
+  .wk-table thead th:first-child { padding-left: 12px; }
+  .wk-table thead td { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .wk-project-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+  }
+  .wk-row:hover { background: rgba(255, 255, 255, 0.04); }
+  .wk-row:hover .wk-project-link { color: var(--brand-main); }
+  .wk-project-link:focus-visible { outline: none; }
+  .wk-project-link:focus-visible::after { outline: 2px solid var(--brand-main); outline-offset: -2px; }
+
+  .wk-go { width: 32px; padding-right: 12px !important; color: rgba(255, 255, 255, 0.35); }
+  .wk-go svg { display: block; transition: transform 0.2s ease, color 0.2s ease; }
+  .wk-go .wk-go--down { transform: rotate(90deg); }
+  .wk-row:hover .wk-go,
+  .wk-row:focus-within .wk-go { color: var(--brand-main); }
+  .wk-row:hover .wk-go svg:not(.wk-go--down) { transform: translateX(4px); }
+  .wk-row:hover .wk-go .wk-go--down { transform: rotate(90deg) translateX(4px); }
+  @media (prefers-reduced-motion: reduce) {
+    .wk-row:hover .wk-go svg:not(.wk-go--down) { transform: none; }
+    .wk-row:hover .wk-go .wk-go--down { transform: rotate(90deg); }
+  }
 
   .wk-project-tag {
     font-size: 11px;
@@ -279,6 +311,9 @@ const others = [
     .wk-sector { grid-column: 2; grid-row: 1; font-size: 0.8rem; }
     .wk-project, .wk-role, .wk-result { grid-column: 1 / -1; }
     .wk-role { max-width: none; font-size: 0.8rem; }
+    .wk-table tr { padding-left: 12px; padding-right: 44px; }
+    .wk-table tbody .wk-year { padding-left: 0; }
+    .wk-go { position: absolute; top: 50%; right: 12px; transform: translateY(-50%); width: auto; padding: 0 !important; }
   }
 
   /* ── Pozostałe projekty ─────────────────────────────────────── */

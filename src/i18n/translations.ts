@@ -700,7 +700,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.cta.talk':     'Let\'s talk',
     'hero.cta.cv':       'Download CV',
     'hero.cta.cv.href':  '/Kamil_Wardak_CV_2026_ENG.pdf',
-    'hero.cta.cv.size':  '1.3 MB',
+    'hero.cta.cv.size':  '1.1 MB',
     'hero.trusted':      'Trusted by leading brands:',
     'hero.brand.0.aria': "ING Bank Śląski — homepage (opens in a new tab)",
     'hero.brand.1.aria': "LTG Cargo Polska — homepage (opens in a new tab)",

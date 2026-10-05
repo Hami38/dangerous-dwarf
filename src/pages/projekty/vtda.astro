@@ -9,11 +9,12 @@ const project = {
   overline: "Bezpieczeństwo krytyczne / Deep Tech",
   title: "VTDA — Wirtualny Asystent Maszynisty",
   subtitle: "Architektura decyzji i logiki bezpieczeństwa w transporcie kolejowym. Redukcja ryzyka incydentów o 20% w 6-miesięcznym pilocie.",
-  role: "Lead Product Designer / UX Architect",
+  role: "Lead UX & UI Designer",
   client: "Infracert",
   year: "2022",
   scope: "Product Design · Safety-Critical UX · Human Factors",
   team: "4 osoby",
+  platforms: "iOS · Android · tablet",
   duration: "21 miesięcy",
   learned: "Oczekiwania interesariuszy nie zawsze pokrywały się z potrzebami maszynistów. Nauczyłem się łączyć te dwa światy: rozwiązanie stawia w centrum użytkownika końcowego, a jednocześnie zachowuje kluczowe wymagania biznesu. Projekt nauczył mnie też bliskiej współpracy z zespołem deweloperskim i języka inżynierów — był moim wejściem w świat uczenia maszynowego i sieci neuronowych.",
   i18n: "vtda",
@@ -121,8 +122,8 @@ const nextProjects = [
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label" data-i18n="cs.meta.year">Rok</span>
-            <span class="cs-meta-value">{project.year}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.when">Rok · czas</span>
+            <span class="cs-meta-value">{project.year} · <span data-i18n={`${project.i18n}.duration`}>{project.duration}</span></span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
@@ -136,8 +137,8 @@ const nextProjects = [
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label" data-i18n="cs.meta.duration">Czas</span>
-            <span class="cs-meta-value" data-i18n={`${project.i18n}.duration`}>{project.duration}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.platforms">Platformy</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.platforms`}>{project.platforms}</span>
           </div>
         </div>
 
@@ -147,7 +148,7 @@ const nextProjects = [
           i18n={project.i18n}
           problem="Maszyniści reagowali na alerty zamiast przewidywać zdarzenia, a interfejsy wzorowane na lotnictwie odciągały wzrok od torów."
           role="Lead Product Designer / UX Architect: architektura decyzji i logiki bezpieczeństwa, human factors i projekt dopasowany do warunków w kabinie."
-          result="−20% ryzyka incydentów w 6-miesięcznym pilocie, −5% wypadkowości w skali organizacji i wdrożenie u 50+ operatorów kolejowych."
+          result="−20% ryzyka incydentów w 6-miesięcznym pilocie u kilku przewoźników kolejowych i −5% wypadkowości u wszystkich przewoźników w pilocie."
         />
       </div>
     </section>

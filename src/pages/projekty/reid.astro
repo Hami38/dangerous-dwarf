@@ -9,11 +9,12 @@ const project = {
   overline: "Bezpieczeństwo / Computer Vision",
   title: "System reidentyfikacji osób dla infrastruktury krytycznej",
   subtitle: "Jak zamienić algorytmy reidentyfikacji w produkt SaaS, któremu ufają operatorzy. Od mapy empatii do 20% ROI w 6 miesięcy.",
-  role: "Lead Product Designer / Strategic Architect",
+  role: "Lead UX & UI Designer",
   client: "New Security Systems",
   year: "2023",
   scope: "Product Design · AI/UX Strategy · Ethics & GDPR",
   team: "4 osoby",
+  platforms: "Web · instalacja u klienta",
   duration: "12 miesięcy",
   learned: "Na początku szukaliśmy zastosowań dla gotowej technologii, zamiast zaczynać od problemu. Przełomem było odwrócenie tej logiki: wyszliśmy od potrzeb operatorów i klientów, a technologię dopasowaliśmy do tego, co faktycznie miała rozwiązać. Dziś zacząłbym projekt właśnie od tego kroku — to on ukształtował finalny produkt.",
   i18n: "reid",
@@ -39,7 +40,7 @@ const challenges = [
 
 const results = [
   { value: "20% ROI", label: "zwrotu z inwestycji w pierwszym półroczu po wdrożeniu" },
-  { value: "50+", label: "lokalizacji wdrożonych w zaledwie 60 dni od startu" },
+  { value: "60 dni", label: "od startu projektu do wdrożenia u klienta" },
   { value: "97%", label: "operatorów zaufało nowej metodzie identyfikacji biometrycznej" },
   { value: "32 sprinty", label: "180 dni iteracji z Design System bez długu projektowego" },
 ];
@@ -121,8 +122,8 @@ const nextProjects = [
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label" data-i18n="cs.meta.year">Rok</span>
-            <span class="cs-meta-value">{project.year}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.when">Rok · czas</span>
+            <span class="cs-meta-value">{project.year} · <span data-i18n={`${project.i18n}.duration`}>{project.duration}</span></span>
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
@@ -136,8 +137,8 @@ const nextProjects = [
           </div>
           <div class="cs-meta-divider"></div>
           <div class="cs-meta-item">
-            <span class="cs-meta-label" data-i18n="cs.meta.duration">Czas</span>
-            <span class="cs-meta-value" data-i18n={`${project.i18n}.duration`}>{project.duration}</span>
+            <span class="cs-meta-label" data-i18n="cs.meta.platforms">Platformy</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.platforms`}>{project.platforms}</span>
           </div>
         </div>
 
@@ -147,7 +148,7 @@ const nextProjects = [
           i18n={project.i18n}
           problem="Zaprojektować system reidentyfikacji osób dla infrastruktury krytycznej, który operator obsłuży bez przeciążenia — przy pełnej zgodności z RODO i minimalnej liczbie fałszywych alarmów."
           role="Lead Product Designer / Strategic Architect: strategia AI/UX, etyka i RODO, architektura interfejsu operatora z człowiekiem w pętli decyzyjnej."
-          result="20% ROI w pierwszym półroczu, 50+ lokalizacji w 60 dni i 97% operatorów ufających nowej metodzie identyfikacji."
+          result="20% ROI w pierwszym półroczu, wdrożenie u klienta w 60 dni i 97% operatorów ufających nowej metodzie identyfikacji."
         />
       </div>
     </section>
@@ -345,7 +346,7 @@ const nextProjects = [
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
               <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Design system i skalowanie</div>
               <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
-                Wdrożyłem Design System, który umożliwił szybkie skalowanie produktu na 50+ lokalizacji bez długu projektowego. Spójność komponentów pozwoliła zespołowi deweloperów na wdrożenie w 60 dni — znacznie poniżej zakładanego harmonogramu.
+                Wdrożyłem Design System, dzięki któremu produkt mógł rosnąć bez długu projektowego. Spójność komponentów pozwoliła zespołowi deweloperów na wdrożenie w 60 dni — znacznie poniżej zakładanego harmonogramu.
               </p>
             </div>
 

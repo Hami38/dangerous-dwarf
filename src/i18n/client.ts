@@ -27,6 +27,11 @@ export function applyTranslations(lang: Lang): void {
     if (key in t) el.setAttribute('aria-label', t[key]);
   });
 
+  document.querySelectorAll<HTMLImageElement>('[data-i18n-alt]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-alt')!;
+    if (key in t) el.alt = t[key];
+  });
+
   document.querySelectorAll<HTMLAnchorElement>('[data-i18n-href]').forEach((el) => {
     const key = el.getAttribute('data-i18n-href')!;
     if (key in t) el.href = t[key];

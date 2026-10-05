@@ -17,7 +17,7 @@ const project = {
   team: "15 osób (jedyny projektant)",
   duration: "2 miesiące",
   platforms: "Web · iOS · Android",
-  learned: "Warto eksperymentować z procesem — nowe narzędzia pozwalają stale rozwijać warsztat i na nowo definiować sposób projektowania. Prototyp, który zwykle powstaje na końcu projektu albo wcale, był tu punktem wyjścia i to on najbardziej wpłynął na tempo wdrożenia i jakość usługi.",
+  learned: "Prototyp na starcie przyspiesza zespół, ale wymaga dyscypliny: trzeba jasno mówić, co jest mechaniką do sprawdzenia, a co danymi poglądowymi, żeby nikt nie wziął szkicu za specyfikację. Dziś od pierwszego dnia oznaczałbym w prototypie, które elementy są jeszcze do decyzji.",
   i18n: "fx",
 };
 
@@ -28,8 +28,8 @@ const challenges = [
 ];
 
 const results = [
+  { value: "3 → 1", label: "osobne procesy (konto, karta, zgody w kantorze) zastąpione jednym wnioskiem" },
   { value: "11", label: "walut obcych w ofercie dla firm (wcześniej 3)" },
-  { value: "1 wniosek", label: "konto, karta i dostęp do kantoru w jednej ścieżce" },
   { value: "~1 mies.", label: "szybciej, niż zakładał harmonogram wdrożenia" },
 ];
 
@@ -137,7 +137,7 @@ const nextProjects = [
           i18n={project.i18n}
           problem="Rozszerzyć wniosek o konto walutowe o 8 nowych walut. Wniosek powstał jednak, zanim bank wprowadził nowe usługi dla firm, a dostęp do kantoru wymagał osobnego wniosku i kilku dodatkowych zgód."
           role="UX Expert – Interaction Design, jedyny projektant w 15-osobowym zespole: eksploracja i analiza głosu klienta, prototyp, testy i finalne makiety."
-          result="Jedna ścieżka: konto, karta i dostęp do kantoru. Oferta urosła z 3 do 11 walut obcych, a wdrożenie było o około miesiąc szybsze od harmonogramu."
+          result="Trzy osobne procesy (konto, karta, zgody w kantorze) zastąpione jednym wnioskiem. Oferta urosła z 3 do 11 walut, wdrożenie było o około miesiąc szybsze od harmonogramu, a liczba nowych rachunków rośnie z miesiąca na miesiąc — jeszcze przed kampanią informacyjną."
         />
       </div>
     </section>
@@ -162,7 +162,7 @@ const nextProjects = [
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
           <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
-            <ProjectImage src="/images/ing/KV_fx.webp" alt="Wniosek o konto walutowe w aplikacji bankowej: podsumowanie z nowym kontem CHF, kartą wielowalutową i zgodami do kantoru; w tle wersja webowa kantoru i kody 11 walut" class="w-full h-full object-cover cs-img" loading="eager" fetchpriority="high" decoding="async" />
+            <ProjectImage src="/images/ing/KV_fx.webp" alt="Wniosek o konto walutowe w aplikacji bankowej: podsumowanie z nowym kontem CHF, kartą wielowalutową i zgodami do kantoru; w tle wersja webowa kantoru i kody 11 walut" data-i18n-alt="fx.alt.KV_fx" class="w-full h-full object-cover cs-img" loading="eager" fetchpriority="high" decoding="async" />
           </div>
         </div>
       </div>
@@ -202,13 +202,13 @@ const nextProjects = [
           <div class="flex flex-col gap-10">
             <figure class="m-0 p-0">
               <div class="rounded-2xl overflow-hidden border border-white/5 bg-white">
-                <ProjectImage src="/images/ing/fx_dotychczasowa_sciezka.webp" alt="Mapa ścieżki klienta przed zmianą: sześć kroków od sprawdzenia oferty (tylko EUR, USD, GBP) przez osobne podłączenie karty i dodatkowe zgody w kantorze, z emocjami klienta i głównymi barierami" class="w-full h-auto block cs-img" loading="lazy" />
+                <ProjectImage src="/images/ing/fx_dotychczasowa_sciezka.webp" alt="Mapa ścieżki klienta przed zmianą: sześć kroków od sprawdzenia oferty (tylko EUR, USD, GBP) przez osobne podłączenie karty i dodatkowe zgody w kantorze, z emocjami klienta i głównymi barierami" data-i18n-alt="fx.alt.fx_dotychczasowa_sciezka" class="w-full h-auto block cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption" data-i18n="fx.ph.0">Mapa dotychczasowej ścieżki</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.0">Mapa dotychczasowej ścieżki — kliknij, aby powiększyć</figcaption>
             </figure>
             <figure class="m-0 p-0">
               <div class="rounded-2xl overflow-hidden border border-white/5 bg-white">
-                <ProjectImage src="/images/ing/fx_glos_klienta.webp" alt="Głos klienta: trzy wypowiedzi przedsiębiorców o braku potrzebnych walut i rozliczeniach z zagranicznymi kontrahentami" class="w-full h-auto block cs-img" loading="lazy" />
+                <ProjectImage src="/images/ing/fx_glos_klienta.webp" alt="Głos klienta: trzy wypowiedzi przedsiębiorców o braku potrzebnych walut i rozliczeniach z zagranicznymi kontrahentami" data-i18n-alt="fx.alt.fx_glos_klienta" class="w-full h-auto block cs-img" loading="lazy" />
               </div>
               <figcaption class="cs-img-caption" data-i18n="fx.ph.1">Głos klienta — dosłowne cytaty z analizy opinii przedsiębiorców</figcaption>
             </figure>
@@ -233,7 +233,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
               <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
-                Dogłębna analiza głosu klientów zmieniła cel projektu: z „dodać waluty” na „doprowadzić do udanej transakcji”.
+                Analiza głosu klientów z wewnętrznych zbiorów opinii banku zmieniła cel projektu: z „dodać waluty” na „doprowadzić do udanej transakcji”.
               </p>
             </Reveal>
         </div>
@@ -253,9 +253,9 @@ const nextProjects = [
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
           <figure class="m-0 p-0">
               <div class="rounded-2xl overflow-hidden border border-white/5 bg-white">
-                <ProjectImage src="/images/ing/fx_sciezka_przed_i_po.webp" alt="Porównanie ścieżki przed zmianą (cztery osobne procesy, 3 waluty) i po zmianie (jeden proces online: waluta, karta, umowy i zgody, podsumowanie, gotowe; 11 walut)" class="w-full h-auto block cs-img" loading="lazy" />
+                <ProjectImage src="/images/ing/fx_sciezka_przed_i_po.webp" alt="Porównanie ścieżki przed zmianą (cztery osobne procesy, 3 waluty) i po zmianie (jeden proces online: waluta, karta, umowy i zgody, podsumowanie, gotowe; 11 walut)" data-i18n-alt="fx.alt.fx_sciezka_przed_i_po" class="w-full h-auto block cs-img" loading="lazy" />
               </div>
-              <figcaption class="cs-img-caption" data-i18n="fx.ph.2">Ścieżka przed zmianą i po niej</figcaption>
+              <figcaption class="cs-img-caption" data-i18n="fx.ph.2">Ścieżka przed zmianą i po niej — kliknij, aby powiększyć</figcaption>
             </figure>
         </div>
       </div>
@@ -292,7 +292,7 @@ const nextProjects = [
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
               <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Krok 2: karta</div>
               <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
-                Decyduje, czy zamawia nową kartę do konta, czy podpina je do karty wielowalutowej, którą już ma. Nową kartę może odebrać w paczkomacie.
+                Decyduje, czy zamawia nową kartę do konta, czy podpina je do karty wielowalutowej, którą już ma — albo pomija ten krok („Nie chcę teraz karty”). Nową kartę może odebrać w paczkomacie. Wniosek prowadzi do celu, ale nie wymusza produktu.
               </p>
             </div>
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
@@ -307,19 +307,19 @@ const nextProjects = [
         <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-5 items-start opacity-0" data-scroll-fade>
           <figure class="m-0 p-0 w-full max-w-[300px] mx-auto md:max-w-none">
             <div class="aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/5 bg-white">
-              <ProjectImage src="/images/ing/fx_krok_01.webp" alt="Ekran kroku 1 wniosku: wybór waluty nowego konta (lista 11 walut) i częstotliwości wyciągu" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              <ProjectImage src="/images/ing/fx_krok_01.webp" alt="Ekran kroku 1 wniosku: wybór waluty nowego konta (lista 11 walut) i częstotliwości wyciągu" data-i18n-alt="fx.alt.fx_krok_01" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
             </div>
             <figcaption class="cs-img-caption" data-i18n="fx.ph.4">Krok 1 — szczegóły: waluta i wyciąg</figcaption>
           </figure>
           <figure class="m-0 p-0 w-full max-w-[300px] mx-auto md:max-w-none">
             <div class="aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/5 bg-white">
-              <ProjectImage src="/images/ing/fx_krok_02.webp" alt="Ekran kroku 2: wybór karty — podpięcie konta do istniejącej karty wielowalutowej albo zamówienie nowej, karta wirtualna lub fizyczna" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              <ProjectImage src="/images/ing/fx_krok_02.webp" alt="Ekran kroku 2: wybór karty — podpięcie konta do istniejącej karty wielowalutowej albo zamówienie nowej, karta wirtualna lub fizyczna" data-i18n-alt="fx.alt.fx_krok_02" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
             </div>
             <figcaption class="cs-img-caption" data-i18n="fx.ph.5">Krok 2 — karta: podpięcie istniejącej lub zamówienie nowej</figcaption>
           </figure>
           <figure class="m-0 p-0 w-full max-w-[300px] mx-auto md:max-w-none">
             <div class="aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/5 bg-white">
-              <ProjectImage src="/images/ing/fx_krok_03.webp" alt="Ekran kroku 3: dokumenty do pobrania (umowa, regulaminy i zgody do kantoru) oraz oświadczenie" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              <ProjectImage src="/images/ing/fx_krok_03.webp" alt="Ekran kroku 3: dokumenty do pobrania (umowa, regulaminy i zgody do kantoru) oraz oświadczenie" data-i18n-alt="fx.alt.fx_krok_03" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
             </div>
             <figcaption class="cs-img-caption" data-i18n="fx.ph.6">Krok 3 — umowa i dokumenty, w tym zgody do kantoru</figcaption>
           </figure>
@@ -350,9 +350,9 @@ const nextProjects = [
           </div>
           <div class="md:col-span-7 flex flex-col gap-10">
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
-              <div class="cs-role-tag" data-i18n={`${project.i18n}.s4.t1`}>Prototyp z AI na starcie</div>
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.s4.t1`}>Klikalny prototyp w HTML na starcie</div>
               <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.s4.b1`}>
-                W krótkim czasie przeszliśmy całą ścieżkę tak, jak zobaczy ją klient, i od razu widzieliśmy, co działa, a co wymaga uwagi.
+                Z pomocą AI przełożyliśmy nasze diagramy i uwagi na klikalny prototyp w HTML. Logikę ścieżki i decyzje projektowe ustaliliśmy sami — AI przyspieszyło zamianę ich w działający kod. W krótkim czasie przeszliśmy całą ścieżkę tak, jak zobaczy ją klient, i od razu widzieliśmy, co działa, a co wymaga uwagi.
               </p>
             </div>
             <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
@@ -373,7 +373,7 @@ const nextProjects = [
         <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
           <figure class="m-0 p-0 max-w-[640px] mx-auto">
               <div class="rounded-2xl overflow-hidden border border-white/5 bg-white">
-                <ProjectImage sizes="(min-width: 768px) 640px, calc(100vw - 48px)" src="/images/ing/fx_prototyp_widok_krok_01.webp" alt="Widok prototypu zbudowanego z AI: pierwszy krok wniosku z wyborem waluty i wyciągu oraz listą kolejnych etapów" class="w-full h-auto block cs-img" loading="lazy" />
+                <ProjectImage sizes="(min-width: 768px) 640px, calc(100vw - 48px)" src="/images/ing/fx_prototyp_widok_krok_01.webp" alt="Widok prototypu zbudowanego z AI: pierwszy krok wniosku z wyborem waluty i wyciągu oraz listą kolejnych etapów" data-i18n-alt="fx.alt.fx_prototyp_widok_krok_01" class="w-full h-auto block cs-img" loading="lazy" />
               </div>
               <figcaption class="cs-img-caption" data-i18n="fx.ph.3">Prototyp całej ścieżki zbudowany z AI — dane poglądowe, liczy się mechanika kroków</figcaption>
             </figure>
@@ -397,7 +397,7 @@ const nextProjects = [
             </Reveal>
             <Reveal delay={0.4} color="#a8a29e">
               <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s5.intro`}>
-                Wniosek prowadzi klienta od wyboru nowej waluty do pierwszej wymiany w kantorze — w jednej ścieżce, na webie i w aplikacji mobilnej.
+                Wniosek prowadzi klienta od wyboru nowej waluty do pierwszej wymiany w kantorze — w jednej ścieżce, na webie i w aplikacji mobilnej. Liczba nowych rachunków rośnie z miesiąca na miesiąc, choć bank nie uruchomił jeszcze żadnej kampanii informacyjnej.
               </p>
             </Reveal>
             <a href="https://media.ing.pl/informacje-prasowe/926/pr/872931/ing-rozszerza-oferte-walutowa-dla-przedsiebiorcow-firmy-moga-korzystac-juz-z-11-walut-obcych" target="_blank" rel="noopener noreferrer" class="cs-press-link mt-6">
@@ -448,13 +448,13 @@ const nextProjects = [
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-start opacity-0" data-scroll-fade>
           <figure class="m-0 p-0 w-full max-w-[300px] mx-auto md:max-w-none">
             <div class="aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/5 bg-white">
-              <ProjectImage src="/images/ing/fx_krok_04.webp" alt="Ekran potwierdzenia: podsumowanie nowego konta walutowego z kartą i pole na kod PIN" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              <ProjectImage src="/images/ing/fx_krok_04.webp" alt="Ekran potwierdzenia: podsumowanie nowego konta walutowego z kartą i pole na kod PIN" data-i18n-alt="fx.alt.fx_krok_04" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
             </div>
             <figcaption class="cs-img-caption" data-i18n="fx.ph.7">Krok 4 — potwierdzenie: podsumowanie wniosku i kod PIN</figcaption>
           </figure>
           <figure class="m-0 p-0 w-full max-w-[300px] mx-auto md:max-w-none">
             <div class="aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/5 bg-white">
-              <ProjectImage src="/images/ing/fx_sukces.webp" alt="Ekran sukcesu: konto otwarte i podłączone do karty wielowalutowej, z linkiem do kantoru" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              <ProjectImage src="/images/ing/fx_sukces.webp" alt="Ekran sukcesu: konto otwarte i podłączone do karty wielowalutowej, z linkiem do kantoru" data-i18n-alt="fx.alt.fx_sukces" sizes="(min-width: 768px) 290px, 300px" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
             </div>
             <figcaption class="cs-img-caption" data-i18n="fx.ph.8">Gotowe — konto podłączone do karty, przejście do kantoru</figcaption>
           </figure>

@@ -157,17 +157,13 @@ const nextProjects = [
       </div>
     </section>
 
-    <!-- ─── HERO IMAGE (placeholder) ───────────────────────────────────────── -->
+    <!-- ─── HERO IMAGE ─────────────────────────────────────────────────────── -->
     <section class="cs-hero-image-section px-6 pt-12 pb-0">
       <div class="max-w-4xl mx-auto">
         <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
-          <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5 cs-placeholder">
-                <div class="cs-placeholder-inner">
-                  <div class="cs-placeholder-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-                  <p class="cs-placeholder-label" data-i18n="fx.ph.hero">Kluczowy widok projektu</p>
-                  <p class="cs-placeholder-note" data-i18n="fx.ph.note">Ekran odtworzony na fikcyjnych danych — wkrótce</p>
-                </div>
-              </div>
+          <div class="aspect-[16/7] rounded-3xl overflow-hidden border border-white/5">
+            <ProjectImage src="/images/ing/KV_fx.webp" alt="Wniosek o konto walutowe w aplikacji bankowej: podsumowanie z nowym kontem CHF, kartą wielowalutową i zgodami do kantoru; w tle wersja webowa kantoru i kody 11 walut" class="w-full h-full object-cover cs-img" loading="eager" fetchpriority="high" decoding="async" />
+          </div>
         </div>
       </div>
     </section>
@@ -1151,6 +1147,7 @@ const nextProjects = [
 
   .cs-next-visual {
     aspect-ratio: 16 / 9;
+    overflow: hidden;
     background: rgba(255,255,255,0.025);
     border-bottom: 1px solid rgba(255,255,255,0.05);
     display: flex;

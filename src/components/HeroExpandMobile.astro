@@ -1,6 +1,7 @@
 ---
 /* src/components/HeroExpandMobile.astro */
-const staticPlaceholder = "/sequence/000001.webp";
+// Telefon: klatki przycięte do pionowego środka (810×1080 → 648×864) — ok. 60% lżejsze
+const staticPlaceholder = "/sequence-m/000001.webp";
 
 const stats = [
   {
@@ -30,7 +31,7 @@ const stats = [
   <div class="me-trigger">
     <div class="me-stage">
       <div class="me-inner">
-        <img src={staticPlaceholder} class="me-static-img" alt="Kamil Wardak" width="1920" height="1080" decoding="async" />
+        <img src={staticPlaceholder} class="me-static-img" alt="Kamil Wardak" width="648" height="864" loading="lazy" decoding="async" />
         <canvas id="me-canvas" class="me-canvas opacity-0"></canvas>
 
         <div class="me-overlay opacity-0 pointer-events-none">
@@ -158,7 +159,7 @@ const stats = [
   // Przy prefers-reduced-motion sekcja zostaje statyczna (stan końcowy w global.css)
   mm.add("(max-width: 767px) and (prefers-reduced-motion: no-preference)", () => {
     const frameCount = 48;
-    const framePath = (i: number) => `/sequence/${i.toString().padStart(6, '0')}.webp`;
+    const framePath = (i: number) => `/sequence-m/${i.toString().padStart(6, '0')}.webp`;
 
     const trigger   = document.querySelector('.me-trigger') as HTMLElement;
     const stage     = document.querySelector('.me-stage') as HTMLElement;

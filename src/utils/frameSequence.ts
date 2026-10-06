@@ -2,7 +2,7 @@
  * frameSequence.ts
  *
  * Sekwencja klatek rysowana na <canvas> (sekcja „expand” na stronie głównej).
- * Klatki pobierają się dopiero, gdy sekcja zbliża się do ekranu — nie przy wejściu na stronę.
+ * Klatki pobierają się dopiero, gdy sekcja zbliża się do ekranu i strona jest już wczytana.
  * Dopóki klatka się nie wczyta, rysowana jest najbliższa wcześniejsza gotowa
  * (klatka 1 to statyczny <img>, który jest już na stronie).
  */
@@ -73,10 +73,20 @@ export const createFrameSequence = ({
     }
   };
 
+  // Klatki nie mogą konkurować o łącze z treścią nad zgięciem (tekst, fonty, CSS):
+  // startujemy dopiero po zdarzeniu load i w chwili bezczynności przeglądarki.
+  const whenPageIdle = (fn: () => void) => {
+    const idle = () => ('requestIdleCallback' in window)
+      ? (window as any).requestIdleCallback(fn, { timeout: 1500 })
+      : setTimeout(fn, 200);
+    if (document.readyState === 'complete') idle();
+    else window.addEventListener('load', idle, { once: true });
+  };
+
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      load();
+      whenPageIdle(load);
     }
   }, { rootMargin: preloadMargin });
   observer.observe(trigger);

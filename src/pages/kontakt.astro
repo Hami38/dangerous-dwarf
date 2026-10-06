@@ -577,10 +577,10 @@ const steps = [
 
 <script>
   import gsap from 'gsap';
-  import { translations } from '../i18n/translations';
-  import { getLang } from '../i18n/client';
+  import { getLang, loadDict } from '../i18n/client';
 
-  const t = () => translations[getLang()];
+  // Słownik bieżącego języka (z pamięci po pierwszym pobraniu)
+  const t = () => loadDict(getLang());
 
   /* ── Animacje wejścia: hero od razu, reszta przy przewinięciu ─────── */
   const fadeIn = (el: HTMLElement, extraDelay = 0) => {
@@ -613,17 +613,17 @@ const steps = [
   const mailto = document.querySelector<HTMLAnchorElement>('[data-kt-mailto]');
 
   // Jeden temat (radio) — przed wyborem temat domyślny
-  const buildSubject = () => {
-    const tr = t();
+  const buildSubject = async () => {
+    const tr = await t();
     const picked = topics.find((input) => input.checked);
     return `[Portfolio] ${picked ? tr[`contact.topic.${picked.value}`] : tr['contact.brief.subject.default']}`;
   };
 
-  const updateBrief = () => {
-    const subject = buildSubject();
+  const updateBrief = async () => {
+    const subject = await buildSubject();
     if (subjectEl) subjectEl.textContent = subject;
     if (mailto) {
-      const body = t()['contact.brief.body'];
+      const body = (await t())['contact.brief.body'];
       mailto.href = `mailto:${mailto.dataset.ktMailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
   };

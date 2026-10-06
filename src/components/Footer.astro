@@ -214,8 +214,6 @@ const year = new Date().getFullYear();
 
 <script>
   import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
 
   const revealEls = document.querySelectorAll<HTMLElement>('.footer-reveal');
   let animated = false;
@@ -240,13 +238,17 @@ const year = new Date().getFullYear();
     return !!footer && footer.getBoundingClientRect().top < window.innerHeight * 0.9;
   };
 
-  // Standardowa ścieżka: scroll na normalnych stronach
-  ScrollTrigger.create({
-    trigger: 'footer.footer',
-    start: 'top 85%',
-    once: true,
-    onEnter: animateFooter,
-  });
+  // Standardowa ścieżka: stopka wchodzi w dolne 85% ekranu
+  const footerEl = document.querySelector('footer.footer');
+  if (footerEl) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting || e.boundingClientRect.top < 0)) {
+        io.disconnect();
+        animateFooter();
+      }
+    }, { rootMargin: '0px 0px -15% 0px' });
+    io.observe(footerEl);
+  }
 
   // Fallback 1: footer już w viewport przy załadowaniu (np. /kontakt wejście bezpośrednie)
   requestAnimationFrame(() => {

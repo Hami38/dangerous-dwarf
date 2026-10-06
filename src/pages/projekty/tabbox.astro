@@ -1295,9 +1295,7 @@ const nextProjects = [
 ═════════════════════════════════════════════════════════════════════════════ -->
 <script>
   import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
   import { initLightbox } from '../../utils/lightbox';
-  gsap.registerPlugin(ScrollTrigger);
 
   const heroFadeEls = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
   heroFadeEls.forEach((el) => {

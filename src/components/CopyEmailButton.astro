@@ -98,8 +98,7 @@ const { email = 'kamil.wardak97@gmail.com', variant = 'icon', class: className =
 </style>
 
 <script>
-  import { translations } from '../i18n/translations';
-  import { getLang } from '../i18n/client';
+  import { tr } from '../i18n/client';
   import { copyText } from '../utils/clipboard';
 
   const RESET_MS = 2000;
@@ -112,17 +111,15 @@ const { email = 'kamil.wardak97@gmail.com', variant = 'icon', class: className =
     btn.addEventListener('click', async () => {
       const ok = await copyText(btn.dataset.copyEmail ?? '');
 
-      const t = translations[getLang()];
-      const message = ok ? t['contact.copied'] : t['contact.copy.failed'];
+      const message = ok ? await tr('contact.copied', 'Skopiowano do schowka') : await tr('contact.copy.failed', 'Nie udało się skopiować');
       btn.classList.toggle('is-copied', ok);
       if (label) label.textContent = message;
       if (status) status.textContent = message;
 
       window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        const tNow = translations[getLang()];
+      timer = window.setTimeout(async () => {
         btn.classList.remove('is-copied');
-        if (label) label.textContent = tNow['contact.copy'];
+        if (label) label.textContent = await tr('contact.copy', 'Kopiuj');
         if (status) status.textContent = '';
       }, RESET_MS);
     });

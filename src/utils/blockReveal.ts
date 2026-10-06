@@ -13,10 +13,7 @@
  */
 
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from './motion';
-
-gsap.registerPlugin(ScrollTrigger);
 
 // ─── Typy ────────────────────────────────────────────────────────────────────
 
@@ -29,7 +26,7 @@ export interface RevealOptions {
   duration?: number;
   /** Kiedy animacja startuje. Domyślnie: 'onScroll' */
   trigger?: 'onLoad' | 'onScroll';
-  /** Punkt startowy ScrollTrigger. Domyślnie: 'top 88%' */
+  /** Kiedy start przy przewijaniu: 'top NN%' = górna krawędź elementu na NN% wysokości ekranu. Domyślnie: 'top 88%' */
   scrollStart?: string;
 }
 
@@ -160,15 +157,32 @@ export const initBlockReveals = (): void => {
       // Odpala się od razu (np. hero heading)
       buildRevealTimeline(block, inner, options);
     } else {
-      // Odpala się gdy element wchodzi w viewport
-      ScrollTrigger.create({
-        trigger: el,
-        start: options.scrollStart,
-        once: true, // animacja tylko raz
-        onEnter: () => buildRevealTimeline(block, inner, options),
-      });
+      // Odpala się, gdy element wchodzi w ekran — IntersectionObserver zamiast
+      // ScrollTrigger: przeglądarka liczy to sama, bez przeliczania układu przy starcie
+      pending.set(el, () => buildRevealTimeline(block, inner, options));
+      observerFor(options.scrollStart).observe(el);
     }
   });
+};
+
+// Jeden obserwator na każdy punkt startu ('top 88%' → dolny margines −12%)
+const pending = new WeakMap<Element, () => void>();
+const observers = new Map<string, IntersectionObserver>();
+const observerFor = (start: string): IntersectionObserver => {
+  let io = observers.get(start);
+  if (io) return io;
+  const pct = parseFloat(start.split(' ')[1] ?? '88') || 88;
+  io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      // Element już nad linią startu (np. po powrocie w połowie strony) też się odsłania
+      if (!entry.isIntersecting && entry.boundingClientRect.top > 0) return;
+      obs.unobserve(entry.target);
+      pending.get(entry.target)?.();
+      pending.delete(entry.target);
+    });
+  }, { rootMargin: `0px 0px -${100 - pct}% 0px` });
+  observers.set(start, io);
+  return io;
 };
 
 /**

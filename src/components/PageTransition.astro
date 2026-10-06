@@ -118,6 +118,31 @@
     }
   }
 
+  /* ── Powrót strzałką „wstecz” (bfcache) ────────────────────────────
+     Przeglądarka przywraca stronę zamrożoną w chwili wyjścia — z zasłoną
+     zasuniętą przez cover(). Odsłaniamy ją bez ponownego curtainDone,
+     żeby animacje wejścia strony nie uruchamiały się drugi raz.         */
+  window.addEventListener('pageshow', (e) => {
+    if (!e.persisted) return;
+    sessionStorage.removeItem('ct');
+    document.documentElement.classList.remove('curtain-ready');
+
+    if (prefersReducedMotion()) {
+      strips.forEach(strip => {
+        strip.style.transition = 'none';
+        strip.style.transform  = 'translateY(105%)';
+      });
+      return;
+    }
+
+    [...strips].reverse().forEach((strip, i) => {
+      setTimeout(() => {
+        strip.style.transition = `transform ${OUT_MS}ms ${EASE}`;
+        strip.style.transform  = 'translateY(-105%)';
+      }, i * STAGGER);
+    });
+  });
+
   /* ── Przechwytywanie kliknięć ──────────────────────────────────────── */
   document.addEventListener('click', (e) => {
     // Ograniczenie ruchu — zwykła nawigacja, bez zasłony

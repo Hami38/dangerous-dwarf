@@ -66,7 +66,8 @@ const stats = [
   .me-trigger { position: relative; background: #0c0a09; }
 
   .me-stage {
-    width: 100%; height: 100vh;
+    /* svh = wysokość przy widocznym pasku adresu — nie zmienia się, gdy pasek się chowa */
+    width: 100%; height: 100vh; height: 100svh;
     background: #0c0a09; overflow: hidden;
   }
 
@@ -88,16 +89,17 @@ const stats = [
     display: flex; align-items: center; justify-content: center;
     /* Góra: wysokość przyklejonego nagłówka (h-20 = 5rem) + odstęp, żeby pierwszy kafel nie wchodził pod menu */
     padding: calc(5rem + 1rem) 0 1.5rem; z-index: 20;
+    /* Kafle są tylko do czytania — dotyk zawsze przewija stronę */
+    pointer-events: none;
   }
 
   .me-cards-scroll {
     width: 100%; max-height: 100%;
-    overflow-y: auto;
+    /* Bez wewnętrznego przewijania: przechwytywało gesty i blokowało przewijanie strony */
+    overflow: hidden;
     padding: 0 1.25rem;
     display: flex; flex-direction: column; gap: 0.75rem;
-    scrollbar-width: none; -ms-overflow-style: none;
   }
-  .me-cards-scroll::-webkit-scrollbar { display: none; }
 
   .me-stat-card {
     background: rgba(255,255,255,0.04);
@@ -139,12 +141,18 @@ const stats = [
     position: relative; z-index: 1;
   }
 
-  /* Kompaktowe kafle na małych ekranach */
-  @media (max-height: 600px), (max-width: 380px) {
+  /* Kompaktowe kafle — wszystkie 4 muszą się zmieścić bez przewijania (wysokość przy widocznym pasku adresu) */
+  @media (max-height: 780px), (max-width: 380px) {
     .me-stat-card { padding: 0.875rem 1rem; border-radius: 1rem; }
-    .me-stat-card h3 { font-size: 1rem; margin-bottom: 0.2rem; }
-    .me-stat-card p  { font-size: 0.7rem; }
+    .me-stat-card h3 { font-size: 1.05rem; margin-bottom: 0.15rem; }
+    .me-stat-card p  { font-size: 0.72rem; line-height: 1.45; }
     .me-cards-scroll { gap: 0.5rem; }
+    .me-overlay { padding: calc(5rem + 0.5rem) 0 1rem; }
+  }
+  /* Bardzo niskie ekrany — bez opisów, zostają tytuł i liczba */
+  @media (max-height: 600px) {
+    .me-card-desc { display: none; }
+    .me-stat-card { padding: 0.75rem 1rem; }
   }
 </style>
 
@@ -153,6 +161,8 @@ const stats = [
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   import { createFrameSequence } from '../utils/frameSequence';
   gsap.registerPlugin(ScrollTrigger);
+  // Pokazanie/schowanie paska adresu nie przelicza przypięcia (to powodowało zacinanie)
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   const mm = gsap.matchMedia();
 
@@ -232,7 +242,6 @@ const stats = [
       // Faza 2 — overlay
       masterTL.to(overlay, {
         opacity: 1, duration: 0.8, ease: 'power2.out',
-        onStart: () => { overlay.style.pointerEvents = 'auto'; },
       }, '>-0.2');
 
       // Faza 3 — kafle wjeżdżają razem (minimalny stagger)
@@ -250,7 +259,14 @@ const stats = [
       // Faza 5 — krótka chwila zatrzymania (było 1.2)
       masterTL.to({}, { duration: 0.4 });
 
-      window.addEventListener('resize', () => { cacheSize(); render(); ScrollTrigger.refresh(); });
+      // Pasek adresu na telefonie zmienia wysokość okna przy każdym przewinięciu —
+      // przeliczamy tylko przy zmianie szerokości (obrót ekranu); resztę robi ScrollTrigger
+      let lastW = window.innerWidth;
+      window.addEventListener('resize', () => {
+        if (window.innerWidth === lastW) return;
+        lastW = window.innerWidth;
+        cacheSize(); render();
+      });
       ScrollTrigger.refresh();
     };
 

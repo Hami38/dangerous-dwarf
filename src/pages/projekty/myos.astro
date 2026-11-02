@@ -1,0 +1,1854 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Reveal from '../../components/Reveal.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectImage from '../../components/ProjectImage.astro';
+import CaseTldr from '../../components/CaseTldr.astro';
+
+const project = {
+  overline: "Agenci AI / Strategia produktu",
+  title: "MyOS: kontrola nad agentami AI w relacjach między firmami",
+  subtitle: "Koncepcja produktu, w którym dwie firmy i ich agenci AI prowadzą relację na jednym, sprawdzalnym zapisie — a właściciel decyduje tylko tam, gdzie kończą się limity.",
+  role: "Senior Product / UX Designer",
+  client: "Blue Language Labs",
+  year: "2026",
+  scope: "Strategia produktu · Architektura informacji · Prototyp · Go-to-market",
+  team: "Samodzielnie",
+  platforms: "Web · mobile",
+  duration: "Koncepcja · zadanie rekrutacyjne",
+  learned: "Najtrudniejsze nie było projektowanie ekranów, tylko decyzja, czego właściciel firmy nie musi wiedzieć. Słowa protokołu (Mandate, PayNote, Timeline) zostawiłem w widoku dewelopera, a właścicielowi pokazałem limity, płatności i dowody. Nauczyłem się też od pierwszego ekranu oddzielać to, co działa dziś, od tego, co dopiero proponuję — każdy widok prototypu mówi o tym w stopce.",
+  i18n: "myos",
+};
+
+const challenges = [
+  {
+    number: "01",
+    title: "Jedna relacja w pięciu miejscach",
+    description: "Umowy, zamówienia, uprawnienia agentów i pieniądze żyły w osobnych modułach. Żeby odpowiedzieć na pytanie „czy z Google wszystko w porządku?”, właściciel musiał odwiedzić każdy z nich.",
+  },
+  {
+    number: "02",
+    title: "Uprawnienia jako ustawienia",
+    description: "Uprawnienia agentów wyglądały jak lista do administrowania. Nie odpowiadały na pytania, które zadaje właściciel: dlaczego to się stało i co jeszcze może się zmienić bez mojej zgody?",
+  },
+  {
+    number: "03",
+    title: "Aktywność zamiast stanu",
+    description: "Kanały aktywności i czat mówiły, co się wydarzyło, ale nie co jest udowodnione, co jest należne i co wciąż czeka na dowód. Właściciel widział ruch, nie widział sytuacji.",
+  },
+];
+
+// Kierunki rozważone i odrzucone (slajd „Rejected directions”)
+const rejected = [
+  { title: "Produkt oparty na umowie",          why: "centralny w briefie i prototypach zespołu.", no: "zbyt skupiony na dokumencie — ukrywa to, co dzieje się na co dzień." },
+  { title: "Uprawnienia agentów na start",       why: "najbardziej charakterystyczny pomysł Blue.", no: "zbyt techniczny jako pierwsza historia dla właściciela." },
+  { title: "Macierz uprawnień",                  why: "znany wzorzec z paneli administracyjnych.", no: "nie wyrazi cyklu życia, dowodu ani zakończenia." },
+  { title: "Zespół jako schemat organizacyjny",  why: "widoczny w eksperymentach.", no: "sugeruje ludzi, a nie agentów działających w granicach." },
+  { title: "Dashboard dla każdego modułu",       why: "łatwo przenieść z eksperymentów.", no: "rozbija jeden produkt na pięć." },
+];
+
+// Numerowane opisy na zbliżeniach (x, y w % kadru)
+// Znaczniki stoją na marginesach i krawędziach elementów, żeby nie zasłaniać tekstu
+const limitsMarks = [
+  { x: 2.2,  y: 34.2, text: "Kto nadał odpowiedzialność, kto ją potwierdził i do kiedy obowiązuje." },
+  { x: 2.2,  y: 61.4, text: "Prosta odpowiedź: co agent może, o co pyta, czego nie może nigdy i co robi bez dowodu." },
+  { x: 67.6, y: 15.8, text: "Symulator: prawdziwe sytuacje sprawdzone, zanim uprawnienie zacznie działać." },
+  { x: 58.4, y: 4,    text: "Zakończenie też jest zaprojektowane: co się zatrzymuje, co trwa dalej, co trzeba przekazać." },
+];
+const decisionMarks = [
+  { x: 2.2,  y: 30,   text: "Trzy zasięgi decyzji: tylko to zamówienie, zmiana umowy albo zostawienie limitu." },
+  { x: 67.2, y: 17.7, text: "Agent sprawdził warunki przed zapytaniem: kuchnię, dostawę i zabezpieczoną płatność." },
+  { x: 35.7, y: 62.5, text: "Podgląd przed i po. Nic się jeszcze nie zmieniło." },
+  { x: 2.2,  y: 91.9, text: "Bezpieczne zatwierdzenie: zmienia się tylko zamówienie #05, z możliwością cofnięcia do zamknięcia menu." },
+];
+const proofMarks = [
+  { x: 2.2,  y: 47.7, text: "Deklaracja kuchni to jeszcze nie dowód — brakuje zapisu kuriera." },
+  { x: 65.5, y: 60.6, text: "Dlatego kwota zostaje zabezpieczona i nie jest pobierana." },
+  { x: 2.2,  y: 65.8, text: "Google dostaje prośbę o potwierdzenie — jego odpowiedź jest dowodem z umowy." },
+  { x: 2.2,  y: 77.4, text: "Każdy fakt ma źródło: dostawca płatności, kurier, zdjęcie z kuchni, odpowiedź klienta." },
+];
+
+// Cztery stany uwagi (slajd „The system”)
+const states = [
+  { key: "done",    name: "W limitach",       desc: "Agent działał w granicach i ma na to dowód." },
+  { key: "need",    name: "Potrzebuje Ciebie", desc: "Blokuje pracę albo ma termin." },
+  { key: "wait",    name: "Czeka na dowód",    desc: "Nie da się tego jeszcze udowodnić. Pieniądze czekają." },
+  { key: "denied",  name: "Niedozwolone",      desc: "Poza limitami. Po prostu się nie dzieje." },
+];
+
+// Napięcia z briefu i decyzje (slajd „Six tensions”)
+const tensions = [
+  { tension: "Wzrost na miarę vs wspólny rdzeń",      decision: "Strategia wzrostu jest indywidualna, a jej ustawienia stają się domyślnymi limitami na wspólnym rdzeniu." },
+  { tension: "Rozmowa vs jawny stan",                  decision: "Asystent może wyjaśniać i wyszukiwać, ale stan żyje w prośbach o decyzję i czterech stanach — nie w czacie." },
+  { tension: "Prostota vs prawda dla dewelopera",      decision: "Słowa biznesowe dla właściciela, a dokładny zapis Blue jedno kliknięcie głębiej." },
+  { tension: "Autonomia vs kontrola człowieka",        decision: "Limity są testowane przed uruchomieniem, a decyzja na granicy ma wybrany zasięg." },
+  { tension: "Otwarty protokół vs produkt",            decision: "MyOS jest marką produktu. Blue pokazuje się tam, gdzie pracują deweloperzy." },
+  { tension: "Szybkość vs zaufanie",                   decision: "To, czego nie wiadomo, czeka zamiast zgadywać, a każdy etap wdrożenia kończy się bramką." },
+];
+
+const metrics = [
+  "Interwencje właściciela na relację spadają, gdy relacji przybywa",
+  "Właściciele przewidują skutek decyzji, zanim ją podejmą",
+  "Czas od wyjątku do decyzji",
+  "Zero akcji poza limitami",
+  "Druga relacja bez dedykowanego kodu",
+];
+
+const phases = [
+  { days: "Dni 0–30",  title: "Zweryfikować model",       body: "Architektura oparta na relacji, słownictwo, zasięg decyzji.",        gate: "właściciele przewidują skutki bez znajomości protokołu" },
+  { days: "Dni 31–60", title: "Jedna pełna pętla",         body: "Umowa, zamówienie, limit, decyzja, płatność i dowód.",              gate: "rutyna działa bezpiecznie, a wyjątki wracają z kontekstem" },
+  { days: "Dni 61–90", title: "Udowodnić powtarzalność",   body: "Drugi kontrahent i diagnostyka dla deweloperów.",                   gate: "kolejna relacja bez dedykowanej logiki" },
+];
+
+const nextProjects = [
+  { id: "fx",   overline: "Finanse / Product Design",          title: "Konta walutowe dla firm w ING", description: "Jeden wniosek: konto w nowej walucie, karta i kantor. 11 walut obcych dla firm.", href: "/projekty/konta-walutowe", image: "/images/ing/KV_fx.webp" },
+  { id: "blik", overline: "Finanse / Strategia UX",            title: "BLIK dla Biznesu w ING", description: "Adaptacja retailowych wzorców płatniczych do złożonego ekosystemu bankowości korporacyjnej.", href: "/projekty/blik-dla-biznesu", image: "/images/ing/KV_blik.webp" },
+  { id: "reid", overline: "Bezpieczeństwo / Computer Vision", title: "System reidentyfikacji osób dla infrastruktury krytycznej", description: "Integracja zaawansowanego rzemiosła UX z systemami wizyjnymi AI. 20% ROI w 6 miesięcy.", href: "/projekty/reid", image: "/images/reid/hero_reid.webp" },
+];
+---
+
+<Layout title={`${project.title} | Kamil Wardak`} description={project.subtitle}>
+
+  <!-- ─── PRELOADER BYPASS ───────────────────────────────────────────────── -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('preloaderFinished'));
+      }, 100);
+    });
+  </script>
+
+  <div class="bg-[#0c0a09] min-h-screen">
+
+    <!-- ─── SPACER pod header ──────────────────────────────────────────────── -->
+    <div class="h-20"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-hero relative px-6 pt-0 pb-0 md:pt-16 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Breadcrumb -->
+        <div class="cs-breadcrumb mb-10 opacity-0" data-hero-fade style="--delay: 0s">
+          <a href="/prace" class="cs-back-link group inline-flex items-center gap-2 text-white/50 text-sm font-medium transition-colors duration-300 hover:text-[#BAF52A]">
+            <svg class="cs-back-arrow transition-transform duration-300 group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14m-7-7-7 7 7 7"/>
+            </svg>
+            <span data-i18n="cs.back">Wszystkie projekty</span>
+          </a>
+        </div>
+
+        <!-- Overline label -->
+        <div class="mb-5 opacity-0" data-hero-fade style="--delay: 0.05s">
+          <Reveal trigger="onLoad" delay={0.15} color="#BAF52A">
+            <p class="cs-overline text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n={`${project.i18n}.overline`}>{project.overline}</p>
+          </Reveal>
+        </div>
+
+        <!-- Main title -->
+        <div class="mb-6">
+          <Reveal trigger="onLoad" delay={0.3} duration={0.8} color="#ffffff">
+            <h1 class="cs-hero-title text-white font-bold leading-[1.05] tracking-tight" data-i18n={`${project.i18n}.title`}>
+              {project.title}
+            </h1>
+          </Reveal>
+        </div>
+
+        <!-- Subtitle -->
+        <div class="max-w-2xl mb-12">
+          <Reveal trigger="onLoad" delay={0.55} color="#a8a29e">
+            <p class="cs-hero-subtitle text-stone-400 text-lg md:text-xl font-medium leading-relaxed" data-i18n={`${project.i18n}.subtitle`}>
+              {project.subtitle}
+            </p>
+          </Reveal>
+        </div>
+
+        <!-- Meta strip -->
+        <div class="cs-meta-strip opacity-0" data-hero-fade style="--delay: 0.7s">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.role">Rola</span>
+            <span class="cs-meta-value">{project.role}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n={`${project.i18n}.meta.for`}>Dla</span>
+            <span class="cs-meta-value">{project.client}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n={`${project.i18n}.meta.when`}>Rok · status</span>
+            <span class="cs-meta-value">{project.year} · <span data-i18n={`${project.i18n}.duration`}>{project.duration}</span></span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.scope">Zakres</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.scope`}>{project.scope}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.team">Zespół</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.team`}>{project.team}</span>
+          </div>
+          <div class="cs-meta-divider"></div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="cs.meta.platforms">Platformy</span>
+            <span class="cs-meta-value" data-i18n={`${project.i18n}.platforms`}>{project.platforms}</span>
+          </div>
+        </div>
+
+
+        <!-- TL;DR — problem, rola, wynik w trzech liniach -->
+        <CaseTldr
+          i18n={project.i18n}
+          problem="Firmy oddają agentom AI coraz więcej pracy: umowy, zamówienia, płatności. Właściciel musi wiedzieć, co agent może zrobić bez niego, co wymaga jego decyzji i na jakiej podstawie system uznaje coś za fakt — bez znajomości protokołu, na którym to działa."
+          role="Senior Product / UX Designer, samodzielnie: model produktu, architektura informacji, system stanów, klikalny prototyp zbudowany z pomocą Claude, go-to-market i plan badań."
+          result="Według feedbacku firmy moja propozycja była jedną z najsilniejszych w procesie rekrutacji. Po trudnych decyzjach nie przeszedłem do etapu finałowego — została koncepcja i prototyp w trzech aktach."
+        />
+      </div>
+    </section>
+
+    <!-- ─── NOTA: KONCEPCJA, NIE WDROŻENIE ───────────────────────────────── -->
+    <section class="px-6 pt-8 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="cs-confidentiality-note opacity-0" data-hero-fade style="--delay: 0.85s">
+          <svg class="cs-conf-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          <p>
+            <strong data-i18n={`${project.i18n}.conf.title`}>Koncepcja, nie wdrożenie:</strong> <span data-i18n={`${project.i18n}.conf`}>ekrany pochodzą z mojego prototypu, a scenariusz z Google NYC i kwoty na nich są poglądowe.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── HERO IMAGE ─────────────────────────────────────────────────────── -->
+    <section class="cs-hero-image-section px-6 pt-12 pb-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="cs-hero-img-wrapper opacity-0" data-scroll-fade>
+          <div class="aspect-[16/8] rounded-3xl overflow-hidden border border-white/5">
+            <ProjectImage src="/images/myos/hero_myos.webp" alt="Grafika projektu MyOS: okno przeglądarki z decyzją „Allow 56 meals when the Agreement allows 55?”, obok telefon z widokiem Today, nad nimi pasek Agreement v3 łączący Chama Mama i Google oraz etykiety stanów: Needs you, Waiting for proof, Done within limits" data-i18n-alt="myos.alt.hero" class="w-full h-full object-cover cs-img" loading="eager" fetchpriority="high" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 1 — KONTEKST
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+          <!-- Left: Number + heading -->
+          <div class="md:col-span-5">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">01</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s1.heading`}>
+                Agenci prowadzą firmę. Kto za nich odpowiada?
+              </h2>
+            </Reveal>
+          </div>
+
+          <!-- Right: Body text -->
+          <div class="md:col-span-7">
+            <Reveal delay={0.35} color="#a8a29e">
+              <p class="cs-body-text mb-6" data-i18n={`${project.i18n}.s1.body1`}>
+                Blue Language Labs buduje Blue — otwarty język dokumentów, w którym umowa, zamówienie czy uprawnienie agenta są dokładnym, wersjonowanym zapisem, a nie plikiem PDF i prywatnym kodem. MyOS to środowisko, w którym firmy i ich agenci AI na tych dokumentach pracują.
+              </p>
+            </Reveal>
+            <Reveal delay={0.5} color="#a8a29e">
+              <p class="cs-body-text" data-i18n={`${project.i18n}.s1.body2`}>
+                Zadanie nie dotyczyło odświeżenia interfejsu. Miałem zdecydować, czym MyOS powinien się stać, i sprawić, żeby właściciel restauracji zrozumiał produkt bez nauki protokołu. Brief wprost oceniał model produktu, architekturę interakcji, warsztat wizualny i osąd go-to-market.
+              </p>
+            </Reveal>
+          </div>
+
+        </div>
+
+        <!-- Context images -->
+        <div class="cs-img-wrapper mt-16 opacity-0" data-scroll-fade>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <figure class="m-0 p-0">
+              <div class="aspect-[16/10] rounded-2xl overflow-hidden border border-white/5">
+                <ProjectImage src="/images/myos/today_myos.webp" sizes="(min-width: 944px) 440px, calc(100vw - 48px)" alt="Widok Today: na górze decyzje, które wymagają właściciela, niżej zamówienia czekające na dowód i prace wykonane przez agentów w ich limitach" data-i18n-alt="myos.alt.today" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="myos.caption.0">Today — raport pracy agentów: najpierw to, co wymaga Twojej decyzji</figcaption>
+            </figure>
+            <figure class="m-0 p-0">
+              <div class="aspect-[16/10] rounded-2xl overflow-hidden border border-white/5">
+                <ProjectImage src="/images/myos/strategy_myos.webp" sizes="(min-width: 944px) 440px, calc(100vw - 48px)" alt="Strategia wzrostu „Office catering outreach”: propozycja pilotażu z Etsy HQ do akceptacji, lejek miesiąca i limity zapisane raz dla całej strategii" data-i18n-alt="myos.alt.strategy" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="myos.caption.1">Growth — właściciel zatwierdza strategię raz, a jej limity obowiązują w każdej nowej relacji</figcaption>
+            </figure>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 2 — PROBLEMY
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Section header -->
+        <div class="mb-16 md:mb-20">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="cs-section-number">02</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-section-heading mt-3 max-w-xl" data-i18n={`${project.i18n}.s2.heading`}>
+              MyOS myślał dokumentami. Właściciele myślą relacjami.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.4} color="#a8a29e">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s2.intro`}>
+              Eksperymenty pokazały, że podstawowe elementy działają. Brakowało jednego modelu produktu, który je łączy. W materiałach znalazłem trzy powtarzające się problemy.
+            </p>
+          </Reveal>
+        </div>
+
+        <!-- Challenge cards -->
+        <div class="cs-challenges-grid">
+          {challenges.map((ch, i) => (
+            <div class="cs-challenge-card opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.15}s`}>
+              <div class="cs-challenge-number">{ch.number}</div>
+              <div class="cs-challenge-content">
+                <h3 class="cs-challenge-title" data-i18n={`${project.i18n}.challenge.${i}.title`}>{ch.title}</h3>
+                <p class="cs-challenge-desc" data-i18n={`${project.i18n}.challenge.${i}.desc`}>{ch.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Relacja jako produkt -->
+        <div class="mt-20 opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+          <figure class="m-0 p-0">
+            <div class="aspect-[16/10] rounded-3xl overflow-hidden border border-white/5">
+              <ProjectImage src="/images/myos/relationship_myos.webp" alt="Relacja Chama Mama i Google NYC: Agreement v3 łączy obie firmy, pod spodem kwoty zabezpieczone i wypłacone, sześć zakładek relacji i decyzja o 56 posiłkach; z prawej osoby i agenci zaangażowani w relację" data-i18n-alt="myos.alt.relationship" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+            </div>
+            <figcaption class="cs-img-caption" data-i18n="myos.caption.2">Relacja jako produkt — umowa, zamówienia, pieniądze, limity i dowody w jednym miejscu</figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 3 — DROGA DO TEZY
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div class="md:col-span-5">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">03</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s3.heading`}>
+                Od materiałów do jednej tezy
+              </h2>
+            </Reveal>
+          </div>
+          <div class="md:col-span-7 flex flex-col gap-10">
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.s3.t1`}>Eksperymenty jako dowody</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.s3.b1`}>
+                Trzy eksperymenty zespołu (catering, przedpłacona sprzedaż, piekarnia) i demo potraktowałem jak materiał badawczy, a nie wzór do kopiowania. Dla każdego zapisałem, na jakie pytanie produktowe odpowiada. Te same trzy problemy wracały w każdym z nich, choć wyglądały inaczej.
+              </p>
+            </div>
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.s3.t2`}>Prototyp z Claude: 9 wersji</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.s3.b2`}>
+                Klikalny prototyp w HTML budowałem z pomocą Claude. Model produktu, stany i teksty to moje decyzje — AI przyspieszało zamianę ich w działający kod, więc mogłem przejść przez dziewięć wersji zamiast jednej. Każdą sprawdzałem heurystykami (Nielsen, Apple HIG), automatycznym skanem kontrastu w obu motywach i przejściem przez wszystkie stany i wyjątki.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Odrzucone kierunki -->
+        <div class="mt-20">
+          <Reveal delay={0.1} color="#ffffff">
+            <h3 class="cs-subheading" data-i18n={`${project.i18n}.rejected.heading`}>Co rozważyłem i odrzuciłem</h3>
+          </Reveal>
+          <ul class="cs-rejected-list" role="list">
+            {rejected.map((r, i) => (
+              <li class="cs-rejected-item opacity-0" data-scroll-fade style={`--fade-delay: ${0.05 + i * 0.08}s`}>
+                <p class="cs-rejected-title" data-i18n={`${project.i18n}.rejected.${i}.title`}>{r.title}</p>
+                <p class="cs-rejected-why"><span class="cs-rejected-label" data-i18n={`${project.i18n}.rejected.why`}>Kusiło, bo</span> <span data-i18n={`${project.i18n}.rejected.${i}.why`}>{r.why}</span></p>
+                <p class="cs-rejected-no"><span class="cs-rejected-label" data-i18n={`${project.i18n}.rejected.no`}>Odrzuciłem, bo</span> <span data-i18n={`${project.i18n}.rejected.${i}.no`}>{r.no}</span></p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 4 — TRZY DECYZJE PRODUKTOWE
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-28 md:pt-36 pb-0">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+          <!-- Left: Heading -->
+          <div class="md:col-span-5 md:sticky md:top-28">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">04</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s4.heading`}>
+                Trzy decyzje produktowe
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text mt-4" data-i18n={`${project.i18n}.s4.intro`}>
+                Odpowiedź w jednym zdaniu: MyOS powinien być wspólnym zapisem, na którym dwie firmy — i ich agenci — prowadzą swoją relację. Relacja jest produktem, a bezpieczne delegowanie sprawia, że produkt się skaluje.
+              </p>
+            </Reveal>
+          </div>
+
+          <!-- Right: Role items -->
+          <div class="md:col-span-7 flex flex-col gap-10">
+
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role1.tag`}>Najpierw relacja, potem moduły</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role1.body`}>
+                Pięć miejsc w nawigacji: Today, Growth, Relationships, Money i Team. Każda relacja otwiera te same sześć widoków: przegląd, umowa, zamówienia, pieniądze, limity i dowody. Pełny tekst umowy pozostaje źródłem prawdy — standardowe zapisy działają automatycznie, a te wymagające oceny człowieka są wyraźnie oznaczone.
+              </p>
+              <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+                <figure class="m-0 p-0">
+                  <div class="aspect-[16/10] rounded-2xl overflow-hidden border border-white/5">
+                    <ProjectImage src="/images/myos/agreement_myos.webp" sizes="(min-width: 944px) 520px, calc(100vw - 48px)" alt="Zakładka umowy: Agreement v3 podpisana przez obie strony, 5 standardowych kroków działających automatycznie, 4 zapisy unikalne dla tej umowy i pełny tekst umowy z listą sekcji" data-i18n-alt="myos.alt.agreement" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+                  </div>
+                  <figcaption class="cs-img-caption" data-i18n="myos.caption.3">Umowa — podpisany tekst jest źródłem prawdy, a zmapowane zapisy działają automatycznie</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role2.tag`}>Właściciel decyduje na granicy, nie na każdym kroku</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role2.body`}>
+                Uprawnienia agenta (w Blue: Mandate) nazwałem po prostu limitami. Właściciel nadaje odpowiedzialność w czterech krokach i przed uruchomieniem sprawdza ją na prawdziwych sytuacjach: 54 posiłki, 56 posiłków, zmiana ceny, brak dowodu. Zakończenie uprawnienia też jest zaprojektowane: co się zatrzymuje, co trwa dalej, a co trzeba przekazać komuś innemu.
+              </p>
+            </div>
+
+            <div class="cs-role-item opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+              <div class="cs-role-tag" data-i18n={`${project.i18n}.role3.tag`}>Obie strony widzą jeden sprawdzalny zapis</div>
+              <p class="cs-body-text mt-3" data-i18n={`${project.i18n}.role3.body`}>
+                Klient (w scenariuszu Google NYC) widzi ten sam zapis we własnym portalu i na własnych zasadach — nigdy agentów dostawcy ani jego innych klientów. Zmiana umowy obowiązuje dopiero, gdy obie strony zaakceptują tę samą wersję. Pieniądze idą za dowodem: deklaracja to jeszcze nie dowód, a brak danych to nie odmowa.
+              </p>
+              <div class="mt-6 opacity-0" data-scroll-fade style="--fade-delay: 0.35s">
+                <figure class="m-0 p-0">
+                  <div class="aspect-[16/10] rounded-2xl overflow-hidden border border-white/5">
+                    <ProjectImage src="/images/myos/counterparty_myos.webp" sizes="(min-width: 944px) 520px, calc(100vw - 48px)" alt="Portal klienta Google NYC: pytanie „Did your team receive all 42 meals?” z trzema odpowiedziami, bo potwierdzenie klienta jest dowodem dostawy; poniżej lista zamówień ze statusami" data-i18n-alt="myos.alt.counterparty" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+                  </div>
+                  <figcaption class="cs-img-caption" data-i18n="myos.caption.5">Widok klienta — ten sam zapis, nie kopia; potwierdzenie Google jest dowodem dostawy</figcaption>
+                </figure>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Zbliżenie: limity -->
+        <figure class="cs-annot mt-20 opacity-0" data-scroll-fade>
+          <div class="cs-annot-frame">
+            <ProjectImage src="/images/myos/limits_detail_myos.webp" alt="Limity agenta Operations: kto nadał odpowiedzialność, co agent może zrobić sam, o co musi zapytać, czego nie może nigdy i co robi, gdy brakuje dowodu; z prawej symulator sytuacji z odpowiedziami w czterech stanach" data-i18n-alt="myos.alt.limits" class="w-full h-auto block cs-img" loading="lazy" />
+            {limitsMarks.map((m, i) => <span class="cs-mark" style={`left: ${m.x}%; top: ${m.y}%`} aria-hidden="true">{i + 1}</span>)}
+          </div>
+          <figcaption>
+            <p class="cs-img-caption" data-i18n="myos.caption.4">Limity — co agent może, o co pyta, czego nie może nigdy; symulator sprawdza je przed uruchomieniem</p>
+            <ol class="cs-annot-list">
+              {limitsMarks.map((m, i) => <li data-i18n={`myos.mark.limits.${i}`}>{m.text}</li>)}
+            </ol>
+          </figcaption>
+        </figure>
+
+        <!-- Zbliżenie: decyzja na granicy limitu -->
+        <figure class="cs-annot mt-20 opacity-0" data-scroll-fade>
+          <div class="cs-annot-frame">
+            <ProjectImage src="/images/myos/decision_detail_myos.webp" alt="Decyzja przy zamówieniu #05: „Allow 56 meals when the Agreement allows 55?” — trzy zasięgi decyzji (tylko to zamówienie, zmiana umowy, zostaw limit), podgląd stanu przed i po oraz rekomendacja agenta z listą sprawdzonych warunków" data-i18n-alt="myos.alt.decision" class="w-full h-auto block cs-img" loading="lazy" />
+            {decisionMarks.map((m, i) => <span class="cs-mark" style={`left: ${m.x}%; top: ${m.y}%`} aria-hidden="true">{i + 1}</span>)}
+          </div>
+          <figcaption>
+            <p class="cs-img-caption" data-i18n="myos.caption.6">Decyzja na granicy limitu — trzy zasięgi i podgląd zmian, zanim cokolwiek się zmieni</p>
+            <ol class="cs-annot-list">
+              {decisionMarks.map((m, i) => <li data-i18n={`myos.mark.decision.${i}`}>{m.text}</li>)}
+            </ol>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 5 — JEDEN SYSTEM UWAGI
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark px-6 pt-28 md:pt-36 pb-28 md:pb-36 mt-28 md:mt-36">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div class="md:col-span-7">
+            <Reveal delay={0.1} color="#BAF52A">
+              <p class="cs-section-number">05</p>
+            </Reveal>
+            <Reveal delay={0.25} color="#ffffff">
+              <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s5.heading`}>
+                Jeden system uwagi
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4} color="#a8a29e">
+              <p class="cs-body-text mt-4" data-i18n={`${project.i18n}.s5.intro`}>
+                Każdy stan w produkcie odpowiada na jedno pytanie właściciela: czy muszę coś zrobić? Te same cztery stany działają w Today, w relacji, w limitach i w pieniądzach.
+              </p>
+            </Reveal>
+
+            <ul class="cs-states" role="list">
+              {states.map((s, i) => (
+                <li class={`cs-state cs-state--${s.key} opacity-0`} data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.1}s`}>
+                  <span class="cs-state-dot" aria-hidden="true"></span>
+                  <div>
+                    <p class="cs-state-name" data-i18n={`${project.i18n}.state.${i}.name`}>{s.name}</p>
+                    <p class="cs-state-desc" data-i18n={`${project.i18n}.state.${i}.desc`}>{s.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div class="cs-rule opacity-0" data-scroll-fade style="--fade-delay: 0.3s">
+              <p class="cs-decision-label" data-i18n={`${project.i18n}.rule.label`}>Reguła</p>
+              <p class="cs-rule-text" data-i18n={`${project.i18n}.rule`}>Do Today trafia tylko to, co blokuje pracę albo ma termin. Asystent AI może wyjaśniać i wyszukiwać, ale nigdy nie przechowuje stanu.</p>
+            </div>
+          </div>
+
+          <div class="md:col-span-5">
+            <figure class="m-0 p-0 cs-phone opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+              <div class="cs-phone-frame">
+                <ProjectImage src="/images/myos/mobile_myos.webp" sizes="(min-width: 768px) 300px, 70vw" alt="Prototyp MyOS na telefonie: widok Today z dwiema decyzjami dla właściciela, liczbą zamówień czekających na dowód i dolną nawigacją" data-i18n-alt="myos.alt.mobile" class="w-full h-auto block cs-img" loading="lazy" />
+              </div>
+              <figcaption class="cs-img-caption" data-i18n="myos.caption.mobile">Ten sam system na telefonie — Today z dolną nawigacją</figcaption>
+            </figure>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 6 — NAPIĘCIA I DECYZJE
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section px-6 pt-0 pb-0">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-12 md:mb-16">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="cs-section-number">06</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s6.heading`}>
+              Sześć napięć, sześć decyzji
+            </h2>
+          </Reveal>
+          <Reveal delay={0.4} color="#a8a29e">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s6.intro`}>
+              Brief nazywał napięcia, które produkt musi rozstrzygnąć. Przy każdym podjąłem decyzję i nazwałem jej koszt.
+            </p>
+          </Reveal>
+        </div>
+
+        <dl class="cs-tensions">
+          {tensions.map((t, i) => (
+            <div class="cs-tension opacity-0" data-scroll-fade style={`--fade-delay: ${0.05 + i * 0.06}s`}>
+              <dt class="cs-tension-name" data-i18n={`${project.i18n}.tension.${i}.name`}>{t.tension}</dt>
+              <dd class="cs-tension-decision" data-i18n={`${project.i18n}.tension.${i}.decision`}>{t.decision}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="mt-12 opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+          <div class="cs-quote-block cs-decision">
+            <div class="cs-quote-line" aria-hidden="true"></div>
+            <p class="cs-decision-label" data-i18n={`${project.i18n}.tradeoff.label`}>Z czego rezygnuję</p>
+            <p class="cs-quote-text" data-i18n={`${project.i18n}.tradeoff`}>
+              Mniej ekranów niż w eksperymentach, wolniejsze dotarcie do platform i jeden dodatkowy ekran decyzji przy każdym limicie — w zamian za jeden zapis, któremu właściciel może ufać.
+            </p>
+          </div>
+          <div class="cs-learn-block">
+            <p class="cs-decision-label" data-i18n="cs.decision.label">Kluczowa decyzja</p>
+            <p class="cs-learn-text" data-i18n={`${project.i18n}.quote`}>
+              Jednorazowy wyjątek nigdy nie zmienia umowy. Przy granicy limitu właściciel wybiera, jak daleko sięga jego decyzja — i zanim cokolwiek się zmieni, widzi stan przed i po.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SEKCJA 7 — JAK BYM TO SPRAWDZIŁ I WPROWADZIŁ
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--results px-6 pt-28 md:pt-36 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-12 md:mb-16">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="cs-section-number">07</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-section-heading mt-3" data-i18n={`${project.i18n}.s7.heading`}>
+              Jak bym to sprawdził i wprowadził
+            </h2>
+          </Reveal>
+          <Reveal delay={0.4} color="#a8a29e">
+            <p class="cs-body-text max-w-2xl mt-4" data-i18n={`${project.i18n}.s7.intro`}>
+              Najpierw nauka, potem skala. Każdy etap kończy się bramką, a z góry wiem, co zmieniłoby moje zdanie.
+            </p>
+          </Reveal>
+          <p class="cs-proto-note mt-6" data-i18n="myos.prototype.note">Klikalny prototyp pokazuję na rozmowie.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="cs-panel opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+            <h3 class="cs-panel-title" data-i18n={`${project.i18n}.test.heading`}>Pierwszy test — gotowy do uruchomienia</h3>
+            <p class="cs-panel-text" data-i18n={`${project.i18n}.test.body`}>5 właścicieli firm, 15 minut, klikalny prototyp. Dwa zadania: „Zgoda jednorazowa czy zmiana umowy?” i „Dlaczego zamówienie #06 czeka?”.</p>
+          </div>
+          <div class="cs-panel opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+            <h3 class="cs-panel-title" data-i18n={`${project.i18n}.metrics.heading`}>Jak zmierzyłbym sukces</h3>
+            <ul class="cs-panel-list">
+              {metrics.map((m, i) => <li data-i18n={`${project.i18n}.metric.${i}`}>{m}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <ol class="cs-phases" role="list">
+          {phases.map((p, i) => (
+            <li class="cs-phase opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
+              <p class="cs-phase-days" data-i18n={`${project.i18n}.phase.${i}.days`}>{p.days}</p>
+              <h3 class="cs-phase-title" data-i18n={`${project.i18n}.phase.${i}.title`}>{p.title}</h3>
+              <p class="cs-phase-body" data-i18n={`${project.i18n}.phase.${i}.body`}>{p.body}</p>
+              <p class="cs-phase-gate"><span class="cs-phase-gate-label" data-i18n={`${project.i18n}.phase.gate`}>Bramka:</span> <span data-i18n={`${project.i18n}.phase.${i}.gate`}>{p.gate}</span></p>
+            </li>
+          ))}
+        </ol>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+          <div class="cs-panel opacity-0" data-scroll-fade style="--fade-delay: 0.1s">
+            <h3 class="cs-panel-title" data-i18n={`${project.i18n}.gtm.heading`}>Go-to-market</h3>
+            <p class="cs-panel-text" data-i18n={`${project.i18n}.gtm.body`}>Pierwszy segment (hipoteza do sprawdzenia): restauracje i firmy cateringowe z powtarzalnymi zamówieniami biurowymi. Opłata tylko od zrealizowanych zamówień. Kolejne relacje przyprowadza druga strona przez własny portal.</p>
+          </div>
+          <div class="cs-panel opacity-0" data-scroll-fade style="--fade-delay: 0.2s">
+            <h3 class="cs-panel-title" data-i18n={`${project.i18n}.mind.heading`}>Co zmieniłoby moje zdanie</h3>
+            <p class="cs-panel-text" data-i18n={`${project.i18n}.mind.body`}>Jeśli więcej niż 1 na 5 właścicieli pomyli jednorazową zgodę ze zmianą umowy albo drugi kontrahent będzie wymagał własnego kodu — najpierw zawężam produkt.</p>
+          </div>
+        </div>
+
+        <!-- Czego się nauczyłem -->
+        <div class="cs-learn-block mt-20 opacity-0" data-scroll-fade>
+          <p class="cs-decision-label" data-i18n="cs.learned.label">Czego się nauczyłem</p>
+          <p class="cs-learn-text" data-i18n={`${project.i18n}.learned`}>{project.learned}</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GALLERY STRIP
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-gallery-section px-6 pb-28 md:pb-36 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="mb-12">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.gallery.overline">Materiały wizualne</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-gallery-heading mt-2" data-i18n="myos.gallery.heading">Pieniądze idą za dowodem</h2>
+          </Reveal>
+        </div>
+
+        <figure class="cs-annot opacity-0" data-scroll-fade>
+          <div class="cs-annot-frame">
+            <ProjectImage src="/images/myos/proof_detail_myos.webp" alt="Zakładka dowodów: kuchnia deklaruje dostawę zamówienia #04, ale brakuje zapisu kuriera, więc kwota pozostaje zabezpieczona; poniżej lista faktów ze źródłem każdego z nich" data-i18n-alt="myos.alt.proof" class="w-full h-auto block cs-img" loading="lazy" />
+            {proofMarks.map((m, i) => <span class="cs-mark" style={`left: ${m.x}%; top: ${m.y}%`} aria-hidden="true">{i + 1}</span>)}
+          </div>
+          <figcaption>
+            <p class="cs-img-caption" data-i18n="myos.caption.7">Dowody — deklaracja to jeszcze nie dowód; każdy fakt ma swoje źródło</p>
+            <ol class="cs-annot-list">
+              {proofMarks.map((m, i) => <li data-i18n={`myos.mark.proof.${i}`}>{m.text}</li>)}
+            </ol>
+          </figcaption>
+        </figure>
+
+        <figure class="m-0 p-0 mt-16 opacity-0" data-scroll-fade>
+          <div class="aspect-[16/10] rounded-2xl overflow-hidden border border-white/5">
+            <ProjectImage src="/images/myos/money_myos.webp" alt="Widok Money: kwoty zabezpieczone, wypłacone i czekające na dowód, rozdzielone celowo; poniżej nadchodzące płatności z informacją, na co czekają" data-i18n-alt="myos.alt.money" class="w-full h-full object-cover object-top cs-img" loading="lazy" />
+          </div>
+          <figcaption class="cs-img-caption" data-i18n="myos.caption.8">Money — należne, zabezpieczone i wypłacone, rozdzielone celowo</figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         NEXT PROJECTS
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="cs-next-section px-6 pt-0 pb-28 md:pb-36">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-white/5 mb-16 opacity-0" data-scroll-fade></div>
+
+        <div class="mb-12">
+          <Reveal delay={0.1} color="#BAF52A">
+            <p class="text-[#BAF52A] text-xs tracking-[0.15em] font-bold" data-i18n="cs.next.overline">Więcej projektów</p>
+          </Reveal>
+          <Reveal delay={0.25} color="#ffffff">
+            <h2 class="cs-gallery-heading mt-2" data-i18n="cs.next.heading">Inne realizacje</h2>
+          </Reveal>
+        </div>
+
+        <div class="cs-next-grid">
+          {nextProjects.map((np, i) => (
+            <a href={np.href} class="cs-next-card group opacity-0" data-scroll-fade style={`--fade-delay: ${0.1 + i * 0.12}s`}>
+              <div class="cs-next-visual">
+                <ProjectImage src={np.image} sizes="(min-width: 768px) 290px, calc(100vw - 48px)" alt={np.title} class="w-full h-full object-cover cs-next-img" loading="lazy" />
+              </div>
+              <div class="cs-next-content">
+                <p class="cs-next-overline" data-i18n={`nextproject.${np.id}.overline`}>{np.overline}</p>
+                <h3 class="cs-next-title" data-i18n={`nextproject.${np.id}.title`}>{np.title}</h3>
+                <p class="cs-next-desc" data-i18n={`nextproject.${np.id}.desc`}>{np.description}</p>
+                <div class="cs-next-cta">
+                  <span data-i18n="cs.next.cta">Zobacz case study</span>
+                  <div class="cs-next-cta-icon">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14m-7-7 7 7-7 7"/>
+                    </svg>
+                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── LIGHTBOX ────────────────────────────────────────────────────────── -->
+    <div id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Podgląd obrazu" inert>
+      <div class="cs-lb-backdrop"></div>
+      <button class="cs-lb-close" aria-label="Zamknij podgląd">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="cs-lb-frame">
+        <img id="cs-lb-img" src="" alt="" class="cs-lb-image" />
+      </div>
+    </div>
+
+    <!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
+    <Footer />
+
+  </div>
+</Layout>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STYLES
+═════════════════════════════════════════════════════════════════════════════ -->
+<style>
+
+  /* ─── Hero ──────────────────────────────────────────────────────────────── */
+
+  .cs-back-link {
+    letter-spacing: 0.01em;
+  }
+
+  .cs-back-link:hover {
+    color: #BAF52A;
+  }
+
+  /* ─── Nota o poufności ──────────────────────────────────────────────────── */
+
+  .cs-confidentiality-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transform: translateY(10px);
+  }
+
+  .cs-conf-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cs-confidentiality-note p {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cs-confidentiality-note strong {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.01em;
+  }
+
+  .cs-overline {
+    letter-spacing: 0.15em;
+    font-size: 0.75rem;
+  }
+
+  .cs-hero-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .cs-hero-subtitle {
+    line-height: 1.65;
+  }
+
+  /* Meta strip */
+  .cs-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transform: translateY(12px);
+  }
+
+  .cs-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 28px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .cs-meta-item:first-child { padding-left: 0; }
+
+  .cs-meta-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .cs-meta-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .cs-meta-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.07);
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .cs-meta-strip { gap: 16px; flex-direction: column; }
+    .cs-meta-divider { display: none; }
+    .cs-meta-item { padding: 0; min-width: auto; }
+  }
+
+  /* ─── Hero image ────────────────────────────────────────────────────────── */
+
+  .cs-hero-img-wrapper {
+    transform: translateY(16px);
+  }
+
+  /* ─── Section shared ────────────────────────────────────────────────────── */
+
+  .cs-section-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    opacity: 0.9;
+  }
+
+  .cs-section-heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .cs-body-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a8a29e;
+    font-weight: 400;
+  }
+
+  /* ─── Placeholders ──────────────────────────────────────────────────────── */
+
+  .cs-placeholder {
+    position: relative;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .cs-placeholder--hero {
+    background: linear-gradient(135deg, rgba(186,245,42,0.03) 0%, rgba(255,255,255,0.015) 100%);
+  }
+
+  .cs-placeholder--wide {
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(186,245,42,0.025) 100%);
+  }
+
+  .cs-placeholder-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .cs-placeholder-icon {
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+  }
+
+  .cs-placeholder-icon--sm { color: rgba(255,255,255,0.4); }
+
+  .cs-placeholder-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .cs-placeholder-label--sm { font-size: 0.72rem; }
+
+  .cs-placeholder-note {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    max-width: 320px;
+    line-height: 1.5;
+  }
+
+  /* ─── Challenges ────────────────────────────────────────────────────────── */
+
+  .cs-section--dark {
+    background: linear-gradient(180deg, #0c0a09 0%, rgba(186,245,42,0.025) 50%, #0c0a09 100%);
+  }
+
+  .cs-challenges-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cs-challenges-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .cs-challenge-card {
+    padding: 32px 28px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: translateY(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  .cs-challenge-card:last-child { border-right: none; }
+
+  .cs-challenge-card:hover {
+    background: rgba(186,245,42,0.03);
+  }
+
+  .cs-challenge-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    opacity: 0.7;
+  }
+
+  .cs-challenge-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .cs-challenge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cs-challenge-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #a8a29e;
+    margin: 0;
+  }
+
+  /* ─── Role items ────────────────────────────────────────────────────────── */
+
+  .cs-role-item {
+    transform: translateY(12px);
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cs-role-item:first-child { padding-top: 0; border-top: none; }
+
+  .cs-role-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ─── Image captions ───────────────────────────────────────────────────── */
+
+  /* ─── Image hover + zoom ────────────────────────────────────────────────── */
+
+  .cs-img-wrap {
+    position: relative;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='17' fill='none' stroke='%23BAF52A' stroke-width='1.5'/%3E%3Cline x1='22' y1='15' x2='22' y2='29' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='15' y1='22' x2='29' y2='22' stroke='%23BAF52A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") 22 22, zoom-in;
+    transition: border-color 0.3s ease;
+  }
+
+  .cs-img-wrap:hover {
+    border-color: rgba(186, 245, 42, 0.2) !important;
+  }
+
+  .cs-img-wrap .cs-img {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cs-img-wrap:hover .cs-img {
+    transform: scale(1.035);
+  }
+
+  .cs-img-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(12, 10, 9, 0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(4px) scale(0.88);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  .cs-img-wrap:hover .cs-img-hint {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .cs-img-caption {
+    font-size: 0.68rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 9px 2px 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Lightbox ──────────────────────────────────────────────────────────── */
+
+  #cs-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #cs-lightbox.cs-lb-open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .cs-lb-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .cs-lb-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .cs-lb-close:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .cs-lb-frame {
+    position: relative;
+    z-index: 1;
+    max-width: min(92vw, 1440px);
+    max-height: 88vh;
+    transform: scale(0.94);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #cs-lightbox.cs-lb-open .cs-lb-frame {
+    transform: scale(1);
+  }
+
+  .cs-lb-image {
+    display: block;
+    max-width: 100%;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+  }
+
+  /* ─── Results ───────────────────────────────────────────────────────────── */
+
+  .cs-section--results {
+    background: #0c0a09;
+  }
+
+  .cs-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cs-results-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .cs-result-card {
+    padding: 32px 24px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: translateY(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .cs-result-card:last-child { border-right: none; }
+    .cs-result-card { border-bottom: none; }
+  }
+
+  .cs-result-card:hover { background: rgba(186,245,42,0.04); }
+
+  .cs-result-value {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #BAF52A 0%, #e8ff8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .cs-result-label {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  /* ─── Quote block ───────────────────────────────────────────────────────── */
+
+  .cs-quote-block {
+    padding: 36px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    background: rgba(186,245,42,0.03);
+    position: relative;
+  }
+
+  .cs-quote-line {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, #BAF52A, transparent);
+    border-radius: 9999px;
+  }
+
+  .cs-quote-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 16px 0;
+    font-style: italic;
+  }
+
+  .cs-quote-source {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* ─── Gallery ───────────────────────────────────────────────────────────── */
+
+  .cs-gallery-heading {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  /* ─── Next projects ─────────────────────────────────────────────────────── */
+
+  .cs-next-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .cs-next-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .cs-next-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(12px);
+  }
+
+  .cs-next-card:hover {
+    border-color: rgba(186,245,42,0.2);
+    background: rgba(186,245,42,0.03);
+    transform: translateY(-4px) !important;
+  }
+
+  .cs-next-visual {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: rgba(255,255,255,0.025);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.35s ease;
+  }
+
+  .cs-next-card:hover .cs-next-visual {
+    background: rgba(186,245,42,0.04);
+  }
+
+  .cs-next-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .cs-next-img {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cs-next-card:hover .cs-next-img {
+    transform: scale(1.04);
+  }
+
+  .cs-next-content {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .cs-next-overline {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #BAF52A;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .cs-next-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .cs-next-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    flex: 1;
+  }
+
+  .cs-next-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .cs-next-card:hover .cs-next-cta { color: #BAF52A; }
+
+  .cs-next-cta-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .cs-next-cta-icon .icon-arrow,
+  .cs-next-cta-icon .icon-eye {
+    position: absolute;
+    inset: 0;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.35s cubic-bezier(0.6, 0.01, 0.05, 0.95);
+  }
+
+  .cs-next-cta-icon .icon-eye { transform: translateY(100%); }
+
+  .cs-next-card:hover .cs-next-cta-icon .icon-arrow { transform: translateY(-100%); }
+  .cs-next-card:hover .cs-next-cta-icon .icon-eye   { transform: translateY(0); }
+
+  /* ─── Scroll fade shared ────────────────────────────────────────────────── */
+
+  [data-scroll-fade] {
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-scroll-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* ─── Hero fade ─────────────────────────────────────────────────────────── */
+
+  [data-hero-fade] {
+    transform: translateY(14px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-hero-fade].in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+
+  /* ─── Pasek informacji: 6 pól (rola, klient, rok, zakres, zespół, czas) w siatce ─── */
+  .cs-meta-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+  .cs-meta-strip .cs-meta-divider { display: none; }
+  .cs-meta-strip .cs-meta-item { padding: 0; min-width: 0; }
+  @media (max-width: 640px) {
+    .cs-meta-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+  }
+
+  /* ─── Kluczowa decyzja + Czego się nauczyłem ─── */
+  .cs-decision .cs-quote-text { font-style: normal; margin: 0; }
+  .cs-decision-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #BAF52A;
+    margin: 0 0 12px;
+  }
+  .cs-learn-block {
+    margin-top: 20px;
+    padding: 28px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+  }
+  .cs-learn-block .cs-decision-label { color: rgba(255,255,255,0.5); }
+  .cs-learn-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .cs-learn-block { padding: 24px 22px; }
+  }
+
+  .cs-proto-note {
+    margin-bottom: 0;
+    padding-left: 14px;
+    border-left: 2px solid rgba(186,245,42,0.55);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .cs-subheading {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  /* ─── Odrzucone kierunki ─── */
+  .cs-rejected-list {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .cs-rejected-list { grid-template-columns: repeat(2, 1fr); }
+    .cs-rejected-item:last-child { grid-column: 1 / -1; }
+  }
+  .cs-rejected-item {
+    padding: 22px 24px;
+    background: rgba(255,255,255,0.02);
+    outline: 1px solid rgba(255,255,255,0.05);
+    transform: translateY(12px);
+  }
+  .cs-rejected-title {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .cs-rejected-why,
+  .cs-rejected-no {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #a8a29e;
+  }
+  .cs-rejected-label {
+    font-weight: 700;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ─── Zbliżenia z numerowanymi opisami ─── */
+  .cs-annot { margin-left: 0; margin-right: 0; padding: 0; }
+  .cs-annot-frame {
+    position: relative;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  /* Znaczniki stoją na obrazie, więc obraz nie powiększa się po najechaniu */
+  .cs-annot-frame.cs-img-wrap:hover .cs-img { transform: none; }
+  .cs-mark {
+    position: absolute;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #BAF52A;
+    color: #0c0a09;
+    font-size: 0.8rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 3px rgba(12,10,9,0.85), 0 6px 18px rgba(0,0,0,0.4);
+    pointer-events: none;
+  }
+  @media (max-width: 640px) {
+    .cs-mark { width: 20px; height: 20px; margin: -10px 0 0 -10px; font-size: 0.65rem; box-shadow: 0 0 0 2px rgba(12,10,9,0.85); }
+  }
+  .cs-annot-list {
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: mark;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px 28px;
+  }
+  @media (min-width: 768px) {
+    .cs-annot-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  .cs-annot-list li {
+    counter-increment: mark;
+    position: relative;
+    padding-left: 34px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+  .cs-annot-list li::before {
+    content: counter(mark);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #BAF52A;
+    color: #0c0a09;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  /* ─── System uwagi: cztery stany ─── */
+  .cs-states {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  @media (min-width: 640px) {
+    .cs-states { grid-template-columns: repeat(2, 1fr); }
+  }
+  .cs-state {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    transform: translateY(12px);
+  }
+  .cs-state-dot {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    margin-top: 5px;
+    border-radius: 50%;
+  }
+  .cs-state--done .cs-state-dot   { background: #4ade80; }
+  .cs-state--need .cs-state-dot   { background: #fb923c; }
+  .cs-state--wait .cs-state-dot   { border: 2px solid #c4b5fd; }
+  .cs-state--denied .cs-state-dot { background: #f87171; border-radius: 3px; }
+  .cs-state--need { border-color: rgba(251,146,60,0.35); background: rgba(251,146,60,0.06); }
+  .cs-state-name {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .cs-state-desc {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #a8a29e;
+  }
+  .cs-rule {
+    margin-top: 28px;
+    padding-left: 18px;
+    border-left: 2px solid rgba(186,245,42,0.55);
+    transform: translateY(12px);
+  }
+  .cs-rule-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* Telefon */
+  .cs-phone { transform: translateY(12px); max-width: 300px; margin: 0 auto; }
+  .cs-phone-frame {
+    border-radius: 2rem;
+    overflow: hidden;
+    border: 6px solid #1c1917;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 30px 80px rgba(0,0,0,0.5);
+  }
+
+  /* ─── Napięcia → decyzje ─── */
+  .cs-tensions {
+    margin: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .cs-tension {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transform: translateY(12px);
+  }
+  @media (min-width: 768px) {
+    .cs-tension { grid-template-columns: 5fr 7fr; }
+  }
+  .cs-tension-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .cs-tension-decision {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #a8a29e;
+  }
+
+  /* ─── Sprawdzenie i wdrożenie ─── */
+  .cs-panel {
+    padding: 26px 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    transform: translateY(12px);
+  }
+  .cs-panel-title {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .cs-panel-text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #a8a29e;
+  }
+  .cs-panel-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #a8a29e;
+  }
+  .cs-panel-list li::marker { color: #BAF52A; }
+
+  .cs-phases {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .cs-phases { grid-template-columns: repeat(3, 1fr); }
+  }
+  .cs-phase {
+    padding: 26px 24px;
+    background: rgba(255,255,255,0.02);
+    outline: 1px solid rgba(255,255,255,0.05);
+    transform: translateY(12px);
+  }
+  .cs-phase-days {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #BAF52A;
+  }
+  .cs-phase-title {
+    margin: 8px 0 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  .cs-phase-body {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #a8a29e;
+  }
+  .cs-phase-gate {
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.75);
+  }
+  .cs-phase-gate-label { font-weight: 700; color: #ffffff; }
+
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SCRIPTS
+═════════════════════════════════════════════════════════════════════════════ -->
+<script>
+  import gsap from 'gsap';
+  import { initLightbox } from '../../utils/lightbox';
+
+  // ─── Hero fade-in elements ─────────────────────────────────────────────────
+  const heroFadeEls = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
+  heroFadeEls.forEach((el) => {
+    const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0');
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      delay: 0.2 + delay,
+      ease: 'power3.out',
+    });
+  });
+
+  // ─── Scroll-triggered fade-in ──────────────────────────────────────────────
+  const scrollFadeEls = document.querySelectorAll<HTMLElement>('[data-scroll-fade]');
+
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = parseFloat(
+            getComputedStyle(el).getPropertyValue('--fade-delay') || '0'
+          );
+          setTimeout(() => {
+            el.classList.add('in-view');
+          }, delay * 1000);
+          scrollObserver.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -5% 0px' }
+  );
+
+  scrollFadeEls.forEach((el) => scrollObserver.observe(el));
+
+  // ─── Challenge & result cards individual stagger ───────────────────────────
+  const cardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const parent = entry.target;
+          const cards = parent.querySelectorAll<HTMLElement>('.cs-challenge-card, .cs-result-card, .cs-next-card');
+          cards.forEach((card, i) => {
+            gsap.to(card, {
+              opacity: 1,
+              y: 0,
+              duration: 0.65,
+              delay: 0.08 * i,
+              ease: 'power3.out',
+            });
+          });
+          cardObserver.unobserve(parent);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.cs-challenges-grid, .cs-results-grid, .cs-next-grid').forEach((grid) => {
+    cardObserver.observe(grid);
+  });
+
+  // ─── Lightbox (miniatury + podgląd) ───────────────────────────────────────
+  initLightbox();
+</script>
